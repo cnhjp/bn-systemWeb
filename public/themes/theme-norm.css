@@ -142,6 +142,89 @@ a {
   display: flex;
   justify-content: space-between;
 }
+.h-grid .vxe-table--render-default .vxe-cell {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.h-grid .vxe-table--render-default .vxe-table--header-wrapper {
+  background-color: #ffffff !important;
+}
+.h-grid .vxe-table--render-default:not([class*=size--]) .vxe-header--column {
+  font-size: 16px;
+  color: #606266;
+  font-weight: bold;
+  padding: 15px 0;
+}
+.h-grid .vxe-table--render-default:not([class*=size--]) .vxe-body--column {
+  padding: 14px 0;
+}
+.h-grid .vxe-table--render-default.border--default .vxe-body--column,
+.h-grid .vxe-table--render-default.border--default .vxe-footer--column,
+.h-grid .vxe-table--render-default.border--default .vxe-header--column, .h-grid .vxe-table--render-default.border--inner .vxe-body--column,
+.h-grid .vxe-table--render-default.border--inner .vxe-footer--column,
+.h-grid .vxe-table--render-default.border--inner .vxe-header--column {
+  background-image: linear-gradient(#f5f5f5, #f5f5f5);
+}
+.h-grid .vxe-table--render-default .vxe-table--border-line {
+  border: none;
+}
+.h-grid .vxe-table .vxe-table--header-wrapper .vxe-table--header-border-line {
+  background-image: linear-gradient(#f5f5f5, #f5f5f5);
+  border-bottom: 1px solid #f5f5f5;
+}
+.h-grid .vxe-table .vxe-sort--asc-btn,
+.h-grid .vxe-table .vxe-sort--desc-btn {
+  color: rgba(95, 95, 95, 0.1);
+}
+.h-grid .vxe-table .vxe-sort--asc-btn.sort--active,
+.h-grid .vxe-table .vxe-sort--desc-btn.sort--active {
+  color: #9f9f9f;
+}
+.h-grid .vxe-pager {
+  position: relative;
+  color: rgba(0, 0, 0, 0.6);
+  padding: 16px 30px;
+  height: auto;
+}
+.h-grid .vxe-pager .vxe-pager--total {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+}
+.h-grid .vxe-pager.is--background, .h-grid .vxe-pager.is--perfect {
+  border: none;
+}
+.h-grid .vxe-pager.is--background .vxe-pager--jump-next,
+.h-grid .vxe-pager.is--background .vxe-pager--jump-prev,
+.h-grid .vxe-pager.is--background .vxe-pager--num-btn, .h-grid .vxe-pager.is--perfect .vxe-pager--jump-next,
+.h-grid .vxe-pager.is--perfect .vxe-pager--jump-prev,
+.h-grid .vxe-pager.is--perfect .vxe-pager--num-btn {
+  background-color: #ffffff;
+  border-color: #dcdcdc;
+}
+.h-grid .vxe-pager.is--background .vxe-pager--jump-next:hover, .h-grid .vxe-pager.is--background .vxe-pager--jump-next:focus,
+.h-grid .vxe-pager.is--background .vxe-pager--jump-prev:hover,
+.h-grid .vxe-pager.is--background .vxe-pager--jump-prev:focus,
+.h-grid .vxe-pager.is--background .vxe-pager--num-btn:hover,
+.h-grid .vxe-pager.is--background .vxe-pager--num-btn:focus, .h-grid .vxe-pager.is--perfect .vxe-pager--jump-next:hover, .h-grid .vxe-pager.is--perfect .vxe-pager--jump-next:focus,
+.h-grid .vxe-pager.is--perfect .vxe-pager--jump-prev:hover,
+.h-grid .vxe-pager.is--perfect .vxe-pager--jump-prev:focus,
+.h-grid .vxe-pager.is--perfect .vxe-pager--num-btn:hover,
+.h-grid .vxe-pager.is--perfect .vxe-pager--num-btn:focus {
+  color: #5399ec;
+}
+.h-grid .vxe-pager.is--background .vxe-pager--jump-next:not(.is--disabled).is--active,
+.h-grid .vxe-pager.is--background .vxe-pager--jump-prev:not(.is--disabled).is--active,
+.h-grid .vxe-pager.is--background .vxe-pager--num-btn:not(.is--disabled).is--active, .h-grid .vxe-pager.is--perfect .vxe-pager--jump-next:not(.is--disabled).is--active,
+.h-grid .vxe-pager.is--perfect .vxe-pager--jump-prev:not(.is--disabled).is--active,
+.h-grid .vxe-pager.is--perfect .vxe-pager--num-btn:not(.is--disabled).is--active {
+  background-color: #ffffff;
+  border: 1px solid #5399ec;
+  color: #5399ec;
+}
+.h-grid .vxe-cell .el-link:not(:last-child) {
+  margin-right: 13px;
+}
 
 :root {
   --primary-color: 24, 144, 255;

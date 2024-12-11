@@ -1,49 +1,198 @@
+$-h-body-background: #f5f5f5; //全局背景颜色
+$-h-theme-color: #fff; // 主题文字
+$-h-theme-background: #5372ec; // 主题背景
+$-h-theme-font: #5372ec; // 主题文字
+$-h-font-size: 14px;
+$-h-theme-portal: #3188e5; // 门户主题背景
+
+//颜色样式
+$-h-color-white: #ffffff;
+$-h-color-black: #000000;
+$-h-color-darkgrey: #303133;
+$-h-color-default: #606266;
+$-h-color-primary: #5399ec;
+$-h-color-warning: #f0885b;
+$-h-color-success: #00b578;
+$-h-color-danger: #c3272b;
+$-h-color-info: #909399;
+$-h-color-link: #409eff;
+$-h-color-tips: #c0c4cc; //输入框提示，辅助说明
+$-h-color-border: #dcdfe6;
+
+//按钮样式
+$-h-btn-hover-tint-percent: 30%; //悬停透明度
+$-h-btn-active-shade-percent: 10%; //阴影百分比
+$-h-btn-disabled-percent: 30%; //禁用透明度
+
+$-h-btn-text-default: #303133;
+$-h-btn-border-default: #dcdfe6;
+
+$-h-btn-bg-primary: #5399ec;
+$-h-btn-bg-warning: #f0885b;
+$-h-btn-bg-info: #909399;
+$-h-btn-bg-success: #00b578;
+$-h-btn-bg-danger: #c3272b;
+
 $-grid-toolbar-wrapper-pb: 12px;
 .h-grid {
-  //工具栏样式
-  .vxe-grid--toolbar-wrapper {
-    .h-grid-toolbar {
-      .h-grid-toolbar-right .el-form--inline .el-form-item {
-        &:last-child {
-          margin-right: 0;
-        }
-      }
-      .h-grid-toolbar-right,
-      .h-grid-toolbar-left {
-        > * {
-          margin-bottom: $-grid-toolbar-wrapper-pb;
-        }
-      }
+    //工具栏样式
+    .vxe-grid--toolbar-wrapper {
+        .h-grid-toolbar {
+            .h-grid-toolbar-right .el-form--inline .el-form-item {
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+            .h-grid-toolbar-right,
+            .h-grid-toolbar-left {
+                > * {
+                    margin-bottom: $-grid-toolbar-wrapper-pb;
+                }
+            }
 
-      &.--flex {
-        display: flex;
-        justify-content: space-between;
-      }
+            &.--flex {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
     }
-  }
 
-  // .vxe-table--body-wrapper {
-  //   /* 整个滚动条 */
-  //   &::-webkit-scrollbar {
-  //     width: 6px; /* 滚动条的宽度 */
-  //     height: 2px; /* 横向滚动条的高度 */
-  //   }
+    //table 标题栏样式
+    .vxe-table--render-default {
+        .vxe-cell {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .vxe-table--header-wrapper {
+            background-color: #ffffff !important;
+        }
 
-  //   /* 滚动条的轨道 */
-  //   &::-webkit-scrollbar-track {
-  //     background: #f0f0f0; /* 滚动条轨道背景色 */
-  //     border-radius: 6px;
-  //   }
+        &:not([class*='size--']) {
+            .vxe-header--column {
+                font-size: 16px;
+                color: #606266;
+                font-weight: bold;
+                padding: 15px 0;
+            }
 
-  //   /* 滚动条的滑块 */
-  //   &::-webkit-scrollbar-thumb {
-  //     background: #0003; /* 滚动条滑块颜色 */
-  //     border-radius: 10px; /* 圆角 */
-  //   }
+            .vxe-body--column {
+                padding: 14px 0;
+            }
+        }
 
-  //   /* 滑块在悬停时的样式 */
-  //   &::-webkit-scrollbar-thumb:hover {
-  //     background: #0004;
-  //   }
-  // }
+        //线条颜色
+        &.border--default,
+        &.border--inner {
+            .vxe-body--column,
+            .vxe-footer--column,
+            .vxe-header--column {
+                background-image: linear-gradient($-h-body-background, $-h-body-background);
+            }
+        }
+
+        .vxe-table--border-line {
+            border: none;
+        }
+    }
+
+    .vxe-table {
+        .vxe-table--header-wrapper {
+            .vxe-table--header-border-line {
+                background-image: linear-gradient($-h-body-background, $-h-body-background);
+                border-bottom: 1px solid $-h-body-background;
+            }
+        }
+
+        .vxe-sort--asc-btn,
+        .vxe-sort--desc-btn {
+            color: rgba(#5f5f5f, 0.1);
+
+            &.sort--active {
+                color: #9f9f9f;
+            }
+        }
+    }
+
+    //分页样式
+    .vxe-pager {
+        position: relative;
+        color: rgba($-h-color-black, 0.6);
+        padding: 16px 30px;
+        height: auto;
+        .vxe-pager--total {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+        }
+
+        &.is--background,
+        &.is--perfect {
+            border: none;
+
+            .vxe-pager--jump-next,
+            .vxe-pager--jump-prev,
+            .vxe-pager--num-btn {
+                background-color: #ffffff;
+                border-color: #dcdcdc;
+
+                &:hover,
+                &:focus {
+                    color: $-h-color-primary;
+                }
+
+                &:not(.is--disabled).is--active {
+                    background-color: #ffffff;
+                    border: 1px solid $-h-btn-bg-primary;
+                    color: $-h-color-primary;
+                }
+            }
+        }
+    }
+
+    //按钮样式
+    .vxe-cell {
+        .el-link {
+            &:not(:last-child) {
+                margin-right: 13px;
+            }
+        }
+    }
 }
+
+//checkbox
+// .is--checked.vxe-custom--option .vxe-checkbox--icon:before,
+// .is--checked.vxe-export--panel-column-option .vxe-checkbox--icon:before,
+// .is--checked.vxe-table--filter-option .vxe-checkbox--icon:before,
+// .is--indeterminate.vxe-custom--option .vxe-checkbox--icon:before,
+// .is--indeterminate.vxe-export--panel-column-option .vxe-checkbox--icon:before,
+// .is--indeterminate.vxe-table--filter-option .vxe-checkbox--icon:before,
+// .vxe-table--render-default .is--checked.vxe-cell--checkbox .vxe-checkbox--icon:before,
+// .vxe-table--render-default .is--indeterminate.vxe-cell--checkbox .vxe-checkbox--icon:before {
+//     background-color: $-h-color-primary;
+//     border-color: $-h-color-primary;
+// }
+
+// .is--checked.vxe-custom--option,
+// .is--checked.vxe-export--panel-column-option,
+// .is--checked.vxe-table--filter-option,
+// .is--indeterminate.vxe-custom--option,
+// .is--indeterminate.vxe-export--panel-column-option,
+// .is--indeterminate.vxe-table--filter-option,
+// .vxe-table--render-default .is--checked.vxe-cell--checkbox,
+// .vxe-table--render-default .is--indeterminate.vxe-cell--checkbox {
+//     color: $-h-color-primary;
+// }
+
+// .vxe-custom--option .vxe-checkbox--icon:before,
+// .vxe-export--panel-column-option .vxe-checkbox--icon:before,
+// .vxe-table--filter-option .vxe-checkbox--icon:before,
+// .vxe-table--render-default .vxe-cell--checkbox .vxe-checkbox--icon:before {
+//     border-width: 0;
+// }
+
+// .vxe-custom--option:not(.is--disabled):hover .vxe-checkbox--icon:before,
+// .vxe-export--panel-column-option:not(.is--disabled):hover .vxe-checkbox--icon:before,
+// .vxe-table--filter-option:not(.is--disabled):hover .vxe-checkbox--icon:before,
+// .vxe-table--render-default .vxe-cell--checkbox:not(.is--disabled):hover .vxe-checkbox--icon:before {
+//     border-color: $-h-color-primary;
+// }

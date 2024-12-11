@@ -6,6 +6,7 @@ import './styles/theme-norm/index.scss'
 
 import { setupStore } from './store'
 import { setupRouter } from './router'
+import { setupGlobalComponents } from './components'
 
 async function setupApp() {
     const app = createApp(App)
@@ -13,6 +14,8 @@ async function setupApp() {
     await setupStore(app)
 
     await setupRouter(app)
+
+    await setupGlobalComponents(app)
 
     app.mount('#app')
 }
