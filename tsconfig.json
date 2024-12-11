@@ -1,0 +1,8 @@
+/**
+ * 这是一个空项目
+ * 用于引入其他项目
+ */
+{
+    "files": [],
+    "references": [{ "path": "./tsconfig.node.json" }, { "path": "./tsconfig.app.json" }]
+}

@@ -1,0 +1,55 @@
+/**
+* 全局样式文件
+* 引入 reset.scss 文件，并根据项目情况添加一些全局可用的原子类
+*/
+
+html {
+    line-height: 1.5;
+    tab-size: 4;
+    font-family:
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        'Helvetica Neue',
+        Arial,
+        'Noto Sans',
+        sans-serif,
+        'Apple Color Emoji',
+        'Segoe UI Emoji',
+        'Segoe UI Symbol',
+        'Noto Color Emoji';
+    overflow-x: hidden;
+    color: #303030;
+}
+
+body {
+    margin: 0;
+    line-height: inherit;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+#app {
+    position: relative;
+    height: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: currentColor;
+}

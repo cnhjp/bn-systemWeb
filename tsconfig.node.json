@@ -1,0 +1,13 @@
+/**
+ * 用于限制配置文件的配置
+ * 例如：vite.config.ts
+ */
+{
+    "include": ["vite.config.ts", "vitest.config.ts", "build/**/*.ts", "typings/**/*.d.ts"],
+    "compilerOptions": {
+        "composite": true,
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "types": ["node"]
+    }
+}

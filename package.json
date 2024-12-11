@@ -1,26 +1,84 @@
 {
-  "name": "web",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "element-plus": "2.4.4",
-    "hztech-core": "./libs/hztech-core",
-    "pinia": "^2.3.0",
-    "sass": "^1.82.0",
-    "vue": "^3.5.12",
-    "vue-router": "^4.5.0"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^5.1.4",
-    "unocss": "^0.65.1",
-    "unplugin-auto-import": "^0.18.6",
-    "unplugin-vue-components": "^0.27.5",
-    "vite": "^5.4.10"
-  }
+    "name": "jarvis-master",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "dev": "vite --mode development",
+        "prod": "vite --mode production",
+        "test": "vite --mode testing",
+        "build:dev": "vite build --mode development",
+        "build:prod": "vite build --mode production",
+        "build:test": "vite build --mode testing",
+        "lint:comment": "使用 ESLint 检查并自动修复 src 目录下所有扩展名为 .js 和 .vue 的文件",
+        "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore --fix src",
+        "prettier:comment": "自动格式化当前目录下的所有文件",
+        "prettier": "prettier --write ./**/*.{html,vue,js,ts,json,md}",
+        "prepare:comment": "预制函数：初始化husky钩子",
+        "prepare": "husky install",
+        "commit:comment": "Git 提交记录",
+        "commit": "git add . && git-cz"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@element-plus/icons-vue": "^2.3.1",
+        "@iconify-json/ep": "^1.1.14",
+        "@package/http": "workspace:^",
+        "crypto-js": "^4.2.0",
+        "element-plus": "^2.5.1",
+        "lodash-es": "^4.17.21",
+        "mockjs": "^1.1.0",
+        "nprogress": "^0.2.0",
+        "pinia": "^2.1.7",
+        "vue": "^3.4.6",
+        "vue-cookies": "^1.8.3",
+        "vue-router": "^4.2.5"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^18.4.4",
+        "@commitlint/config-conventional": "^18.4.4",
+        "@types/crypto-js": "^4.2.2",
+        "@types/nprogress": "^0.2.3",
+        "@typescript-eslint/eslint-plugin": "^6.16.0",
+        "@typescript-eslint/parser": "^6.16.0",
+        "@unocss/preset-uno": "^0.58.3",
+        "@unocss/transformer-directives": "^0.58.3",
+        "@vitejs/plugin-legacy": "^5.2.0",
+        "@vitejs/plugin-vue": "^5.0.3",
+        "@vitejs/plugin-vue-jsx": "^3.1.0",
+        "commitizen": "^4.3.0",
+        "cz-customizable": "^7.0.0",
+        "eslint": "^8.56.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.1.2",
+        "eslint-plugin-vue": "^9.19.2",
+        "husky": "^8.0.3",
+        "lint-staged": "^15.2.0",
+        "prettier": "^3.1.1",
+        "rollup-plugin-visualizer": "^5.12.0",
+        "sass": "^1.69.5",
+        "typescript": "^5.3.3",
+        "unocss": "^0.58.3",
+        "unplugin-auto-import": "^0.17.3",
+        "unplugin-icons": "^0.18.2",
+        "unplugin-vue-components": "^0.26.0",
+        "vite": "^4.5.1",
+        "vite-plugin-compression": "^0.5.1",
+        "vite-plugin-mock": "^2.9.8",
+        "vite-plugin-progress": "^0.0.7",
+        "vite-plugin-svg-icons": "^2.0.1"
+    },
+    "lint-staged": {
+        "src/**/*.{js,ts,vue}": [
+            "eslint --fix",
+            "prettier --write",
+            "git add"
+        ]
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-customizable"
+        }
+    }
 }
