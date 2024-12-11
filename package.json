@@ -25,6 +25,7 @@
         "@element-plus/icons-vue": "^2.3.1",
         "@iconify-json/ep": "^1.1.14",
         "@package/http": "workspace:^",
+        "@package/b-grid": "workspace:^",
         "crypto-js": "^4.2.0",
         "element-plus": "^2.5.1",
         "lodash-es": "^4.17.21",

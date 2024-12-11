@@ -1,0 +1,49 @@
+$-grid-toolbar-wrapper-pb: 12px;
+.h-grid {
+  //工具栏样式
+  .vxe-grid--toolbar-wrapper {
+    .h-grid-toolbar {
+      .h-grid-toolbar-right .el-form--inline .el-form-item {
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+      .h-grid-toolbar-right,
+      .h-grid-toolbar-left {
+        > * {
+          margin-bottom: $-grid-toolbar-wrapper-pb;
+        }
+      }
+
+      &.--flex {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  // .vxe-table--body-wrapper {
+  //   /* 整个滚动条 */
+  //   &::-webkit-scrollbar {
+  //     width: 6px; /* 滚动条的宽度 */
+  //     height: 2px; /* 横向滚动条的高度 */
+  //   }
+
+  //   /* 滚动条的轨道 */
+  //   &::-webkit-scrollbar-track {
+  //     background: #f0f0f0; /* 滚动条轨道背景色 */
+  //     border-radius: 6px;
+  //   }
+
+  //   /* 滚动条的滑块 */
+  //   &::-webkit-scrollbar-thumb {
+  //     background: #0003; /* 滚动条滑块颜色 */
+  //     border-radius: 10px; /* 圆角 */
+  //   }
+
+  //   /* 滑块在悬停时的样式 */
+  //   &::-webkit-scrollbar-thumb:hover {
+  //     background: #0004;
+  //   }
+  // }
+}

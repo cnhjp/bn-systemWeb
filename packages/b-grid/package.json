@@ -1,0 +1,22 @@
+{
+    "name": "@package/b-grid",
+    "private": true,
+    "version": "1.0.0",
+    "type": "module",
+    "main": "lib/index.es.js",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "lib": "cross-env TARGET=npm vite build --out-dir lib"
+    },
+    "dependencies": {
+        "vue": "^3.5.12",
+        "vxe-table": "^4.9.19"
+    },
+    "devDependencies": {
+        "cross-env": "^7.0.3",
+        "@vitejs/plugin-vue": "^5.1.4",
+        "vite": "^5.4.10"
+    }
+}

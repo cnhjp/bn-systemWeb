@@ -131,11 +131,23 @@ a {
   transform: scale(0);
 }
 
+.h-grid .vxe-grid--toolbar-wrapper .h-grid-toolbar .h-grid-toolbar-right .el-form--inline .el-form-item:last-child {
+  margin-right: 0;
+}
+.h-grid .vxe-grid--toolbar-wrapper .h-grid-toolbar .h-grid-toolbar-right > *,
+.h-grid .vxe-grid--toolbar-wrapper .h-grid-toolbar .h-grid-toolbar-left > * {
+  margin-bottom: 12px;
+}
+.h-grid .vxe-grid--toolbar-wrapper .h-grid-toolbar.--flex {
+  display: flex;
+  justify-content: space-between;
+}
+
 :root {
   --primary-color: 24, 144, 255;
   --aside-width: 220px;
   --header-height: 56px;
-  --footer-height: 48px;
+  --footer-height: 0;
 }
 
 .layout-container {

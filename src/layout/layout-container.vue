@@ -7,11 +7,11 @@
             <slot name="aside"></slot>
         </aside>
         <main class="layout-main bg-#f6f9f8 transition-all-300">
-            <el-scrollbar wrap-class="p-16px">
-                <slot name="main"></slot>
-            </el-scrollbar>
+            <!-- <el-scrollbar wrap-class="p-16px"> -->
+            <slot name="main"></slot>
+            <!-- </el-scrollbar> -->
         </main>
-        <footer class="layout-footer bg-white transition-all-300">
+        <footer class="layout-footer bg-white transition-all-300 overflow-hidden">
             <slot name="footer"></slot>
         </footer>
     </section>

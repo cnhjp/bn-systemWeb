@@ -2,14 +2,15 @@ import type { App } from 'vue'
 import { createRouter, createWebHistory, type Router } from 'vue-router'
 import { createRouterGuard } from './guard'
 import { overrideRouterCapture } from './override'
-import { transformAuthRouteToVueRoutes } from '@/utils'
+// import { transformAuthRouteToVueRoutes } from '@/utils'
 import { constantRoutes } from './routes'
 
 export const buildRouter = (routes: AuthRoute.Route[]): Router => {
     return createRouter({
         history: createWebHistory('/'),
         // routes: transformAuthRouteToVueRoutes(constRoutes),
-        routes: transformAuthRouteToVueRoutes([...constantRoutes, ...routes]),
+        // routes: transformAuthRouteToVueRoutes([...constantRoutes, ...routes]),
+        routes: [...constantRoutes, ...routes],
         scrollBehavior(to, from, savedPosition) {
             return { left: 0, top: 0 }
         },
