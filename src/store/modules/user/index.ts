@@ -1,6 +1,16 @@
 import { defineStore } from 'pinia'
 import { fetchLogin, fetchUserInfo } from '@/api/user/user.ts'
-import { getToken, setToken, removeToken, getClientID, setClientID } from './helper'
+import {
+    getToken,
+    setToken,
+    removeToken,
+    getClientID,
+    setClientID,
+    getPersonID,
+    setPersonID,
+    removePersonID,
+    removeClientID,
+} from './helper'
 import { applyDefaults } from '@/utils'
 import { useRouteStore } from '../route'
 
@@ -10,6 +20,7 @@ export interface UserStoreState {
     /** 用户信息 */
     userInfo: User.UserInfo
     clientID: string
+    personId: string
 }
 
 const defaultUserInfo: User.UserInfo = {
@@ -24,6 +35,7 @@ export const useUserStore = defineStore('user-store', {
             token: getToken(),
             userInfo: defaultUserInfo,
             clientID: getClientID(),
+            personId: getPersonID(),
         }
     },
     getters: {
@@ -55,25 +67,27 @@ export const useUserStore = defineStore('user-store', {
                 source: 1,
                 clientID: this.clientID,
             }
-            fetchLogin(query).then(async (response) => {
+            return fetchLogin(query).then(async (response) => {
                 if (response) {
                     const { info } = response.data
-                    await this.initUserStore()
                     setToken(info.token)
+                    setPersonID(info.personId.toString())
+                    this.personId = info.personId.toString()
+                    await this.initUserStore()
                 }
+                return response
             })
         },
         /** 处理登陆成功或失败的逻辑 */
         async handleActionAfterLogin() {
             const route = useRouteStore()
-
             await this.initUserStore()
             await route.initAuthRoute()
         },
         /** 初始化用户信息 */
         async initUserStore() {
-            if (this.isLoggedIn) {
-                const { data } = await fetchUserInfo()
+            if (this.token) {
+                const { data } = await fetchUserInfo(this.personId)
                 this.userInfo = applyDefaults(data, defaultUserInfo)
             }
         },
@@ -84,6 +98,8 @@ export const useUserStore = defineStore('user-store', {
         /** 重置用户信息 */
         resetUserStore() {
             removeToken()
+            removePersonID()
+            removeClientID()
             this.$reset()
 
             const routeStore = useRouteStore()
