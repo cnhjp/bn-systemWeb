@@ -1,12 +1,48 @@
 import { HttpRequest, HttpError, type HttpResponse, type HttpRequestConfig } from '@package/http'
+import type { AxiosResponse } from 'axios'
 import { HttpStatus, HttpStatusDescription } from './enums'
 import { useUserStore } from '@/store'
+import { downloadBlob } from '../common'
+
+/**
+ * 当响应类型为二进制流（Blob）时，下载数据
+ * @param response
+ * @returns {Promise<unknown>}
+ */
+export function responseBlob(response: AxiosResponse): Promise<AxiosResponse> {
+    return new Promise((resolve, reject) => {
+        const content = response.data
+        const headers = response.headers
+
+        if (content instanceof Blob && content.type === 'application/octet-stream') {
+            const blob = content
+            const name = decodeURIComponent(headers['content-disposition'].split(';')[1].split('filename=')[1])
+            downloadBlob(blob, name)
+            resolve(response)
+        } else if ('FileReader' in window) {
+            const fileReader = new FileReader()
+            fileReader.onload = function () {
+                response.data = JSON.parse(this.result as string)
+                resolve(response)
+            }
+            fileReader.readAsText(content as Blob)
+        } else {
+            const error = new Error('Download tool not found') as Error & {
+                status?: number
+                response?: AxiosResponse
+            }
+            error.status = 404
+            error.response = response
+            reject(error)
+        }
+    })
+}
 
 function requestSucceed(config: HttpRequestConfig) {
     const userStore = useUserStore()
 
     if (!config.headers) config.headers = {}
-    config.headers['authorization'] = userStore.token
+    config.headers['authorization'] = 'Bearer ' + userStore.token
     return config
 }
 
@@ -20,6 +56,13 @@ function responseSucceed(response: HttpResponse) {
     }
 
     if (result.code === HttpStatus.SUCCESS) {
+        if (result.code === 200) {
+            if (response.config.responseType === 'blob') {
+                if ((response.config as any).download === true) {
+                    return responseBlob(response).catch(responseFailed)
+                }
+            }
+        }
         return result
     }
 
@@ -37,7 +80,37 @@ function responseFailed(error: HttpError) {
     return Promise.reject(error)
 }
 
-export const http = new HttpRequest<HttpRequestConfig>({
+export class BusinessHttpRequest<Config extends HttpRequestConfig = HttpRequestConfig> extends HttpRequest {
+    download<T = any, R = HttpResponse<Blob>>(url: string, params?: T, _object?: Config): Promise<R> {
+        const method = (_object?.method || 'GET').toUpperCase()
+        return this.instance({
+            method,
+            url,
+            [method === 'GET' ? 'params' : 'data']: params,
+            responseType: 'blob',
+            ..._object,
+        })
+    }
+
+    upload<T = any, R = HttpResponse<Blob>>(url: string, params?: T, _object?: Config): Promise<R> {
+        return super.form(url, params, _object)
+    }
+
+    delete<T = any, R = HttpResponse<any, any>>(
+        url: string,
+        params?: T | undefined,
+        _object?: HttpRequestConfig<any> | undefined,
+    ): Promise<R> {
+        return this.instance({
+            method: 'DELETE',
+            url,
+            data: params,
+            ...(_object || {}),
+        })
+    }
+}
+
+export const http = new BusinessHttpRequest({
     baseURL: import.meta.env.VITE_SERVER_API,
     timeout: 15 * 1000,
     interceptors: {

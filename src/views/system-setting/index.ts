@@ -1,3 +1,4 @@
-import PersonnelManage from './personnel-manage.vue'
+import personnelManage from './personnel-manage.vue'
+import paramsSetting from './params-setting.vue'
 
-export { PersonnelManage }
+export { personnelManage, paramsSetting }

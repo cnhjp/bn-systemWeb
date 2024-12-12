@@ -3544,7 +3544,7 @@ const sn = {
    */
   renderTreeIcon(e, t) {
     const { $table: n, isHidden: s } = e, { reactData: i, internalData: l } = n, { computeTreeOpts: a } = n.getComputeMaps(), { treeExpandedMaps: c, treeExpandLazyLoadedMaps: m } = i, { fullAllDataRowIdData: u } = l, d = a.value, { row: p, column: w, level: v } = e, { slots: D } = w, { indent: S, lazy: x, trigger: h, iconLoaded: O, showIcon: g, iconOpen: b, iconClose: E } = d, C = d.children || d.childrenField, V = d.hasChild || d.hasChildField, Q = p[C], Z = Q && Q.length, G = D ? D.icon : null;
-    let ue = !1, Y = !1, K = !1, B = !1;
+    let ue = !1, Y = !1, K = !1, L = !1;
     const ye = {};
     if (G)
       return n.callSlot(G, e);
@@ -3552,7 +3552,7 @@ const sn = {
       const se = yt(n, p);
       if (Y = !!c[se], x) {
         const P = u[se];
-        K = !!m[se], ue = p[V], B = !!P.treeLoaded;
+        K = !!m[se], ue = p[V], L = !!P.treeLoaded;
       }
     }
     return (!h || h === "default") && (ye.onClick = (se) => {
@@ -3566,7 +3566,7 @@ const sn = {
           paddingLeft: `${v * S}px`
         }
       }, [
-        g && (x ? B ? Z : ue : Z) ? [
+        g && (x ? L ? Z : ue : Z) ? [
           o("div", Object.assign({ class: "vxe-tree--btn-wrapper" }, ye), [
             o("i", {
               class: ["vxe-tree--node-btn", K ? O || Jn().TABLE_TREE_LOADED : Y ? b || Jn().TABLE_TREE_OPEN : E || Jn().TABLE_TREE_CLOSE]
@@ -4078,7 +4078,7 @@ const { getI18n: NN, renderer: Mp, renderEmptyElement: Ip } = Ce, hl = "body", F
     }
   },
   setup(e) {
-    const t = mt("$xeTable", {}), n = mt("xesize", null), { xID: s, props: i, context: l, reactData: a, internalData: c } = t, { refTableBody: m, refTableHeader: u, refTableFooter: d, refTableLeftBody: p, refTableRightBody: w, refScrollXHandleElem: v, refScrollYHandleElem: D } = t.getRefMaps(), { computeEditOpts: S, computeMouseOpts: x, computeAreaOpts: h, computeSYOpts: O, computeEmptyOpts: g, computeKeyboardOpts: b, computeTooltipOpts: E, computeRadioOpts: C, computeExpandOpts: V, computeTreeOpts: Q, computeCheckboxOpts: Z, computeCellOpts: G, computeValidOpts: ue, computeRowOpts: Y, computeColumnOpts: K } = t.getComputeMaps(), B = ke(), ye = ke(), se = ke(), P = ke(), M = ke(), I = ke(), A = ke(), H = () => {
+    const t = mt("$xeTable", {}), n = mt("xesize", null), { xID: s, props: i, context: l, reactData: a, internalData: c } = t, { refTableBody: m, refTableHeader: u, refTableFooter: d, refTableLeftBody: p, refTableRightBody: w, refScrollXHandleElem: v, refScrollYHandleElem: D } = t.getRefMaps(), { computeEditOpts: S, computeMouseOpts: x, computeAreaOpts: h, computeSYOpts: O, computeEmptyOpts: g, computeKeyboardOpts: b, computeTooltipOpts: E, computeRadioOpts: C, computeExpandOpts: V, computeTreeOpts: Q, computeCheckboxOpts: Z, computeCellOpts: G, computeValidOpts: ue, computeRowOpts: Y, computeColumnOpts: K } = t.getComputeMaps(), L = ke(), ye = ke(), se = ke(), P = ke(), M = ke(), I = ke(), B = ke(), H = () => {
       if (n) {
         const Ae = n.value;
         if (Ae)
@@ -4088,18 +4088,18 @@ const { getI18n: NN, renderer: Mp, renderEmptyElement: Ip } = Ce, hl = "body", F
     }, ce = () => {
       const { delayHover: Ae } = i, { lastScrollTime: _e, _isResize: it } = a;
       return !!(it || _e && Date.now() < _e + Ae);
-    }, L = (Ae, _e) => {
+    }, A = (Ae, _e) => {
       let it = 1;
       if (!Ae)
         return it;
       const vt = Q.value, dt = vt.children || vt.childrenField, at = Ae[dt];
       if (at && t.isTreeExpandByRow(Ae))
         for (let Et = 0; Et < at.length; Et++)
-          it += L(at[Et]);
+          it += A(at[Et]);
       return it;
     }, j = (Ae, _e, it) => {
       let vt = 1;
-      return it && (vt = L(_e[it - 1])), a.rowHeight * vt - (it ? 1 : 12 - H());
+      return it && (vt = A(_e[it - 1])), a.rowHeight * vt - (it ? 1 : 12 - H());
     }, fe = (Ae) => {
       const { row: _e, column: it } = Ae, { afterFullData: vt } = c, { treeConfig: dt } = i, at = Q.value, { slots: Et, treeNode: Qe } = it, { fullAllDataRowIdData: De } = c, Re = yt(t, _e), Be = De[Re];
       let ve = 0, Ne = 0, q = [];
@@ -4304,7 +4304,7 @@ const { getI18n: NN, renderer: Mp, renderEmptyElement: Ip } = Ce, hl = "body", F
       const { fixedType: _e } = e, { lastScrollTop: it, lastScrollLeft: vt, inVirtualScroll: dt, inBodyScroll: at, bodyScrollType: Et, inFooterScroll: Qe } = c;
       if (dt || Qe || at && Et !== _e)
         return;
-      const De = u.value, Re = m.value, Be = d.value, ve = p.value, Ne = w.value, q = B.value, z = De ? De.$el : null, R = Be ? Be.$el : null, le = Re.$el;
+      const De = u.value, Re = m.value, Be = d.value, ve = p.value, Ne = w.value, q = L.value, z = De ? De.$el : null, R = Be ? Be.$el : null, le = Re.$el;
       if (!le)
         return;
       const F = ve ? ve.$el : null, re = Ne ? Ne.$el : null, N = v.value, ee = D.value, be = q.scrollTop, we = le.scrollLeft, Te = we !== vt, ze = be !== it;
@@ -4338,7 +4338,7 @@ const { getI18n: NN, renderer: Mp, renderEmptyElement: Ip } = Ce, hl = "body", F
       };
       N();
     }, je = (Ae) => {
-      const { deltaY: _e, deltaX: it } = Ae, { highlightHoverRow: vt } = i, { scrollYLoad: dt } = a, { lastScrollTop: at, lastScrollLeft: Et } = c, Qe = Y.value, De = m.value, Re = B.value, Be = De.$el, ve = _e, Ne = it, q = ve < 0;
+      const { deltaY: _e, deltaX: it } = Ae, { highlightHoverRow: vt } = i, { scrollYLoad: dt } = a, { lastScrollTop: at, lastScrollLeft: Et } = c, Qe = Y.value, De = m.value, Re = L.value, Be = De.$el, ve = _e, Ne = it, q = ve < 0;
       if (q ? Re.scrollTop <= 0 : Re.scrollTop >= Re.scrollHeight - Re.clientHeight)
         return;
       const z = Re.scrollTop + ve, R = Be.scrollLeft + Ne, le = R !== Et, F = z !== at;
@@ -4347,7 +4347,7 @@ const { getI18n: NN, renderer: Mp, renderEmptyElement: Ip } = Ce, hl = "body", F
     return wn(() => {
       me(() => {
         const { fixedType: Ae } = e, { elemStore: _e } = c, it = `${Ae || "main"}-body-`;
-        _e[`${it}wrapper`] = B, _e[`${it}table`] = ye, _e[`${it}colgroup`] = se, _e[`${it}list`] = P, _e[`${it}xSpace`] = M, _e[`${it}ySpace`] = I, _e[`${it}emptyBlock`] = A;
+        _e[`${it}wrapper`] = L, _e[`${it}table`] = ye, _e[`${it}colgroup`] = se, _e[`${it}list`] = P, _e[`${it}xSpace`] = M, _e[`${it}ySpace`] = I, _e[`${it}emptyBlock`] = B;
       });
     }), Us(() => {
       clearTimeout(J);
@@ -4369,7 +4369,7 @@ const { getI18n: NN, renderer: Mp, renderEmptyElement: Ip } = Ce, hl = "body", F
       const we = {
         onScroll: $
       };
-      return R.mode === "wheel" && (we.onWheel = je), o("div", Object.assign({ ref: B, class: ["vxe-table--body-wrapper", _e ? `fixed-${_e}--wrapper` : "body--wrapper"], xid: s }, we), [
+      return R.mode === "wheel" && (we.onWheel = je), o("div", Object.assign({ ref: L, class: ["vxe-table--body-wrapper", _e ? `fixed-${_e}--wrapper` : "body--wrapper"], xid: s }, we), [
         _e ? Ve() : o("div", {
           ref: M,
           class: "vxe-body--x-space"
@@ -4439,7 +4439,7 @@ const { getI18n: NN, renderer: Mp, renderEmptyElement: Ip } = Ce, hl = "body", F
         ]) : Ip(t),
         _e ? Ip(t) : o("div", {
           class: "vxe-table--empty-block",
-          ref: A
+          ref: B
         }, [
           o("div", {
             class: "vxe-table--empty-content"
@@ -4465,9 +4465,9 @@ const { getI18n: NN, renderer: Mp, renderEmptyElement: Ip } = Ce, hl = "body", F
       const { isGroup: G } = i;
       D.value = G ? EN(e.tableGroupColumn) : [];
     }, C = (G, ue) => {
-      const { column: Y } = ue, { fixedType: K } = e, { visibleColumn: B } = l, ye = v.value, se = c.value, P = a.value, M = m.value, I = u.value, A = d.value, H = p.value, { clientX: ce } = G, L = S.value, j = G.target, fe = ue.cell = j.parentNode;
+      const { column: Y } = ue, { fixedType: K } = e, { visibleColumn: L } = l, ye = v.value, se = c.value, P = a.value, M = m.value, I = u.value, B = d.value, H = p.value, { clientX: ce } = G, A = S.value, j = G.target, fe = ue.cell = j.parentNode;
       let pe = 0;
-      const ne = se.$el, $ = yN(j, L), J = j.clientWidth, ge = Math.floor(J / 2), Oe = DN(ue) - ge;
+      const ne = se.$el, $ = yN(j, A), J = j.clientWidth, ge = Math.floor(J / 2), Oe = DN(ue) - ge;
       let Se = $.left - fe.clientWidth + J + Oe, de = $.left + ge;
       const Ie = document.onmousemove, je = document.onmouseup, Ue = K === "left", Ae = K === "right";
       let _e = 0;
@@ -4485,25 +4485,25 @@ const { getI18n: NN, renderer: Mp, renderEmptyElement: Ip } = Ce, hl = "body", F
         const Et = K ? 0 : ne.scrollLeft;
         Ue ? at = Math.min(at, (I ? I.offsetLeft : ne.clientWidth) - _e - Oe) : Ae ? (Se = (M ? M.clientWidth : 0) + _e + Oe, at = Math.min(at, de + fe.clientWidth - Oe)) : Se = Math.max(ne.scrollLeft, Se), pe = Math.max(at, Se);
         const Qe = pe - Et;
-        if (A.style.left = `${Qe}px`, ye.showDragTip && H) {
-          const De = P.clientWidth, Re = L.getBoundingClientRect(), Be = A.clientWidth, ve = H.clientWidth, Ne = H.clientHeight;
+        if (B.style.left = `${Qe}px`, ye.showDragTip && H) {
+          const De = P.clientWidth, Re = A.getBoundingClientRect(), Be = B.clientWidth, ve = H.clientWidth, Ne = H.clientHeight;
           let q = -ve;
           Qe < ve + Be ? q = ve + Be - Qe : Qe > De && (q += De - Qe), H.style.left = `${q}px`, H.style.top = `${Math.min(P.clientHeight - Ne, Math.max(0, vt.clientY - Re.y - Ne / 2))}px`, H.textContent = `${Y.renderWidth + (Ae ? de - pe : pe - de)}px`;
         }
       };
-      i._isResize = !0, Ms(P, "drag--resize"), A.style.display = "block", document.onmousemove = it, document.onmouseup = function(vt) {
+      i._isResize = !0, Ms(P, "drag--resize"), B.style.display = "block", document.onmousemove = it, document.onmouseup = function(vt) {
         document.onmousemove = Ie, document.onmouseup = je;
         const dt = Y.renderWidth + (Ae ? de - pe : pe - de);
-        Y.resizeWidth = dt, ye.dragMode === "fixed" && B.forEach((at) => {
+        Y.resizeWidth = dt, ye.dragMode === "fixed" && L.forEach((at) => {
           at.id !== Y.id && (at.resizeWidth || (at.resizeWidth = at.renderWidth));
-        }), A.style.display = "none", i._isResize = !1, l._lastResizeTime = Date.now(), t.analyColumnWidth(), t.recalculate(!0).then(() => {
+        }), B.style.display = "none", i._isResize = !1, l._lastResizeTime = Date.now(), t.analyColumnWidth(), t.recalculate(!0).then(() => {
           t.saveCustomStore("update:visible"), t.updateCellAreas(), t.dispatchEvent("resizable-change", Object.assign(Object.assign({}, ue), { resizeWidth: dt }), vt), setTimeout(() => t.recalculate(!0), 300);
         }), jo(P, "drag--resize");
       }, it(G), t.closeMenu && t.closeMenu();
     }, V = (G, ue) => {
-      const { fixedType: Y } = e, { resizable: K, border: B, columnKey: ye, headerCellClassName: se, headerCellStyle: P, showHeaderOverflow: M, headerAlign: I, align: A, mouseConfig: H } = s, { currentColumn: ce, scrollXLoad: L, overflowX: j, scrollbarWidth: fe } = i, pe = w.value;
+      const { fixedType: Y } = e, { resizable: K, border: L, columnKey: ye, headerCellClassName: se, headerCellStyle: P, showHeaderOverflow: M, headerAlign: I, align: B, mouseConfig: H } = s, { currentColumn: ce, scrollXLoad: A, overflowX: j, scrollbarWidth: fe } = i, pe = w.value;
       return G.map((ne, $) => {
-        const { type: J, showHeaderOverflow: ge, headerAlign: Oe, align: Se, headerClassName: de, editRender: Ie, cellRender: je } = ne, Ue = ne.id, Ae = Ie || je, _e = Ae ? LN.get(Ae.name) : null, it = ne.children && ne.children.length, vt = Y ? ne.fixed !== Y && !it : !!ne.fixed && j, dt = r.eqNull(ge) ? M : ge, at = Oe || (_e ? _e.tableHeaderCellAlign : "") || I || Se || (_e ? _e.tableCellAlign : "") || A;
+        const { type: J, showHeaderOverflow: ge, headerAlign: Oe, align: Se, headerClassName: de, editRender: Ie, cellRender: je } = ne, Ue = ne.id, Ae = Ie || je, _e = Ae ? LN.get(Ae.name) : null, it = ne.children && ne.children.length, vt = Y ? ne.fixed !== Y && !it : !!ne.fixed && j, dt = r.eqNull(ge) ? M : ge, at = Oe || (_e ? _e.tableHeaderCellAlign : "") || I || Se || (_e ? _e.tableCellAlign : "") || B;
         let Et = dt === "ellipsis";
         const Qe = dt === "title", De = dt === !0 || dt === "tooltip";
         let Re = Qe || De || Et;
@@ -4511,7 +4511,7 @@ const { getI18n: NN, renderer: Mp, renderEmptyElement: Ip } = Ce, hl = "body", F
           onClick: (R) => t.triggerHeaderCellClickEvent(R, q),
           onDblclick: (R) => t.triggerHeaderCellDblclickEvent(R, q)
         };
-        return L && !Re && (Et = Re = !0), H && (z.onMousedown = (R) => t.triggerHeaderCellMousedownEvent(R, q)), pe.drag && (z.onDragstart = t.handleHeaderCellDragDragstartEvent, z.onDragend = t.handleHeaderCellDragDragendEvent, z.onDragover = t.handleHeaderCellDragDragoverEvent), o("th", Object.assign(Object.assign({ class: [
+        return A && !Re && (Et = Re = !0), H && (z.onMousedown = (R) => t.triggerHeaderCellMousedownEvent(R, q)), pe.drag && (z.onDragstart = t.handleHeaderCellDragDragstartEvent, z.onDragend = t.handleHeaderCellDragDragendEvent, z.onDragover = t.handleHeaderCellDragDragoverEvent), o("th", Object.assign(Object.assign({ class: [
           "vxe-header--column",
           Ue,
           {
@@ -4542,7 +4542,7 @@ const { getI18n: NN, renderer: Mp, renderEmptyElement: Ip } = Ce, hl = "body", F
            */
           !vt && !it && (r.isBoolean(ne.resizable) ? ne.resizable : pe.resizable || K) ? o("div", {
             class: ["vxe-resizable", {
-              "is--line": !B || B === "none"
+              "is--line": !L || L === "none"
             }],
             onMousedown: (R) => C(R, q)
           }) : null
@@ -4554,11 +4554,11 @@ const { getI18n: NN, renderer: Mp, renderEmptyElement: Ip } = Ce, hl = "body", F
         })
       ] : []);
     }, Q = (G) => {
-      const { fixedType: ue } = e, { headerRowClassName: Y, headerRowStyle: K } = s, { isDragColMove: B } = i, ye = w.value;
+      const { fixedType: ue } = e, { headerRowClassName: Y, headerRowStyle: K } = s, { isDragColMove: L } = i, ye = w.value;
       return G.map((se, P) => {
         const M = { $table: t, $rowIndex: P, fixed: ue, type: Pp };
         return ye.drag ? o(Fr, {
-          name: `vxe-header--col-list${B ? "" : "-disabled"}`,
+          name: `vxe-header--col-list${L ? "" : "-disabled"}`,
           tag: "tr",
           class: [
             "vxe-header--row",
@@ -4576,9 +4576,9 @@ const { getI18n: NN, renderer: Mp, renderEmptyElement: Ip } = Ce, hl = "body", F
         }, V(se, P));
       });
     }, Z = () => {
-      const { fixedType: G, fixedColumn: ue, tableColumn: Y } = e, { showHeaderOverflow: K } = s, { isGroup: B, scrollXLoad: ye, scrollbarWidth: se } = i, { visibleColumn: P } = l;
+      const { fixedType: G, fixedColumn: ue, tableColumn: Y } = e, { showHeaderOverflow: K } = s, { isGroup: L, scrollXLoad: ye, scrollbarWidth: se } = i, { visibleColumn: P } = l;
       let M = D.value, I = Y;
-      return B ? I = P : (G && (ye || K) && (I = ue), M = [I]), o("div", {
+      return L ? I = P : (G && (ye || K) && (I = ue), M = [I]), o("div", {
         ref: S,
         class: ["vxe-table--header-wrapper", G ? `fixed-${G}--wrapper` : "body--wrapper"],
         xid: n
@@ -4600,8 +4600,8 @@ const { getI18n: NN, renderer: Mp, renderEmptyElement: Ip } = Ce, hl = "body", F
            */
           o("colgroup", {
             ref: h
-          }, I.map((A, H) => o("col", {
-            name: A.id,
+          }, I.map((B, H) => o("col", {
+            name: B.id,
             key: H
           })).concat(se ? [
             o("col", {
@@ -4677,15 +4677,15 @@ const $p = pt({
       const Y = Z ? Z.$el : null;
       if (!Y)
         return;
-      const K = m.value, B = ue.scrollLeft, ye = !0, se = !1, P = Y.scrollTop;
-      l.inFooterScroll = !0, fo(K, B), fo(G, B), fo(Y, B), t.triggerScrollXEvent(b), t.handleScrollEvent(b, se, ye, P, B, {
+      const K = m.value, L = ue.scrollLeft, ye = !0, se = !1, P = Y.scrollTop;
+      l.inFooterScroll = !0, fo(K, L), fo(G, L), fo(Y, L), t.triggerScrollXEvent(b), t.handleScrollEvent(b, se, ye, P, L, {
         type: Vu,
         fixed: V
       });
     }, h = (b, E, C, V, Q) => {
-      const { fixedType: Z } = e, { footerCellClassName: G, footerCellStyle: ue, footerAlign: Y, footerSpanMethod: K, align: B, columnKey: ye, showFooterOverflow: se } = s, { scrollXLoad: P, overflowX: M, scrollbarWidth: I, currentColumn: A, mergeFooterList: H } = i, ce = u.value, L = d.value;
+      const { fixedType: Z } = e, { footerCellClassName: G, footerCellStyle: ue, footerAlign: Y, footerSpanMethod: K, align: L, columnKey: ye, showFooterOverflow: se } = s, { scrollXLoad: P, overflowX: M, scrollbarWidth: I, currentColumn: B, mergeFooterList: H } = i, ce = u.value, A = d.value;
       return b.map((j, fe) => {
-        const { type: pe, showFooterOverflow: ne, footerAlign: $, align: J, footerClassName: ge, editRender: Oe, cellRender: Se } = j, de = Oe || Se, Ie = de ? AN.get(de.name) : null, je = ce.showAll, Ue = j.children && j.children.length, Ae = Z ? j.fixed !== Z && !Ue : j.fixed && M, _e = r.eqNull(ne) ? se : ne, it = $ || (Ie ? Ie.tableFooterCellAlign : "") || Y || J || (Ie ? Ie.tableCellAlign : "") || B;
+        const { type: pe, showFooterOverflow: ne, footerAlign: $, align: J, footerClassName: ge, editRender: Oe, cellRender: Se } = j, de = Oe || Se, Ie = de ? AN.get(de.name) : null, je = ce.showAll, Ue = j.children && j.children.length, Ae = Z ? j.fixed !== Z && !Ue : j.fixed && M, _e = r.eqNull(ne) ? se : ne, it = $ || (Ie ? Ie.tableFooterCellAlign : "") || Y || J || (Ie ? Ie.tableCellAlign : "") || L;
         let vt = _e === "ellipsis";
         const dt = _e === "title", at = _e === !0 || _e === "tooltip";
         let Et = dt || at || vt;
@@ -4734,8 +4734,8 @@ const $p = pt({
           "col--last": fe === b.length - 1,
           "fixed--hidden": Ae,
           "col--ellipsis": Et,
-          "col--current": A === j
-        }, Vr(ge, Ne), Vr(G, Ne)] }, Qe), { style: ue ? r.isFunction(ue) ? ue(Ne) : ue : null }), De), { key: ye || L.useKey || L.drag ? j.id : fe }), [
+          "col--current": B === j
+        }, Vr(ge, Ne), Vr(G, Ne)] }, Qe), { style: ue ? r.isFunction(ue) ? ue(Ne) : ue : null }), De), { key: ye || A.useKey || A.drag ? j.id : fe }), [
           o("div", {
             class: ["vxe-cell", {
               "c--title": dt,
@@ -4753,31 +4753,31 @@ const $p = pt({
     }, O = (b) => {
       const { fixedType: E, tableColumn: C } = e, { footerRowClassName: V, footerRowStyle: Q } = s, { isDragColMove: Z } = i, G = d.value;
       return b.map((ue, Y) => {
-        const K = Y, B = { $table: t, row: ue, _rowIndex: K, $rowIndex: Y, fixed: E, type: Vu };
+        const K = Y, L = { $table: t, row: ue, _rowIndex: K, $rowIndex: Y, fixed: E, type: Vu };
         return G.drag ? o(Fr, {
           name: `vxe-header--col-list${Z ? "" : "-disabled"}`,
           tag: "tr",
           class: [
             "vxe-footer--row",
-            V ? r.isFunction(V) ? V(B) : V : ""
+            V ? r.isFunction(V) ? V(L) : V : ""
           ],
-          style: Q ? r.isFunction(Q) ? Q(B) : Q : null
+          style: Q ? r.isFunction(Q) ? Q(L) : Q : null
         }, {
           default: () => h(C, b, ue, Y, K)
         }) : o("tr", {
           class: [
             "vxe-footer--row",
-            V ? r.isFunction(V) ? V(B) : V : ""
+            V ? r.isFunction(V) ? V(L) : V : ""
           ],
-          style: Q ? r.isFunction(Q) ? Q(B) : Q : null
+          style: Q ? r.isFunction(Q) ? Q(L) : Q : null
         }, h(C, b, ue, Y, K));
       });
     }, g = () => {
       let { fixedType: b, fixedColumn: E, tableColumn: C, footerTableData: V } = e;
       const { footerSpanMethod: Q, showFooterOverflow: Z } = s, { visibleColumn: G } = l, { scrollXLoad: ue, scrollbarWidth: Y, mergeFooterList: K } = i;
       b && (!i.expandColumn && (ue || Z) && (!K.length || !Q) ? C = E : C = G);
-      const B = {};
-      return b || (B.onScroll = x), o("div", Object.assign({ ref: p, class: ["vxe-table--footer-wrapper", b ? `fixed-${b}--wrapper` : "body--wrapper"], xid: n }, B), [
+      const L = {};
+      return b || (L.onScroll = x), o("div", Object.assign({ ref: p, class: ["vxe-table--footer-wrapper", b ? `fixed-${b}--wrapper` : "body--wrapper"], xid: n }, L), [
         b ? Ve() : o("div", {
           ref: S,
           class: "vxe-body--x-space"
@@ -5167,67 +5167,67 @@ const $p = pt({
   setup(e) {
     const t = Ce.getComponent("VxeModal"), n = Ce.getComponent("VxeDrawer"), s = Ce.getComponent("VxeButton"), i = Ce.getComponent("VxeNumberInput"), l = Ce.getComponent("VxeTooltip"), a = Ce.getComponent("VxeRadioGroup"), c = mt("$xeTable", {}), { props: m, reactData: u } = c, { computeCustomOpts: d, computeColumnOpts: p, computeIsMaxFixedColumn: w, computeResizableOpts: v } = c.getComputeMaps(), D = ke(), S = ke(), x = ke(), h = ke();
     let O;
-    const g = (L) => {
+    const g = (A) => {
       const { customStore: j } = e;
-      j.activeWrapper = !0, c.customOpenEvent(L);
-    }, b = (L) => {
+      j.activeWrapper = !0, c.customOpenEvent(A);
+    }, b = (A) => {
       const { customStore: j } = e;
       j.activeWrapper = !1, setTimeout(() => {
-        !j.activeBtn && !j.activeWrapper && c.customCloseEvent(L);
+        !j.activeBtn && !j.activeWrapper && c.customCloseEvent(A);
       }, 300);
-    }, E = ({ $event: L }) => {
-      c.saveCustom(), c.closeCustom(), c.emitCustomEvent("confirm", L);
-    }, C = ({ $event: L }) => {
-      c.closeCustom(), c.emitCustomEvent("close", L);
-    }, V = ({ $event: L }) => {
-      c.cancelCustom(), c.closeCustom(), c.emitCustomEvent("cancel", L);
-    }, Q = (L) => {
-      c.resetCustom(!0), c.closeCustom(), c.emitCustomEvent("reset", L);
-    }, Z = ({ $event: L }) => {
+    }, E = ({ $event: A }) => {
+      c.saveCustom(), c.closeCustom(), c.emitCustomEvent("confirm", A);
+    }, C = ({ $event: A }) => {
+      c.closeCustom(), c.emitCustomEvent("close", A);
+    }, V = ({ $event: A }) => {
+      c.cancelCustom(), c.closeCustom(), c.emitCustomEvent("cancel", A);
+    }, Q = (A) => {
+      c.resetCustom(!0), c.closeCustom(), c.emitCustomEvent("reset", A);
+    }, Z = ({ $event: A }) => {
       Ce.modal ? Ce.modal.confirm({
         content: Ln("vxe.custom.cstmConfirmRestore"),
         className: "vxe-table--ignore-clear",
         escClosable: !0
       }).then((j) => {
-        j === "confirm" && Q(L);
-      }) : Q(L);
-    }, G = (L) => {
-      const { customColumnList: j } = u, fe = r.findTree(j, (pe) => pe === L);
+        j === "confirm" && Q(A);
+      }) : Q(A);
+    }, G = (A) => {
+      const { customColumnList: j } = u, fe = r.findTree(j, (pe) => pe === A);
       if (fe && fe.parent) {
         const { parent: pe } = fe;
         pe.children && pe.children.length && (pe.renderVisible = pe.children.every((ne) => ne.renderVisible), pe.halfVisible = !pe.renderVisible && pe.children.some((ne) => ne.renderVisible || ne.halfVisible), G(pe));
       }
-    }, ue = (L) => {
-      const j = !L.renderVisible;
-      d.value.immediate ? (r.eachTree([L], (pe) => {
+    }, ue = (A) => {
+      const j = !A.renderVisible;
+      d.value.immediate ? (r.eachTree([A], (pe) => {
         pe.visible = j, pe.renderVisible = j, pe.halfVisible = !1;
-      }), c.handleCustom(), c.saveCustomStore("update:visible")) : r.eachTree([L], (pe) => {
+      }), c.handleCustom(), c.saveCustomStore("update:visible")) : r.eachTree([A], (pe) => {
         pe.renderVisible = j, pe.halfVisible = !1;
-      }), G(L), c.checkCustomStatus();
-    }, Y = (L, j) => {
+      }), G(A), c.checkCustomStatus();
+    }, Y = (A, j) => {
       const fe = w.value;
-      d.value.immediate ? (L.renderFixed === j ? r.eachTree([L], (ne) => {
+      d.value.immediate ? (A.renderFixed === j ? r.eachTree([A], (ne) => {
         ne.fixed = "", ne.renderFixed = "";
-      }) : (!fe || L.renderFixed) && r.eachTree([L], (ne) => {
+      }) : (!fe || A.renderFixed) && r.eachTree([A], (ne) => {
         ne.fixed = j, ne.renderFixed = j;
-      }), c.handleCustom(), c.saveCustomStore("update:fixed")) : L.renderFixed === j ? r.eachTree([L], (ne) => {
+      }), c.handleCustom(), c.saveCustomStore("update:fixed")) : A.renderFixed === j ? r.eachTree([A], (ne) => {
         ne.renderFixed = "";
-      }) : (!fe || L.renderFixed) && r.eachTree([L], (ne) => {
+      }) : (!fe || A.renderFixed) && r.eachTree([A], (ne) => {
         ne.renderFixed = j;
       });
     }, K = () => {
       c.toggleCustomAllCheckbox();
-    }, B = (L) => {
-      const pe = L.currentTarget.parentNode.parentNode, ne = pe.getAttribute("colid"), $ = c.getColumnById(ne);
-      pe.draggable = !0, h.value = $, Ms(pe, "active--drag-origin"), I(L);
-    }, ye = (L) => {
-      const pe = L.currentTarget.parentNode.parentNode, ne = x.value;
+    }, L = (A) => {
+      const pe = A.currentTarget.parentNode.parentNode, ne = pe.getAttribute("colid"), $ = c.getColumnById(ne);
+      pe.draggable = !0, h.value = $, Ms(pe, "active--drag-origin"), I(A);
+    }, ye = (A) => {
+      const pe = A.currentTarget.parentNode.parentNode, ne = x.value;
       pe.draggable = !1, h.value = null, jo(pe, "active--drag-origin"), ne && (ne.style.display = "");
-    }, se = (L) => {
+    }, se = (A) => {
       const j = new Image();
-      L.dataTransfer && L.dataTransfer.setDragImage(j, 0, 0);
-    }, P = (L) => {
-      const { customColumnList: j } = u, fe = d.value, pe = L.currentTarget, ne = x.value;
+      A.dataTransfer && A.dataTransfer.setDragImage(j, 0, 0);
+    }, P = (A) => {
+      const { customColumnList: j } = u, fe = d.value, pe = A.currentTarget, ne = x.value;
       if (O) {
         if (O !== pe) {
           const $ = O.getAttribute("drag-pos"), J = pe.getAttribute("colid"), ge = c.getColumnById(J);
@@ -5248,24 +5248,24 @@ const $p = pt({
           $.renderSortNumber = de;
         }
       }), c.handleCustom(), c.saveCustomStore("update:sort"));
-    }, M = (L) => {
-      const j = L.currentTarget;
+    }, M = (A) => {
+      const j = A.currentTarget;
       O !== j && jo(O, "active--drag-target");
       const fe = j.getAttribute("colid"), pe = c.getColumnById(fe);
       if (pe && pe.level === 1) {
-        L.preventDefault();
-        const $ = L.clientY - j.getBoundingClientRect().y < j.clientHeight / 2 ? "top" : "bottom";
+        A.preventDefault();
+        const $ = A.clientY - j.getBoundingClientRect().y < j.clientHeight / 2 ? "top" : "bottom";
         Ms(j, "active--drag-target"), j.setAttribute("drag-pos", $), O = j;
       }
-      I(L);
-    }, I = (L) => {
+      I(A);
+    }, I = (A) => {
       const j = x.value, fe = S.value;
       if (fe && j) {
         const pe = fe.parentNode, ne = pe.getBoundingClientRect();
-        j.style.display = "block", j.style.top = `${Math.min(pe.clientHeight - pe.scrollTop - j.clientHeight, L.clientY - ne.y)}px`, j.style.left = `${Math.min(pe.clientWidth - pe.scrollLeft - j.clientWidth - 16, L.clientX - ne.x)}px`;
+        j.style.display = "block", j.style.top = `${Math.min(pe.clientHeight - pe.scrollTop - j.clientHeight, A.clientY - ne.y)}px`, j.style.left = `${Math.min(pe.clientWidth - pe.scrollLeft - j.clientWidth - 16, A.clientX - ne.x)}px`;
       }
-    }, A = () => {
-      const { customStore: L } = e, { isCustomStatus: j, customColumnList: fe } = u, pe = d.value, { maxHeight: ne } = L, { checkMethod: $, visibleMethod: J, allowVisible: ge, allowSort: Oe, allowFixed: Se, trigger: de, placement: Ie } = pe, je = w.value, Ue = pe.slots || {}, Ae = Ue.header, _e = Ue.top, it = Ue.bottom, vt = Ue.default, dt = Ue.footer, at = [], Et = {}, Qe = L.isAll, De = L.isIndeterminate, Re = h.value;
+    }, B = () => {
+      const { customStore: A } = e, { isCustomStatus: j, customColumnList: fe } = u, pe = d.value, { maxHeight: ne } = A, { checkMethod: $, visibleMethod: J, allowVisible: ge, allowSort: Oe, allowFixed: Se, trigger: de, placement: Ie } = pe, je = w.value, Ue = pe.slots || {}, Ae = Ue.header, _e = Ue.top, it = Ue.bottom, vt = Ue.default, dt = Ue.footer, at = [], Et = {}, Qe = A.isAll, De = A.isIndeterminate, Re = h.value;
       de === "hover" && (Et.onMouseenter = g, Et.onMouseleave = b);
       const Be = {
         $table: c,
@@ -5310,7 +5310,7 @@ const $p = pt({
               o("span", Object.assign({ class: ["vxe-table-custom--sort-btn", {
                 "is--disabled": be || we
               }], title: Ln("vxe.custom.setting.sortHelpTip") }, be || we ? {} : {
-                onMousedown: B,
+                onMousedown: L,
                 onMouseup: ye
               }), [
                 o("i", {
@@ -5356,12 +5356,12 @@ const $p = pt({
         ref: D,
         key: "simple",
         class: ["vxe-table-custom-wrapper", `placement--${Ie}`, {
-          "is--active": L.visible
+          "is--active": A.visible
         }],
         style: ne && !["left", "right"].includes(Ie) ? {
           maxHeight: `${ne}px`
         } : {}
-      }, L.visible ? [
+      }, A.visible ? [
         o("div", {
           class: "vxe-table-custom--header"
         }, Ae ? c.callSlot(Ae, Be) : [
@@ -5442,7 +5442,7 @@ const $p = pt({
         ]) : null
       ] : []);
     }, H = () => {
-      const { customStore: L } = e, { resizable: j } = m, { isCustomStatus: fe, customColumnList: pe } = u, ne = d.value, { mode: $, modalOptions: J, drawerOptions: ge, allowVisible: Oe, allowSort: Se, allowFixed: de, allowResizable: Ie, checkMethod: je, visibleMethod: Ue } = ne, Ae = p.value, { maxFixedSize: _e } = Ae, it = v.value, { minWidth: vt, maxWidth: dt } = it, at = Object.assign({}, J), Et = Object.assign({}, ge), Qe = w.value, De = ne.slots || {}, Re = De.header, Be = De.top, ve = De.bottom, Ne = De.default, q = De.footer, z = [], R = L.isAll, le = L.isIndeterminate, F = h.value, re = {
+      const { customStore: A } = e, { resizable: j } = m, { isCustomStatus: fe, customColumnList: pe } = u, ne = d.value, { mode: $, modalOptions: J, drawerOptions: ge, allowVisible: Oe, allowSort: Se, allowFixed: de, allowResizable: Ie, checkMethod: je, visibleMethod: Ue } = ne, Ae = p.value, { maxFixedSize: _e } = Ae, it = v.value, { minWidth: vt, maxWidth: dt } = it, at = Object.assign({}, J), Et = Object.assign({}, ge), Qe = w.value, De = ne.slots || {}, Re = De.header, Be = De.top, ve = De.bottom, Ne = De.default, q = De.footer, z = [], R = A.isAll, le = A.isIndeterminate, F = h.value, re = {
         $table: c,
         $grid: c.xegrid,
         columns: pe,
@@ -5499,7 +5499,7 @@ const $p = pt({
               ee.level === 1 ? o("span", Object.assign({ class: ["vxe-table-custom-popup--column-sort-btn", {
                 "is--disabled": nn || zt
               }], title: Ln("vxe.custom.setting.sortHelpTip") }, nn || zt ? {} : {
-                onMousedown: B,
+                onMousedown: L,
                 onMouseup: ye
               }), [
                 o("i", {
@@ -5661,7 +5661,7 @@ const $p = pt({
       return Re && (N.header = () => c.callSlot(Re, re)), $ === "drawer" ? n ? o(n, {
         key: "drawer",
         className: ["vxe-table-custom-drawer-wrapper", "vxe-table--ignore-clear", Et.className || ""].join(" "),
-        modelValue: L.visible,
+        modelValue: A.visible,
         title: Et.title || Ln("vxe.custom.cstmTitle"),
         width: Et.width || Math.min(880, Math.floor(document.documentElement.clientWidth * 0.6)),
         position: Et.position,
@@ -5671,12 +5671,12 @@ const $p = pt({
         destroyOnClose: !0,
         showFooter: !0,
         "onUpdate:modelValue"(ee) {
-          L.visible = ee;
+          A.visible = ee;
         }
       }, N) : Ve() : t ? o(t, {
         key: "modal",
         className: ["vxe-table-custom-modal-wrapper", "vxe-table--ignore-clear", at.className || ""].join(" "),
-        modelValue: L.visible,
+        modelValue: A.visible,
         title: at.title || Ln("vxe.custom.cstmTitle"),
         width: at.width || Math.min(880, document.documentElement.clientWidth),
         minWidth: at.minWidth || 700,
@@ -5693,15 +5693,15 @@ const $p = pt({
         destroyOnClose: !0,
         showFooter: !0,
         "onUpdate:modelValue"(ee) {
-          L.visible = ee;
+          A.visible = ee;
         }
       }, N) : Ve();
     }, ce = () => {
-      const L = d.value;
-      return ["modal", "drawer", "popup"].includes(`${L.mode}`) ? H() : A();
+      const A = d.value;
+      return ["modal", "drawer", "popup"].includes(`${A.mode}`) ? H() : B();
     };
     return process.env.NODE_ENV === "development" && me(() => {
-      const L = d.value, { mode: j } = L;
+      const A = d.value, { mode: j } = A;
       t || Ut("vxe.error.reqComp", ["vxe-modal"]), !n && j === "drawer" && Ut("vxe.error.reqComp", ["vxe-drawer"]), s || Ut("vxe.error.reqComp", ["vxe-button"]), i || Ut("vxe.error.reqComp", ["vxe-number-input"]), l || Ut("vxe.error.reqComp", ["vxe-tooltip"]), a || Ut("vxe.error.reqComp", ["vxe-radio-group"]);
     }), ce;
   }
@@ -5753,7 +5753,7 @@ const $p = pt({
             class: "vxe-table--filter-template"
           }, cs(ue(O, G)))
         ];
-      const Y = C ? b.isAllSelected : !b.options.some((B) => B._checked), K = C && b.isIndeterminate;
+      const Y = C ? b.isAllSelected : !b.options.some((L) => L._checked), K = C && b.isIndeterminate;
       return [
         o("ul", {
           class: "vxe-table--filter-header"
@@ -5764,8 +5764,8 @@ const $p = pt({
               "is--indeterminate": K
             }],
             title: xa(C ? "vxe.table.allTitle" : "vxe.table.allFilter"),
-            onClick: (B) => {
-              v(B, !b.isAllSelected);
+            onClick: (L) => {
+              v(L, !b.isAllSelected);
             }
           }, (C ? [
             o("span", {
@@ -5782,15 +5782,15 @@ const $p = pt({
           style: V ? {
             maxHeight: `${V}px`
           } : {}
-        }, b.options.map((B) => {
-          const ye = B._checked;
+        }, b.options.map((L) => {
+          const ye = L._checked;
           return o("li", {
             class: ["vxe-table--filter-option", {
-              "is--checked": B._checked
+              "is--checked": L._checked
             }],
-            title: B.label,
+            title: L.label,
             onClick: (se) => {
-              w(se, !B._checked, B);
+              w(se, !L._checked, L);
             }
           }, (C ? [
             o("span", {
@@ -5799,7 +5799,7 @@ const $p = pt({
           ] : []).concat([
             o("span", {
               class: "vxe-checkbox--label"
-            }, po(B.label, 1))
+            }, po(L.label, 1))
           ]));
         }))
       ];
@@ -6034,34 +6034,34 @@ const $p = pt({
       const { defaultOptions: Y } = e;
       return !Y.original && ["xlsx"].indexOf(Y.type) > -1;
     }), h = (Y) => {
-      const { storeData: K } = e, B = r.findTree(K.columns, (ye) => ye === Y);
-      if (B && B.parent) {
-        const { parent: ye } = B;
+      const { storeData: K } = e, L = r.findTree(K.columns, (ye) => ye === Y);
+      if (L && L.parent) {
+        const { parent: ye } = L;
         ye.children && ye.children.length && (ye.checked = ye.children.every((se) => se.checked), ye.halfChecked = !ye.checked && ye.children.some((se) => se.checked || se.halfChecked), h(ye));
       }
     }, O = () => {
       const { storeData: Y } = e, K = Y.columns;
-      u.isAll = K.every((B) => B.disabled || B.checked), u.isIndeterminate = !u.isAll && K.some((B) => !B.disabled && (B.checked || B.halfChecked));
+      u.isAll = K.every((L) => L.disabled || L.checked), u.isIndeterminate = !u.isAll && K.some((L) => !L.disabled && (L.checked || L.halfChecked));
     }, g = (Y) => {
       const K = !Y.checked;
-      r.eachTree([Y], (B) => {
-        B.checked = K, B.halfChecked = !1;
+      r.eachTree([Y], (L) => {
+        L.checked = K, L.halfChecked = !1;
       }), h(Y), O();
     }, b = () => {
       const { storeData: Y } = e, K = !u.isAll;
-      r.eachTree(Y.columns, (B) => {
-        B.disabled || (B.checked = K, B.halfChecked = !1);
+      r.eachTree(Y.columns, (L) => {
+        L.disabled || (L.checked = K, L.halfChecked = !1);
       }), u.isAll = K, O();
     }, E = () => {
       me(() => {
-        const Y = p.value, K = w.value, B = d.value, ye = Y || K || B;
+        const Y = p.value, K = w.value, L = d.value, ye = Y || K || L;
         ye && ye.focus();
       }), O();
     }, C = () => {
-      const { storeData: Y, defaultOptions: K } = e, { hasMerge: B, columns: ye } = Y, se = v.value, P = S.value, M = r.searchTree(ye, (I) => I.checked, { children: "children", mapChildren: "childNodes", original: !0 });
+      const { storeData: Y, defaultOptions: K } = e, { hasMerge: L, columns: ye } = Y, se = v.value, P = S.value, M = r.searchTree(ye, (I) => I.checked, { children: "children", mapChildren: "childNodes", original: !0 });
       return Object.assign({}, K, {
         columns: M,
-        isMerge: B && P && se ? K.isMerge : !1
+        isMerge: L && P && se ? K.isMerge : !1
       });
     }, V = () => {
       const { storeData: Y } = e, K = m.value;
@@ -6080,8 +6080,8 @@ const $p = pt({
       const { storeData: Y } = e;
       Y.isPrint ? V() : Q();
     }, ue = () => {
-      const { defaultOptions: Y, storeData: K } = e, { isAll: B, isIndeterminate: ye } = u, { hasTree: se, hasMerge: P, isPrint: M, hasColgroup: I, columns: A } = K, { isHeader: H } = Y, ce = [], L = v.value, j = D.value, fe = S.value, pe = x.value, ne = Y.slots || {}, $ = ne.top, J = ne.bottom, ge = ne.default, Oe = ne.footer, Se = ne.parameter;
-      return r.eachTree(A, (de) => {
+      const { defaultOptions: Y, storeData: K } = e, { isAll: L, isIndeterminate: ye } = u, { hasTree: se, hasMerge: P, isPrint: M, hasColgroup: I, columns: B } = K, { isHeader: H } = Y, ce = [], A = v.value, j = D.value, fe = S.value, pe = x.value, ne = Y.slots || {}, $ = ne.top, J = ne.bottom, ge = ne.default, Oe = ne.footer, Se = ne.parameter;
+      return r.eachTree(B, (de) => {
         const Ie = po(de.getTitle(), 1), je = de.children && de.children.length, Ue = de.checked, Ae = de.halfChecked, _e = de.type === "html";
         ce.push(o("li", {
           key: de.id,
@@ -6134,7 +6134,7 @@ const $p = pt({
             $table: a,
             $grid: a.xegrid,
             options: Y,
-            columns: A,
+            columns: B,
             params: Y.params
           };
           return o("div", {
@@ -6222,14 +6222,14 @@ const $p = pt({
                           }, [
                             o("li", {
                               class: ["vxe-table-export--panel-column-option", {
-                                "is--checked": B,
+                                "is--checked": L,
                                 "is--indeterminate": ye
                               }],
                               title: Un("vxe.table.allTitle"),
                               onClick: b
                             }, [
                               o("span", {
-                                class: ["vxe-checkbox--icon", ye ? vl().TABLE_CHECKBOX_INDETERMINATE : B ? vl().TABLE_CHECKBOX_CHECKED : vl().TABLE_CHECKBOX_UNCHECKED]
+                                class: ["vxe-checkbox--icon", ye ? vl().TABLE_CHECKBOX_INDETERMINATE : L ? vl().TABLE_CHECKBOX_CHECKED : vl().TABLE_CHECKBOX_UNCHECKED]
                               }),
                               o("span", {
                                 class: "vxe-checkbox--label"
@@ -6291,9 +6291,9 @@ const $p = pt({
                             }
                           }) : Ve(),
                           l ? o(l, {
-                            modelValue: P && fe && L ? Y.isMerge : !1,
+                            modelValue: P && fe && A ? Y.isMerge : !1,
                             title: Un("vxe.export.expMergeTitle"),
-                            disabled: !P || !fe || !L,
+                            disabled: !P || !fe || !A,
                             content: Un("vxe.export.expOptMerge"),
                             "onUpdate:modelValue"(Ie) {
                               Y.isMerge = Ie;
@@ -6334,7 +6334,7 @@ const $p = pt({
             $table: a,
             $grid: a.xegrid,
             options: Y,
-            columns: A,
+            columns: B,
             params: Y.params
           };
           return o("div", {
@@ -6791,7 +6791,7 @@ const $p = pt({
       isActivated: !1
     };
     let p = {}, w = {};
-    const v = ke(), D = ke(), S = ke(), x = ke(), h = ke(), O = ke(), g = ke(), b = ke(), E = ke(), C = ke(), V = ke(), Q = ke(), Z = ke(), G = ke(), ue = ke(), Y = ke(), K = ke(), B = ke(), ye = ke(), se = ke(), P = ke(), M = ke(), I = ke(), A = ke(), H = ke(), ce = ke(), L = ke(), j = ke(), fe = ke(), pe = ke(), ne = mt("$xeGrid", null);
+    const v = ke(), D = ke(), S = ke(), x = ke(), h = ke(), O = ke(), g = ke(), b = ke(), E = ke(), C = ke(), V = ke(), Q = ke(), Z = ke(), G = ke(), ue = ke(), Y = ke(), K = ke(), L = ke(), ye = ke(), se = ke(), P = ke(), M = ke(), I = ke(), B = ke(), H = ke(), ce = ke(), A = ke(), j = ke(), fe = ke(), pe = ke(), ne = mt("$xeGrid", null);
     let $;
     const J = _(() => {
       const { id: f } = e;
@@ -6876,12 +6876,12 @@ const $p = pt({
       refTableRightBody: ue,
       refTableRightFooter: Y,
       refLeftContainer: K,
-      refRightContainer: B,
+      refRightContainer: L,
       refCellResizeBar: ye,
       refCellResizeTip: se,
       refScrollXVirtualElem: H,
       refScrollYVirtualElem: ce,
-      refScrollXHandleElem: L,
+      refScrollXHandleElem: A,
       refScrollYHandleElem: j,
       refScrollXSpaceElem: fe,
       refScrollYSpaceElem: pe
@@ -7311,7 +7311,7 @@ const $p = pt({
       return Ss.forEach((so, Xo) => {
         const Pn = Xo > 0 ? so : "", uo = ["header", "body", "footer"], No = Pn === "left";
         let ro = [], Mo;
-        Pn && (ro = No ? Ct.leftList : Ct.rightList, Mo = No ? K.value : B.value), uo.forEach((to) => {
+        Pn && (ro = No ? Ct.leftList : Ct.rightList, Mo = No ? K.value : L.value), uo.forEach((to) => {
           const ss = Ho(ln[`${so}-${to}-wrapper`]), Os = Ho(ln[`${so}-${to}-table`]);
           if (to === "header") {
             let Zo = On, Eo = Ge;
@@ -7746,7 +7746,7 @@ const $p = pt({
       const { inFooterScroll: y, inBodyScroll: T, lastScrollLeft: k } = d;
       if (y || T)
         return;
-      const W = E.value, ie = Q.value, te = ue.value, he = W.$el, xe = ie ? ie.$el : null, Me = te ? te.$el : null, $e = L.value, Ge = f.currentTarget, { scrollTop: Fe } = Ge, He = $e || he;
+      const W = E.value, ie = Q.value, te = ue.value, he = W.$el, xe = ie ? ie.$el : null, Me = te ? te.$el : null, $e = A.value, Ge = f.currentTarget, { scrollTop: Fe } = Ge, He = $e || he;
       let et = 0;
       He && (et = He.scrollLeft);
       const Xe = et !== k, nt = !0;
@@ -8889,7 +8889,7 @@ const $p = pt({
       scrollTo(f, y) {
         const T = E.value, k = b.value, W = C.value, ie = Q.value, te = ue.value, he = T ? T.$el : null, xe = ie ? ie.$el : null, Me = te ? te.$el : null, $e = k ? k.$el : null, Ge = W ? W.$el : null;
         if (r.isNumber(f)) {
-          const Fe = L.value;
+          const Fe = A.value;
           Fe ? fo(Fe, f) : (fo(he, f), fo($e, f), fo(Ge, f));
         }
         if (r.isNumber(y)) {
@@ -8924,7 +8924,7 @@ const $p = pt({
        * 手动清除滚动相关信息，还原到初始状态
        */
       clearScroll() {
-        const { scrollXStore: f, scrollYStore: y } = d, T = E.value, k = b.value, W = C.value, ie = Q.value, te = ue.value, he = ie ? ie.$el : null, xe = T ? T.$el : null, Me = te ? te.$el : null, $e = k ? k.$el : null, Ge = W ? W.$el : null, Fe = L.value;
+        const { scrollXStore: f, scrollYStore: y } = d, T = E.value, k = b.value, W = C.value, ie = Q.value, te = ue.value, he = ie ? ie.$el : null, xe = T ? T.$el : null, Me = te ? te.$el : null, $e = k ? k.$el : null, Ge = W ? W.$el : null, Fe = A.value;
         Fe ? fo(Fe, 0) : (fo(xe, 0), fo($e, 0), fo(Ge, 0));
         const He = j.value;
         return He ? no(He, 0) : (no(xe, 0), no(he, 0), no(Me, 0)), f.startIndex = 0, f.endIndex = f.visibleSize, y.startIndex = 0, y.endIndex = y.visibleSize, me().then(() => {
@@ -9321,7 +9321,7 @@ const $p = pt({
           } else
             $e.style.display = "";
       } else if (T) {
-        const $e = A.value;
+        const $e = B.value;
         if ($e)
           if (k) {
             const Ge = T.getBoundingClientRect();
@@ -9332,7 +9332,7 @@ const $p = pt({
       const Me = M.value;
       Me && (Me.style.display = "block", Me.style.top = `${Math.min(ie.clientHeight - ie.scrollTop - Me.clientHeight, f.clientY - xe.y)}px`, Me.style.left = `${Math.min(ie.clientWidth - ie.scrollLeft - Me.clientWidth - 16, f.clientX - xe.x)}px`, Me.setAttribute("drag-status", k ? "normal" : "disabled"));
     }, Js = () => {
-      const f = M.value, y = I.value, T = A.value;
+      const f = M.value, y = I.value, T = B.value;
       f && (f.style.display = ""), y && (y.style.display = ""), T && (T.style.display = "");
     }, dl = (f, y, T, k, W) => {
       W.cell = y;
@@ -10095,7 +10095,7 @@ const $p = pt({
        * 处理固定列的显示状态
        */
       checkScrolling() {
-        const f = K.value, y = B.value, T = E.value, k = T ? T.$el : null, ie = L.value || k;
+        const f = K.value, y = L.value, T = E.value, k = T ? T.$el : null, ie = A.value || k;
         ie && (f && (ie.scrollLeft > 0 ? Ms(f, "scrolling--middle") : jo(f, "scrolling--middle")), y && (ie.clientWidth < ie.scrollWidth - Math.ceil(ie.scrollLeft) ? Ms(y, "scrolling--middle") : jo(y, "scrolling--middle")));
       },
       updateZindex() {
@@ -10141,7 +10141,7 @@ const $p = pt({
     const Rd = (f) => {
       const { showHeader: y, showFooter: T } = e, { tableData: k, tableColumn: W, tableGroupColumn: ie, columnStore: te, footerTableData: he } = u, xe = f === "left", Me = xe ? te.leftList : te.rightList;
       return o("div", {
-        ref: xe ? K : B,
+        ref: xe ? K : L,
         class: `vxe-table--fixed-${f}-wrapper`
       }, [
         y ? o(kp, {
@@ -10192,7 +10192,7 @@ const $p = pt({
           }]
         }),
         o("div", {
-          ref: A,
+          ref: B,
           class: ["vxe-table--drag-col-line", {
             "is--guides": W.showGuidesStatus
           }]
@@ -10315,7 +10315,7 @@ const $p = pt({
           class: "vxe-table--scroll-x-virtual"
         }, [
           o("div", {
-            ref: L,
+            ref: A,
             class: "vxe-table--scroll-x-handle",
             onScroll: X
           }, [
@@ -10675,28 +10675,28 @@ JN.add("tableFilterModule", {
             column: x,
             style: null
           }), g.options.forEach((Y) => {
-            const { _checked: K, checked: B } = Y;
-            Y._checked = B, !B && K !== B && ue && ue({ option: Y, column: x, $table: e });
+            const { _checked: K, checked: L } = Y;
+            Y._checked = L, !L && K !== L && ue && ue({ option: Y, column: x, $table: e });
           }), this.checkFilterOptions(), g.visible = !0, O.filter = !0, me(() => {
-            const Y = i.value, K = l.value, B = Y ? Y.$el : null, ye = K.$el;
+            const Y = i.value, K = l.value, L = Y ? Y.$el : null, ye = K.$el;
             if (!ye)
               return;
             const se = a.value, P = se ? se.$el : null;
             if (!P)
               return;
-            const M = P.offsetWidth, I = P.offsetHeight, A = P.querySelector(".vxe-table--filter-header"), H = P.querySelector(".vxe-table--filter-footer"), ce = M / 2, L = 10, j = ye.clientWidth - M - L;
+            const M = P.offsetWidth, I = P.offsetHeight, B = P.querySelector(".vxe-table--filter-header"), H = P.querySelector(".vxe-table--filter-footer"), ce = M / 2, A = 10, j = ye.clientWidth - M - A;
             let fe, pe;
             const ne = {
               top: `${b.offsetTop + b.offsetParent.offsetTop + b.offsetHeight}px`
             };
             let $ = null;
-            const J = ye.clientHeight - (B ? B.clientHeight / 2 : 0);
-            if (I >= J && ($ = Math.max(40, J - (H ? H.offsetHeight : 0) - (A ? A.offsetHeight : 0))), x.fixed === "left" ? fe = b.offsetLeft + b.offsetParent.offsetLeft - ce : x.fixed === "right" ? pe = b.offsetParent.offsetWidth - b.offsetLeft + (b.offsetParent.offsetParent.offsetWidth - b.offsetParent.offsetLeft) - x.renderWidth - ce : fe = b.offsetLeft + b.offsetParent.offsetLeft - ce - ye.scrollLeft, fe) {
-              const ge = E + M - ce + L - C;
-              ge > 0 && (fe -= ge), ne.left = `${Math.min(j, Math.max(L, fe))}px`;
+            const J = ye.clientHeight - (L ? L.clientHeight / 2 : 0);
+            if (I >= J && ($ = Math.max(40, J - (H ? H.offsetHeight : 0) - (B ? B.offsetHeight : 0))), x.fixed === "left" ? fe = b.offsetLeft + b.offsetParent.offsetLeft - ce : x.fixed === "right" ? pe = b.offsetParent.offsetWidth - b.offsetLeft + (b.offsetParent.offsetParent.offsetWidth - b.offsetParent.offsetLeft) - x.renderWidth - ce : fe = b.offsetLeft + b.offsetParent.offsetLeft - ce - ye.scrollLeft, fe) {
+              const ge = E + M - ce + A - C;
+              ge > 0 && (fe -= ge), ne.left = `${Math.min(j, Math.max(A, fe))}px`;
             } else if (pe) {
-              const ge = E + M - ce + L - C;
-              ge > 0 && (pe += ge), ne.right = `${Math.max(L, pe)}px`;
+              const ge = E + M - ce + A - C;
+              ge > 0 && (pe += ge), ne.right = `${Math.max(A, pe)}px`;
             }
             g.style = ne, g.maxHeight = $;
           });
@@ -10827,7 +10827,7 @@ tF.add("tableMenuModule", {
             D.preventDefault(), e.updateZindex();
             const { scrollTop: Q, scrollLeft: Z, visibleHeight: G, visibleWidth: ue } = qc();
             let Y = D.clientY + Q, K = D.clientX + Z;
-            const B = () => {
+            const L = () => {
               i._currMenuParams = x, Object.assign(h, {
                 visible: !0,
                 list: C,
@@ -10840,18 +10840,18 @@ tF.add("tableMenuModule", {
                   left: `${K}px`
                 }
               }), me(() => {
-                const I = c.value.getRefMaps().refElem.value, A = I.clientHeight, H = I.clientWidth, { boundingTop: ce, boundingLeft: L } = Pa(I), j = ce + A - G, fe = L + H - ue;
-                j > -10 && (h.style.top = `${Math.max(Q + 2, Y - A - 2)}px`), fe > -10 && (h.style.left = `${Math.max(Z + 2, K - H - 2)}px`);
+                const I = c.value.getRefMaps().refElem.value, B = I.clientHeight, H = I.clientWidth, { boundingTop: ce, boundingLeft: A } = Pa(I), j = ce + B - G, fe = A + H - ue;
+                j > -10 && (h.style.top = `${Math.max(Q + 2, Y - B - 2)}px`), fe > -10 && (h.style.left = `${Math.max(Z + 2, K - H - 2)}px`);
               });
             }, { keyboard: ye, row: se, column: P } = x;
             ye && se && P ? e.scrollToRow(se, P).then(() => {
               const M = e.getCellElement(se, P);
               if (M) {
-                const { boundingTop: I, boundingLeft: A } = Pa(M);
-                Y = I + Q + Math.floor(M.offsetHeight / 2), K = A + Z + Math.floor(M.offsetWidth / 2);
+                const { boundingTop: I, boundingLeft: B } = Pa(M);
+                Y = I + Q + Math.floor(M.offsetHeight / 2), K = B + Z + Math.floor(M.offsetWidth / 2);
               }
-              B();
-            }) : B();
+              L();
+            }) : L();
           } else
             p.closeMenu();
         }));
@@ -10920,19 +10920,19 @@ tF.add("tableMenuModule", {
             }
           }
           for (let ue = 0; ue < G.length; ue++) {
-            const Y = G[ue], K = kn(D, Q, `vxe-${Y}--column`, (ye) => ye.parentNode.parentNode.parentNode.getAttribute("xid") === t), B = { type: Y, $table: e, columns: g.slice(0), $event: D };
+            const Y = G[ue], K = kn(D, Q, `vxe-${Y}--column`, (ye) => ye.parentNode.parentNode.parentNode.getAttribute("xid") === t), L = { type: Y, $table: e, columns: g.slice(0), $event: D };
             if (K.flag) {
               const ye = K.targetElem, se = e.getColumnNode(ye), P = se ? se.item : null;
               let M = `${Y}-`;
-              if (P && Object.assign(B, { column: P, columnIndex: e.getColumnIndex(P), cell: ye }), Y === "body") {
-                const A = e.getRowNode(ye.parentNode), H = A ? A.item : null;
-                M = "", H && (B.row = H, B.rowIndex = e.getRowIndex(H));
+              if (P && Object.assign(L, { column: P, columnIndex: e.getColumnIndex(P), cell: ye }), Y === "body") {
+                const B = e.getRowNode(ye.parentNode), H = B ? B.item : null;
+                M = "", H && (L.row = H, L.rowIndex = e.getRowIndex(H));
               }
               const I = `${M}cell-menu`;
-              v(D, Y, B), e.dispatchEvent(I, B, D);
+              v(D, Y, L), e.dispatchEvent(I, L, D);
               return;
             } else if (kn(D, Q, `vxe-table--${Y}-wrapper`, (ye) => ye.getAttribute("xid") === t).flag) {
-              V.trigger === "cell" ? D.preventDefault() : v(D, Y, B);
+              V.trigger === "cell" ? D.preventDefault() : v(D, Y, L);
               return;
             }
           }
@@ -10994,52 +10994,52 @@ rF.add("tableEditModule", {
       (V || Q) && (E.mode === "row" ? b.forEach((Z) => v(V, Z)) : v(V, Q));
     }
     function x(g, b) {
-      const { tableFullTreeData: E, afterFullData: C, fullDataRowIdData: V, fullAllDataRowIdData: Q } = s, Z = m.value, { rowField: G, parentField: ue, mapChildrenField: Y } = Z, K = Z.children || Z.childrenField, B = b ? "push" : "unshift";
+      const { tableFullTreeData: E, afterFullData: C, fullDataRowIdData: V, fullAllDataRowIdData: Q } = s, Z = m.value, { rowField: G, parentField: ue, mapChildrenField: Y } = Z, K = Z.children || Z.childrenField, L = b ? "push" : "unshift";
       g.forEach((ye) => {
         const se = ye[ue], P = yt(e, ye), M = se ? r.findTree(E, (I) => se === I[G], { children: Y }) : null;
         if (M) {
-          const { item: I } = M, A = Q[yt(e, I)], H = A ? A.level : 0;
-          let ce = I[K], L = I[Y];
-          r.isArray(ce) || (ce = I[K] = []), r.isArray(L) || (L = I[K] = []), ce[B](ye), L[B](ye);
+          const { item: I } = M, B = Q[yt(e, I)], H = B ? B.level : 0;
+          let ce = I[K], A = I[Y];
+          r.isArray(ce) || (ce = I[K] = []), r.isArray(A) || (A = I[K] = []), ce[L](ye), A[L](ye);
           const j = { row: ye, rowid: P, seq: -1, index: -1, _index: -1, $index: -1, items: ce, parent: I, level: H + 1, height: 0 };
           V[P] = j, Q[P] = j;
         } else {
-          process.env.NODE_ENV === "development" && se && rn("vxe.error.unableInsert"), C[B](ye), E[B](ye);
+          process.env.NODE_ENV === "development" && se && rn("vxe.error.unableInsert"), C[L](ye), E[L](ye);
           const I = { row: ye, rowid: P, seq: -1, index: -1, _index: -1, $index: -1, items: E, parent: null, level: 0, height: 0 };
           V[P] = I, Q[P] = I;
         }
       });
     }
     const h = (g, b, E) => {
-      const { treeConfig: C } = t, { mergeList: V, editStore: Q } = n, { tableFullTreeData: Z, afterFullData: G, tableFullData: ue, fullDataRowIdData: Y, fullAllDataRowIdData: K } = s, B = m.value, { transform: ye, rowField: se, mapChildrenField: P } = B, M = B.children || B.childrenField;
+      const { treeConfig: C } = t, { mergeList: V, editStore: Q } = n, { tableFullTreeData: Z, afterFullData: G, tableFullData: ue, fullDataRowIdData: Y, fullAllDataRowIdData: K } = s, L = m.value, { transform: ye, rowField: se, mapChildrenField: P } = L, M = L.children || L.childrenField;
       r.isArray(g) || (g = [g]);
       const I = Rt(e.defineField(g.map((H) => Object.assign(C && ye ? { [P]: [], [M]: [] } : {}, H))));
       if (r.eqNull(b))
         C && ye ? x(I, !1) : (I.forEach((H) => {
-          const ce = yt(e, H), L = { row: H, rowid: ce, seq: -1, index: -1, _index: -1, $index: -1, items: G, parent: null, level: 0, height: 0 };
-          Y[ce] = L, K[ce] = L, G.unshift(H), ue.unshift(H);
+          const ce = yt(e, H), A = { row: H, rowid: ce, seq: -1, index: -1, _index: -1, $index: -1, items: G, parent: null, level: 0, height: 0 };
+          Y[ce] = A, K[ce] = A, G.unshift(H), ue.unshift(H);
         }), V.forEach((H) => {
           const { row: ce } = H;
           ce > 0 && (H.row = ce + I.length);
         }));
       else if (b === -1)
         C && ye ? x(I, !0) : (I.forEach((H) => {
-          const ce = yt(e, H), L = { row: H, rowid: ce, seq: -1, index: -1, _index: -1, $index: -1, items: G, parent: null, level: 0, height: 0 };
-          Y[ce] = L, K[ce] = L, G.push(H), ue.push(H);
+          const ce = yt(e, H), A = { row: H, rowid: ce, seq: -1, index: -1, _index: -1, $index: -1, items: G, parent: null, level: 0, height: 0 };
+          Y[ce] = A, K[ce] = A, G.push(H), ue.push(H);
         }), V.forEach((H) => {
-          const { row: ce, rowspan: L } = H;
-          ce + L > G.length && (H.rowspan = L + I.length);
+          const { row: ce, rowspan: A } = H;
+          ce + A > G.length && (H.rowspan = A + I.length);
         }));
       else if (C && ye) {
         const H = r.findTree(Z, (ce) => b[se] === ce[se], { children: P });
         if (H) {
-          const { parent: ce } = H, L = ce ? ce[P] : Z, j = K[yt(e, ce)], fe = j ? j.level : 0;
+          const { parent: ce } = H, A = ce ? ce[P] : Z, j = K[yt(e, ce)], fe = j ? j.level : 0;
           if (I.forEach((pe, ne) => {
             const $ = yt(e, pe);
-            process.env.NODE_ENV === "development" && pe[B.parentField] && ce && pe[B.parentField] !== ce[se] && Ut("vxe.error.errProp", [`${B.parentField}=${pe[B.parentField]}`, `${B.parentField}=${ce[se]}`]), ce && (pe[B.parentField] = ce[se]);
+            process.env.NODE_ENV === "development" && pe[L.parentField] && ce && pe[L.parentField] !== ce[se] && Ut("vxe.error.errProp", [`${L.parentField}=${pe[L.parentField]}`, `${L.parentField}=${ce[se]}`]), ce && (pe[L.parentField] = ce[se]);
             let J = H.index + ne;
-            E && (J = J + 1), L.splice(J, 0, pe);
-            const ge = { row: pe, rowid: $, seq: -1, index: -1, _index: -1, $index: -1, items: L, parent: ce, level: fe + 1, height: 0 };
+            E && (J = J + 1), A.splice(J, 0, pe);
+            const ge = { row: pe, rowid: $, seq: -1, index: -1, _index: -1, $index: -1, items: A, parent: ce, level: fe + 1, height: 0 };
             Y[$] = ge, K[$] = ge;
           }), ce) {
             const pe = r.findTree(Z, (ne) => b[se] === ne[se], { children: M });
@@ -11058,14 +11058,14 @@ rF.add("tableEditModule", {
         if (r.isNumber(b) ? b < G.length && (H = b) : H = e.findRowIndexOf(G, b), E && (H = Math.min(G.length, H + 1)), H === -1)
           throw new Error(_p("vxe.error.unableInsert"));
         G.splice(H, 0, ...I), ue.splice(e.findRowIndexOf(ue, b), 0, ...I), V.forEach((ce) => {
-          const { row: L, rowspan: j } = ce;
-          L > H ? ce.row = L + I.length : L + j > H && (ce.rowspan = j + I.length);
+          const { row: A, rowspan: j } = ce;
+          A > H ? ce.row = A + I.length : A + j > H && (ce.rowspan = j + I.length);
         });
       }
-      const { insertMaps: A } = Q;
+      const { insertMaps: B } = Q;
       return I.forEach((H) => {
         const ce = yt(e, H);
-        A[ce] = H;
+        B[ce] = H;
       }), e.cacheRowMap(), e.updateScrollYStatus(), e.handleTableData(C && ye), C && ye || e.updateAfterDataIndex(), e.updateFooter(), e.checkSelectionStatus(), n.scrollYLoad && e.updateScrollYSpace(), me().then(() => (e.updateCellAreas(), e.recalculate())).then(() => ({
         row: I.length ? I[I.length - 1] : null,
         rows: I
@@ -11119,8 +11119,8 @@ rF.add("tableEditModule", {
        * 如果为空则删除所有
        */
       remove(g) {
-        const { treeConfig: b } = t, { mergeList: E, editStore: C, selectCheckboxMaps: V } = n, { tableFullTreeData: Q, afterFullData: Z, tableFullData: G } = s, ue = c.value, Y = m.value, { transform: K, mapChildrenField: B } = Y, ye = Y.children || Y.childrenField, { actived: se, removeMaps: P, insertMaps: M } = C, { checkField: I } = ue;
-        let A = [];
+        const { treeConfig: b } = t, { mergeList: E, editStore: C, selectCheckboxMaps: V } = n, { tableFullTreeData: Q, afterFullData: Z, tableFullData: G } = s, ue = c.value, Y = m.value, { transform: K, mapChildrenField: L } = Y, ye = Y.children || Y.childrenField, { actived: se, removeMaps: P, insertMaps: M } = C, { checkField: I } = ue;
+        let B = [];
         if (g ? r.isArray(g) || (g = [g]) : g = G, g.forEach((H) => {
           if (!e.isInsertByRow(H)) {
             const ce = yt(e, H);
@@ -11129,15 +11129,15 @@ rF.add("tableEditModule", {
         }), !I) {
           const H = Object.assign({}, V);
           g.forEach((ce) => {
-            const L = yt(e, ce);
-            H[L] && delete H[L];
+            const A = yt(e, ce);
+            H[A] && delete H[A];
           }), n.selectCheckboxMaps = H;
         }
-        return G === g ? (g = A = G.slice(0), s.tableFullData = [], s.afterFullData = [], e.clearMergeCells()) : b && K ? g.forEach((H) => {
-          const ce = yt(e, H), L = r.findTree(Q, (pe) => ce === yt(e, pe), { children: B });
-          if (L) {
-            const pe = L.items.splice(L.index, 1);
-            A.push(pe[0]);
+        return G === g ? (g = B = G.slice(0), s.tableFullData = [], s.afterFullData = [], e.clearMergeCells()) : b && K ? g.forEach((H) => {
+          const ce = yt(e, H), A = r.findTree(Q, (pe) => ce === yt(e, pe), { children: L });
+          if (A) {
+            const pe = A.items.splice(A.index, 1);
+            B.push(pe[0]);
           }
           const j = r.findTree(Q, (pe) => ce === yt(e, pe), { children: ye });
           j && j.items.splice(j.index, 1);
@@ -11147,17 +11147,17 @@ rF.add("tableEditModule", {
           const ce = e.findRowIndexOf(G, H);
           if (ce > -1) {
             const j = G.splice(ce, 1);
-            A.push(j[0]);
+            B.push(j[0]);
           }
-          const L = e.findRowIndexOf(Z, H);
-          L > -1 && (E.forEach((j) => {
+          const A = e.findRowIndexOf(Z, H);
+          A > -1 && (E.forEach((j) => {
             const { row: fe, rowspan: pe } = j;
-            fe > L ? j.row = fe - 1 : fe + pe > L && (j.rowspan = pe - 1);
-          }), Z.splice(L, 1));
+            fe > A ? j.row = fe - 1 : fe + pe > A && (j.rowspan = pe - 1);
+          }), Z.splice(A, 1));
         }), se.row && e.findRowIndexOf(g, se.row) > -1 && d.clearEdit(), g.forEach((H) => {
           const ce = yt(e, H);
           M[ce] && delete M[ce];
-        }), e.updateFooter(), e.cacheRowMap(), e.handleTableData(b && K), b && K || e.updateAfterDataIndex(), e.checkSelectionStatus(), n.scrollYLoad && e.updateScrollYSpace(), me().then(() => (e.updateCellAreas(), e.recalculate())).then(() => ({ row: A.length ? A[A.length - 1] : null, rows: A }));
+        }), e.updateFooter(), e.cacheRowMap(), e.handleTableData(b && K), b && K || e.updateAfterDataIndex(), e.checkSelectionStatus(), n.scrollYLoad && e.updateScrollYSpace(), me().then(() => (e.updateCellAreas(), e.recalculate())).then(() => ({ row: B.length ? B[B.length - 1] : null, rows: B }));
       },
       /**
        * 删除复选框选中的数据
@@ -11315,12 +11315,12 @@ rF.add("tableEditModule", {
        * 处理激活编辑
        */
       handleEdit(g, b) {
-        const { editConfig: E, mouseConfig: C } = t, { editStore: V, tableColumn: Q } = n, Z = a.value, { mode: G } = Z, { actived: ue, focused: Y } = V, { row: K, column: B } = g, { editRender: ye } = B, se = g.cell || e.getCellElement(K, B), P = Z.beforeEditMethod || Z.activeMethod;
+        const { editConfig: E, mouseConfig: C } = t, { editStore: V, tableColumn: Q } = n, Z = a.value, { mode: G } = Z, { actived: ue, focused: Y } = V, { row: K, column: L } = g, { editRender: ye } = L, se = g.cell || e.getCellElement(K, L), P = Z.beforeEditMethod || Z.activeMethod;
         if (g.cell = se, se && fn(E) && fn(ye) && !e.isPendingByRow(K)) {
-          if (ue.row !== K || G === "cell" && ue.column !== B) {
+          if (ue.row !== K || G === "cell" && ue.column !== L) {
             let M = "edit-disabled";
             if (!P || P(Object.assign(Object.assign({}, g), { $table: e, $grid: e.xegrid }))) {
-              C && (d.clearSelected(), e.clearCellAreas && (e.clearCellAreas(), e.clearCopyCellArea())), e.closeTooltip(), ue.column && O(b), M = "edit-activated", B.renderHeight = se.offsetHeight, ue.args = g, ue.row = K, ue.column = B, G === "row" ? Q.forEach((A) => w(K, A)) : w(K, B);
+              C && (d.clearSelected(), e.clearCellAreas && (e.clearCellAreas(), e.clearCopyCellArea())), e.closeTooltip(), ue.column && O(b), M = "edit-activated", L.renderHeight = se.offsetHeight, ue.args = g, ue.row = K, ue.column = L, G === "row" ? Q.forEach((B) => w(K, B)) : w(K, L);
               const I = Z.afterEditMethod;
               me(() => {
                 p.handleFocus(g, b), I && I(Object.assign(Object.assign({}, g), { $table: e, $grid: e.xegrid }));
@@ -11330,24 +11330,24 @@ rF.add("tableEditModule", {
               row: K,
               rowIndex: e.getRowIndex(K),
               $rowIndex: e.getVMRowIndex(K),
-              column: B,
-              columnIndex: e.getColumnIndex(B),
-              $columnIndex: e.getVMColumnIndex(B)
+              column: L,
+              columnIndex: e.getColumnIndex(L),
+              $columnIndex: e.getVMColumnIndex(L)
             }, b), M === "edit-activated" && e.dispatchEvent("edit-actived", {
               row: K,
               rowIndex: e.getRowIndex(K),
               $rowIndex: e.getVMRowIndex(K),
-              column: B,
-              columnIndex: e.getColumnIndex(B),
-              $columnIndex: e.getVMColumnIndex(B)
+              column: L,
+              columnIndex: e.getColumnIndex(L),
+              $columnIndex: e.getVMColumnIndex(L)
             }, b);
           } else {
             const { column: M } = ue;
-            if (C && (d.clearSelected(), e.clearCellAreas && (e.clearCellAreas(), e.clearCopyCellArea())), M !== B) {
+            if (C && (d.clearSelected(), e.clearCellAreas && (e.clearCellAreas(), e.clearCopyCellArea())), M !== L) {
               const { model: I } = M;
-              I.update && js(K, M, I.value), e.clearValidate && e.clearValidate(K, B);
+              I.update && js(K, M, I.value), e.clearValidate && e.clearValidate(K, L);
             }
-            B.renderHeight = se.offsetHeight, ue.args = g, ue.column = B, setTimeout(() => {
+            L.renderHeight = se.offsetHeight, ue.args = g, ue.column = L, setTimeout(() => {
               p.handleFocus(g, b);
             });
           }
@@ -11593,28 +11593,28 @@ const yF = ["exportData", "importByFile", "importData", "saveFile", "readFile", 
 uF.add("tableExportModule", {
   setupTable(e) {
     const { props: t, reactData: n, internalData: s } = e, { computeTreeOpts: i, computePrintOpts: l, computeExportOpts: a, computeImportOpts: c, computeCustomOpts: m, computeSeqOpts: u, computeRadioOpts: d, computeCheckboxOpts: p, computeColumnOpts: w } = e.getComputeMaps(), v = mt("$xeGrid", null), D = (M) => {
-      const I = i.value, A = I.children || I.childrenField;
-      return M[A] && M[A].length;
-    }, S = (M, I, A, H, ce) => {
+      const I = i.value, B = I.children || I.childrenField;
+      return M[B] && M[B].length;
+    }, S = (M, I, B, H, ce) => {
       const j = u.value.seqMethod || H.seqMethod;
       return j ? j({
         row: I,
         rowIndex: e.getRowIndex(I),
-        $rowIndex: A,
+        $rowIndex: B,
         column: H,
         columnIndex: e.getColumnIndex(H),
         $columnIndex: ce
       }) : M;
     };
     function x(M, I) {
-      const A = w.value, H = I.headerExportMethod || A.headerExportMethod;
+      const B = w.value, H = I.headerExportMethod || B.headerExportMethod;
       return H ? H({ column: I, options: M, $table: e }) : (M.original ? I.property : I.getTitle()) || "";
     }
-    const h = (M) => r.isBoolean(M) ? M ? "TRUE" : "FALSE" : M, O = (M, I, A) => {
-      const { isAllExpand: H, mode: ce } = M, { treeConfig: L } = t, j = d.value, fe = p.value, pe = i.value, ne = w.value;
-      if (xl || (xl = document.createElement("div")), L) {
+    const h = (M) => r.isBoolean(M) ? M ? "TRUE" : "FALSE" : M, O = (M, I, B) => {
+      const { isAllExpand: H, mode: ce } = M, { treeConfig: A } = t, j = d.value, fe = p.value, pe = i.value, ne = w.value;
+      if (xl || (xl = document.createElement("div")), A) {
         const $ = pe.children || pe.childrenField, J = [], ge = /* @__PURE__ */ new Map();
-        return r.eachTree(A, (Oe, Se, de, Ie, je, Ue) => {
+        return r.eachTree(B, (Oe, Se, de, Ie, je, Ue) => {
           const Ae = Oe._row || Oe, _e = je && je._row ? je._row : je;
           if (H || !_e || ge.has(_e) && e.isTreeExpandByRow(_e)) {
             const it = D(Ae), vt = {
@@ -11661,7 +11661,7 @@ uF.add("tableExportModule", {
           }
         }, { children: $ }), J;
       }
-      return A.map(($, J) => {
+      return B.map(($, J) => {
         const ge = {
           _row: $
         };
@@ -11702,23 +11702,23 @@ uF.add("tableExportModule", {
         }), ge;
       });
     }, g = (M) => {
-      const { columns: I, dataFilterMethod: A } = M;
+      const { columns: I, dataFilterMethod: B } = M;
       let H = M.data;
-      return A && (H = H.filter((ce, L) => A({ row: ce, $rowIndex: L }))), O(M, I, H);
-    }, b = (M, I, A) => {
-      const H = w.value, ce = A.editRender || A.cellRender;
-      let L = A.footerExportMethod;
-      if (!L && ce && ce.name) {
+      return B && (H = H.filter((ce, A) => B({ row: ce, $rowIndex: A }))), O(M, I, H);
+    }, b = (M, I, B) => {
+      const H = w.value, ce = B.editRender || B.cellRender;
+      let A = B.footerExportMethod;
+      if (!A && ce && ce.name) {
         const fe = ku.get(ce.name);
-        fe && (L = fe.tableFooterExportMethod || fe.footerExportMethod);
+        fe && (A = fe.tableFooterExportMethod || fe.footerExportMethod);
       }
-      L || (L = H.footerExportMethod);
-      const j = e.getVTColumnIndex(A);
-      return L ? L({ $table: e, items: I, itemIndex: j, row: I, _columnIndex: j, column: A, options: M }) : r.isArray(I) ? r.toValueString(I[j]) : r.get(I, A.field);
-    }, E = (M, I, A) => {
+      A || (A = H.footerExportMethod);
+      const j = e.getVTColumnIndex(B);
+      return A ? A({ $table: e, items: I, itemIndex: j, row: I, _columnIndex: j, column: B, options: M }) : r.isArray(I) ? r.toValueString(I[j]) : r.get(I, B.field);
+    }, E = (M, I, B) => {
       let H = dF;
-      if (M.isHeader && (H += I.map((ce) => Cl(x(M, ce))).join(",") + Yr), A.forEach((ce) => {
-        H += I.map((L) => Cl(mF(L, ce[L.id]))).join(",") + Yr;
+      if (M.isHeader && (H += I.map((ce) => Cl(x(M, ce))).join(",") + Yr), B.forEach((ce) => {
+        H += I.map((A) => Cl(mF(A, ce[A.id]))).join(",") + Yr;
       }), M.isFooter) {
         const { footerTableData: ce } = n;
         wa(M, ce).forEach((j) => {
@@ -11726,10 +11726,10 @@ uF.add("tableExportModule", {
         });
       }
       return H;
-    }, C = (M, I, A) => {
+    }, C = (M, I, B) => {
       let H = "";
-      if (M.isHeader && (H += I.map((ce) => Cl(x(M, ce))).join("	") + Yr), A.forEach((ce) => {
-        H += I.map((L) => Cl(ce[L.id])).join("	") + Yr;
+      if (M.isHeader && (H += I.map((ce) => Cl(x(M, ce))).join("	") + Yr), B.forEach((ce) => {
+        H += I.map((A) => Cl(ce[A.id])).join("	") + Yr;
       }), M.isFooter) {
         const { footerTableData: ce } = n;
         wa(M, ce).forEach((j) => {
@@ -11737,13 +11737,13 @@ uF.add("tableExportModule", {
         });
       }
       return H;
-    }, V = (M, I, A) => {
-      const H = M[I], ce = r.isUndefined(H) || r.isNull(H) ? A : H;
+    }, V = (M, I, B) => {
+      const H = M[I], ce = r.isUndefined(H) || r.isNull(H) ? B : H;
       let pe = ce === "title" || (ce === !0 || ce === "tooltip") || ce === "ellipsis";
       const { scrollXLoad: ne, scrollYLoad: $ } = n;
       return (ne || $) && !pe && (pe = !0), pe;
-    }, Q = (M, I, A) => {
-      const { id: H, border: ce, treeConfig: L, headerAlign: j, align: fe, footerAlign: pe, showOverflow: ne, showHeaderOverflow: $ } = t, { isAllSelected: J, isIndeterminate: ge, mergeList: Oe } = n, Se = i.value, { print: de, isHeader: Ie, isFooter: je, isColgroup: Ue, isMerge: Ae, colgroups: _e, original: it } = M, vt = "check-all", at = [
+    }, Q = (M, I, B) => {
+      const { id: H, border: ce, treeConfig: A, headerAlign: j, align: fe, footerAlign: pe, showOverflow: ne, showHeaderOverflow: $ } = t, { isAllSelected: J, isIndeterminate: ge, mergeList: Oe } = n, Se = i.value, { print: de, isHeader: Ie, isFooter: je, isColgroup: Ue, isMerge: Ae, colgroups: _e, original: it } = M, vt = "check-all", at = [
         `<table class="${[
           "vxe-table",
           `border--${pF(ce)}`,
@@ -11765,7 +11765,7 @@ uF.add("tableExportModule", {
       }) : at.push(`<tr>${I.map((Qe) => {
         const De = Qe.headerAlign || Qe.align || j || fe, Re = V(Qe, "showHeaderOverflow", $) ? ["col--ellipsis"] : [], Be = x(M, Qe);
         return De && Re.push(`col--${De}`), Qe.type === "checkbox" ? `<th class="${Re.join(" ")}"><div ${de ? "" : `style="width: ${Qe.renderWidth}px"`}><input type="checkbox" class="${vt}" ${J ? "checked" : ""}><span>${Be}</span></div></th>` : `<th class="${Re.join(" ")}" title="${Be}"><div ${de ? "" : `style="width: ${Qe.renderWidth}px"`}><span>${po(Be, !0)}</span></div></th>`;
-      }).join("")}</tr>`), at.push("</thead>")), A.length && (at.push("<tbody>"), L ? A.forEach((Qe) => {
+      }).join("")}</tr>`), at.push("</thead>")), B.length && (at.push("<tbody>"), A ? B.forEach((Qe) => {
         at.push("<tr>" + I.map((De) => {
           const Re = De.align || fe, Be = V(De, "showOverflow", ne) ? ["col--ellipsis"] : [], ve = Qe[De.id];
           if (Re && Be.push(`col--${Re}`), De.treeNode) {
@@ -11774,7 +11774,7 @@ uF.add("tableExportModule", {
           }
           return De.type === "radio" ? `<td class="${Be.join(" ")}"><div ${de ? "" : `style="width: ${De.renderWidth}px"`}><input type="radio" name="radio_${H}" ${Qe._radioDisabled ? "disabled " : ""}${yl(ve) ? "checked" : ""}><span>${Qe._radioLabel}</span></div></td>` : De.type === "checkbox" ? `<td class="${Be.join(" ")}"><div ${de ? "" : `style="width: ${De.renderWidth}px"`}><input type="checkbox" ${Qe._checkboxDisabled ? "disabled " : ""}${yl(ve) ? "checked" : ""}><span>${Qe._checkboxLabel}</span></div></td>` : `<td class="${Be.join(" ")}" title="${ve}"><div ${de ? "" : `style="width: ${De.renderWidth}px"`}>${po(ve, !0)}</div></td>`;
         }).join("") + "</tr>");
-      }) : A.forEach((Qe) => {
+      }) : B.forEach((Qe) => {
         at.push("<tr>" + I.map((De) => {
           const Re = De.align || fe, Be = V(De, "showOverflow", ne) ? ["col--ellipsis"] : [], ve = Qe[De.id];
           let Ne = 1, q = 1;
@@ -11800,7 +11800,7 @@ uF.add("tableExportModule", {
       }
       const Et = !J && ge ? `<script>(function(){var a=document.querySelector(".${vt}");if(a){a.indeterminate=true}})()<\/script>` : "";
       return at.push("</table>", Et), de ? at.join("") : cF(M, at.join(""));
-    }, Z = (M, I, A) => {
+    }, Z = (M, I, B) => {
       let H = [
         '<?xml version="1.0"?>',
         '<?mso-application progid="Excel.Sheet"?>',
@@ -11820,8 +11820,8 @@ uF.add("tableExportModule", {
         "<Table>",
         I.map((ce) => `<Column ss:Width="${ce.renderWidth}"/>`).join("")
       ].join("");
-      if (M.isHeader && (H += `<Row>${I.map((ce) => `<Cell><Data ss:Type="String">${x(M, ce)}</Data></Cell>`).join("")}</Row>`), A.forEach((ce) => {
-        H += "<Row>" + I.map((L) => `<Cell><Data ss:Type="String">${ce[L.id]}</Data></Cell>`).join("") + "</Row>";
+      if (M.isHeader && (H += `<Row>${I.map((ce) => `<Cell><Data ss:Type="String">${x(M, ce)}</Data></Cell>`).join("")}</Row>`), B.forEach((ce) => {
+        H += "<Row>" + I.map((A) => `<Cell><Data ss:Type="String">${ce[A.id]}</Data></Cell>`).join("") + "</Row>";
       }), M.isFooter) {
         const { footerTableData: ce } = n;
         wa(M, ce).forEach((j) => {
@@ -11829,70 +11829,70 @@ uF.add("tableExportModule", {
         });
       }
       return `${H}</Table></Worksheet></Workbook>`;
-    }, G = (M, I, A) => {
+    }, G = (M, I, B) => {
       if (I.length)
         switch (M.type) {
           case "csv":
-            return E(M, I, A);
+            return E(M, I, B);
           case "txt":
-            return C(M, I, A);
+            return C(M, I, B);
           case "html":
-            return Q(M, I, A);
+            return Q(M, I, B);
           case "xml":
-            return Z(M, I, A);
+            return Z(M, I, B);
         }
       return "";
     }, ue = (M, I) => {
-      const { filename: A, type: H, download: ce } = M;
+      const { filename: B, type: H, download: ce } = M;
       if (!ce) {
-        const L = aF(I, M);
-        return Promise.resolve({ type: H, content: I, blob: L });
+        const A = aF(I, M);
+        return Promise.resolve({ type: H, content: I, blob: A });
       }
-      Ce.saveFile && Ce.saveFile({ filename: A, type: H, content: I }).then(() => {
+      Ce.saveFile && Ce.saveFile({ filename: B, type: H, content: I }).then(() => {
         M.message !== !1 && Ce.modal && Ce.modal.message({ content: Ws("vxe.table.expSuccess"), status: "success" });
       });
     }, Y = (M) => {
-      const { remote: I, columns: A, colgroups: H, exportMethod: ce, afterExportMethod: L } = M;
+      const { remote: I, columns: B, colgroups: H, exportMethod: ce, afterExportMethod: A } = M;
       return new Promise((j) => {
         if (I) {
           const fe = { options: M, $table: e, $grid: v };
           j(ce ? ce(fe) : fe);
         } else {
           const fe = g(M);
-          j(e.preventEvent(null, "event.export", { options: M, columns: A, colgroups: H, datas: fe }, () => ue(M, G(M, A, fe))));
+          j(e.preventEvent(null, "event.export", { options: M, columns: B, colgroups: H, datas: fe }, () => ue(M, G(M, B, fe))));
         }
-      }).then((j) => (jp(A), M.print || L && L({ status: !0, options: M, $table: e, $grid: v }), Object.assign({ status: !0 }, j))).catch(() => {
-        jp(A), M.print || L && L({ status: !1, options: M, $table: e, $grid: v });
+      }).then((j) => (jp(B), M.print || A && A({ status: !0, options: M, $table: e, $grid: v }), Object.assign({ status: !0 }, j))).catch(() => {
+        jp(B), M.print || A && A({ status: !1, options: M, $table: e, $grid: v });
         const j = { status: !1 };
         return Promise.reject(j);
       });
     }, K = (M, I) => {
-      const { tableFullColumn: A, _importResolve: H, _importReject: ce } = s;
-      let L = { fields: [], rows: [] };
+      const { tableFullColumn: B, _importResolve: H, _importReject: ce } = s;
+      let A = { fields: [], rows: [] };
       switch (I.type) {
         case "csv":
-          L = gF(A, M);
+          A = gF(B, M);
           break;
         case "txt":
-          L = hF(A, M);
+          A = hF(B, M);
           break;
         case "html":
-          L = vF(A, M);
+          A = vF(B, M);
           break;
         case "xml":
-          L = bF(A, M);
+          A = bF(B, M);
           break;
       }
-      const { fields: j, rows: fe } = L;
-      xF(A, j) ? e.createData(fe).then((ne) => {
+      const { fields: j, rows: fe } = A;
+      xF(B, j) ? e.createData(fe).then((ne) => {
         let $;
         return (I.mode === "insert" || I.mode === "insertBottom") && ($ = e.insertAt(ne, -1)), I.mode === "insertTop" ? $ = e.insert(ne) : $ = e.reloadData(ne), I.message !== !1 && Ce.modal && Ce.modal.message({ content: Ws("vxe.table.impSuccess", [fe.length]), status: "success" }), $.then(() => {
           H && H({ status: !0 });
         });
       }) : I.message !== !1 && (Ce.modal && Ce.modal.message({ content: Ws("vxe.error.impFields"), status: "error" }), ce && ce({ status: !1 }));
-    }, B = (M, I) => {
-      const { importMethod: A, afterImportMethod: H } = I, { type: ce, filename: L } = $h(M), j = c.value;
-      if (!A && !r.includes(r.keys(j._typeMaps), ce)) {
+    }, L = (M, I) => {
+      const { importMethod: B, afterImportMethod: H } = I, { type: ce, filename: A } = $h(M), j = c.value;
+      if (!B && !r.includes(r.keys(j._typeMaps), ce)) {
         I.message !== !1 && Ce.modal && Ce.modal.message({ content: Ws("vxe.error.notType", [ce]), status: "error" });
         const pe = { status: !1 };
         return Promise.reject(pe);
@@ -11904,9 +11904,9 @@ uF.add("tableExportModule", {
           ne(ge), s._importResolve = null, s._importReject = null;
         };
         if (s._importResolve = $, s._importReject = J, window.FileReader) {
-          const ge = Object.assign({ mode: "insertTop" }, I, { type: ce, filename: L });
+          const ge = Object.assign({ mode: "insertTop" }, I, { type: ce, filename: A });
           if (ge.remote)
-            A ? Promise.resolve(A({ file: M, options: ge, $table: e })).then(() => {
+            B ? Promise.resolve(B({ file: M, options: ge, $table: e })).then(() => {
               $({ status: !0 });
             }).catch(() => {
               $({ status: !0 });
@@ -11928,7 +11928,7 @@ uF.add("tableExportModule", {
         H && H({ status: !0, options: I, $table: e });
       }).catch((pe) => (H && H({ status: !1, options: I, $table: e }), Promise.reject(pe)));
     }, ye = (M, I) => {
-      const { treeConfig: A, showHeader: H, showFooter: ce } = t, { initStore: L, mergeList: j, isGroup: fe, footerTableData: pe, exportStore: ne, exportParams: $ } = n, { collectColumn: J } = s, ge = a.value, Oe = A, Se = m.value, de = e.getCheckboxRecords(), Ie = v ? v.getComputeMaps().computeProxyOpts.value : {}, je = !!pe.length, Ue = !Oe && j.length, Ae = Object.assign({
+      const { treeConfig: B, showHeader: H, showFooter: ce } = t, { initStore: A, mergeList: j, isGroup: fe, footerTableData: pe, exportStore: ne, exportParams: $ } = n, { collectColumn: J } = s, ge = a.value, Oe = B, Se = m.value, de = e.getCheckboxRecords(), Ie = v ? v.getComputeMaps().computeProxyOpts.value : {}, je = !!pe.length, Ue = !Oe && j.length, Ae = Object.assign({
         message: !0,
         isHeader: H,
         isFooter: ce,
@@ -11975,7 +11975,7 @@ uF.add("tableExportModule", {
         visible: !0
       }), Object.assign($, {
         mode: de.length ? "selected" : "current"
-      }, Ae), Qe.some((De) => De.value === $.mode) || ($.mode = Qe[0].value), Et.some((De) => De.value === $.type) || ($.type = Et[0].value), L.export = !0, me();
+      }, Ae), Qe.some((De) => De.value === $.mode) || ($.mode = Qe[0].value), Et.some((De) => De.value === $.type) || ($.type = Et[0].value), A.export = !0, me();
     }, se = () => Ce.modal ? Ce.modal.close("VXE_EXPORT_MODAL") : Promise.resolve(), P = {
       /**
        * 导出文件，支持 csv/html/xml/txt
@@ -11984,7 +11984,7 @@ uF.add("tableExportModule", {
        * @param {Object} options 参数
        */
       exportData(M) {
-        const { treeConfig: I } = t, { isGroup: A, tableGroupColumn: H } = n, { tableFullColumn: ce, afterFullData: L } = s, j = a.value, fe = i.value, pe = Object.assign({
+        const { treeConfig: I } = t, { isGroup: B, tableGroupColumn: H } = n, { tableFullColumn: ce, afterFullData: A } = s, j = a.value, fe = i.value, pe = Object.assign({
           // filename: '',
           // sheetName: '',
           // original: false,
@@ -12031,7 +12031,7 @@ uF.add("tableExportModule", {
           children: "_children",
           mapChildren: "childNodes",
           original: !0
-        })) : Se = r.searchTree(A ? H : ce, (Ue, Ae) => Ue.visible && (!Ie || Ie({ column: Ue, $columnIndex: Ae })), { children: "children", mapChildren: "childNodes", original: !0 });
+        })) : Se = r.searchTree(B ? H : ce, (Ue, Ae) => Ue.visible && (!Ie || Ie({ column: Ue, $columnIndex: Ae })), { children: "children", mapChildren: "childNodes", original: !0 });
         const je = [];
         if (r.eachTree(Se, (Ue) => {
           Ue.children && Ue.children.length || je.push(Ue);
@@ -12062,22 +12062,22 @@ uF.add("tableExportModule", {
                 });
               }
             }
-          } else $ === "current" && (pe.data = L);
+          } else $ === "current" && (pe.data = A);
         return Y(pe);
       },
       importByFile(M, I) {
-        const A = Object.assign({}, I), { beforeImportMethod: H } = A;
-        return H && H({ options: A, $table: e }), B(M, A);
+        const B = Object.assign({}, I), { beforeImportMethod: H } = B;
+        return H && H({ options: B, $table: e }), L(M, B);
       },
       importData(M) {
-        const I = c.value, A = Object.assign({
+        const I = c.value, B = Object.assign({
           types: r.keys(I._typeMaps)
           // beforeImportMethod: null,
           // afterImportMethod: null
-        }, I, M), { beforeImportMethod: H, afterImportMethod: ce } = A;
-        return H && H({ options: A, $table: e }), Ce.readFile(A).catch((L) => (ce && ce({ status: !1, options: A, $table: e }), Promise.reject(L))).then((L) => {
-          const { file: j } = L;
-          return B(j, A);
+        }, I, M), { beforeImportMethod: H, afterImportMethod: ce } = B;
+        return H && H({ options: B, $table: e }), Ce.readFile(B).catch((A) => (ce && ce({ status: !1, options: B, $table: e }), Promise.reject(A))).then((A) => {
+          const { file: j } = A;
+          return L(j, B);
         });
       },
       saveFile(M) {
@@ -12087,7 +12087,7 @@ uF.add("tableExportModule", {
         return Ce.readFile(M);
       },
       print(M) {
-        const I = l.value, A = Object.assign({
+        const I = l.value, B = Object.assign({
           original: !1
           // beforePrintMethod
         }, I, M, {
@@ -12096,34 +12096,34 @@ uF.add("tableExportModule", {
           remote: !1,
           print: !0
         });
-        A.sheetName || (A.sheetName = document.title);
-        const H = A.beforePrintMethod, ce = A.html || A.content;
-        return new Promise((L, j) => {
-          Ce.print ? L(ce ? Ce.print({
-            title: A.sheetName,
+        B.sheetName || (B.sheetName = document.title);
+        const H = B.beforePrintMethod, ce = B.html || B.content;
+        return new Promise((A, j) => {
+          Ce.print ? A(ce ? Ce.print({
+            title: B.sheetName,
             html: ce,
-            customStyle: A.style,
+            customStyle: B.style,
             beforeMethod: H ? ({ html: fe }) => H({
               html: fe,
               content: fe,
-              options: A,
+              options: B,
               $table: e
             }) : void 0
-          }) : P.exportData(A).then(({ content: fe }) => Ce.print({
-            title: A.sheetName,
+          }) : P.exportData(B).then(({ content: fe }) => Ce.print({
+            title: B.sheetName,
             html: fe,
-            customStyle: A.style,
+            customStyle: B.style,
             beforeMethod: H ? ({ html: pe }) => H({
               html: pe,
               content: pe,
-              options: A,
+              options: B,
               $table: e
             }) : void 0
           }))) : j({ status: !1 });
         });
       },
       getPrintHtml(M) {
-        const I = l.value, A = Object.assign({
+        const I = l.value, B = Object.assign({
           original: !1
           // beforePrintMethod
         }, I, M, {
@@ -12132,7 +12132,7 @@ uF.add("tableExportModule", {
           remote: !1,
           print: !0
         });
-        return P.exportData(A).then(({ content: H }) => ({
+        return P.exportData(B).then(({ content: H }) => ({
           html: H
         }));
       },
@@ -12140,7 +12140,7 @@ uF.add("tableExportModule", {
         return Ce.modal ? Ce.modal.close("VXE_IMPORT_MODAL") : Promise.resolve();
       },
       openImport(M) {
-        const { treeConfig: I, importConfig: A } = t, { initStore: H, importStore: ce, importParams: L } = n, j = c.value, fe = Object.assign({
+        const { treeConfig: I, importConfig: B } = t, { initStore: H, importStore: ce, importParams: A } = n, j = c.value, fe = Object.assign({
           mode: "insertTop",
           message: !0,
           types: r.keys(j._typeMaps),
@@ -12150,7 +12150,7 @@ uF.add("tableExportModule", {
           fe.message && Ce.modal && Ce.modal.message({ content: Ws("vxe.error.treeNotImp"), status: "error" });
           return;
         }
-        A || Ut("vxe.error.reqProp", ["import-config"]);
+        B || Ut("vxe.error.reqProp", ["import-config"]);
         const J = pe.map((Oe) => ({
           value: Oe,
           label: Ws(`vxe.export.types.${Oe}`)
@@ -12168,22 +12168,22 @@ uF.add("tableExportModule", {
           modeList: ge,
           typeList: J,
           visible: !0
-        }), Object.assign(L, fe), ge.some((Oe) => Oe.value === L.mode) || (L.mode = ge[0].value), H.import = !0;
+        }), Object.assign(A, fe), ge.some((Oe) => Oe.value === A.mode) || (A.mode = ge[0].value), H.import = !0;
       },
       closeExport: se,
       openExport(M) {
-        const I = a.value, A = Object.assign({
+        const I = a.value, B = Object.assign({
           message: !0,
           types: r.keys(I._typeMaps)
         }, I, M);
-        process.env.NODE_ENV === "development" && (t.exportConfig || Ut("vxe.error.reqProp", ["export-config"])), ye(A);
+        process.env.NODE_ENV === "development" && (t.exportConfig || Ut("vxe.error.reqProp", ["export-config"])), ye(B);
       },
       closePrint: se,
       openPrint(M) {
-        const I = l.value, A = Object.assign({
+        const I = l.value, B = Object.assign({
           message: !0
         }, I, M);
-        process.env.NODE_ENV === "development" && (t.printConfig || Ut("vxe.error.reqProp", ["print-config"])), ye(A, !0);
+        process.env.NODE_ENV === "development" && (t.printConfig || Ut("vxe.error.reqProp", ["print-config"])), ye(B, !0);
       }
     };
     return P;
@@ -12235,23 +12235,23 @@ CF.add("tableKeyboardModule", {
           return;
         const C = E.querySelector(".vxe-table--checkbox-range"), V = document.onmousemove, Q = document.onmouseup, Z = x.parentElement, G = e.getCheckboxRecords();
         let ue = [];
-        const Y = 1, K = wF(v.target, E), B = K.offsetTop + v.offsetY, ye = K.offsetLeft + v.offsetX, se = E.scrollTop, P = Z.offsetHeight, M = Z.getBoundingClientRect(), I = b - M.y;
-        let A = null, H = !1, ce = 1;
-        const L = (ne, $) => {
+        const Y = 1, K = wF(v.target, E), L = K.offsetTop + v.offsetY, ye = K.offsetLeft + v.offsetX, se = E.scrollTop, P = Z.offsetHeight, M = Z.getBoundingClientRect(), I = b - M.y;
+        let B = null, H = !1, ce = 1;
+        const A = (ne, $) => {
           e.dispatchEvent(`checkbox-range-${ne}`, { records: e.getCheckboxRecords(), reserves: e.getCheckboxReserveRecords() }, $);
         }, j = (ne) => {
           const { clientX: $, clientY: J } = ne, ge = $ - g, Oe = J - b + (E.scrollTop - se);
-          let Se = Math.abs(Oe), de = Math.abs(ge), Ie = B, je = ye;
-          Oe < Y ? (Ie += Oe, Ie < Y && (Ie = Y, Se = B)) : Se = Math.min(Se, E.scrollHeight - B - Y), ge < Y ? (je += ge, de > ye && (je = Y, de = ye)) : de = Math.min(de, E.clientWidth - ye - Y), C.style.height = `${Se}px`, C.style.width = `${de}px`, C.style.left = `${je}px`, C.style.top = `${Ie}px`, C.style.display = "block";
+          let Se = Math.abs(Oe), de = Math.abs(ge), Ie = L, je = ye;
+          Oe < Y ? (Ie += Oe, Ie < Y && (Ie = Y, Se = L)) : Se = Math.min(Se, E.scrollHeight - L - Y), ge < Y ? (je += ge, de > ye && (je = Y, de = ye)) : de = Math.min(de, E.clientWidth - ye - Y), C.style.height = `${Se}px`, C.style.width = `${de}px`, C.style.left = `${je}px`, C.style.top = `${Ie}px`, C.style.display = "block";
           const Ue = u(ne, D, Z, M, I, Oe < Y ? -Se : Se);
           Se > 10 && Ue.length !== ue.length && (ue = Ue, ne.ctrlKey ? Ue.forEach((Ae) => {
             e.handleSelectRow({ row: Ae }, G.indexOf(Ae) === -1);
-          }) : (e.setAllCheckboxRow(!1), e.handleCheckedCheckboxRow(Ue, !0, !1)), L("change", ne));
+          }) : (e.setAllCheckboxRow(!1), e.handleCheckedCheckboxRow(Ue, !0, !1)), A("change", ne));
         }, fe = () => {
-          clearTimeout(A), A = null;
+          clearTimeout(B), B = null;
         }, pe = (ne) => {
-          fe(), A = setTimeout(() => {
-            if (A) {
+          fe(), B = setTimeout(() => {
+            if (B) {
               const { scrollLeft: $, scrollTop: J, clientHeight: ge, scrollHeight: Oe } = E, Se = Math.ceil(ce * 50 / P);
               H ? J + ge < Oe ? (e.scrollTo($, J + Se), pe(ne), j(ne)) : fe() : J ? (e.scrollTo($, J - Se), pe(ne), j(ne)) : fe();
             }
@@ -12260,10 +12260,10 @@ CF.add("tableKeyboardModule", {
         Ms(h, "drag--range"), document.onmousemove = (ne) => {
           ne.preventDefault(), ne.stopPropagation();
           const { clientY: $ } = ne, { boundingTop: J } = Pa(E);
-          $ < J ? (H = !1, ce = J - $, A || pe(ne)) : $ > J + E.clientHeight ? (H = !0, ce = $ - J - E.clientHeight, A || pe(ne)) : A && fe(), j(ne);
+          $ < J ? (H = !1, ce = J - $, B || pe(ne)) : $ > J + E.clientHeight ? (H = !0, ce = $ - J - E.clientHeight, B || pe(ne)) : B && fe(), j(ne);
         }, document.onmouseup = (ne) => {
-          fe(), jo(h, "drag--range"), C.removeAttribute("style"), document.onmousemove = V, document.onmouseup = Q, L("end", ne);
-        }, L("start", v);
+          fe(), jo(h, "drag--range"), C.removeAttribute("style"), document.onmousemove = V, document.onmouseup = Q, A("end", ne);
+        }, A("start", v);
       }
     }, p = (v, D) => {
       const { editConfig: S, checkboxConfig: x, mouseConfig: h } = t, O = a.value, g = c.value, b = l.value;
@@ -12386,14 +12386,14 @@ DF.add("tableValidatorModule", {
       s._lastCallTime = Date.now(), d = !1, m.clearValidate();
       const K = {};
       if (b) {
-        const B = x && x.length ? x : e.getColumns(), ye = (se) => {
+        const L = x && x.length ? x : e.getColumns(), ye = (se) => {
           if (O || !d) {
             const P = [];
-            B.forEach((M) => {
+            L.forEach((M) => {
               const I = r.isString(M) ? M : M.field;
-              (O || !d) && r.has(b, I) && P.push(u.validCellRules("all", se, M).catch(({ rule: A, rules: H }) => {
+              (O || !d) && r.has(b, I) && P.push(u.validCellRules("all", se, M).catch(({ rule: B, rules: H }) => {
                 const ce = {
-                  rule: A,
+                  rule: B,
                   rules: H,
                   rowIndex: e.getRowIndex(se),
                   row: se,
@@ -12405,8 +12405,8 @@ DF.add("tableValidatorModule", {
                 if (g[I] || (g[I] = []), K[`${yt(e, se)}:${M.id}`] = {
                   column: M,
                   row: se,
-                  rule: A,
-                  content: A.content
+                  rule: B,
+                  content: B.content
                 }, g[I].push(ce), !O)
                   return d = !0, Promise.reject(ce);
               }));
@@ -12425,14 +12425,14 @@ DF.add("tableValidatorModule", {
             me(() => {
               h ? (h(g), P()) : EF().validToReject === "obsolete" ? M(g) : P(g);
             });
-          }, A = () => {
+          }, B = () => {
             se.cell = e.getCellElement(se.row, se.column), CN(se.cell), p(se).then(I);
           };
           if (G.autoPos === !1)
             I();
           else {
-            const H = se.row, ce = se.column, L = C.indexOf(H), j = V.indexOf(ce), fe = L > 0 ? C[L - 1] : H, pe = j > 0 ? V[j - 1] : ce;
-            e.scrollToRow(fe, pe).then(A);
+            const H = se.row, ce = se.column, A = C.indexOf(H), j = V.indexOf(ce), fe = A > 0 ? C[A - 1] : H, pe = j > 0 ? V[j - 1] : ce;
+            e.scrollToRow(fe, pe).then(B);
           }
         }));
       } else
@@ -12523,7 +12523,7 @@ DF.add("tableValidatorModule", {
               const { type: G, trigger: ue, required: Y, validator: K } = Z;
               if (S === "all" || !ue || S === ue)
                 if (K) {
-                  const B = {
+                  const L = {
                     cellValue: Q,
                     rule: Z,
                     rules: V,
@@ -12540,18 +12540,18 @@ DF.add("tableValidatorModule", {
                     const se = SF.get(K);
                     if (se) {
                       const P = se.tableCellValidatorMethod || se.cellValidatorMethod;
-                      P ? ye = P(B) : process.env.NODE_ENV === "development" && rn("vxe.error.notValidators", [K]);
+                      P ? ye = P(L) : process.env.NODE_ENV === "development" && rn("vxe.error.notValidators", [K]);
                     } else
                       process.env.NODE_ENV === "development" && Ut("vxe.error.notValidators", [K]);
                   } else
-                    ye = K(B);
+                    ye = K(L);
                   ye && (r.isError(ye) ? (d = !0, E.push(new vi({ type: "custom", trigger: ue, content: ye.message, rule: new vi(Z) }))) : ye.catch && C.push(ye.catch((se) => {
                     d = !0, E.push(new vi({ type: "custom", trigger: ue, content: se && se.message ? se.message : Z.content || Z.message, rule: new vi(Z) }));
                   })));
                 } else {
-                  const B = G === "array", ye = r.isArray(Q);
+                  const L = G === "array", ye = r.isArray(Q);
                   let se = !0;
-                  B || ye ? se = !ye || !Q.length : r.isString(Q) ? se = cr(Q.trim()) : se = cr(Q), (Y ? se || D(Z, Q) : !se && D(Z, Q)) && (d = !0, E.push(new vi(Z)));
+                  L || ye ? se = !ye || !Q.length : r.isString(Q) ? se = cr(Q.trim()) : se = cr(Q), (Y ? se || D(Z, Q) : !se && D(Z, Q)) && (d = !0, E.push(new vi(Z)));
                 }
             });
           }
@@ -13352,7 +13352,7 @@ const { getConfig: Ts, getIcon: Ir, getI18n: wl, renderer: Zp, commands: Jp, cre
           }
           p.dispatchEvent("tool-click", Ie, $);
         }
-    }, B = () => {
+    }, L = () => {
       if (C()) {
         const { connectTable: $ } = m, J = $;
         J && J.openImport();
@@ -13432,7 +13432,7 @@ const { getConfig: Ts, getIcon: Ir, getI18n: wl, renderer: Zp, commands: Jp, cre
             } : {}));
         }
       }), Oe;
-    }, A = () => {
+    }, B = () => {
       const { tools: $ } = e, { connectTable: J } = m, ge = J, Oe = [];
       return $ && $.forEach((Se, de) => {
         const { dropdowns: Ie, toolRender: je } = Se;
@@ -13477,7 +13477,7 @@ const { getConfig: Ts, getIcon: Ir, getI18n: wl, renderer: Zp, commands: Jp, cre
         circle: !0,
         icon: $.icon || Ir().TOOLBAR_TOOLS_IMPORT,
         title: wl("vxe.toolbar.import"),
-        onClick: B
+        onClick: L
       }) : Ve();
     }, ce = () => {
       const $ = x.value;
@@ -13488,7 +13488,7 @@ const { getConfig: Ts, getIcon: Ir, getI18n: wl, renderer: Zp, commands: Jp, cre
         title: wl("vxe.toolbar.export"),
         onClick: ye
       }) : Ve();
-    }, L = () => {
+    }, A = () => {
       const $ = h.value;
       return l ? o(l, {
         key: "print",
@@ -13533,13 +13533,13 @@ const { getConfig: Ts, getIcon: Ir, getI18n: wl, renderer: Zp, commands: Jp, cre
         }, Ae ? Ae({ $grid: v, $table: _e }) : I()),
         o("div", {
           class: "vxe-tools--wrapper"
-        }, Ue ? Ue({ $grid: v, $table: _e }) : A()),
+        }, Ue ? Ue({ $grid: v, $table: _e }) : B()),
         o("div", {
           class: "vxe-tools--operate"
         }, [
           e.import ? H() : Ve(),
           e.export ? ce() : Ve(),
-          e.print ? L() : Ve(),
+          e.print ? A() : Ve(),
           ge ? j() : Ve(),
           Oe && v ? fe() : Ve(),
           Se ? pe() : Ve()
@@ -13620,13 +13620,13 @@ const { getConfig: or, getI18n: El, commands: _F, hooks: WF, useFns: zF, createE
     const C = _(() => r.merge({}, r.clone(or().grid.proxyConfig, !0), e.proxyConfig)), V = _(() => {
       const R = C.value;
       return r.isBoolean(R.message) ? R.message : R.showResponseMsg;
-    }), Q = _(() => C.value.showActiveMsg), Z = _(() => Object.assign({}, or().grid.pagerConfig, e.pagerConfig)), G = _(() => Object.assign({}, or().grid.formConfig, e.formConfig)), ue = _(() => Object.assign({}, or().grid.toolbarConfig, e.toolbarConfig)), Y = _(() => Object.assign({}, or().grid.zoomConfig, e.zoomConfig)), K = _(() => u.isZMax ? { zIndex: u.tZindex } : null), B = _(() => {
+    }), Q = _(() => C.value.showActiveMsg), Z = _(() => Object.assign({}, or().grid.pagerConfig, e.pagerConfig)), G = _(() => Object.assign({}, or().grid.formConfig, e.formConfig)), ue = _(() => Object.assign({}, or().grid.toolbarConfig, e.toolbarConfig)), Y = _(() => Object.assign({}, or().grid.zoomConfig, e.zoomConfig)), K = _(() => u.isZMax ? { zIndex: u.tZindex } : null), L = _(() => {
       const R = {}, le = e;
       return qF.forEach((F) => {
         R[F] = le[F];
       }), R;
     }), ye = _(() => {
-      const { seqConfig: R, pagerConfig: le, loading: F, editConfig: re, proxyConfig: N } = e, { isZMax: ee, tableLoading: be, tablePage: we, tableData: Te } = u, ze = B.value, st = C.value, ct = Z.value, Ke = Object.assign({}, ze);
+      const { seqConfig: R, pagerConfig: le, loading: F, editConfig: re, proxyConfig: N } = e, { isZMax: ee, tableLoading: be, tablePage: we, tableData: Te } = u, ze = L.value, st = C.value, ct = Z.value, Ke = Object.assign({}, ze);
       return ee && (ze.maxHeight ? Ke.maxHeight = "100%" : Ke.height = "100%"), N && fn(st) && (Ke.loading = F || be, Ke.data = Te, le && st.seq && fn(ct) && (Ke.seqConfig = Object.assign({}, R, { startIndex: (we.currentPage - 1) * we.pageSize }))), re && (Ke.editConfig = Object.assign({}, re)), Ke;
     }), se = _(() => {
       const { layouts: R } = e;
@@ -13650,7 +13650,7 @@ const { getConfig: or, getI18n: El, commands: _F, hooks: WF, useFns: zF, createE
       reactData: u,
       getRefMaps: () => P,
       getComputeMaps: () => M
-    }, A = () => {
+    }, B = () => {
       const R = ue.value;
       e.toolbarConfig && fn(R) && me(() => {
         const le = p.value, F = v.value;
@@ -13662,7 +13662,7 @@ const { getConfig: or, getI18n: El, commands: _F, hooks: WF, useFns: zF, createE
     }, ce = () => {
       const { tablePage: R } = u, { pagerConfig: le } = e, F = Z.value, { currentPage: re, pageSize: N } = F;
       le && fn(F) && (re && (R.currentPage = re), N && (R.pageSize = N));
-    }, L = (R) => {
+    }, A = (R) => {
       const le = Q.value, F = p.value, re = F.getCheckboxRecords();
       re.length ? (F.togglePendingRow(re), E.clearCheckboxRow()) : le && Ce.modal && Ce.modal.message({ id: R, content: El("vxe.grid.selectOneRecord"), status: "warning" });
     }, j = (R, le) => {
@@ -13908,7 +13908,7 @@ const { getConfig: or, getI18n: El, commands: _F, hooks: WF, useFns: zF, createE
           case "insert_actived":
             return Ee.insert({}).then(({ row: Bt }) => Ee.setEditRow(Bt));
           case "mark_cancel":
-            L(Ot);
+            A(Ot);
             break;
           case "remove":
             return fe(Ot, "vxe.grid.removeSelectRecord", () => Ee.removeCheckboxRow());
@@ -14121,7 +14121,7 @@ const { getConfig: or, getI18n: El, commands: _F, hooks: WF, useFns: zF, createE
     }), lt(q, () => {
       me(() => I.loadColumn(e.columns || []));
     }), lt(() => e.toolbarConfig, () => {
-      A();
+      B();
     }), lt(() => e.pagerConfig, () => {
       ce();
     }), lt(() => e.proxyConfig, () => {
@@ -14137,7 +14137,7 @@ const { getConfig: or, getI18n: El, commands: _F, hooks: WF, useFns: zF, createE
         e.formConfig && (a || Ut("vxe.error.reqComp", ["vxe-form"])), e.pagerConfig && (c || Ut("vxe.error.reqComp", ["vxe-pager"]));
       }), me(() => {
         const { columns: R } = e;
-        R && R.length && I.loadColumn(R), A(), De();
+        R && R.length && I.loadColumn(R), B(), De();
       }), Au.on(I, "keydown", Re);
     }), $n(() => {
       Au.off(I, "keydown");
@@ -14911,7 +14911,7 @@ const YF = { class: "h-grid-toolbar-left" }, XF = { class: "h-grid-toolbar-right
       ...x.value,
       ...h.value,
       ...O.value
-    })), D = _(() => Object.keys(p).reduce((Y, K) => (K !== "input" && (Y[K] = (...B) => m(K, ...B)), Y), {})), S = _(() => {
+    })), D = _(() => Object.keys(p).reduce((Y, K) => (K !== "input" && (Y[K] = (...L) => m(K, ...L)), Y), {})), S = _(() => {
       const Y = {
         ...s,
         ...c,
@@ -14947,42 +14947,46 @@ const YF = { class: "h-grid-toolbar-left" }, XF = { class: "h-grid-toolbar-right
     }), V = async (Y, K) => {
       var ye;
       (ye = u.value) == null || ye.scrollTo(0, 0);
-      const B = !!x.value.pagerConfig;
+      const L = !!x.value.pagerConfig;
       try {
         if (typeof c.data == "function") {
           K = Q(Y, K);
           const { data: se } = await Promise.resolve(c.data(K)), P = { total: 0, rows: [], ...se };
-          return Z(P), B ? { page: { total: se.total }, result: se.rows } : se.rows;
+          return Z(P), L ? { page: { total: se.total }, result: se.rows } : se.rows;
         }
         return [];
       } catch (se) {
-        return console.error(`Error h-Grid: ${se}`), B ? { page: { total: 0 }, result: [] } : [];
+        return console.error(`Error H-Grid: ${se}`), L ? { page: { total: 0 }, result: [] } : [];
       }
     }, Q = (Y, K) => {
-      let B = {}, ye = {};
+      let L = {}, ye = {};
       if (Y)
-        ye = Y.sort, B = Y.page;
+        ye = Y.sort, L = Y.page;
       else if (u.value) {
         const P = u.value.getProxyInfo();
-        ye = P == null ? void 0 : P.sort, B = P == null ? void 0 : P.pager;
+        ye = P == null ? void 0 : P.sort, L = P == null ? void 0 : P.pager;
       }
       let se = {
-        limit: (B == null ? void 0 : B.pageSize) || 0,
-        size: (B == null ? void 0 : B.pageSize) || 0,
-        offset: B ? (B.currentPage - 1) * B.pageSize : 0,
-        current: (B == null ? void 0 : B.currentPage) || 1,
+        limit: (L == null ? void 0 : L.pageSize) || 0,
+        size: (L == null ? void 0 : L.pageSize) || 0,
+        offset: L ? (L.currentPage - 1) * L.pageSize : 0,
+        current: (L == null ? void 0 : L.currentPage) || 1,
         sort: ye && (ye.sortBy || ye.field || ye.property) || "",
-        order: (ye == null ? void 0 : ye.order) || ""
+        order: (ye == null ? void 0 : ye.order) || "",
+        pageSize: (L == null ? void 0 : L.pageSize) || 0,
+        pageIndex: (L == null ? void 0 : L.currentPage) || 1
       };
       return typeof c.query == "function" ? c.query(se) : c.query instanceof Object && Object.assign(se, c.query), { ...se, ...K };
     }, Z = (Y) => {
       if (u.value && Y.rows.length === 0 && Y.total > 0) {
-        const K = u.value.getProxyInfo(), B = K == null ? void 0 : K.pager, ye = B ? (B.currentPage - 1) * B.pageSize : 0;
+        const K = u.value.getProxyInfo(), L = K == null ? void 0 : K.pager, ye = L ? (L.currentPage - 1) * L.pageSize : 0;
         G({
-          limit: (B == null ? void 0 : B.pageSize) || 0,
-          size: (B == null ? void 0 : B.pageSize) || 0,
-          offset: ye > 0 ? ye - ((B == null ? void 0 : B.pageSize) || 0) : 0,
-          current: (B == null ? void 0 : B.currentPage) || 1
+          limit: (L == null ? void 0 : L.pageSize) || 0,
+          size: (L == null ? void 0 : L.pageSize) || 0,
+          offset: ye > 0 ? ye - ((L == null ? void 0 : L.pageSize) || 0) : 0,
+          current: (L == null ? void 0 : L.currentPage) || 1,
+          pageSize: (L == null ? void 0 : L.pageSize) || 0,
+          pageIndex: (L == null ? void 0 : L.currentPage) || 1
         });
       }
       return !0;
@@ -15020,16 +15024,16 @@ const YF = { class: "h-grid-toolbar-left" }, XF = { class: "h-grid-toolbar-right
       ]),
       _: 2
     }, [
-      Ld(g.value, (B) => ({
-        name: B,
+      Ld(g.value, (L) => ({
+        name: L,
         fn: cu(() => [
-          ci(Y.$slots, B)
+          ci(Y.$slots, L)
         ])
       })),
-      Ld(b.value, (B) => ({
-        name: B,
+      Ld(b.value, (L) => ({
+        name: L,
         fn: cu((ye) => [
-          ci(Y.$slots, B, Db(Ob(ye)))
+          ci(Y.$slots, L, Db(Ob(ye)))
         ])
       }))
     ]), 1040));
@@ -16991,9 +16995,9 @@ const Rr = pt({
     const w = () => {
       const { tipTarget: G, tipStore: ue } = a;
       if (G) {
-        const { scrollTop: Y, scrollLeft: K, visibleWidth: B } = tl(), { top: ye, left: se } = br(G), P = m.value, M = 6, I = P.offsetHeight, A = P.offsetWidth;
+        const { scrollTop: Y, scrollLeft: K, visibleWidth: L } = tl(), { top: ye, left: se } = br(G), P = m.value, M = 6, I = P.offsetHeight, B = P.offsetWidth;
         let H = se, ce = ye - I - M;
-        H = Math.max(M, se + Math.floor((G.offsetWidth - A) / 2)), H + A + M > K + B && (H = K + B - A - M), ye - I < Y + M && (ue.placement = "bottom", ce = ye + G.offsetHeight + M), ue.style.top = `${ce}px`, ue.style.left = `${H}px`, ue.arrowStyle.left = `${se - H + G.offsetWidth / 2}px`;
+        H = Math.max(M, se + Math.floor((G.offsetWidth - B) / 2)), H + B + M > K + L && (H = K + L - B - M), ye - I < Y + M && (ue.placement = "bottom", ce = ye + G.offsetHeight + M), ue.style.top = `${ce}px`, ue.style.left = `${H}px`, ue.arrowStyle.left = `${se - H + G.offsetWidth / 2}px`;
       }
     }, v = (G) => {
       G !== a.visible && (a.visible = G, a.isUpdate = !0, s("update:modelValue", G));
@@ -17026,8 +17030,8 @@ const Rr = pt({
       if (!n.content && (ue === "" || r.eqNull(ue)))
         return me();
       if (G) {
-        const { showDelayTip: K } = c, { trigger: B, enterDelay: ye } = e;
-        if (a.tipActive = !0, a.tipTarget = G, a.tipContent = ue, ye && B === "hover")
+        const { showDelayTip: K } = c, { trigger: L, enterDelay: ye } = e;
+        if (a.tipActive = !0, a.tipTarget = G, a.tipContent = ue, ye && L === "hover")
           K && K();
         else
           return b();
@@ -17090,7 +17094,7 @@ const Rr = pt({
         class: "vxe-table--tooltip-content"
       }, `${ue}`);
     }, Z = () => {
-      const { popupClassName: G, theme: ue, isArrow: Y, enterable: K } = e, { tipActive: B, visible: ye, tipStore: se } = a, P = n.default, M = l.value;
+      const { popupClassName: G, theme: ue, isArrow: Y, enterable: K } = e, { tipActive: L, visible: ye, tipStore: se } = a, P = n.default, M = l.value;
       let I;
       return K && (I = {
         onMouseenter: O,
@@ -17101,7 +17105,7 @@ const Rr = pt({
         "is--enterable": K,
         "is--visible": ye,
         "is--arrow": Y,
-        "is--active": B
+        "is--active": L
       }], style: se.style }, I), [
         Q(),
         o("div", {
@@ -17126,8 +17130,8 @@ const Rr = pt({
             a.tipContent = ue, a.tipZindex = ds(), r.arrayEach(Y.children, (ye, se) => {
               se > 1 && (K.insertBefore(ye, Y), a.target || (a.target = ye));
             }), K.removeChild(Y);
-            const { target: B } = a;
-            B && (G === "hover" ? (B.onmouseenter = x, B.onmouseleave = h) : G === "click" && (B.onclick = S)), e.modelValue && C(B || V(), ue);
+            const { target: L } = a;
+            L && (G === "hover" ? (L.onmouseenter = x, L.onmouseleave = h) : G === "click" && (L.onclick = S)), e.modelValue && C(L || V(), ue);
           }
         }
       });
@@ -17285,7 +17289,7 @@ const Rr = pt({
       return de || (m ? m.props.circle : !1);
     }), ue = _(() => Object.assign({}, e.prefixTooltip)), Y = _(() => Object.assign({}, e.suffixTooltip)), K = () => {
       w.panelIndex < ws() && (w.panelIndex = ds());
-    }, B = () => me().then(() => {
+    }, L = () => me().then(() => {
       const { placement: de } = e, { panelIndex: Ie } = w, je = S.value, Ue = x.value, Ae = b.value;
       if (Ue && je) {
         const _e = je.offsetHeight, it = je.offsetWidth, vt = Ue.offsetHeight, dt = Ue.offsetWidth, at = 5, Et = {
@@ -17316,20 +17320,20 @@ const Rr = pt({
     }, M = () => {
       const de = x.value;
       de && (de.dataset.active = "Y", w.isAniVisible = !0, setTimeout(() => {
-        de.dataset.active === "Y" && (w.visiblePanel = !0, K(), B(), setTimeout(() => {
-          w.visiblePanel && B();
+        de.dataset.active === "Y" && (w.visiblePanel = !0, K(), L(), setTimeout(() => {
+          w.visiblePanel && L();
         }, 50));
       }, 20));
     }, I = (de) => {
       const { loading: Ie } = e;
       E.value || Ie || (j(), H(de));
-    }, A = (de) => {
+    }, B = (de) => {
       fe(), ce(de);
     }, H = (de) => {
       J("mouseenter", {}, de);
     }, ce = (de) => {
       J("mouseleave", {}, de);
-    }, L = (de) => {
+    }, A = (de) => {
       const { loading: Ie, trigger: je } = e;
       E.value || Ie || (je === "click" && (w.visiblePanel ? fe() : j()), ye(de));
     }, j = () => {
@@ -17403,7 +17407,7 @@ const Rr = pt({
         return Ve();
       if (re) {
         const N = {}, ee = {};
-        return Ue === "hover" && (N.onMouseenter = I, N.onMouseleave = A, ee.onMouseenter = M, ee.onMouseleave = pe), o("div", {
+        return Ue === "hover" && (N.onMouseenter = I, N.onMouseleave = B, ee.onMouseenter = M, ee.onMouseleave = pe), o("div", {
           ref: D,
           class: ["vxe-button--dropdown", de ? r.isFunction(de) ? de({ $button: O }) : de : "", {
             [`size--${F}`]: F,
@@ -17425,7 +17429,7 @@ const Rr = pt({
             type: Re ? it : "button",
             disabled: R || at,
             to: _e,
-            onClick: L
+            onClick: A
           }, N), {
             default() {
               return $().concat([
@@ -17448,7 +17452,7 @@ const Rr = pt({
             name: dt,
             type: Re ? it : "button",
             disabled: R || at,
-            onClick: L
+            onClick: A
           }, N), $().concat([
             o("i", {
               class: `vxe-button--dropdown-arrow ${ht().BUTTON_DROPDOWN}`
@@ -17755,12 +17759,12 @@ const Wa = pt({
           be >= 6 ? be = 0 : be++, N.push(be);
       }
       return N;
-    }), B = _(() => v.value ? K.value.map((be) => ({
+    }), L = _(() => v.value ? K.value.map((be) => ({
       value: be,
       label: Pe(`vxe.input.date.weeks.w${be}`)
     })) : []), ye = _(() => {
       if (v.value) {
-        const ee = B.value;
+        const ee = L.value;
         return [{ label: Pe("vxe.input.date.weeks.w") }].concat(ee);
       }
       return [];
@@ -17804,7 +17808,7 @@ const Wa = pt({
         }
       }
       return we;
-    }), A = _(() => {
+    }), B = _(() => {
       const N = I.value;
       return r.chunk(N, 4);
     }), H = _(() => {
@@ -17827,7 +17831,7 @@ const Wa = pt({
     }), ce = _(() => {
       const N = H.value;
       return r.chunk(N, 7);
-    }), L = _(() => {
+    }), A = _(() => {
       const N = ce.value, ee = Y.value;
       return N.map((be) => {
         const we = be[0];
@@ -17951,7 +17955,7 @@ const Wa = pt({
       }
       return `${ee || ""}`;
     }, ve = () => {
-      const { multiple: N } = e, { datePanelType: ee, datePanelValue: be } = l, we = E.value, Te = B.value, ze = ce.value, st = h.value, ct = "yyyyMMdd";
+      const { multiple: N } = e, { datePanelType: ee, datePanelValue: be } = l, we = E.value, Te = L.value, ze = ce.value, st = h.value, ct = "yyyyMMdd";
       return [
         o("table", {
           class: `vxe-calendar--date-${ee}-view`,
@@ -17978,7 +17982,7 @@ const Wa = pt({
         ])
       ];
     }, Ne = () => {
-      const { multiple: N } = e, { datePanelType: ee, datePanelValue: be } = l, we = E.value, Te = ye.value, ze = L.value, st = h.value, ct = "yyyyMMdd";
+      const { multiple: N } = e, { datePanelType: ee, datePanelValue: be } = l, we = E.value, Te = ye.value, ze = A.value, st = h.value, ct = "yyyyMMdd";
       return [
         o("table", {
           class: `vxe-calendar--date-${ee}-view`,
@@ -18009,7 +18013,7 @@ const Wa = pt({
         ])
       ];
     }, q = () => {
-      const { multiple: N } = e, { datePanelType: ee, datePanelValue: be } = l, we = E.value, Te = A.value, ze = h.value, st = "yyyyMM";
+      const { multiple: N } = e, { datePanelType: ee, datePanelValue: be } = l, we = E.value, Te = B.value, ze = h.value, st = "yyyyMM";
       return [
         o("table", {
           class: `vxe-calendar--date-${ee}-view`,
@@ -18428,8 +18432,8 @@ const Ha = pt({
     }, u = {
       refElem: l
     }, d = _(() => {
-      const { vertical: se, options: P } = e, { activeName: M, itemWidth: I, itemHeight: A, staticItems: H } = c, ce = (H && H.length ? H : P) || [], L = Math.max(0, r.findIndexOf(ce, (fe) => fe.name === M)), j = {};
-      return se ? j.transform = `translateY(-${L * A}px)` : (j.width = `${I * ce.length}px`, j.transform = `translateX(-${L * I}px)`), j;
+      const { vertical: se, options: P } = e, { activeName: M, itemWidth: I, itemHeight: B, staticItems: H } = c, ce = (H && H.length ? H : P) || [], A = Math.max(0, r.findIndexOf(ce, (fe) => fe.name === M)), j = {};
+      return se ? j.transform = `translateY(-${A * B}px)` : (j.width = `${I * ce.length}px`, j.transform = `translateX(-${A * I}px)`), j;
     }), p = {}, w = {
       xID: i,
       props: e,
@@ -18458,11 +18462,11 @@ const Ha = pt({
     }, x = (se, P, M) => {
       n(se, Zt(M, { $carousel: w }, P));
     }, h = (se) => {
-      const { options: P, loop: M } = e, { activeName: I, staticItems: A } = c, H = (A && A.length ? A : P) || [], ce = Math.max(0, r.findIndexOf(H, (L) => L.name === I));
+      const { options: P, loop: M } = e, { activeName: I, staticItems: B } = c, H = (B && B.length ? B : P) || [], ce = Math.max(0, r.findIndexOf(H, (A) => A.name === I));
       if (ce > -1) {
-        let L = null;
-        if (se ? ce < H.length - 1 ? L = H[ce + 1] : M && (L = H[0]) : ce > 0 ? L = H[ce - 1] : M && (L = H[H.length - 1]), L) {
-          const j = L.name, fe = j;
+        let A = null;
+        if (se ? ce < H.length - 1 ? A = H[ce + 1] : M && (A = H[0]) : ce > 0 ? A = H[ce - 1] : M && (A = H[H.length - 1]), A) {
+          const j = A.name, fe = j;
           return c.activeName = j, n("update:modelValue", fe), !0;
         }
       }
@@ -18504,8 +18508,8 @@ const Ha = pt({
       return o("div", {
         class: "vxe-carousel--list",
         style: I
-      }, se.map((A) => {
-        const { name: H, url: ce, slots: L } = A, j = L ? L.default : null;
+      }, se.map((B) => {
+        const { name: H, url: ce, slots: A } = B, j = A ? A.default : null;
         return o("div", {
           key: `${H}`,
           class: ["vxe-carousel--item-inner", {
@@ -18532,16 +18536,16 @@ const Ha = pt({
           class: ["vxe-carousel--indicators-item", {
             "is--active": P === I
           }],
-          onClick(A) {
-            D(A, M);
+          onClick(B) {
+            D(B, M);
           }
         });
       }));
     }, K = () => {
-      const { loading: se, height: P, width: M, showIndicators: I, vertical: A, options: H } = e, { staticItems: ce } = c, L = s.default, j = (ce && ce.length ? ce : H) || [];
+      const { loading: se, height: P, width: M, showIndicators: I, vertical: B, options: H } = e, { staticItems: ce } = c, A = s.default, j = (ce && ce.length ? ce : H) || [];
       return o("div", {
         ref: l,
-        class: ["vxe-carousel", `is--${A ? "vertical" : "horizontal"}`],
+        class: ["vxe-carousel", `is--${B ? "vertical" : "horizontal"}`],
         style: M ? {
           width: cn(M)
         } : null,
@@ -18550,7 +18554,7 @@ const Ha = pt({
       }, [
         o("div", {
           class: "vxe-carousel--slots"
-        }, L ? L({}) : []),
+        }, A ? A({}) : []),
         o("div", {
           ref: a,
           class: "vxe-carousel--item-wrapper",
@@ -18569,7 +18573,7 @@ const Ha = pt({
             onClick: g
           }, [
             o("i", {
-              class: A ? ht().CAROUSEL_VERTICAL_PREVIOUS : ht().CAROUSEL_HORIZONTAL_PREVIOUS
+              class: B ? ht().CAROUSEL_VERTICAL_PREVIOUS : ht().CAROUSEL_HORIZONTAL_PREVIOUS
             })
           ]),
           o("div", {
@@ -18577,7 +18581,7 @@ const Ha = pt({
             onClick: b
           }, [
             o("i", {
-              class: A ? ht().CAROUSEL_VERTICAL_NEXT : ht().CAROUSEL_HORIZONTAL_NEXT
+              class: B ? ht().CAROUSEL_VERTICAL_NEXT : ht().CAROUSEL_HORIZONTAL_NEXT
             })
           ])
         ]),
@@ -18589,12 +18593,12 @@ const Ha = pt({
           modelValue: se
         })
       ]);
-    }, B = ke(0);
+    }, L = ke(0);
     lt(() => e.options ? e.options.length : -1, () => {
-      B.value++;
+      L.value++;
     }), lt(() => e.options, () => {
-      B.value++;
-    }), lt(B, () => {
+      L.value++;
+    }), lt(L, () => {
       S(e.options);
     });
     const ye = ke(0);
@@ -18973,12 +18977,12 @@ const qa = pt({
     }, x = (G) => {
       const { activeNames: ue } = c, Y = {};
       G && G.length && G.forEach((K) => {
-        const { name: B, preload: ye } = K || {};
-        if (B) {
-          const se = ue.includes(B);
-          Y[`${B}`] = {
+        const { name: L, preload: ye } = K || {};
+        if (L) {
+          const se = ue.includes(L);
+          Y[`${L}`] = {
             loading: !1
-          }, se && S(B), ye && (se || ue.push(B));
+          }, se && S(L), ye && (se || ue.push(L));
         }
       }), c.activeNames = ue ? ue.slice(0) : [], c.cachePaneMaps = Y;
     }, O = {
@@ -18988,22 +18992,22 @@ const qa = pt({
     }, g = (G, ue) => G && (r.isString(G) && (G = s[G] || null), r.isFunction(G)) ? Nt(G(ue)) : [], b = (G, ue) => {
       const { activeNames: Y } = c, { name: K } = ue;
       if (K) {
-        const B = Y.indexOf(K);
-        B === -1 ? Y.push(K) : Y.splice(B, 1), S(K);
+        const L = Y.indexOf(K);
+        L === -1 ? Y.push(K) : Y.splice(L, 1), S(K);
       }
     };
     Object.assign(v, O, {});
     const C = (G) => {
       const { activeNames: ue, initNames: Y } = c, K = p.value;
-      return G.map((B) => {
-        const { icon: ye, name: se, title: P, slots: M } = B, I = M ? M.title : null, A = M ? M.default : null, H = se && ue.includes(se);
+      return G.map((L) => {
+        const { icon: ye, name: se, title: P, slots: M } = L, I = M ? M.title : null, B = M ? M.default : null, H = se && ue.includes(se);
         return o("div", {
           class: "vxe-collapse-item"
         }, [
           o("div", {
             class: "vxe-collapse--item-header",
             onClick(ce) {
-              b(ce, B);
+              b(ce, L);
             }
           }, [
             K.showIcon ? o("span", {
@@ -19032,13 +19036,13 @@ const qa = pt({
             se && Y.includes(se) ? o("div", {
               class: "vxe-collapse--item-inner"
             }, [
-              A ? g(A, { name: se, title: P }) : ""
+              B ? g(B, { name: se, title: P }) : ""
             ]) : Yn()
           ])
         ]);
       });
     }, V = () => {
-      const { padding: G } = e, ue = l.value, Y = u.value, K = d.value, B = s.default, ye = B ? K : Y;
+      const { padding: G } = e, ue = l.value, Y = u.value, K = d.value, L = s.default, ye = L ? K : Y;
       return o("div", {
         ref: a,
         class: ["vxe-collapse", {
@@ -19048,7 +19052,7 @@ const qa = pt({
       }, [
         o("div", {
           class: "vxe-collapse-slots"
-        }, B ? B({}) : []),
+        }, L ? L({}) : []),
         C(ye)
       ]);
     };
@@ -19311,8 +19315,8 @@ const Ps = pt({
     }), w = _(() => {
       const { format: G } = e, ue = p.value;
       let Y = "";
-      return G && (Y = `${G}`, r.each(ue, (K, B) => {
-        Y = Y.replace(new RegExp(B, "g"), r.padStart(K, B.length, "0"));
+      return G && (Y = `${G}`, r.each(ue, (K, L) => {
+        Y = Y.replace(new RegExp(L, "g"), r.padStart(K, L.length, "0"));
       })), Y;
     }), v = _(() => Object.assign({}, e.prefixConfig, oe().countdown.prefixConfig)), D = _(() => Object.assign({}, e.suffixConfig, oe().countdown.suffixConfig)), S = {
       computeSize: a
@@ -19350,28 +19354,28 @@ const Ps = pt({
           key: "format",
           class: "vxe-countdown--content-format"
         }, K)
-      ] : ue.map((B, ye) => o("div", {
+      ] : ue.map((L, ye) => o("div", {
         key: ye,
         class: "vxe-countdown--content-item"
       }, [
         o("div", {
           class: "vxe-countdown--content-num"
-        }, `${Y[B] || 0}`),
+        }, `${Y[L] || 0}`),
         o("div", {
           class: "vxe-countdown--content-unit"
-        }, Pe(`vxe.countdown.formats.${B}`))
+        }, Pe(`vxe.countdown.formats.${L}`))
       ]));
     }, Z = () => {
-      const { prefixConfig: G, suffixConfig: ue } = e, { currNum: Y } = c, K = a.value, B = p.value, ye = v.value, se = D.value, P = n.prefix, M = n.suffix, I = n.default;
+      const { prefixConfig: G, suffixConfig: ue } = e, { currNum: Y } = c, K = a.value, L = p.value, ye = v.value, se = D.value, P = n.prefix, M = n.suffix, I = n.default;
       return o("div", {
         ref: l,
-        class: ["vxe-countdown", B.done ? "is--progress" : "is-end", {
+        class: ["vxe-countdown", L.done ? "is--progress" : "is-end", {
           [`size--${K}`]: K
         }]
       }, [
         P || G ? o("div", {
           class: "vxe-countdown--prefix"
-        }, P ? Nt(P({ currentValue: Y, diffConf: B })) : [
+        }, P ? Nt(P({ currentValue: Y, diffConf: L })) : [
           o(Ps, {
             content: ye.content,
             icon: ye.icon,
@@ -19380,10 +19384,10 @@ const Ps = pt({
         ]) : Ve(),
         o("div", {
           class: "vxe-countdown--content"
-        }, I ? Nt(I({ currentValue: Y, diffConf: B })) : Q()),
+        }, I ? Nt(I({ currentValue: Y, diffConf: L })) : Q()),
         M || ue ? o("div", {
           class: "vxe-countdown--suffix"
-        }, M ? Nt(M({ currentValue: Y, diffConf: B })) : [
+        }, M ? Nt(M({ currentValue: Y, diffConf: L })) : [
           o(Ps, {
             content: se.content,
             icon: se.icon,
@@ -19566,17 +19570,17 @@ const Il = pt({
     }), Q = _(() => {
       const { type: ae } = e;
       return ae === "time" || ae === "datetime";
-    }), Z = _(() => Q.value || ["date", "week", "month", "quarter", "year"].indexOf(e.type) > -1), G = _(() => e.clearable), ue = _(() => e.startDate ? r.toStringDate(e.startDate) : null), Y = _(() => e.endDate ? r.toStringDate(e.endDate) : null), K = _(() => ["date", "week", "month", "quarter", "year"].indexOf(e.type) > -1), B = _(() => {
+    }), Z = _(() => Q.value || ["date", "week", "month", "quarter", "year"].indexOf(e.type) > -1), G = _(() => e.clearable), ue = _(() => e.startDate ? r.toStringDate(e.startDate) : null), Y = _(() => e.endDate ? r.toStringDate(e.endDate) : null), K = _(() => ["date", "week", "month", "quarter", "year"].indexOf(e.type) > -1), L = _(() => {
       const { modelValue: ae, multiple: We } = e, Ze = Z.value, ft = P.value;
       return We && ae && Ze ? r.toValueString(ae).split(",").map(($t) => {
         const Mt = ve($t, ft);
         return r.isValidDate(Mt), Mt;
       }) : [];
     }), ye = _(() => {
-      const ae = B.value, We = P.value;
+      const ae = L.value, We = P.value;
       return ae.map((Ze) => r.toDateString(Ze, We));
     }), se = _(() => {
-      const ae = B.value, We = L.value;
+      const ae = L.value, We = A.value;
       return ae.map((Ze) => r.toDateString(Ze, We)).join(", ");
     }), P = _(() => {
       const { type: ae, valueFormat: We } = e;
@@ -19592,7 +19596,7 @@ const Il = pt({
     }), I = _(() => {
       const ae = ue.value, { selectMonth: We } = p;
       return We && ae ? We <= ae : !1;
-    }), A = _(() => {
+    }), B = _(() => {
       const ae = Y.value, { selectMonth: We } = p;
       return We && ae ? We >= ae : !1;
     }), H = _(() => {
@@ -19601,7 +19605,7 @@ const Il = pt({
     }), ce = _(() => {
       const ae = M.value, We = Q.value;
       return ae && We ? (ae.getHours() * 3600 + ae.getMinutes() * 60 + ae.getSeconds()) * 1e3 : 0;
-    }), L = _(() => {
+    }), A = _(() => {
       const { labelFormat: ae } = e;
       return Z.value ? ae || Pe(`vxe.input.date.labelFormat.${e.type}`) : null;
     }), j = _(() => {
@@ -19797,7 +19801,7 @@ const Il = pt({
         b.dispatchEvent("suffix-click", { value: Ze }, ae);
       }
     }, be = (ae) => {
-      const { type: We } = e, Ze = L.value, ft = P.value, $t = pe.value;
+      const { type: We } = e, Ze = A.value, ft = P.value, $t = pe.value;
       let Mt = null, jt = "";
       if (ae && (Mt = ve(ae, ft)), r.isValidDate(Mt)) {
         if (jt = r.toDateString(Mt, Ze, { firstDay: $t }), Ze && We === "week" && r.getWhatWeek(Mt, 0, $t, $t).getFullYear() < Mt.getFullYear()) {
@@ -19831,7 +19835,7 @@ const Il = pt({
       if (st(ae), Ze) {
         const tt = ye.value;
         if ($t) {
-          const _t = [...B.value], In = [], yn = r.findIndexOf(_t, (Rn) => r.isDateSame(ae, Rn, "yyyyMMdd"));
+          const _t = [...L.value], In = [], yn = r.findIndexOf(_t, (Rn) => r.isDateSame(ae, Rn, "yyyyMMdd"));
           yn === -1 ? _t.push(ae) : _t.splice(yn, 1), _t.forEach((Rn) => {
             Rn && (ft && (Rn.setHours(ft.getHours()), Rn.setMinutes(ft.getMinutes()), Rn.setSeconds(ft.getSeconds())), In.push(Rn));
           }), q(In.map((Rn) => r.toDateString(Rn, Mt)).join(","), { type: "update" });
@@ -19840,7 +19844,7 @@ const Il = pt({
       } else
         r.isEqual(We, qt) || q(qt, { type: "update" });
     }, Ke = () => {
-      const { type: ae } = e, { inputValue: We, datetimePanelValue: Ze } = p, ft = L.value;
+      const { type: ae } = e, { inputValue: We, datetimePanelValue: Ze } = p, ft = A.value;
       if (!Et.value)
         if (We) {
           let Mt = ve(We, ft);
@@ -19888,7 +19892,7 @@ const Il = pt({
       zt(), e.multiple || (ct(p.currentDate), re()), b.dispatchEvent("date-today", { type: e.type }, ae);
     }, rt = (ae) => {
       const { type: We } = e, { datePanelType: Ze, selectMonth: ft, inputValue: $t } = p, { yearSize: Mt } = w, jt = $t;
-      if (!A.value) {
+      if (!B.value) {
         let tt;
         We === "year" ? tt = r.getWhatYear(ft, Mt, "first") : We === "month" || We === "quarter" ? Ze === "year" ? tt = r.getWhatYear(ft, Mt, "first") : tt = r.getWhatYear(ft, 1, "first") : Ze === "year" ? tt = r.getWhatYear(ft, Mt, "first") : Ze === "month" ? tt = r.getWhatYear(ft, 1, "first") : tt = r.getWhatMonth(ft, 1, "first"), p.selectMonth = tt, b.dispatchEvent("date-next", { viewType: Ze, value: jt, type: We }, ae);
       }
@@ -19931,7 +19935,7 @@ const Il = pt({
         if (ae) {
           const Mt = ye.value;
           if (ft) {
-            const jt = [...B.value], qt = [];
+            const jt = [...L.value], qt = [];
             jt.forEach((tt) => {
               tt && (We && (tt.setHours(We.getHours()), tt.setMinutes(We.getMinutes()), tt.setSeconds(We.getSeconds())), qt.push(tt));
             }), q(qt.map((tt) => r.toDateString(tt, $t)).join(","), { type: "update" });
@@ -20081,7 +20085,7 @@ const Il = pt({
       }
       return We;
     }, Bo = () => {
-      const { multiple: ae } = e, { datePanelType: We, datePanelValue: Ze } = p, ft = M.value, $t = $.value, Mt = Ue.value, jt = B.value, qt = "yyyyMMdd";
+      const { multiple: ae } = e, { datePanelType: We, datePanelValue: Ze } = p, ft = M.value, $t = $.value, Mt = Ue.value, jt = L.value, qt = "yyyyMMdd";
       return [
         o("table", {
           class: `vxe-date-picker--date-${We}-view`,
@@ -20108,7 +20112,7 @@ const Il = pt({
         ])
       ];
     }, ko = () => {
-      const { multiple: ae } = e, { datePanelType: We, datePanelValue: Ze } = p, ft = M.value, $t = J.value, Mt = Ae.value, jt = B.value, qt = "yyyyMMdd";
+      const { multiple: ae } = e, { datePanelType: We, datePanelValue: Ze } = p, ft = M.value, $t = J.value, Mt = Ae.value, jt = L.value, qt = "yyyyMMdd";
       return [
         o("table", {
           class: `vxe-date-picker--date-${We}-view`,
@@ -20139,7 +20143,7 @@ const Il = pt({
         ])
       ];
     }, _o = () => {
-      const { multiple: ae } = e, { datePanelType: We, datePanelValue: Ze } = p, ft = M.value, $t = Ie.value, Mt = B.value, jt = "yyyyMM";
+      const { multiple: ae } = e, { datePanelType: We, datePanelValue: Ze } = p, ft = M.value, $t = Ie.value, Mt = L.value, jt = "yyyyMM";
       return [
         o("table", {
           class: `vxe-date-picker--date-${We}-view`,
@@ -20163,7 +20167,7 @@ const Il = pt({
         ])
       ];
     }, ts = () => {
-      const { multiple: ae } = e, { datePanelType: We, datePanelValue: Ze } = p, ft = M.value, $t = Se.value, Mt = B.value, jt = "yyyyq";
+      const { multiple: ae } = e, { datePanelType: We, datePanelValue: Ze } = p, ft = M.value, $t = Se.value, Mt = L.value, jt = "yyyyq";
       return [
         o("table", {
           class: `vxe-date-picker--date-${We}-view`,
@@ -20187,7 +20191,7 @@ const Il = pt({
         ])
       ];
     }, Kn = () => {
-      const { multiple: ae } = e, { datePanelType: We, datePanelValue: Ze } = p, ft = M.value, $t = ge.value, Mt = B.value, jt = "yyyy";
+      const { multiple: ae } = e, { datePanelType: We, datePanelValue: Ze } = p, ft = M.value, $t = ge.value, Mt = L.value, jt = "yyyy";
       return [
         o("table", {
           class: `vxe-date-picker--date-${We}-view`,
@@ -20224,7 +20228,7 @@ const Il = pt({
       }
       return Bo();
     }, Wo = () => {
-      const { multiple: ae } = e, { datePanelType: We } = p, Ze = I.value, ft = A.value, $t = fe.value;
+      const { multiple: ae } = e, { datePanelType: We } = p, Ze = I.value, ft = B.value, $t = fe.value;
       return [
         o("div", {
           class: "vxe-date-picker--date-picker-header"
@@ -20483,7 +20487,7 @@ const Il = pt({
         selectMonth: null,
         currentDate: null
       }), Te();
-    }), lt(L, () => {
+    }), lt(A, () => {
       Z.value && (be(p.datePanelValue), p.inputValue = e.multiple ? se.value : p.datePanelLabel);
     }), me(() => {
       ut.on(g, "mousewheel", ms), ut.on(g, "mousedown", Ys), ut.on(g, "keydown", Fs), ut.on(g, "blur", xr);
@@ -20659,32 +20663,32 @@ const Jr = [], Ya = pt({
       getRefMaps: () => p,
       getComputeMaps: () => v
     }, S = () => c.value, x = () => {
-      const { width: A, height: H } = e, ce = S();
-      return ce && (ce.style.width = cn(A), ce.style.height = cn(H)), me();
+      const { width: B, height: H } = e, ce = S();
+      return ce && (ce.style.width = cn(B), ce.style.height = cn(H)), me();
     }, h = () => {
-      const { zIndex: A } = e, { drawerZIndex: H } = d;
-      A ? d.drawerZIndex = A : H < ws() && (d.drawerZIndex = ds());
-    }, O = (A) => {
-      const { beforeHideMethod: H } = e, { visible: ce } = d, L = { type: A };
-      return ce && Promise.resolve(H ? H(L) : null).then((j) => {
-        r.isError(j) || (d.contentVisible = !1, r.remove(Jr, (fe) => fe === D), V("before-hide", L, null), setTimeout(() => {
-          d.visible = !1, s("update:modelValue", !1), V("hide", L, null);
+      const { zIndex: B } = e, { drawerZIndex: H } = d;
+      B ? d.drawerZIndex = B : H < ws() && (d.drawerZIndex = ds());
+    }, O = (B) => {
+      const { beforeHideMethod: H } = e, { visible: ce } = d, A = { type: B };
+      return ce && Promise.resolve(H ? H(A) : null).then((j) => {
+        r.isError(j) || (d.contentVisible = !1, r.remove(Jr, (fe) => fe === D), V("before-hide", A, null), setTimeout(() => {
+          d.visible = !1, s("update:modelValue", !1), V("hide", A, null);
         }, 200));
       }).catch((j) => j), me();
-    }, g = (A) => {
+    }, g = (B) => {
       const H = "close";
-      V(H, { type: H }, A), O(H);
-    }, b = (A) => {
+      V(H, { type: H }, B), O(H);
+    }, b = (B) => {
       const { confirmClosable: H } = e, ce = "confirm";
-      V(ce, { type: ce }, A), H && O(ce);
-    }, E = (A) => {
+      V(ce, { type: ce }, B), H && O(ce);
+    }, E = (B) => {
       const { cancelClosable: H } = e, ce = "cancel";
-      V(ce, { type: ce }, A), H && O(ce);
+      V(ce, { type: ce }, B), H && O(ce);
     }, C = () => {
-      const { showFooter: A } = e, { initialized: H, visible: ce } = d;
+      const { showFooter: B } = e, { initialized: H, visible: ce } = d;
       return H || (d.initialized = !0), ce || (d.visible = !0, d.contentVisible = !1, h(), Jr.push(D), setTimeout(() => {
         x(), d.contentVisible = !0, me(() => {
-          if (A) {
+          if (B) {
             const fe = m.value, pe = u.value, ne = fe || pe;
             ne && ne.focus();
           }
@@ -20692,8 +20696,8 @@ const Jr = [], Ya = pt({
           s("update:modelValue", !0), V("show", j, null);
         });
       }, 10)), me();
-    }, V = (A, H, ce) => {
-      s(A, Zt(ce, { $drawer: D }, H));
+    }, V = (B, H, ce) => {
+      s(B, Zt(ce, { $drawer: D }, H));
     }, Q = {
       dispatchEvent: V,
       open: C,
@@ -20701,40 +20705,40 @@ const Jr = [], Ya = pt({
         return O("close");
       },
       getBox: S
-    }, Z = (A) => {
+    }, Z = (B) => {
       const H = a.value;
-      e.maskClosable && A.target === H && O("mask");
-    }, G = (A) => {
-      if (ut.hasKey(A, Yt.ESCAPE)) {
-        const ce = r.max(Jr, (L) => L.reactData.drawerZIndex);
+      e.maskClosable && B.target === H && O("mask");
+    }, G = (B) => {
+      if (ut.hasKey(B, Yt.ESCAPE)) {
+        const ce = r.max(Jr, (A) => A.reactData.drawerZIndex);
         ce && setTimeout(() => {
           if (ce === D && ce.props.escClosable) {
-            const L = "exit";
-            V("close", { type: L }, A), O(L);
+            const A = "exit";
+            V("close", { type: A }, B), O(A);
           }
         }, 10);
       }
     }, ue = () => {
-      const { drawerZIndex: A } = d;
-      Jr.some((H) => H.reactData.visible && H.reactData.drawerZIndex > A) && h();
-    }, Y = (A) => {
-      A.preventDefault();
-      const { visibleHeight: H, visibleWidth: ce } = tl(), L = 0, fe = A.target.getAttribute("type"), pe = 0, ne = 0, $ = ce, J = H, ge = S(), Oe = document.onmousemove, Se = document.onmouseup, de = ge.clientWidth, Ie = ge.clientHeight, je = A.clientX, Ue = A.clientY, Ae = ge.offsetTop, _e = ge.offsetLeft, it = { type: "resize" };
+      const { drawerZIndex: B } = d;
+      Jr.some((H) => H.reactData.visible && H.reactData.drawerZIndex > B) && h();
+    }, Y = (B) => {
+      B.preventDefault();
+      const { visibleHeight: H, visibleWidth: ce } = tl(), A = 0, fe = B.target.getAttribute("type"), pe = 0, ne = 0, $ = ce, J = H, ge = S(), Oe = document.onmousemove, Se = document.onmouseup, de = ge.clientWidth, Ie = ge.clientHeight, je = B.clientX, Ue = B.clientY, Ae = ge.offsetTop, _e = ge.offsetLeft, it = { type: "resize" };
       document.onmousemove = (vt) => {
         vt.preventDefault();
         let dt, at, Et, Qe;
         switch (fe) {
           case "wl":
-            dt = je - vt.clientX, Et = dt + de, _e - dt > L && Et > pe && (ge.style.width = `${Et < $ ? Et : $}px`);
+            dt = je - vt.clientX, Et = dt + de, _e - dt > A && Et > pe && (ge.style.width = `${Et < $ ? Et : $}px`);
             break;
           case "st":
-            at = Ue - vt.clientY, Qe = Ie + at, Ae - at > L && Qe > ne && (ge.style.height = `${Qe < J ? Qe : J}px`);
+            at = Ue - vt.clientY, Qe = Ie + at, Ae - at > A && Qe > ne && (ge.style.height = `${Qe < J ? Qe : J}px`);
             break;
           case "wr":
-            dt = vt.clientX - je, Et = dt + de, _e + Et + L < ce && Et > pe && (ge.style.width = `${Et < $ ? Et : $}px`);
+            dt = vt.clientX - je, Et = dt + de, _e + Et + A < ce && Et > pe && (ge.style.width = `${Et < $ ? Et : $}px`);
             break;
           case "sb":
-            at = vt.clientY - Ue, Qe = at + Ie, Ae + Qe + L < H && Qe > ne && (ge.style.height = `${Qe < J ? Qe : J}px`);
+            at = vt.clientY - Ue, Qe = at + Ie, Ae + Qe + A < H && Qe > ne && (ge.style.height = `${Qe < J ? Qe : J}px`);
             break;
         }
         ge.className = ge.className.replace(/\s?is--drag/, "") + " is--drag", V("resize", it, vt);
@@ -20745,12 +20749,12 @@ const Jr = [], Ya = pt({
       };
     };
     Object.assign(D, Q, {});
-    const B = () => {
-      const { slots: A = {}, showClose: H, title: ce } = e, L = n.title || A.title, j = n.corner || A.corner;
+    const L = () => {
+      const { slots: B = {}, showClose: H, title: ce } = e, A = n.title || B.title, j = n.corner || B.corner;
       return [
         o("div", {
           class: "vxe-drawer--header-title"
-        }, L ? Nt(L({ $drawer: D })) : ce ? Bn(ce) : Pe("vxe.alert.title")),
+        }, A ? Nt(A({ $drawer: D })) : ce ? Bn(ce) : Pe("vxe.alert.title")),
         o("div", {
           class: "vxe-drawer--header-right"
         }, [
@@ -20769,20 +20773,20 @@ const Jr = [], Ya = pt({
         ])
       ];
     }, ye = () => {
-      const { slots: A = {}, showTitleOverflow: H } = e, ce = n.header || A.header;
+      const { slots: B = {}, showTitleOverflow: H } = e, ce = n.header || B.header;
       return e.showHeader ? o("div", {
         class: ["vxe-drawer--header", {
           "is--ellipsis": H
         }]
-      }, ce ? Nt(ce({ $drawer: D })) : B()) : Yn();
+      }, ce ? Nt(ce({ $drawer: D })) : L()) : Yn();
     }, se = () => {
-      const { slots: A = {}, content: H } = e, ce = n.default || A.default, L = n.left || A.left, j = n.right || A.right;
+      const { slots: B = {}, content: H } = e, ce = n.default || B.default, A = n.left || B.left, j = n.right || B.right;
       return o("div", {
         class: "vxe-drawer--body"
       }, [
-        L ? o("div", {
+        A ? o("div", {
           class: "vxe-drawer--body-left"
-        }, Nt(L({ $drawer: D }))) : Yn(),
+        }, Nt(A({ $drawer: D }))) : Yn(),
         o("div", {
           class: "vxe-drawer--body-default"
         }, [
@@ -20799,7 +20803,7 @@ const Jr = [], Ya = pt({
         })
       ]);
     }, P = () => {
-      const { slots: A = {}, showCancelButton: H, showConfirmButton: ce, loading: L } = e, j = n.leftfoot || A.leftfoot, fe = n.rightfoot || A.rightfoot, pe = [];
+      const { slots: B = {}, showCancelButton: H, showConfirmButton: ce, loading: A } = e, j = n.leftfoot || B.leftfoot, fe = n.rightfoot || B.rightfoot, pe = [];
       return H && pe.push(o(Vn, {
         key: 1,
         ref: u,
@@ -20808,7 +20812,7 @@ const Jr = [], Ya = pt({
       })), ce && pe.push(o(Vn, {
         key: 2,
         ref: m,
-        loading: L,
+        loading: A,
         status: "primary",
         content: e.confirmButtonText || Pe("vxe.button.confirm"),
         onClick: b
@@ -20823,12 +20827,12 @@ const Jr = [], Ya = pt({
         }, fe ? Nt(fe({ $drawer: D })) : pe)
       ]);
     }, M = () => {
-      const { slots: A = {} } = e, H = n.footer || A.footer;
+      const { slots: B = {} } = e, H = n.footer || B.footer;
       return e.showFooter ? o("div", {
         class: "vxe-drawer--footer"
       }, H ? Nt(H({ $drawer: D })) : [P()]) : Yn();
     }, I = () => {
-      const { slots: A = {}, className: H, position: ce, loading: L, lockScroll: j, padding: fe, lockView: pe, mask: ne, resize: $, destroyOnClose: J } = e, { initialized: ge, contentVisible: Oe, visible: Se } = d, de = n.aside || A.aside, Ie = l.value, je = w.value;
+      const { slots: B = {}, className: H, position: ce, loading: A, lockScroll: j, padding: fe, lockView: pe, mask: ne, resize: $, destroyOnClose: J } = e, { initialized: ge, contentVisible: Oe, visible: Se } = d, de = n.aside || B.aside, Ie = l.value, je = w.value;
       return o(ks, {
         to: "body",
         disabled: e.transfer ? !ge : !0
@@ -20844,7 +20848,7 @@ const Jr = [], Ya = pt({
             "is--mask": ne,
             "is--visible": Oe,
             "is--active": Se,
-            "is--loading": L
+            "is--loading": A
           }],
           style: {
             zIndex: d.drawerZIndex
@@ -20879,8 +20883,8 @@ const Jr = [], Ya = pt({
         ])
       ]);
     };
-    return lt(() => e.width, x), lt(() => e.height, x), lt(() => e.modelValue, (A) => {
-      A ? C() : O("model");
+    return lt(() => e.width, x), lt(() => e.height, x), lt(() => e.modelValue, (B) => {
+      B ? C() : O("model");
     }), wn(() => {
       me(() => {
         e.modelValue && C(), x();
@@ -21157,14 +21161,14 @@ function lm(e) {
   ]);
 }
 const Td = (e, t, n) => {
-  const s = e.props, i = e.reactData, { data: l, rules: a, readonly: c, disabled: m, span: u, titleBackground: d, titleBold: p, titleColon: w, titleAsterisk: v, vertical: D, padding: S } = s, { collapseAll: x } = i, { folding: h, field: O, itemRender: g, showError: b, className: E, vertical: C, padding: V, children: Q, showContent: Z } = t, G = xs(g) ? Cn.get(g.name) : null, ue = G ? G.formItemClassName || G.itemClassName : "", Y = t.span || u, K = r.eqNull(V) ? S : V, B = r.eqNull(C) ? D : C, ye = r.eqNull(t.titleBackground) ? d : t.titleBackground, se = r.eqNull(t.titleBold) ? p : t.titleBold, P = r.eqNull(t.titleColon) ? w : t.titleColon, M = r.eqNull(t.titleAsterisk) ? v : t.titleAsterisk, I = { data: l, disabled: m, readonly: c, field: O, property: O, item: t, $form: e, $grid: e.xegrid }, A = Q && Q.length > 0;
+  const s = e.props, i = e.reactData, { data: l, rules: a, readonly: c, disabled: m, span: u, titleBackground: d, titleBold: p, titleColon: w, titleAsterisk: v, vertical: D, padding: S } = s, { collapseAll: x } = i, { folding: h, field: O, itemRender: g, showError: b, className: E, vertical: C, padding: V, children: Q, showContent: Z } = t, G = xs(g) ? Cn.get(g.name) : null, ue = G ? G.formItemClassName || G.itemClassName : "", Y = t.span || u, K = r.eqNull(V) ? S : V, L = r.eqNull(C) ? D : C, ye = r.eqNull(t.titleBackground) ? d : t.titleBackground, se = r.eqNull(t.titleBold) ? p : t.titleBold, P = r.eqNull(t.titleColon) ? w : t.titleColon, M = r.eqNull(t.titleAsterisk) ? v : t.titleAsterisk, I = { data: l, disabled: m, readonly: c, field: O, property: O, item: t, $form: e, $grid: e.xegrid }, B = Q && Q.length > 0;
   let H = !1, ce = !1;
   if (!c && a) {
-    const L = a[O];
-    L && L.length && (ce = !0, H = L.some((j) => j.required));
+    const A = a[O];
+    A && A.length && (ce = !0, H = A.some((j) => j.required));
   }
   return [
-    n || A ? "vxe-form--group" : "",
+    n || B ? "vxe-form--group" : "",
     "vxe-form--item",
     t.id,
     Y ? `vxe-form--item-col_${Y} is--span` : "",
@@ -21175,7 +21179,7 @@ const Td = (e, t, n) => {
       "is--tbg": ye,
       "is--bold": se,
       "is--padding": K,
-      "is--vertical": B,
+      "is--vertical": L,
       "is--asterisk": M,
       "hide--content": Z === !1,
       "is--valid": ce,
@@ -21197,7 +21201,7 @@ const Td = (e, t, n) => {
   ];
 };
 function Id(e, t, n) {
-  const s = e.props, { data: i, readonly: l, disabled: a, titleAlign: c, titleWidth: m, titleOverflow: u, vertical: d } = s, { slots: p, title: w, field: v, itemRender: D, titleOverflow: S, vertical: x, showTitle: h, titleClassName: O, titleStyle: g, titlePrefix: b, titleSuffix: E, children: C, showContent: V } = t, { computeTooltipOpts: Q } = e.getComputeMaps(), Z = Q.value, G = xs(D) ? Cn.get(D.name) : null, ue = G ? G.formItemTitleClassName || G.itemTitleClassName : "", Y = G ? G.formItemTitleStyle || G.itemTitleStyle : null, K = r.eqNull(x) ? d : x, B = r.eqNull(t.titleAlign) ? c : t.titleAlign, ye = K ? null : r.eqNull(t.titleWidth) ? m : t.titleWidth, se = r.eqNull(S) ? u : S, P = se === "ellipsis", M = se === "title", I = se === !0 || se === "tooltip", A = M || I || P, H = { data: i, disabled: a, readonly: l, field: v, property: v, item: t, $form: e, $grid: e.xegrid }, ce = p ? p.title : null, L = p ? p.extra : null, j = h !== !1 && (w || ce), fe = C && C.length > 0, pe = [];
+  const s = e.props, { data: i, readonly: l, disabled: a, titleAlign: c, titleWidth: m, titleOverflow: u, vertical: d } = s, { slots: p, title: w, field: v, itemRender: D, titleOverflow: S, vertical: x, showTitle: h, titleClassName: O, titleStyle: g, titlePrefix: b, titleSuffix: E, children: C, showContent: V } = t, { computeTooltipOpts: Q } = e.getComputeMaps(), Z = Q.value, G = xs(D) ? Cn.get(D.name) : null, ue = G ? G.formItemTitleClassName || G.itemTitleClassName : "", Y = G ? G.formItemTitleStyle || G.itemTitleStyle : null, K = r.eqNull(x) ? d : x, L = r.eqNull(t.titleAlign) ? c : t.titleAlign, ye = K ? null : r.eqNull(t.titleWidth) ? m : t.titleWidth, se = r.eqNull(S) ? u : S, P = se === "ellipsis", M = se === "title", I = se === !0 || se === "tooltip", B = M || I || P, H = { data: i, disabled: a, readonly: l, field: v, property: v, item: t, $form: e, $grid: e.xegrid }, ce = p ? p.title : null, A = p ? p.extra : null, j = h !== !1 && (w || ce), fe = C && C.length > 0, pe = [];
   b && pe.push(b.content || b.message ? o(Rr, Object.assign(Object.assign(Object.assign({}, Z), b), { content: Bn(b.content || b.message) }), {
     default: () => rm(b)
   }) : rm(b));
@@ -21218,8 +21222,8 @@ function Id(e, t, n) {
   return j ? o("div", Object.assign({ class: [
     n || fe ? "vxe-form--group-title" : "",
     "vxe-form--item-title",
-    B ? `align--${B}` : "",
-    A ? "is--ellipsis" : "",
+    L ? `align--${L}` : "",
+    B ? "is--ellipsis" : "",
     ue ? r.isFunction(ue) ? ue(H) : ue : "",
     O ? r.isFunction(O) ? O(H) : O : ""
   ], style: Object.assign({}, r.isFunction(Y) ? Y(H) : Y, r.isFunction(g) ? g(H) : g, ye && V !== !1 ? {
@@ -21231,9 +21235,9 @@ function Id(e, t, n) {
     o("div", {
       class: "vxe-form--item-title-postfix"
     }, $),
-    L ? o("div", {
+    A ? o("div", {
       class: "vxe-form--item-title-extra"
-    }, e.callSlot(L, H)) : Ve()
+    }, e.callSlot(A, H)) : Ve()
   ]) : Ve();
 }
 const Tv = (e, t) => {
@@ -21515,7 +21519,7 @@ const im = (e, t) => {
             }
           }
         }
-    }, B = ($, J, ge) => {
+    }, L = ($, J, ge) => {
       const { data: Oe, rules: Se } = e, de = {};
       return r.isArray(J) || (J = [J]), Promise.all(J.map((Ie) => {
         const je = [], Ue = [];
@@ -21574,7 +21578,7 @@ const im = (e, t) => {
       const { data: Oe, rules: Se } = e, de = w.value, Ie = {}, je = [], Ue = [];
       return clearTimeout(c.meTimeout), Oe && Se ? ($.forEach((Ae) => {
         const { field: _e } = Ae;
-        _e && !LL(h, Ae) && Ev(h, Ae) && Ue.push(B(J || "all", _e).then(() => {
+        _e && !LL(h, Ae) && Ev(h, Ae) && Ue.push(L(J || "all", _e).then(() => {
           Ae.errRule = null;
         }).catch((it) => {
           const vt = it[_e];
@@ -21617,7 +21621,7 @@ const im = (e, t) => {
         item: null,
         visible: !1
       }), J && J.close()), me();
-    }, A = ($, J) => {
+    }, B = ($, J) => {
       const { item: ge } = J, { tooltipStore: Oe } = c, Se = d.value, de = $.currentTarget.children[0], Ie = (de.textContent || "").trim(), je = de.scrollWidth > de.clientWidth;
       clearTimeout(c.stTimeout), Oe.item !== ge && I(), Ie && je && (Object.assign(Oe, {
         item: ge,
@@ -21629,7 +21633,7 @@ const im = (e, t) => {
       J && J.setActived(!1), $.enterable ? c.stTimeout = setTimeout(() => {
         J = d.value, J && !J.isActived() && I();
       }, $.leaveDelay) : I();
-    }, ce = ($, J, ge) => J ? B($ ? ["blur"].includes($.type) ? "blur" : "change" : "all", J, ge).then(() => {
+    }, ce = ($, J, ge) => J ? L($ ? ["blur"].includes($.type) ? "blur" : "change" : "all", J, ge).then(() => {
       Z(J);
     }).catch((Oe) => {
       const Se = Oe[J], de = E(J);
@@ -21655,7 +21659,7 @@ const im = (e, t) => {
       callSlot: O,
       triggerItemEvent: ce,
       toggleCollapseEvent: Q,
-      triggerTitleTipEvent: A,
+      triggerTitleTipEvent: B,
       handleTitleTipLeaveEvent: H
     });
     const fe = () => {
@@ -22524,7 +22528,7 @@ const GL = pt({
       ue(-1);
     }, K = () => {
       ue(1);
-    }, B = (j) => {
+    }, L = (j) => {
       const fe = v.value, pe = D.value;
       return me().then(() => {
         const ne = c.value;
@@ -22552,7 +22556,7 @@ const GL = pt({
       return me();
     }, se = {
       dispatchEvent: b,
-      scrollToTab: B,
+      scrollToTab: L,
       prev() {
         return ye(!1);
       },
@@ -22671,7 +22675,7 @@ const GL = pt({
           "has--content": !!J
         }]
       }, J ? O(J, { name: ne }) : []) : Ve();
-    }, A = (j) => {
+    }, B = (j) => {
       const { destroyOnClose: fe } = e, { activeName: pe } = m, ne = j.find(($) => $.name === pe);
       return fe ? [ne ? I(ne) : Ve()] : j.map(($) => I($));
     }, H = () => {
@@ -22692,7 +22696,7 @@ const GL = pt({
         M(Se),
         o("div", {
           class: "vxe-tabs-pane"
-        }, A(Se)),
+        }, B(Se)),
         Oe ? o("div", {
           class: "vxe-tabs-footer"
         }, O(Oe, {})) : Yn()
@@ -22701,7 +22705,7 @@ const GL = pt({
     lt(() => e.modelValue, (j) => {
       E(j, null), m.activeName = j;
     }), lt(() => m.activeName, (j) => {
-      B(j), me(() => {
+      L(j), me(() => {
         m.resizeFlag++;
       });
     });
@@ -22713,12 +22717,12 @@ const GL = pt({
     }), lt(ce, () => {
       C(e.options), g();
     });
-    const L = ke(0);
+    const A = ke(0);
     return lt(() => m.staticTabs ? m.staticTabs.length : -1, () => {
-      L.value++;
+      A.value++;
     }), lt(() => m.staticTabs, () => {
-      L.value++;
-    }), lt(L, () => {
+      A.value++;
+    }), lt(A, () => {
       C(m.staticTabs), g();
     }), l && lt(() => l ? l.reactData.resizeFlag : null, () => {
       m.resizeFlag++;
@@ -22996,11 +23000,11 @@ const qs = pt({
       }
     }, Object.assign(u, p);
     const E = () => {
-      const { openIcon: C, closeIcon: V, openActiveIcon: Q, closeActiveIcon: Z } = e, G = a.value, ue = S.value, Y = v.value, K = D.value, B = w.value;
+      const { openIcon: C, closeIcon: V, openActiveIcon: Q, closeActiveIcon: Z } = e, G = a.value, ue = S.value, Y = v.value, K = D.value, L = w.value;
       return o("div", {
         class: ["vxe-switch", ue ? "is--on" : "is--off", {
           [`size--${G}`]: G,
-          "is--disabled": B,
+          "is--disabled": L,
           "is--animat": c.hasAnimat
         }]
       }, [
@@ -23008,7 +23012,7 @@ const qs = pt({
           ref: d,
           class: "vxe-switch--button",
           type: "button",
-          disabled: B,
+          disabled: L,
           onClick: h,
           onFocus: g,
           onBlur: b
@@ -23427,7 +23431,7 @@ const qs = pt({
       return q && Promise.resolve(R ? R(le) : null).then((F) => {
         r.isError(F) || (z && G(), a.contentVisible = !1, Ne || Se(), r.remove(Pr, (re) => re === g), dt("before-hide", le, null), setTimeout(() => {
           a.visible = !1, s("update:modelValue", !1), dt("hide", le, null);
-        }, 200), L());
+        }, 200), A());
       }).catch((F) => F), me();
     }, Y = (ve) => {
       const Ne = "close";
@@ -23435,7 +23439,7 @@ const qs = pt({
     }, K = (ve) => {
       const { confirmClosable: Ne } = e, q = "confirm";
       dt(q, { type: q }, ve), Ne && ue(q);
-    }, B = (ve) => {
+    }, L = (ve) => {
       const { cancelClosable: Ne } = e, q = "cancel";
       dt(q, { type: q }, ve), Ne && ue(q);
     }, ye = (ve) => {
@@ -23480,7 +23484,7 @@ const qs = pt({
           R.height
         ] : []).map((re) => re ? r.toNumber(re) : "").join(","), localStorage.setItem(z, r.toJSONString(F));
       }
-    }, A = () => {
+    }, B = () => {
       const ve = h.value, { minimizeLayout: Ne, minimizeMaxSize: q, minimizeHorizontalOffset: z, minimizeVerticalOffset: R, minimizeOffsetMethod: le } = ve, F = Ne === "horizontal", re = a.zoomStatus, N = [], ee = [];
       Pr.forEach((we) => {
         we.xID !== g.xID && we.props.type === "modal" && we.reactData.zoomStatus === "minimize" && (we.getComputeMaps().computeZoomOpts.value.minimizeLayout === "horizontal" ? N.push(we) : ee.push(we));
@@ -23546,7 +23550,7 @@ const qs = pt({
     }, ce = () => {
       const { duration: ve } = e;
       ve !== -1 && (c.msgTimeout = setTimeout(() => ue("close"), r.toNumber(ve)));
-    }, L = () => {
+    }, A = () => {
       const ve = document.documentElement, Ne = ve.getAttribute(yi);
       if (Ne) {
         const q = Ne.split(",").filter((z) => z !== i);
@@ -23618,7 +23622,7 @@ const qs = pt({
             return;
           }
           if (ve === "minimize") {
-            q(A());
+            q(B());
             return;
           }
           q(Se());
@@ -23723,7 +23727,7 @@ const qs = pt({
       isMinimized: ge,
       isMaximized: Oe,
       zoom: de,
-      minimize: A,
+      minimize: B,
       maximize: H,
       revert: Se
     }, Object.assign(g, b);
@@ -23814,7 +23818,7 @@ const qs = pt({
         key: 1,
         ref: w,
         content: e.cancelButtonText || Pe("vxe.button.cancel"),
-        onClick: B
+        onClick: L
       })), (r.isBoolean(q) ? q : z === "confirm" || z === "alert") && re.push(o(Vn, {
         key: 2,
         ref: p,
@@ -23901,7 +23905,7 @@ const qs = pt({
         e.storage && !e.id && Ao("vxe.error.reqProp", ["modal.id"]), e.modelValue && fe(), C();
       }), e.escClosable && ut.on(g, "keydown", J);
     }), $n(() => {
-      ut.off(g, "keydown"), G(), L();
+      ut.off(g, "keydown"), G(), A();
     }), bn("$xeModal", g), g;
   },
   render() {
@@ -24021,22 +24025,22 @@ const qs = pt({
       }
       return me();
     }, S = (P) => {
-      const { formConfig: M, widgetData: I } = P || {}, A = g(I || []);
-      return Object.assign(Object.assign({}, O(A)), { formConfig: x(M || {}), widgetData: A });
+      const { formConfig: M, widgetData: I } = P || {}, B = g(I || []);
+      return Object.assign(Object.assign({}, O(B)), { formConfig: x(M || {}), widgetData: B });
     }, x = (P) => {
-      const { viewRender: M, createFormConfig: I, formOptions: A } = e, H = { viewRender: M, formConfig: P };
+      const { viewRender: M, createFormConfig: I, formOptions: B } = e, H = { viewRender: M, formConfig: P };
       if (I)
         return I(H);
-      const { name: ce } = M || {}, L = Cn.get(ce) || {}, j = L ? L.createFormViewFormConfig : null;
-      return Object.assign({}, j ? j(H) : Fv(H), A);
+      const { name: ce } = M || {}, A = Cn.get(ce) || {}, j = A ? A.createFormViewFormConfig : null;
+      return Object.assign({}, j ? j(H) : Fv(H), B);
     }, h = (P) => (u.formConfig = x(P), me()), O = (P) => {
       const M = {}, I = {};
-      return r.eachTree(P, (A) => {
-        const { name: H, field: ce, required: L } = A, j = Cn.get(H) || {}, fe = j.createFormDesignWidgetFieldValue, pe = j.createFormDesignWidgetFieldRules;
-        if (M[ce] = fe ? fe({ widget: A, $formView: w }) : E(A), pe) {
-          const ne = pe({ widget: A, $formView: w });
+      return r.eachTree(P, (B) => {
+        const { name: H, field: ce, required: A } = B, j = Cn.get(H) || {}, fe = j.createFormDesignWidgetFieldValue, pe = j.createFormDesignWidgetFieldRules;
+        if (M[ce] = fe ? fe({ widget: B, $formView: w }) : E(B), pe) {
+          const ne = pe({ widget: B, $formView: w });
           ne && ne.length && (I[ce] = ne);
-        } else L && (I[ce] = C());
+        } else A && (I[ce] = C());
       }, { children: "children" }), {
         formData: M,
         formRules: I
@@ -24044,8 +24048,8 @@ const qs = pt({
     }, g = (P) => (P || []).map((M) => Vd(M)), b = (P) => {
       const M = g(P);
       u.widgetObjList = M;
-      const { formData: I, formRules: A } = O(M);
-      return u.formRules = A, n("update:modelValue", Object.assign(I, e.modelValue)), me();
+      const { formData: I, formRules: B } = O(M);
+      return u.formRules = B, n("update:modelValue", Object.assign(I, e.modelValue)), me();
     }, E = (P) => {
       switch (P.name) {
         case "subtable":
@@ -24055,11 +24059,11 @@ const qs = pt({
     }, C = () => [
       { required: !0, content: "该填写该字段！" }
     ], V = (P, M) => {
-      const { field: I } = P, A = a.value;
-      return A && A.updateStatus({ field: I }, M), me();
+      const { field: I } = P, B = a.value;
+      return B && B.updateStatus({ field: I }, M), me();
     }, Q = (P, M) => {
-      const { modelValue: I } = e, { field: A } = P, H = a.value;
-      return I && (I[A] = M), H && H.updateStatus({ field: A }, M), me();
+      const { modelValue: I } = e, { field: B } = P, H = a.value;
+      return I && (I[B] = M), H && H.updateStatus({ field: B }, M), me();
     }, Z = (P) => {
       const { modelValue: M } = e;
       return M ? M[P.field] : null;
@@ -24100,22 +24104,22 @@ const qs = pt({
       }
     }, K = (P) => {
       G("submit", P, P.$event);
-    }, B = (P) => {
+    }, L = (P) => {
       G("reset", P, P.$event);
     };
     Object.assign(w, Y, {});
     const se = () => {
-      const { readonly: P, disabled: M, modelValue: I } = e, { formConfig: A, formRules: H, widgetObjList: ce } = u, L = c.value, j = s.top, fe = s.bottom, pe = s.header, ne = s.footer;
+      const { readonly: P, disabled: M, modelValue: I } = e, { formConfig: B, formRules: H, widgetObjList: ce } = u, A = c.value, j = s.top, fe = s.bottom, pe = s.header, ne = s.footer;
       return o("div", {
         ref: l,
         class: ["vxe-form-view", {
-          [`size--${L}`]: L
+          [`size--${A}`]: A
         }]
       }, [
         j ? o("div", {
           class: "vxe-form-view--top"
         }, Nt(j({ $formView: w }))) : Ve(),
-        o(Nn, Object.assign(Object.assign({ ref: a }, A), {
+        o(Nn, Object.assign(Object.assign({ ref: a }, B), {
           data: I,
           customLayout: !0,
           readonly: P,
@@ -24123,7 +24127,7 @@ const qs = pt({
           span: 24,
           rules: H,
           onSubmit: K,
-          onReset: B
+          onReset: L
         }), {
           default() {
             const { readonly: $, disabled: J } = e;
@@ -24370,20 +24374,20 @@ const Wn = pt({
       return X === null ? u ? u.props.disabled : !1 : X;
     }), Y = _(() => {
       const { maxLength: X, maxlength: Le } = e, qe = X || Le;
-      return B.value && !r.toNumber(qe) ? 16 : qe;
+      return L.value && !r.toNumber(qe) ? 16 : qe;
     }), K = _(() => {
       const { type: X } = e;
       return X === "time" || X === "datetime";
-    }), B = _(() => ["number", "integer", "float"].indexOf(e.type) > -1), ye = _(() => r.getSize(v.inputValue)), se = _(() => {
+    }), L = _(() => ["number", "integer", "float"].indexOf(e.type) > -1), ye = _(() => r.getSize(v.inputValue)), se = _(() => {
       const X = ye.value, Le = Y.value;
       return Le && X > r.toNumber(Le);
-    }), P = _(() => K.value || ["date", "week", "month", "quarter", "year"].indexOf(e.type) > -1), M = _(() => e.type === "password"), I = _(() => e.type === "search"), A = _(() => r.toInteger(e.digits) || 1), H = _(() => {
-      const { type: X } = e, Le = A.value, qe = e.step;
+    }), P = _(() => K.value || ["date", "week", "month", "quarter", "year"].indexOf(e.type) > -1), M = _(() => e.type === "password"), I = _(() => e.type === "search"), B = _(() => r.toInteger(e.digits) || 1), H = _(() => {
+      const { type: X } = e, Le = B.value, qe = e.step;
       return X === "integer" ? r.toInteger(qe) || 1 : X === "float" ? r.toNumber(qe) || 1 / Math.pow(10, Le) : r.toNumber(qe) || 1;
     }), ce = _(() => {
-      const { type: X } = e, Le = B.value, qe = P.value, gt = M.value;
+      const { type: X } = e, Le = L.value, qe = P.value, gt = M.value;
       return e.clearable && (gt || Le || qe || X === "text" || X === "search");
-    }), L = _(() => e.startDate ? r.toStringDate(e.startDate) : null), j = _(() => e.endDate ? r.toStringDate(e.endDate) : null), fe = _(() => ["date", "week", "month", "quarter", "year"].indexOf(e.type) > -1), pe = _(() => {
+    }), A = _(() => e.startDate ? r.toStringDate(e.startDate) : null), j = _(() => e.endDate ? r.toStringDate(e.endDate) : null), fe = _(() => ["date", "week", "month", "quarter", "year"].indexOf(e.type) > -1), pe = _(() => {
       const { modelValue: X, multiple: Le } = e, qe = P.value, gt = J.value;
       return Le && X && qe ? r.toValueString(X).split(",").map((bt) => {
         const It = V(bt, gt);
@@ -24407,7 +24411,7 @@ const Wn = pt({
       }
       return gt;
     }), Oe = _(() => {
-      const X = L.value, { selectMonth: Le } = v;
+      const X = A.value, { selectMonth: Le } = v;
       return Le && X ? Le <= X : !1;
     }), Se = _(() => {
       const X = j.value, { selectMonth: Le } = v;
@@ -24571,7 +24575,7 @@ const Wn = pt({
       const { type: X, editable: Le, multiple: qe } = e;
       return G.value || qe || !Le || X === "week" || X === "quarter";
     }), N = _(() => {
-      const { type: X } = e, { showPwd: Le } = v, qe = B.value, gt = P.value, bt = M.value;
+      const { type: X } = e, { showPwd: Le } = v, qe = L.value, gt = P.value, bt = M.value;
       return gt || qe || bt && Le || X === "number" ? "text" : X;
     }), ee = _(() => {
       const { placeholder: X } = e;
@@ -24584,15 +24588,15 @@ const Wn = pt({
       return Le || !(X === "text" || X === "number" || X === "integer" || X === "float");
     }), we = _(() => {
       const { type: X } = e, { inputValue: Le } = v;
-      return B.value ? X === "integer" ? r.toInteger(gs(Le)) : r.toNumber(gs(Le)) : 0;
+      return L.value ? X === "integer" ? r.toInteger(gs(Le)) : r.toNumber(gs(Le)) : 0;
     }), Te = _(() => {
-      const { min: X } = e, { inputValue: Le } = v, qe = B.value, gt = we.value;
+      const { min: X } = e, { inputValue: Le } = v, qe = L.value, gt = we.value;
       return (Le || Le === 0) && qe && X !== null ? gt <= r.toNumber(X) : !1;
     }), ze = _(() => {
-      const { max: X } = e, { inputValue: Le } = v, qe = B.value, gt = we.value;
+      const { max: X } = e, { inputValue: Le } = v, qe = L.value, gt = we.value;
       return (Le || Le === 0) && qe && X !== null ? gt >= r.toNumber(X) : !1;
     }), st = (X) => {
-      const { type: Le, exponential: qe } = e, gt = Y.value, bt = A.value, It = Le === "float" ? Pc(X, bt) : r.toValueString(X);
+      const { type: Le, exponential: qe } = e, gt = Y.value, bt = B.value, It = Le === "float" ? Pc(X, bt) : r.toValueString(X);
       return qe && (X === It || r.toValueString(X).toLowerCase() === r.toNumber(It).toExponential()) ? X : It.slice(0, gt);
     }, ct = (X) => {
       const { inputValue: Le } = v;
@@ -24622,7 +24626,7 @@ const Wn = pt({
         v.isAniVisible = !1, X();
       }, 350);
     }), Ee = (X, Le) => {
-      const { type: qe } = e, gt = B.value;
+      const { type: qe } = e, gt = L.value;
       P.value && At(), (gt || ["text", "search", "password"].indexOf(qe) > -1) && focus(), Ke("", X), C.dispatchEvent("clear", { value: Le }, X);
     }, Ye = (X) => {
       if (!ue.value) {
@@ -24647,7 +24651,7 @@ const Wn = pt({
       const X = P.value, { inputValue: Le } = v;
       X && (rt(Le), v.inputValue = e.multiple ? $.value : v.datePanelLabel);
     }, Jt = () => {
-      const { type: X } = e, { inputValue: Le } = v, qe = P.value, gt = A.value;
+      const { type: X } = e, { inputValue: Le } = v, qe = P.value, gt = B.value;
       if (qe)
         Ot();
       else if (X === "float" && Le) {
@@ -24678,7 +24682,7 @@ const Wn = pt({
       } else
         r.isEqual(Le, Ft) || Ke(Ft, { type: "update" });
     }, on = () => {
-      const { type: X, min: Le, max: qe, exponential: gt } = e, { inputValue: bt, datetimePanelValue: It } = v, Kt = B.value, Ft = P.value, Je = je.value;
+      const { type: X, min: Le, max: qe, exponential: gt } = e, { inputValue: bt, datetimePanelValue: It } = v, Kt = L.value, Ft = P.value, Je = je.value;
       if (!re.value) {
         if (Kt) {
           if (bt) {
@@ -24734,7 +24738,7 @@ const Wn = pt({
       (Le || qe) && (X.preventDefault(), Le ? Sn(X) : mn(X));
     }, co = (X) => {
       const { exponential: Le, controls: qe } = e;
-      if (B.value) {
+      if (L.value) {
         const bt = X.ctrlKey, It = X.shiftKey, Kt = X.altKey, Ft = X.keyCode, Je = ut.hasKey(X, Yt.ESCAPE), Vt = ut.hasKey(X, Yt.ARROW_UP), un = ut.hasKey(X, Yt.ARROW_DOWN);
         !bt && !It && !Kt && (ut.hasKey(X, Yt.SPACEBAR) || (!Le || Ft !== 69) && Ft >= 65 && Ft <= 90 || Ft >= 186 && Ft <= 188 || Ft >= 191) && X.preventDefault(), Je ? on() : (Vt || un) && qe && Fn(X);
       }
@@ -24756,7 +24760,7 @@ const Wn = pt({
         }, 500);
       }
     }, Oo = (X) => {
-      if (B.value && e.controls && v.isActivated) {
+      if (L.value && e.controls && v.isActivated) {
         const qe = X.deltaY;
         qe > 0 ? mn(X) : qe < 0 && Sn(X), X.preventDefault();
       }
@@ -24784,7 +24788,7 @@ const Wn = pt({
         Le === "year" ? Je = r.getWhatYear(gt, It, "first") : Le === "month" || Le === "quarter" ? qe === "year" ? Je = r.getWhatYear(gt, It, "first") : Je = r.getWhatYear(gt, 1, "first") : qe === "year" ? Je = r.getWhatYear(gt, It, "first") : qe === "month" ? Je = r.getWhatYear(gt, 1, "first") : Je = r.getWhatMonth(gt, 1, "first"), v.selectMonth = Je, C.dispatchEvent("date-next", { viewType: qe, viewDate: Je, value: Kt, type: Le }, X);
       }
     }, oo = (X) => {
-      const { disabledMethod: Le } = e, { datePanelType: qe } = v, gt = L.value, bt = j.value, { date: It } = X;
+      const { disabledMethod: Le } = e, { datePanelType: qe } = v, gt = A.value, bt = j.value, { date: It } = X;
       return gt && gt.getTime() > It.getTime() || bt && bt.getTime() < It.getTime() ? !0 : Le ? Le({ type: qe, viewType: qe, date: It, $input: E }) : !1;
     }, Bo = (X) => {
       const { type: Le, multiple: qe } = e, { datePanelType: gt } = v;
@@ -25315,7 +25319,7 @@ const Wn = pt({
         ])
       ]) : null;
     }, ul = () => {
-      const { suffixIcon: X } = e, { inputValue: Le } = v, qe = n.suffix, gt = ue.value, bt = B.value, It = P.value, Kt = M.value, Ft = I.value, Je = ce.value, Vt = Kt || bt || It || Ft;
+      const { suffixIcon: X } = e, { inputValue: Le } = v, qe = n.suffix, gt = ue.value, bt = L.value, It = P.value, Kt = M.value, Ft = I.value, Je = ce.value, Vt = Kt || bt || It || Ft;
       return Je || qe || X || Vt ? o("div", {
         class: ["vxe-input--suffix", {
           "is--clear": Je && !gt && !(Le === "" || r.eqNull(Le))
@@ -25340,7 +25344,7 @@ const Wn = pt({
         ]) : Ve()
       ]) : null;
     }, ei = () => {
-      const { controls: X } = e, Le = B.value, qe = P.value, gt = M.value, bt = I.value;
+      const { controls: X } = e, Le = L.value, qe = P.value, gt = M.value, bt = I.value;
       return gt ? ia() : Le && X ? cl() : qe ? la() : bt ? Zc() : Ve();
     };
     C = {
@@ -25818,7 +25822,7 @@ const vs = pt({
         return Bn(Ee);
       const Ye = oe().select.placeholder;
       return Ye ? Bn(Ye) : Pe("vxe.base.pleaseSelect");
-    }), Z = _(() => Object.assign({}, e.optionProps)), G = _(() => Object.assign({}, e.optionGroupProps)), ue = _(() => Z.value.label || "label"), Y = _(() => Z.value.value || "value"), K = _(() => G.value.label || "label"), B = _(() => G.value.options || "options"), ye = _(() => {
+    }), Z = _(() => Object.assign({}, e.optionProps)), G = _(() => Object.assign({}, e.optionGroupProps)), ue = _(() => Z.value.label || "label"), Y = _(() => Z.value.value || "value"), K = _(() => G.value.label || "label"), L = _(() => G.value.options || "options"), ye = _(() => {
       const { modelValue: Ee, multiple: Ye, max: rt } = e;
       return Ye && rt ? (r.isArray(Ee) ? Ee.length : r.eqNull(Ee) ? 0 : 1) >= r.toNumber(rt) : !1;
     }), se = _(() => Object.assign({}, oe().select.scrollY, e.scrollY)), P = _(() => Object.assign({}, oe().select.optionConfig, e.optionConfig)), M = _(() => r.toNumber(e.multiCharOverflow)), I = _(() => {
@@ -25830,12 +25834,12 @@ const vs = pt({
         const Gt = pe(Bt);
         return rt && Ot > 0 && Gt.length > Ot ? `${Gt.substring(0, Ot)}...` : Gt;
       }).join(", ");
-    }), A = (Ee, Ye) => Ee && (r.isString(Ee) && (Ee = n[Ee] || null), r.isFunction(Ee)) ? Nt(Ee(Ye)) : [], H = (Ee, Ye, rt) => {
+    }), B = (Ee, Ye) => Ee && (r.isString(Ee) && (Ee = n[Ee] || null), r.isFunction(Ee)) ? Nt(Ee(Ye)) : [], H = (Ee, Ye, rt) => {
       s(Ee, Zt(rt, { $select: b }, Ye));
     }, ce = (Ee) => {
       s("update:modelValue", Ee);
-    }, L = () => P.value.keyField || e.optionId || "_X_OPTION_KEY", j = (Ee) => {
-      const Ye = Ee[L()];
+    }, A = () => P.value.keyField || e.optionId || "_X_OPTION_KEY", j = (Ee) => {
+      const Ye = Ee[A()];
       return Ye ? encodeURIComponent(Ye) : "";
     }, fe = (Ee) => {
       const { remoteValMaps: Ye } = O, rt = ue.value, Ot = Ye[Ee], Jt = Ot ? Ot.item : null;
@@ -25844,7 +25848,7 @@ const vs = pt({
       const { optFullValMaps: Ye } = O, rt = ue.value, Ot = h.reactFlag ? Ye[Ee] : null;
       return Ot ? Ot.item[rt] : r.toValueString(Ee);
     }, ne = (Ee) => {
-      const Ye = B.value, rt = Y.value, Ot = L(), Jt = {}, Bt = {}, Gt = [], Qt = (U) => {
+      const Ye = L.value, rt = Y.value, Ot = A(), Jt = {}, Bt = {}, Gt = [], Qt = (U) => {
         Gt.push(U);
         let Lt = j(U);
         Lt || (Lt = n0(), U[Ot] = Lt), Bt[U[rt]] = {
@@ -26129,7 +26133,7 @@ const vs = pt({
           onMouseenter: () => {
             !Qn && !Fn && !ct() && J(en);
           }
-        }, on ? A(on, Co) : ho ? A(ho, Co) : Bn(en[Fn ? U : Gt])) : Ve();
+        }, on ? B(on, Co) : ho ? B(ho, Co) : Bn(en[Fn ? U : Gt])) : Ve();
       });
     }, zt = () => {
       const { optList: Ee, searchLoading: Ye } = h;
@@ -26742,22 +26746,22 @@ const vs = pt({
       getComputeMaps: () => p
     }, v = (P) => new sd(w, P, m.widgetObjList), D = () => new sd(w, "", m.widgetObjList), S = (P) => {
       if (P) {
-        const { formConfig: A, widgetData: H } = P;
-        A && O(A), H && E(H);
+        const { formConfig: B, widgetData: H } = P;
+        B && O(B), H && E(H);
       }
       const { activeWidget: M, widgetObjList: I } = m;
       if (M) {
-        const A = r.findTree(I, (H) => H.id === M.id, { children: "children" });
-        A ? m.activeWidget = A.item : m.activeWidget = I[0] || null;
+        const B = r.findTree(I, (H) => H.id === M.id, { children: "children" });
+        B ? m.activeWidget = B.item : m.activeWidget = I[0] || null;
       } else
         m.activeWidget = I[0] || null;
       return me();
     }, x = (P) => (V(), S(P)), h = () => r.clone(m.formData, !0), O = (P) => (m.formData = Object.assign({}, Y(), P), me()), g = (P) => {
       const { widgetObjList: M } = m;
       if (P) {
-        const I = r.toNumber(P), A = r.findTree(M, (H) => H && H.id === I, { children: "children" });
-        if (A)
-          return A.item;
+        const I = r.toNumber(P), B = r.findTree(M, (H) => H && H.id === I, { children: "children" });
+        if (B)
+          return B.item;
       }
       return null;
     }, b = () => {
@@ -26800,9 +26804,9 @@ const vs = pt({
       },
       openStyleSetting: C
     }, Z = () => {
-      const { widgets: P } = e, M = [], I = [], A = [], H = [], ce = [];
-      Cn.forEach((L, j) => {
-        const { createFormDesignWidgetConfig: fe } = L;
+      const { widgets: P } = e, M = [], I = [], B = [], H = [], ce = [];
+      Cn.forEach((A, j) => {
+        const { createFormDesignWidgetConfig: fe } = A;
         if (fe) {
           const pe = v(j), ne = Ul(j), $ = qL(j, w);
           if ($) {
@@ -26814,7 +26818,7 @@ const vs = pt({
           } else
             switch (ne.group) {
               case "layout":
-                A.push(pe);
+                B.push(pe);
                 break;
               case "advanced":
                 H.push(pe);
@@ -26827,25 +26831,25 @@ const vs = pt({
       }), I.length && M.push({
         group: "base",
         children: I
-      }), A.length && M.push({
+      }), B.length && M.push({
         group: "layout",
-        children: A
+        children: B
       }), H.length && M.push({
         group: "advanced",
         children: H
-      }), ce.length && M.push(...ce), P && P.length ? m.widgetConfigs = e.widgets.map((L) => ({
-        title: L.customGroup,
-        group: L.group,
-        children: L.children ? L.children.map((j) => v(j)) : []
+      }), ce.length && M.push(...ce), P && P.length ? m.widgetConfigs = e.widgets.map((A) => ({
+        title: A.customGroup,
+        group: A.group,
+        children: A.children ? A.children.map((j) => v(j)) : []
       })) : m.widgetConfigs = M;
     }, G = (P) => {
       const { widgetObjList: M } = m;
       if (Ul(P).unique) {
-        const A = [];
+        const B = [];
         r.eachTree(M, (ce) => {
-          ce.name === P && A.push(ce);
+          ce.name === P && B.push(ce);
         }, { children: "children" });
-        const H = A.length < 1;
+        const H = B.length < 1;
         return H || Ce.modal && Ce.modal.message({
           content: Pe("vxe.formDesign.error.wdFormUni"),
           status: "error",
@@ -26859,33 +26863,33 @@ const vs = pt({
         M && M.name && (P.stopPropagation(), m.activeWidget = M, Q.dispatchEvent("click-widget", { widget: M }, P));
       },
       handleCopyWidget(P, M) {
-        const { widgetObjList: I } = m, A = r.findTree(I, (H) => H.id === M.id, { children: "children" });
-        if (A && (P.stopPropagation(), G(M.name))) {
-          const { path: H } = A, ce = Number(H[0]), L = v(M.name);
-          L.title && (L.title = Pe("vxe.formDesign.widget.copyTitle", [`${M.title}`.replace(Pe("vxe.formDesign.widget.copyTitle", [""]), "")])), ce >= I.length - 1 ? I.push(L) : I.splice(ce + 1, 0, L), m.activeWidget = L, m.widgetObjList = [...I], Q.dispatchEvent("copy-widget", { widget: M, newWidget: L }, P);
+        const { widgetObjList: I } = m, B = r.findTree(I, (H) => H.id === M.id, { children: "children" });
+        if (B && (P.stopPropagation(), G(M.name))) {
+          const { path: H } = B, ce = Number(H[0]), A = v(M.name);
+          A.title && (A.title = Pe("vxe.formDesign.widget.copyTitle", [`${M.title}`.replace(Pe("vxe.formDesign.widget.copyTitle", [""]), "")])), ce >= I.length - 1 ? I.push(A) : I.splice(ce + 1, 0, A), m.activeWidget = A, m.widgetObjList = [...I], Q.dispatchEvent("copy-widget", { widget: M, newWidget: A }, P);
         }
       },
       handleRemoveWidget(P, M) {
-        const { widgetObjList: I } = m, A = r.findTree(I, (H) => H.id === M.id, { children: "children" });
-        if (A) {
-          const { index: H, parent: ce, items: L } = A;
-          P.stopPropagation(), H >= L.length - 1 ? m.activeWidget = L[H - 1] : m.activeWidget = L[H + 1] || null, ce && ce.name === "row" ? L[H] = D() : L.splice(H, 1), m.widgetObjList = [...I], Q.dispatchEvent("remove-widget", { widget: M }, P);
+        const { widgetObjList: I } = m, B = r.findTree(I, (H) => H.id === M.id, { children: "children" });
+        if (B) {
+          const { index: H, parent: ce, items: A } = B;
+          P.stopPropagation(), H >= A.length - 1 ? m.activeWidget = A[H - 1] : m.activeWidget = A[H + 1] || null, ce && ce.name === "row" ? A[H] = D() : A.splice(H, 1), m.widgetObjList = [...I], Q.dispatchEvent("remove-widget", { widget: M }, P);
         }
       }
     }, Y = () => {
       const { formRender: P, showPc: M, showMobile: I } = e;
-      let A = e0({
+      let B = e0({
         pcVisible: M,
         mobileVisible: I
       });
       if (P) {
         const H = Cn.get(P.name), ce = H ? H.createFormDesignSettingFormConfig : null;
-        A = (ce ? ce({}) : {}) || {};
+        B = (ce ? ce({}) : {}) || {};
       }
-      return A;
+      return B;
     }, K = () => {
       m.formData = Y();
-    }, B = () => {
+    }, L = () => {
       C();
     };
     Object.assign(w, Q, ue);
@@ -26914,13 +26918,13 @@ const vs = pt({
               status: "primary",
               icon: ht().FORM_DESIGN_STYLE_SETTING,
               content: Pe("vxe.formDesign.styleSetting.btn"),
-              onClick: B
+              onClick: L
             })
           ])
         ])
       ]);
     }, se = () => {
-      const { height: P, showHeader: M } = e, I = c.value, A = s.header, H = s.footer;
+      const { height: P, showHeader: M } = e, I = c.value, B = s.header, H = s.footer;
       return o("div", {
         ref: l,
         class: ["vxe-form-design", {
@@ -26930,9 +26934,9 @@ const vs = pt({
           height: cn(P)
         } : null
       }, [
-        M || A ? o("div", {
+        M || B ? o("div", {
           class: "vxe-form-design--header"
-        }, A ? A({}) : ye()) : Ve(),
+        }, B ? B({}) : ye()) : Ve(),
         o("div", {
           class: "vxe-form-design--body"
         }, [
@@ -27115,17 +27119,17 @@ const Wl = pt({
       const { placeholder: K } = e;
       if (K)
         return Bn(K);
-      const B = oe().textarea.placeholder;
-      return B ? Bn(B) : Pe("vxe.base.pleaseInput");
+      const L = oe().textarea.placeholder;
+      return L ? Bn(L) : Pe("vxe.base.pleaseInput");
     }), h = _(() => {
-      const { maxLength: K, maxlength: B } = e;
-      return K || B;
+      const { maxLength: K, maxlength: L } = e;
+      return K || L;
     }), O = _(() => r.getSize(c.inputValue)), g = _(() => {
-      const K = O.value, B = h.value;
-      return B && K > r.toNumber(B);
+      const K = O.value, L = h.value;
+      return L && K > r.toNumber(L);
     }), b = _(() => Object.assign({ minRows: 1, maxRows: 10 }, oe().textarea.autosize, e.autosize)), E = () => {
-      const { size: K, autosize: B } = e, { inputValue: ye } = c;
-      if (B) {
+      const { size: K, autosize: L } = e, { inputValue: ye } = c;
+      if (L) {
         rr || (rr = document.createElement("div")), rr.parentNode || document.body.appendChild(rr);
         const se = u.value;
         if (!se)
@@ -27136,31 +27140,31 @@ const Wl = pt({
       }
     }, C = () => {
       e.autosize && me(() => {
-        const K = b.value, { minRows: B, maxRows: ye } = K, se = u.value;
+        const K = b.value, { minRows: L, maxRows: ye } = K, se = u.value;
         if (!se)
           return;
-        const P = rr.clientHeight, M = getComputedStyle(se), I = r.toNumber(M.lineHeight), A = r.toNumber(M.paddingTop), H = r.toNumber(M.paddingBottom), ce = r.toNumber(M.borderTopWidth), L = r.toNumber(M.borderBottomWidth), j = A + H + ce + L, fe = (P - j) / I, pe = fe && /[0-9]/.test("" + fe) ? fe : Math.floor(fe) + 1;
+        const P = rr.clientHeight, M = getComputedStyle(se), I = r.toNumber(M.lineHeight), B = r.toNumber(M.paddingTop), H = r.toNumber(M.paddingBottom), ce = r.toNumber(M.borderTopWidth), A = r.toNumber(M.borderBottomWidth), j = B + H + ce + A, fe = (P - j) / I, pe = fe && /[0-9]/.test("" + fe) ? fe : Math.floor(fe) + 1;
         let ne = pe;
-        pe < B ? ne = B : pe > ye && (ne = ye), se.style.height = `${ne * I + j}px`;
+        pe < L ? ne = L : pe > ye && (ne = ye), se.style.height = `${ne * I + j}px`;
       });
     }, V = (K) => {
-      const B = c.inputValue;
-      p.dispatchEvent(K.type, { value: B }, K);
-    }, Q = (K, B) => {
-      c.inputValue = K, n("update:modelValue", K), r.toValueString(e.modelValue) !== K && (w.dispatchEvent("change", { value: K }, B), s && i && s.triggerItemEvent(B, i.itemConfig.field, K));
+      const L = c.inputValue;
+      p.dispatchEvent(K.type, { value: L }, K);
+    }, Q = (K, L) => {
+      c.inputValue = K, n("update:modelValue", K), r.toValueString(e.modelValue) !== K && (w.dispatchEvent("change", { value: K }, L), s && i && s.triggerItemEvent(L, i.itemConfig.field, K));
     }, Z = (K) => {
-      const { immediate: B } = e, se = K.target.value;
-      c.inputValue = se, B && Q(se, K), p.dispatchEvent("input", { value: se }, K), C();
+      const { immediate: L } = e, se = K.target.value;
+      c.inputValue = se, L && Q(se, K), p.dispatchEvent("input", { value: se }, K), C();
     }, G = (K) => {
-      const { immediate: B } = e;
-      B ? V(K) : Q(c.inputValue, K);
+      const { immediate: L } = e;
+      L ? V(K) : Q(c.inputValue, K);
     }, ue = (K) => {
-      const { immediate: B } = e, { inputValue: ye } = c;
-      B || Q(ye, K), p.dispatchEvent("blur", { value: ye }, K);
+      const { immediate: L } = e, { inputValue: ye } = c;
+      L || Q(ye, K), p.dispatchEvent("blur", { value: ye }, K);
     };
     w = {
-      dispatchEvent(K, B, ye) {
-        n(K, Zt(ye, { $textarea: p }, B));
+      dispatchEvent(K, L, ye) {
+        n(K, Zt(ye, { $textarea: p }, L));
       },
       focus() {
         return u.value.focus(), me();
@@ -27177,11 +27181,11 @@ const Wl = pt({
       K && (E(), C());
     });
     const Y = () => {
-      const { className: K, resize: B, autosize: ye, showWordCount: se, countMethod: P, rows: M, cols: I } = e, { inputValue: A } = c, H = a.value, ce = D.value, L = g.value, j = O.value, fe = S.value, pe = v.value, ne = x.value, $ = h.value;
+      const { className: K, resize: L, autosize: ye, showWordCount: se, countMethod: P, rows: M, cols: I } = e, { inputValue: B } = c, H = a.value, ce = D.value, A = g.value, j = O.value, fe = S.value, pe = v.value, ne = x.value, $ = h.value;
       return pe ? o("div", {
         ref: m,
         class: ["vxe-textarea--readonly", K]
-      }, A) : o("div", {
+      }, B) : o("div", {
         ref: m,
         class: ["vxe-textarea", K, {
           [`size--${H}`]: H,
@@ -27196,7 +27200,7 @@ const Wl = pt({
         o("textarea", {
           ref: u,
           class: "vxe-textarea--inner",
-          value: A,
+          value: B,
           name: e.name,
           placeholder: ne,
           maxlength: $,
@@ -27204,8 +27208,8 @@ const Wl = pt({
           disabled: ce,
           rows: M,
           cols: I,
-          style: B ? {
-            resize: B
+          style: L ? {
+            resize: L
           } : null,
           onInput: Z,
           onChange: G,
@@ -27217,9 +27221,9 @@ const Wl = pt({
         }),
         se ? o("span", {
           class: ["vxe-textarea--count", {
-            "is--error": L
+            "is--error": A
           }]
-        }, P ? `${P({ value: A })}` : `${j}${$ ? `/${$}` : ""}`) : null
+        }, P ? `${P({ value: B })}` : `${j}${$ ? `/${$}` : ""}`) : null
       ]);
     };
     return p.renderVN = Y, p;
@@ -28297,11 +28301,11 @@ const a0 = (e) => Pe(`vxe.formDesign.widget.component.${e}`), yo = (e) => a0(e.n
         };
         const V = b.renderFormDesignWidgetSubtableDefaultView, Q = b.renderFormDesignWidgetSubtableCellView || V, Z = b.renderFormDesignWidgetSubtableEditView, G = {};
         (V || Q) && (G.default = (ue) => {
-          const { isEdit: Y, column: K } = ue, { editRender: B, cellRender: ye } = K, se = Object.assign({ widget: O }, ue);
-          return Y && B && Q ? Nt(Q(B, se)) : V ? Nt(V(ye || {}, se)) : [];
+          const { isEdit: Y, column: K } = ue, { editRender: L, cellRender: ye } = K, se = Object.assign({ widget: O }, ue);
+          return Y && L && Q ? Nt(Q(L, se)) : V ? Nt(V(ye || {}, se)) : [];
         }), Z && (G.edit = (ue) => {
-          const { column: Y } = ue, { editRender: K } = Y, B = Object.assign({ widget: O }, ue);
-          return Nt(Z(K, B));
+          const { column: Y } = ue, { editRender: K } = Y, L = Object.assign({ widget: O }, ue);
+          return Nt(Z(K, L));
         }), C.slots = G, h.push(C);
       }), x || h.push({
         field: "action",
@@ -29051,9 +29055,9 @@ const a0 = (e) => Pe(`vxe.formDesign.widget.component.${e}`), yo = (e) => a0(e.n
     }), K = _(() => {
       const { max: z } = e, { inputValue: R } = m, le = G.value;
       return (R || R === 0) && z !== null ? le >= r.toNumber(z) : !1;
-    }), B = (z) => r.eqNull(z) ? "" : `${z}`, ye = (z) => {
-      const { exponential: R } = e, le = Q.value, F = O.value, N = g.value ? Pc(z, F) : B(z);
-      return R && (z === N || B(z).toLowerCase() === r.toNumber(N).toExponential()) ? z : N.slice(0, le);
+    }), L = (z) => r.eqNull(z) ? "" : `${z}`, ye = (z) => {
+      const { exponential: R } = e, le = Q.value, F = O.value, N = g.value ? Pc(z, F) : L(z);
+      return R && (z === N || L(z).toLowerCase() === r.toNumber(N).toExponential()) ? z : N.slice(0, le);
     }, se = (z) => {
       const { inputValue: R } = m;
       S.dispatchEvent(z.type, { value: R }, z);
@@ -29068,7 +29072,7 @@ const a0 = (e) => Pe(`vxe.formDesign.widget.component.${e}`), yo = (e) => a0(e.n
     }, I = (z) => {
       const le = z.target.value;
       M(le, z);
-    }, A = (z) => {
+    }, B = (z) => {
       Z.value || se(z);
     }, H = (z) => {
       m.isFocus = !0, m.isActivated = !0, se(z);
@@ -29077,7 +29081,7 @@ const a0 = (e) => Pe(`vxe.formDesign.widget.component.${e}`), yo = (e) => a0(e.n
         const { inputValue: le } = m;
         S.dispatchEvent("prefix-click", { value: le }, z);
       }
-    }, L = (z, R) => {
+    }, A = (z, R) => {
       focus(), P(null, "", z), S.dispatchEvent("clear", { value: R }, z);
     }, j = (z) => {
       if (!h.value) {
@@ -29101,7 +29105,7 @@ const a0 = (e) => Pe(`vxe.formDesign.widget.component.${e}`), yo = (e) => a0(e.n
         if (re || R || le) {
           let ee = z === "integer" ? r.toInteger(gs(re)) : r.toNumber(gs(re));
           if (ne(ee) ? pe(ee) || (ee = le) : ee = R, F) {
-            const we = B(re).toLowerCase();
+            const we = L(re).toLowerCase();
             we === r.toNumber(ee).toExponential() && (ee = we);
           }
           const be = ye(ee);
@@ -29110,7 +29114,7 @@ const a0 = (e) => Pe(`vxe.formDesign.widget.component.${e}`), yo = (e) => a0(e.n
       }
     }, J = (z) => {
       const { inputValue: R } = m, le = Z.value, F = R ? Number(R) : null;
-      le || P(F, B(R), z), $(), m.isFocus = !1, m.isActivated = !1, S.dispatchEvent("blur", { value: F }, z), i && l && i.triggerItemEvent(z, l.itemConfig.field, F);
+      le || P(F, L(R), z), $(), m.isFocus = !1, m.isActivated = !1, S.dispatchEvent("blur", { value: F }, z), i && l && i.triggerItemEvent(z, l.itemConfig.field, F);
     }, ge = (z, R) => {
       const { min: le, max: F, type: re } = e, { inputValue: N } = m, ee = b.value, be = re === "integer" ? r.toInteger(gs(N)) : r.toNumber(gs(N)), we = z ? r.add(be, ee) : r.subtract(be, ee);
       let Te;
@@ -29163,7 +29167,7 @@ const a0 = (e) => Pe(`vxe.formDesign.widget.component.${e}`), yo = (e) => a0(e.n
       if (!h.value) {
         const F = ut.hasKey(z, Yt.TAB), re = ut.hasKey(z, Yt.DELETE);
         let N = m.isActivated;
-        F && (N && $(), N = !1, m.isActivated = N), re && R && N && L(z, null);
+        F && (N && $(), N = !1, m.isActivated = N), re && R && N && A(z, null);
       }
     }, Qe = () => {
       const { isActivated: z } = m;
@@ -29225,7 +29229,7 @@ const a0 = (e) => Pe(`vxe.formDesign.widget.component.${e}`), yo = (e) => a0(e.n
       }, [
         re ? o("div", {
           class: "vxe-number-input--clear-icon",
-          onClick: L
+          onClick: A
         }, [
           o("i", {
             class: ht().INPUT_CLEAR
@@ -29302,7 +29306,7 @@ const a0 = (e) => Pe(`vxe.formDesign.widget.component.${e}`), yo = (e) => a0(e.n
             onWheel: vt,
             onClick: dt,
             onInput: I,
-            onChange: A,
+            onChange: B,
             onFocus: H,
             onBlur: J
           })
@@ -30034,19 +30038,19 @@ const Pi = pt({
     }, Y = (q) => ue(Z(q)), K = (q) => {
       const { selectCheckboxMaps: z } = c;
       return !!z[q];
-    }, B = (q) => K(Z(q)), ye = (q) => {
+    }, L = (q) => K(Z(q)), ye = (q) => {
       const { indeterminateCheckboxMaps: z } = c;
       return !!z[q];
     }, se = (q) => ye(Z(q)), P = (q) => {
       n("update:checkNodeKeys", q);
     }, M = (q) => {
       n("update:checkNodeKey", q);
-    }, I = (q) => (q && (c.selectRadioKey = Z(q)), me()), A = (q, z) => (q && (r.isArray(q) || (q = [q]), ce(q.map((R) => Z(R)), z)), me()), H = (q, z) => (q && (r.isArray(q) || (q = [q]), ce(q, z)), me()), ce = (q, z) => {
+    }, I = (q) => (q && (c.selectRadioKey = Z(q)), me()), B = (q, z) => (q && (r.isArray(q) || (q = [q]), ce(q.map((R) => Z(R)), z)), me()), H = (q, z) => (q && (r.isArray(q) || (q = [q]), ce(q, z)), me()), ce = (q, z) => {
       const R = Object.assign({}, c.selectCheckboxMaps);
       q.forEach((le) => {
         z ? R[le] = !0 : R[le] && delete R[le];
       }), c.selectCheckboxMaps = R;
-    }, L = (q) => {
+    }, A = (q) => {
       const z = {};
       q && q.forEach((R) => {
         z[R] = !0;
@@ -30106,7 +30110,7 @@ const Pi = pt({
         return c.selectRadioKey = q, me();
       },
       setRadioNode: I,
-      setCheckboxNode: A,
+      setCheckboxNode: B,
       setCheckboxByNodeId: H,
       getCheckboxNodeIds() {
         const { selectCheckboxMaps: q } = c;
@@ -30223,7 +30227,7 @@ const Pi = pt({
       isCheckedByRadioNode: Y,
       isCheckedByCheckboxNodeId: K,
       isIndeterminateByCheckboxNode: se,
-      isCheckedByCheckboxNode: B
+      isCheckedByCheckboxNode: L
     }, $ = () => {
       const { treeList: q } = c, z = w.value, R = D.value, le = {};
       r.eachTree(q, (F, re, N, ee, be, we) => {
@@ -30517,10 +30521,10 @@ const Pi = pt({
     }), lt(() => e.checkNodeKeys, () => {
       Ne.value++;
     }), lt(Ne, () => {
-      L(e.checkNodeKeys || []);
+      A(e.checkNodeKeys || []);
     }), $n(() => {
       c.treeList = [], c.treeExpandedMaps = {}, c.nodeMaps = {};
-    }), J(e.data || []), L(e.checkNodeKeys || []), Q.renderVN = Be, Q;
+    }), J(e.data || []), A(e.checkNodeKeys || []), Q.renderVN = Be, Q;
   },
   render() {
     return this.renderVN();
@@ -30625,7 +30629,7 @@ const ki = pt({
       }, Re.radioConfig, {
         trigger: "node"
       });
-    }), G = _(() => e.optionProps || {}), ue = _(() => C.value.keyField || "id"), Y = _(() => G.value.label || "label"), K = _(() => G.value.value || "value"), B = _(() => G.value.children || "children"), ye = _(() => G.value.parent || "parentField"), se = _(() => G.value.hasChild || "hasChild"), P = _(() => {
+    }), G = _(() => e.optionProps || {}), ue = _(() => C.value.keyField || "id"), Y = _(() => G.value.label || "label"), K = _(() => G.value.value || "value"), L = _(() => G.value.children || "children"), ye = _(() => G.value.parent || "parentField"), se = _(() => G.value.hasChild || "hasChild"), P = _(() => {
       const { modelValue: Re } = e, { fullNodeMaps: Be } = S, ve = Y.value;
       return (r.isArray(Re) ? Re : [Re]).map((Ne) => {
         const q = Be[Ne];
@@ -30634,7 +30638,7 @@ const ki = pt({
     }), M = _(() => {
       const Re = E.value, { height: Be, width: ve } = Re, Ne = {};
       return ve && (Ne.width = cn(ve)), Be && (Ne.height = cn(Be), Ne.maxHeight = cn(Be)), Ne;
-    }), I = {}, A = {
+    }), I = {}, B = {
       xID: u,
       props: e,
       context: t,
@@ -30643,16 +30647,16 @@ const ki = pt({
       getRefMaps: () => h,
       getComputeMaps: () => I
     }, H = (Re, Be, ve) => {
-      n(Re, Zt(ve, { $treeSelect: A }, Be));
+      n(Re, Zt(ve, { $treeSelect: B }, Be));
     }, ce = (Re) => {
       n("update:modelValue", Re);
-    }, L = {
+    }, A = {
       dispatchEvent: H
     }, j = (Re) => {
       const Be = ue.value, ve = Re[Be];
       return ve ? encodeURIComponent(ve) : "";
     }, fe = () => {
-      const { options: Re } = e, Be = ue.value, ve = B.value, Ne = K.value, q = {}, z = {};
+      const { options: Re } = e, Be = ue.value, ve = L.value, Ne = K.value, q = {}, z = {};
       r.eachTree(Re, (R, le, F, re, N, ee) => {
         let be = j(R);
         be || (be = Z0()), z[be] && Ao("vxe.error.repeatKey", [Be, be]), z[be] = !0;
@@ -30735,9 +30739,9 @@ const ki = pt({
     }, Et = () => {
       fe();
     };
-    Object.assign(A, L, {});
+    Object.assign(B, A, {});
     const De = () => {
-      const { className: Re, modelValue: Be, multiple: ve, options: Ne, loading: q } = e, { initialized: z, isActivated: R, isAniVisible: le, visiblePanel: F } = S, re = d.value, N = g.value, ee = P.value, be = b.value, we = O.value, Te = M.value, ze = s.header, st = s.footer, ct = s.prefix, wt = E.value.className || e.popupClassName, St = C.value, Dt = V.value, Wt = Q.value, nn = Z.value, zt = ue.value, At = Y.value, Ee = K.value, Ye = B.value, rt = ye.value, Ot = se.value;
+      const { className: Re, modelValue: Be, multiple: ve, options: Ne, loading: q } = e, { initialized: z, isActivated: R, isAniVisible: le, visiblePanel: F } = S, re = d.value, N = g.value, ee = P.value, be = b.value, we = O.value, Te = M.value, ze = s.header, st = s.footer, ct = s.prefix, wt = E.value.className || e.popupClassName, St = C.value, Dt = V.value, Wt = Q.value, nn = Z.value, zt = ue.value, At = Y.value, Ee = K.value, Ye = L.value, rt = ye.value, Ot = se.value;
       return we ? o("div", {
         ref: p,
         class: ["vxe-tree-select--readonly", Re]
@@ -30747,7 +30751,7 @@ const ki = pt({
         }, ee)
       ]) : o("div", {
         ref: p,
-        class: ["vxe-tree-select", Re ? r.isFunction(Re) ? Re({ $treeSelect: A }) : Re : "", {
+        class: ["vxe-tree-select", Re ? r.isFunction(Re) ? Re({ $treeSelect: B }) : Re : "", {
           [`size--${re}`]: re,
           "is--visible": F,
           "is--disabled": N,
@@ -30779,7 +30783,7 @@ const ki = pt({
         }, [
           o("div", {
             ref: D,
-            class: ["vxe-table--ignore-clear vxe-tree-select--panel", wt ? r.isFunction(wt) ? wt({ $treeSelect: A }) : wt : "", {
+            class: ["vxe-table--ignore-clear vxe-tree-select--panel", wt ? r.isFunction(wt) ? wt({ $treeSelect: B }) : wt : "", {
               [`size--${re}`]: re,
               "is--transfer": be,
               "ani--leave": !q && le,
@@ -30848,10 +30852,10 @@ const ki = pt({
     return lt(() => e.options, () => {
       fe();
     }), fe(), wn(() => {
-      ut.on(A, "mousewheel", de), ut.on(A, "mousedown", Ie), ut.on(A, "blur", je);
+      ut.on(B, "mousewheel", de), ut.on(B, "mousedown", Ie), ut.on(B, "blur", je);
     }), $n(() => {
-      ut.off(A, "mousewheel"), ut.off(A, "mousedown"), ut.off(A, "blur");
-    }), bn("$xeTreeSelect", A), A.renderVN = De, A;
+      ut.off(B, "mousewheel"), ut.off(B, "mousedown"), ut.off(B, "blur");
+    }), bn("$xeTreeSelect", B), B.renderVN = De, B;
   },
   render() {
     return this.renderVN();
@@ -31441,7 +31445,7 @@ const cA = (e) => {
       internalData: d,
       getRefMaps: () => p,
       getComputeMaps: () => Y
-    }, B = () => r.uniqueId(), ye = (F) => {
+    }, L = () => r.uniqueId(), ye = (F) => {
       const re = D.value;
       return F[re];
     }, se = () => {
@@ -31453,11 +31457,11 @@ const cA = (e) => {
             [we]: M(St),
             [Te]: wt,
             [ze]: 0,
-            [ee]: B()
+            [ee]: L()
           };
         }
         const Ke = ct[be] || "";
-        return ct[be] = Ke, ct[we] = ct[we] || M(Ke), ct[Te] = ct[Te] || "", ct[ze] = ct[ze] || 0, ct[ee] = ct[ee] || B(), ct;
+        return ct[be] = Ke, ct[we] = ct[we] || M(Ke), ct[Te] = ct[Te] || "", ct[ze] = ct[ze] || 0, ct[ee] = ct[ee] || L(), ct;
       }) : [];
       u.fileList = N || re ? st : st.slice(0, 1);
     }, P = (F) => decodeURIComponent(`${F || ""}`).split("/").pop() || "", M = (F) => {
@@ -31465,7 +31469,7 @@ const cA = (e) => {
       return re > -1 ? F.substring(re + 1, F.length).toLowerCase() : "";
     }, I = (F, re, N) => {
       n(F, Zt(N, { $upload: K }, re));
-    }, A = (F) => {
+    }, B = (F) => {
       const { singleMode: re, urlMode: N } = e, ee = O.value;
       let be = F ? F.slice(0) : [];
       N && (be = be.map((we) => we[ee])), n("update:modelValue", re ? be[0] || null : be);
@@ -31481,7 +31485,7 @@ const cA = (e) => {
         $upload: K,
         option: F
       }) : F[N];
-    }, L = (F) => {
+    }, A = (F) => {
       const { imageTypes: re, showDownloadButton: N } = e, ee = h.value, be = e.beforeDownloadMethod || oe().upload.beforeDownloadMethod, { imagePreviewTypes: we } = d;
       we.concat(re || []).some((Te) => `${Te}`.toLowerCase() === `${F[ee]}`.toLowerCase()) && Ce.previewImage && Ce.previewImage({
         urlList: [ce(F)],
@@ -31496,7 +31500,7 @@ const cA = (e) => {
       e.showPreview && (N ? N({
         $upload: K,
         option: re
-      }) : L(re));
+      }) : A(re));
     }, fe = (F, re, N) => {
       const { showDownloadButton: ee } = e, { fileList: be } = u, we = e.beforeDownloadMethod || oe().upload.beforeDownloadMethod;
       e.showPreview && Ce.previewImage && Ce.previewImage({
@@ -31539,7 +31543,7 @@ const cA = (e) => {
       if ((re || oe().upload.uploadMethod) && we) {
         const ze = we.file;
         we.loading = !0, we.status = "", we.percent = 0, pe(F, ze).then(() => {
-          N && A(u.fileList);
+          N && B(u.fileList);
         });
       }
     }, $ = (F, re) => {
@@ -31592,7 +31596,7 @@ const cA = (e) => {
       }
       const nn = Object.assign({}, u.fileCacheMaps), zt = N ? be : [], At = [];
       Wt.forEach((Ee) => {
-        const { name: Ye } = Ee, rt = B(), Ot = {
+        const { name: Ye } = Ee, rt = L(), Ot = {
           [ze]: Ye,
           [st]: M(Ye),
           [Ke]: Ee.size,
@@ -31608,7 +31612,7 @@ const cA = (e) => {
         const Jt = Rt(Ot);
         we && At.push(pe(Jt, Ee)), zt.push(Jt), I("add", { option: Jt }, re);
       }), u.fileList = zt, u.fileCacheMaps = nn, Promise.all(ee ? At : []).then(() => {
-        A(zt), i && l && i.triggerItemEvent(re, l.itemConfig.field, zt);
+        B(zt), i && l && i.triggerItemEvent(re, l.itemConfig.field, zt);
       });
     }, J = (F) => {
       const { multiple: re, imageTypes: N, fileTypes: ee } = e, be = v.value, we = S.value;
@@ -31625,7 +31629,7 @@ const cA = (e) => {
       });
     }, Oe = (F, re, N) => {
       const { fileList: ee } = u;
-      ee.splice(N, 1), A(ee), i && l && i.triggerItemEvent(F, l.itemConfig.field, ee), I("remove", { option: re }, F);
+      ee.splice(N, 1), B(ee), i && l && i.triggerItemEvent(F, l.itemConfig.field, ee), I("remove", { option: re }, F);
     }, Se = (F, re, N) => {
       const ee = e.beforeRemoveMethod || oe().upload.beforeRemoveMethod, be = e.removeMethod || oe().upload.removeMethod;
       Promise.resolve(ee ? ee({
@@ -32343,12 +32347,12 @@ const cA = (e) => {
           class: ["vxe-rte--item", {
             "is--checked": K
           }],
-          onMouseenter(B) {
-            Q || g(B, Y);
+          onMouseenter(L) {
+            Q || g(L, Y);
           },
           onMouseleave: b,
-          onClick(B) {
-            Q || E(B, Y);
+          onClick(L) {
+            Q || E(L, Y);
           }
         }, [
           o("i", {
@@ -32514,11 +32518,11 @@ const cA = (e) => {
     }, C = {
       dispatchEvent: E
     }, V = (P) => {
-      const { range: M } = e, I = x.value, A = h.value;
-      return M ? r.floor((P - A) / r.toNumber(I - A) * 100) : 0;
+      const { range: M } = e, I = x.value, B = h.value;
+      return M ? r.floor((P - B) / r.toNumber(I - B) * 100) : 0;
     }, Q = (P, M) => {
-      const { range: I } = e, A = x.value, H = h.value;
-      return r.floor((M - (I ? P : 0) - H) / r.toNumber(A - H) * 100);
+      const { range: I } = e, B = x.value, H = h.value;
+      return r.floor((M - (I ? P : 0) - H) / r.toNumber(B - H) * 100);
     }, Z = () => {
       const { modelValue: P } = e;
       if (r.isArray(P)) {
@@ -32527,17 +32531,17 @@ const cA = (e) => {
       } else
         w.startValue = 0, w.endValue = r.floor(r.toNumber(P || 0));
     }, G = () => {
-      const { startValue: P, endValue: M } = w, I = u.value, A = d.value, H = p.value;
-      let ce = 0, L = 0;
-      P > M ? (ce = V(M), L = Q(M, P)) : (ce = V(P), L = Q(P, M)), I && (I.style.left = `${ce}%`, I.style.width = `${L}%`), A && (A.style.left = `${ce}%`), H && (H.style.left = `${r.floor(ce + L)}%`);
+      const { startValue: P, endValue: M } = w, I = u.value, B = d.value, H = p.value;
+      let ce = 0, A = 0;
+      P > M ? (ce = V(M), A = Q(M, P)) : (ce = V(P), A = Q(P, M)), I && (I.style.left = `${ce}%`, I.style.width = `${A}%`), B && (B.style.left = `${ce}%`), H && (H.style.left = `${r.floor(ce + A)}%`);
     }, ue = (P) => {
-      const { range: M } = e, { startValue: I, endValue: A } = w, H = M ? [I, A].sort() : A;
+      const { range: M } = e, { startValue: I, endValue: B } = w, H = M ? [I, B].sort() : B;
       b(H), E("change", { value: H }, P), s && i && s.triggerItemEvent(P, i.itemConfig.field, H);
     }, Y = (P, M) => {
-      const I = D.value, A = S.value, H = x.value, ce = h.value;
-      if (!(I || A)) {
+      const I = D.value, B = S.value, H = x.value, ce = h.value;
+      if (!(I || B)) {
         P.preventDefault();
-        const L = document.onmousemove, j = document.onmouseup;
+        const A = document.onmousemove, j = document.onmouseup;
         document.onmousemove = (fe) => {
           fe.preventDefault();
           const pe = c.value, ne = m.value;
@@ -32547,25 +32551,25 @@ const cA = (e) => {
           }
           G();
         }, document.onmouseup = (fe) => {
-          document.onmousemove = L, document.onmouseup = j, ue(fe), G();
+          document.onmousemove = A, document.onmouseup = j, ue(fe), G();
         };
       }
     }, K = (P) => {
       const M = p.value, I = P.currentTarget;
       Y(P, M ? M.offsetLeft < I.offsetLeft : !1);
-    }, B = (P) => {
+    }, L = (P) => {
       const M = d.value, I = P.currentTarget;
       Y(P, M ? I.offsetLeft > M.offsetLeft : !0);
     };
     Object.assign(g, C, {});
     const se = () => {
-      const { vertical: P, range: M } = e, I = a.value, A = D.value, H = S.value;
+      const { vertical: P, range: M } = e, I = a.value, B = D.value, H = S.value;
       return o("div", {
         ref: c,
         class: ["vxe-slider", {
           [`size--${I}`]: I,
           "is--vertical": P,
-          "is--readonly": A,
+          "is--readonly": B,
           "is--disabled": H
         }]
       }, [
@@ -32580,15 +32584,15 @@ const cA = (e) => {
             ref: u,
             class: "vxe-slider--bar-track"
           }),
-          A || !M ? Yn() : o("div", {
+          B || !M ? Yn() : o("div", {
             ref: d,
             class: "vxe-slider--bar-btn vxe-slider--start-btn",
             onMousedown: K
           }),
-          A ? Yn() : o("div", {
+          B ? Yn() : o("div", {
             ref: p,
             class: "vxe-slider--bar-btn vxe-slider--end-btn",
-            onMousedown: B
+            onMousedown: L
           })
         ])
       ]);
@@ -33006,7 +33010,7 @@ const Qa = pt({
       d.selectIcon = $, $ !== e.modelValue && (n("update:modelValue", $), h.dispatchEvent("change", { value: $ }, ne), a && c && a.triggerItemEvent(ne, c.itemConfig.field, $));
     }, K = () => {
       g.value || d.visiblePanel || G();
-    }, B = () => {
+    }, L = () => {
       d.isActivated = !1;
     }, ye = (ne, $) => {
       Y(ne, $), h.dispatchEvent("clear", { value: $ }, ne);
@@ -33022,7 +33026,7 @@ const Qa = pt({
         const ge = D.value;
         jn(ne, ge).flag ? Z() : ue();
       }
-    }, A = (ne) => {
+    }, B = (ne) => {
       const { visiblePanel: $ } = d;
       if (!g.value) {
         const ge = w.value, Oe = D.value;
@@ -33116,7 +33120,7 @@ const Qa = pt({
             ref: v,
             class: "vxe-ico-picker--input",
             onFocus: K,
-            onBlur: B
+            onBlur: L
           }),
           Ie ? o("div", {
             class: "vxe-ico-picker--icon"
@@ -33174,7 +33178,7 @@ const Qa = pt({
     return lt(() => e.modelValue, (ne) => {
       d.selectIcon = `${ne || ""}`;
     }), wn(() => {
-      ut.on(x, "mousewheel", I), ut.on(x, "mousedown", A), ut.on(x, "keydown", H), ut.on(x, "blur", ce);
+      ut.on(x, "mousewheel", I), ut.on(x, "mousedown", B), ut.on(x, "keydown", H), ut.on(x, "blur", ce);
     }), $n(() => {
       ut.off(x, "mousewheel"), ut.off(x, "mousedown"), ut.off(x, "keydown"), ut.off(x, "blur");
     }), bn("$xeIconPicker", x), x.renderVN = pe, x;
@@ -33235,19 +33239,19 @@ const Ni = pt({
       offsetLeft: 0,
       offsetTop: 0
     }), c = _(() => e.urlField || "url"), m = _(() => r.toNumber(e.marginSize || 0) || 16), u = _(() => {
-      const { offsetRotate: L } = a;
-      return L ? `${L}°` : "0°";
+      const { offsetRotate: A } = a;
+      return A ? `${A}°` : "0°";
     }), d = _(() => {
-      const { offsetScale: L } = a;
-      return L ? `${r.ceil((1 + L) * 100)}%` : "100%";
+      const { offsetScale: A } = a;
+      return A ? `${r.ceil((1 + A) * 100)}%` : "100%";
     }), p = _(() => {
-      const { urlList: L } = e, j = c.value;
-      return L && L.length ? L.map((fe) => r.isString(fe) ? fe : fe[j] ? fe[j] : "") : [];
+      const { urlList: A } = e, j = c.value;
+      return A && A.length ? A.map((fe) => r.isString(fe) ? fe : fe[j] ? fe[j] : "") : [];
     }), w = _(() => {
-      let { offsetScale: L, offsetRotate: j, offsetLeft: fe, offsetTop: pe } = a;
+      let { offsetScale: A, offsetRotate: j, offsetLeft: fe, offsetTop: pe } = a;
       const ne = [];
       let $ = 1;
-      if (L && ($ = 1 + L, ne.push(`scale(${$})`)), j && ne.push(`rotate(${j}deg)`), fe || pe) {
+      if (A && ($ = 1 + A, ne.push(`scale(${$})`)), j && ne.push(`rotate(${j}deg)`), fe || pe) {
         fe /= $, pe /= $;
         let J = fe, ge = pe;
         if (j)
@@ -33277,17 +33281,17 @@ const Ni = pt({
       reactData: a,
       getRefMaps: () => l,
       getComputeMaps: () => v
-    }, S = (L, j, fe) => {
-      n(L, Zt(fe, { $imagePreview: D }, j));
+    }, S = (A, j, fe) => {
+      n(A, Zt(fe, { $imagePreview: D }, j));
     }, x = {
       dispatchEvent: S
-    }, h = (L) => {
-      a.activeIndex = L, n("update:modelValue", L);
-    }, O = (L) => {
-      S("close", {}, L);
+    }, h = (A) => {
+      a.activeIndex = A, n("update:modelValue", A);
+    }, O = (A) => {
+      S("close", {}, A);
     }, g = {}, b = () => {
-      const L = i.value;
-      Na(L, "is--move"), Object.assign(a, {
+      const A = i.value;
+      Na(A, "is--move"), Object.assign(a, {
         offsetPct11: !1,
         offsetScale: 0,
         offsetRotate: 0,
@@ -33295,23 +33299,23 @@ const Ni = pt({
         offsetTop: 0
       });
     }, E = () => {
-      const { offsetScale: L } = a;
+      const { offsetScale: A } = a;
       let j = 0.02;
-      return L >= -0.6 && (j = 0.04, L >= -0.4 && (j = 0.07, L >= 0 && (j = 0.1, L >= 3 && (j = 0.25, L >= 8 && (j = 0.4, L >= 16 && (j = 0.6, L >= 24 && (j = 0.9, L >= 32 && (j = 1.3, L >= 39 && (j = 1.9, L >= 45 && (j = 2.5)))))))))), j;
-    }, C = (L) => {
+      return A >= -0.6 && (j = 0.04, A >= -0.4 && (j = 0.07, A >= 0 && (j = 0.1, A >= 3 && (j = 0.25, A >= 8 && (j = 0.4, A >= 16 && (j = 0.6, A >= 24 && (j = 0.9, A >= 32 && (j = 1.3, A >= 39 && (j = 1.9, A >= 45 && (j = 2.5)))))))))), j;
+    }, C = (A) => {
       const { offsetScale: j } = a, fe = E();
-      L ? a.offsetScale = Number(Math.min(49, j + fe).toFixed(2)) : a.offsetScale = Number(Math.max(-0.9, j - fe).toFixed(2));
-    }, V = (L) => {
+      A ? a.offsetScale = Number(Math.min(49, j + fe).toFixed(2)) : a.offsetScale = Number(Math.max(-0.9, j - fe).toFixed(2));
+    }, V = (A) => {
       let j = a.activeIndex || 0;
       const fe = p.value;
-      L ? j >= fe.length - 1 ? j = 0 : j++ : j <= 0 ? j = fe.length - 1 : j--, b(), a.activeIndex = j, h(j);
-    }, Q = (L) => {
+      A ? j >= fe.length - 1 ? j = 0 : j++ : j <= 0 ? j = fe.length - 1 : j--, b(), a.activeIndex = j, h(j);
+    }, Q = (A) => {
       let j = a.offsetRotate;
-      L ? j += 90 : j -= 90, a.offsetRotate = j;
+      A ? j += 90 : j -= 90, a.offsetRotate = j;
     }, Z = () => {
       b(), a.offsetPct11 = !0;
     }, G = () => {
-      const { activeIndex: L } = a, fe = p.value[L || 0];
+      const { activeIndex: A } = a, fe = p.value[A || 0];
       Ce.print && Ce.print({
         align: "center",
         pageBreaks: [
@@ -33320,21 +33324,21 @@ const Ni = pt({
           }
         ]
       });
-    }, ue = (L, j) => {
-      S("download", { url: j }, L);
-    }, Y = (L, j) => {
+    }, ue = (A, j) => {
+      S("download", { url: j }, A);
+    }, Y = (A, j) => {
       Ce.saveFile && fetch(j).then((fe) => fe.blob().then((pe) => {
         Ce.saveFile({
           filename: j,
           content: pe
-        }), ue(L, j);
+        }), ue(A, j);
       })).catch(() => {
         Ce.modal && Ce.modal.message({
           content: Pe("vxe.error.downErr"),
           status: "error"
         });
       });
-    }, K = (L) => {
+    }, K = (A) => {
       const { activeIndex: j } = a, pe = p.value[j || 0], ne = e.beforeDownloadMethod || oe().imagePreview.beforeDownloadMethod, $ = e.downloadMethod || oe().imagePreview.downloadMethod;
       Promise.resolve(ne ? ne({
         $imagePreview: D,
@@ -33346,10 +33350,10 @@ const Ni = pt({
           url: pe,
           index: j || 0
         })).then(() => {
-          ue(L, pe);
-        }).catch((ge) => ge) : Y(L, pe));
+          ue(A, pe);
+        }).catch((ge) => ge) : Y(A, pe));
       });
-    }, B = (L, j) => {
+    }, L = (A, j) => {
       const { activeIndex: fe } = a;
       if (p.value[fe || 0])
         switch (j) {
@@ -33375,36 +33379,36 @@ const Ni = pt({
             G();
             break;
           case "download":
-            K(L);
+            K(A);
             break;
         }
-    }, ye = (L) => {
-      const j = L.deltaY;
+    }, ye = (A) => {
+      const j = A.deltaY;
       j > 0 ? C(!1) : j < 0 && C(!0);
-    }, se = (L) => {
+    }, se = (A) => {
       const { offsetTop: j, offsetLeft: fe } = a, pe = i.value;
-      L.preventDefault();
-      const ne = document.onmousemove, $ = document.onmouseup, J = L.pageX, ge = L.pageY, Oe = m.value;
+      A.preventDefault();
+      const ne = document.onmousemove, $ = document.onmouseup, J = A.pageX, ge = A.pageY, Oe = m.value;
       document.onmousemove = (Se) => {
         const { pageX: de, pageY: Ie } = Se, { visibleHeight: je, visibleWidth: Ue } = tl();
         Se.preventDefault(), oL(pe, "is--move"), de > Oe && Ie > Oe && de < Ue - Oe && Ie < je - Oe && (a.offsetLeft = fe + de - J, a.offsetTop = j + Ie - ge);
       }, document.onmouseup = () => {
         document.onmousemove = ne, document.onmouseup = $, Na(pe, "is--move");
       };
-    }, P = (L) => {
-      const j = L.ctrlKey, fe = L.shiftKey, pe = ut.hasKey(L, Yt.ARROW_UP), ne = ut.hasKey(L, Yt.ARROW_DOWN), $ = ut.hasKey(L, Yt.ARROW_LEFT), J = ut.hasKey(L, Yt.ARROW_RIGHT), ge = ut.hasKey(L, Yt.R), Oe = ut.hasKey(L, Yt.P);
-      pe ? (L.preventDefault(), fe ? a.offsetTop -= 1 : C(!0)) : ne ? (L.preventDefault(), fe ? a.offsetTop += 1 : C(!1)) : $ ? (L.preventDefault(), fe ? a.offsetLeft -= 1 : V(!1)) : J ? (L.preventDefault(), fe ? a.offsetLeft += 1 : V(!0)) : ge && j ? (L.preventDefault(), Q(!fe)) : Oe && j && (L.preventDefault(), G());
-    }, M = (L) => {
-      e.maskClosable && L.target === L.currentTarget && S("close", {}, L);
+    }, P = (A) => {
+      const j = A.ctrlKey, fe = A.shiftKey, pe = ut.hasKey(A, Yt.ARROW_UP), ne = ut.hasKey(A, Yt.ARROW_DOWN), $ = ut.hasKey(A, Yt.ARROW_LEFT), J = ut.hasKey(A, Yt.ARROW_RIGHT), ge = ut.hasKey(A, Yt.R), Oe = ut.hasKey(A, Yt.P);
+      pe ? (A.preventDefault(), fe ? a.offsetTop -= 1 : C(!0)) : ne ? (A.preventDefault(), fe ? a.offsetTop += 1 : C(!1)) : $ ? (A.preventDefault(), fe ? a.offsetLeft -= 1 : V(!1)) : J ? (A.preventDefault(), fe ? a.offsetLeft += 1 : V(!0)) : ge && j ? (A.preventDefault(), Q(!fe)) : Oe && j && (A.preventDefault(), G());
+    }, M = (A) => {
+      e.maskClosable && A.target === A.currentTarget && S("close", {}, A);
     };
     Object.assign(D, x, g);
     const I = () => {
-      const { activeIndex: L } = a, j = p.value, fe = w.value;
+      const { activeIndex: A } = a, j = p.value, fe = w.value;
       return o("div", {
         class: "vxe-image-preview--img-list",
         onClick: M
       }, j.map((pe, ne) => {
-        const $ = L === ne;
+        const $ = A === ne;
         return o("img", {
           class: ["vxe-image-preview--img-item", {
             "is--active": $
@@ -33418,18 +33422,18 @@ const Ni = pt({
           }
         });
       }));
-    }, A = (L, j) => o("div", {
+    }, B = (A, j) => o("div", {
       class: "vxe-image-preview--operation-btn",
-      title: Pe(`vxe.imagePreview.operBtn.${L}`),
+      title: Pe(`vxe.imagePreview.operBtn.${A}`),
       onClick(fe) {
-        B(fe, L);
+        L(fe, A);
       }
     }, [
       o("i", {
         class: ht()[j]
       })
     ]), H = () => {
-      const { showPrintButton: L, showDownloadButton: j } = e, { activeIndex: fe } = a, pe = p.value, ne = u.value, $ = d.value;
+      const { showPrintButton: A, showDownloadButton: j } = e, { activeIndex: fe } = a, pe = p.value, ne = u.value, $ = d.value;
       return o("div", {
         class: "vxe-image-preview--btn-wrapper"
       }, [
@@ -33491,22 +33495,22 @@ const Ni = pt({
               class: "vxe-image-preview--operation-active-total"
             }, `/${pe.length}`)
           ]),
-          A("zoomOut", "IMAGE_PREVIEW_ZOOM_OUT"),
-          A("zoomIn", "IMAGE_PREVIEW_ZOOM_IN"),
-          A("pctFull", "IMAGE_PREVIEW_PCT_FULL"),
-          A("pct11", "IMAGE_PREVIEW_PCT_1_1"),
-          A("rotateLeft", "IMAGE_PREVIEW_ROTATE_LEFT"),
-          A("rotateRight", "IMAGE_PREVIEW_ROTATE_RIGHT"),
-          L ? A("print", "IMAGE_PREVIEW_PRINT") : Ve(),
-          j ? A("download", "IMAGE_PREVIEW_DOWNLOAD") : Ve()
+          B("zoomOut", "IMAGE_PREVIEW_ZOOM_OUT"),
+          B("zoomIn", "IMAGE_PREVIEW_ZOOM_IN"),
+          B("pctFull", "IMAGE_PREVIEW_PCT_FULL"),
+          B("pct11", "IMAGE_PREVIEW_PCT_1_1"),
+          B("rotateLeft", "IMAGE_PREVIEW_ROTATE_LEFT"),
+          B("rotateRight", "IMAGE_PREVIEW_ROTATE_RIGHT"),
+          A ? B("print", "IMAGE_PREVIEW_PRINT") : Ve(),
+          j ? B("download", "IMAGE_PREVIEW_DOWNLOAD") : Ve()
         ])
       ]);
     }, ce = () => {
-      const { offsetPct11: L } = a;
+      const { offsetPct11: A } = a;
       return o("div", {
         ref: i,
         class: ["vxe-image-preview", {
-          "is--pct11": L
+          "is--pct11": A
         }],
         onWheel: ye
       }, [
@@ -33514,13 +33518,13 @@ const Ni = pt({
         H()
       ]);
     };
-    return lt(() => e.modelValue, (L) => {
-      a.activeIndex = L, b();
+    return lt(() => e.modelValue, (A) => {
+      a.activeIndex = A, b();
     }), wn(() => {
       ut.on(D, "keydown", P);
     }), Us(() => {
-      const L = i.value;
-      L && Na(L, "is--move");
+      const A = i.value;
+      A && Na(A, "is--move");
     }), $n(() => {
       ut.off(D, "keydown");
     }), bn("$xeImagePreview", D), D.renderVN = ce, ce;
@@ -34982,10 +34986,10 @@ const Bi = (e) => Object.assign({
       getRefMaps: () => m,
       getComputeMaps: () => u
     }, p = [];
-    Cn.forEach((K, B) => {
+    Cn.forEach((K, L) => {
       const { createListDesignSettingActionButtonConfig: ye } = K;
       if (ye) {
-        const se = { name: B }, P = Object.assign(Bi({ code: B }), ye(se));
+        const se = { name: L }, P = Object.assign(Bi({ code: L }), ye(se));
         P.type === "custom" || p.push(P);
       }
     });
@@ -34999,45 +35003,45 @@ const Bi = (e) => Object.assign({
         props: K.options
       }
     }), v = (K) => {
-      const B = [];
+      const L = [];
       if (K) {
         const { widgetData: ye } = K;
         ye && ye.forEach((se) => {
           const { name: P } = se;
           P && (P === "row" ? se.children.forEach((M) => {
-            M.name && B.push(w(M));
-          }) : P === "subtable" || B.push(w(se)));
+            M.name && L.push(w(M));
+          }) : P === "subtable" || L.push(w(se)));
         });
       }
-      return B;
+      return L;
     }, D = (K) => {
       if (K) {
-        const B = {};
+        const L = {};
         return {
-          items: K.map((se) => (B[se.field] = null, {
+          items: K.map((se) => (L[se.field] = null, {
             field: se.field,
             title: se.title,
             folding: se.folding,
             itemRender: se.itemRender
           })),
-          data: B
+          data: L
         };
       }
       return { items: [], data: {} };
-    }, S = (K) => K ? K.map((B) => ({
-      field: B.field,
-      title: B.title,
-      visible: !!B.visible,
-      width: B.width,
-      cellRender: r.clone(B.cellRender)
+    }, S = (K) => K ? K.map((L) => ({
+      field: L.field,
+      title: L.title,
+      visible: !!L.visible,
+      width: L.width,
+      cellRender: r.clone(L.cellRender)
     })) : [], x = (K) => {
-      const { formConfig: B, searchItems: ye, listColumns: se } = K;
-      return B && O(B), ye && b(ye), se && (c.listTableColumns = h(se)), me();
+      const { formConfig: L, searchItems: ye, listColumns: se } = K;
+      return L && O(L), ye && b(ye), se && (c.listTableColumns = h(se)), me();
     }, h = (K) => S(K), O = (K) => (c.formData = Object.assign({}, V(), K), me()), g = () => c.searchFormItems, b = (K) => {
-      const { data: B, items: ye } = D(K);
-      return c.searchFormData = B, c.searchFormItems = ye, me();
+      const { data: L, items: ye } = D(K);
+      return c.searchFormData = L, c.searchFormItems = ye, me();
     }, E = () => c.listTableColumns, C = (K) => (c.listTableColumns = h(K), me()), V = () => {
-      const { actionCodes: K, formRender: B } = e;
+      const { actionCodes: K, formRender: L } = e;
       let ye = RA();
       if (K && K.length && (!ye.actionButtonList || !ye.actionButtonList.length)) {
         const se = [];
@@ -35051,8 +35055,8 @@ const Bi = (e) => Object.assign({
           }
         }), ye.actionButtonList = se;
       }
-      if (B && B.name) {
-        const se = Cn.get(B.name), P = se ? se.createListDesignSettingFormConfig : null, M = { name: B.name };
+      if (L && L.name) {
+        const se = Cn.get(L.name), P = se ? se.createListDesignSettingFormConfig : null, M = { name: L.name };
         ye = (P ? P(M) : {}) || {};
       }
       return ye;
@@ -35063,12 +35067,12 @@ const Bi = (e) => Object.assign({
       listColumns: []
     }), Q(), me());
     Object.assign(d, {
-      dispatchEvent(K, B, ye) {
-        n(K, Zt(ye, { $listDesign: d }, B));
+      dispatchEvent(K, L, ye) {
+        n(K, Zt(ye, { $listDesign: d }, L));
       },
       loadFormDesignConfig(K) {
-        const { listTableColumns: B } = c, ye = {};
-        r.eachTree(B, (P) => {
+        const { listTableColumns: L } = c, ye = {};
+        r.eachTree(L, (P) => {
           ye[P.field] = P;
         }, { children: "children" });
         const se = v(K);
@@ -35098,11 +35102,11 @@ const Bi = (e) => Object.assign({
       clearConfig: Z
     }, {});
     const Y = () => {
-      const { height: K } = e, B = a.value, ye = s.header;
+      const { height: K } = e, L = a.value, ye = s.header;
       return o("div", {
         ref: l,
         class: ["vxe-list-design", {
-          [`size--${B}`]: B
+          [`size--${L}`]: L
         }],
         style: K ? {
           height: cn(K)
@@ -35191,18 +35195,18 @@ const ac = pt({
         // 默认一行合计
       ]
     }), d = _(() => {
-      const { gridOptions: se } = e, { formConfig: P, tableColumns: M, searchFormData: I, searchFormItems: A, footerData: H } = u, { showStatistics: ce } = P, L = se || {}, j = Object.assign({
+      const { gridOptions: se } = e, { formConfig: P, tableColumns: M, searchFormData: I, searchFormItems: B, footerData: H } = u, { showStatistics: ce } = P, A = se || {}, j = Object.assign({
         minWidth: 120
-      }, L.columnConfig);
+      }, A.columnConfig);
       let fe;
-      return L.proxyConfig && (fe = Object.assign({ autoLoad: !1 }, L.proxyConfig)), Object.assign({}, L, {
+      return A.proxyConfig && (fe = Object.assign({ autoLoad: !1 }, A.proxyConfig)), Object.assign({}, A, {
         columns: M,
         columnConfig: j,
         showFooter: ce,
         footerData: ce ? H : null,
         formConfig: {
           data: I,
-          items: A
+          items: B
         },
         proxyConfig: fe
       });
@@ -35227,8 +35231,8 @@ const ac = pt({
     Cn.forEach((se, P) => {
       const { createListDesignSettingActionButtonConfig: M } = se;
       if (M) {
-        const I = { name: P }, A = Object.assign(Bi({ code: P }), M(I));
-        A.type === "custom" || S.push(A);
+        const I = { name: P }, B = Object.assign(Bi({ code: P }), M(I));
+        B.type === "custom" || S.push(B);
       }
     });
     const x = (se) => {
@@ -35280,7 +35284,7 @@ const ac = pt({
       }
       return me();
     }, b = (se) => x(se || []), E = (se, P) => {
-      const M = Object.assign({}, P), { showSeq: I, actionButtonList: A } = M, H = [], ce = {}, L = i.cellAction, j = i.footerCell;
+      const M = Object.assign({}, P), { showSeq: I, actionButtonList: B } = M, H = [], ce = {}, A = i.cellAction, j = i.footerCell;
       if (I && H.push({
         type: "seq",
         field: "_seq",
@@ -35291,14 +35295,14 @@ const ac = pt({
         M.showStatistics && j && (pe.slots = {
           footer: (ne) => j(Object.assign({}, ne))
         }), pe.field && (ce[pe.field] = null), H.push(pe);
-      }), A && A.length) {
+      }), B && B.length) {
         const fe = {
           field: "_active",
           title: Pe("vxe.table.actionTitle"),
           fixed: "right",
           width: "auto"
         }, pe = [];
-        A.forEach((ne) => {
+        B.forEach((ne) => {
           if (ne.type === "custom")
             return {
               content: ne.name,
@@ -35318,9 +35322,9 @@ const ac = pt({
             status: Oe,
             permissionCode: Se
           });
-        }), L ? fe.slots = {
+        }), A ? fe.slots = {
           default(ne) {
-            return L(Object.assign(Object.assign({}, ne), { buttons: pe }));
+            return A(Object.assign(Object.assign({}, ne), { buttons: pe }));
           }
         } : fe.cellRender = {
           name: "VxeButtonGroup",
@@ -35336,13 +35340,13 @@ const ac = pt({
           }
         }, H.push(fe);
       }
-      return { rowRecord: ce, columns: H, actionButtons: A };
+      return { rowRecord: ce, columns: H, actionButtons: B };
     }, C = (se) => {
-      const { formConfig: P, searchItems: M, listColumns: I } = se || {}, { columns: A, rowRecord: H, actionButtons: ce } = E(I || [], P || u.formConfig), { data: L, items: j } = b(M || []);
+      const { formConfig: P, searchItems: M, listColumns: I } = se || {}, { columns: B, rowRecord: H, actionButtons: ce } = E(I || [], P || u.formConfig), { data: A, items: j } = b(M || []);
       return {
-        formData: L,
+        formData: A,
         formItems: j,
-        tableColumns: A,
+        tableColumns: B,
         tableRecord: H,
         actionButtons: ce
       };
@@ -35362,14 +35366,14 @@ const ac = pt({
         type: "and"
       };
       return c.value && P.forEach((H) => {
-        const { field: ce } = H, L = se[ce];
-        if (L) {
+        const { field: ce } = H, A = se[ce];
+        if (A) {
           const j = [];
           j.push({
             field: ce,
-            value: L,
+            value: A,
             match: "exact",
-            type: r.isArray(L) ? "array" : ""
+            type: r.isArray(A) ? "array" : ""
           }), M.push({
             condition: j,
             type: "and"
@@ -35380,8 +35384,8 @@ const ac = pt({
       const M = c.value;
       return M ? M.commitProxy(se, ...P) : Promise.resolve();
     }, G = (se) => {
-      const { formConfig: P } = u, M = se || [], { columns: I, actionButtons: A } = E(M, P);
-      u.listTableColumns = M, u.tableColumns = I, s("update:actionButtons", A), me(() => {
+      const { formConfig: P } = u, M = se || [], { columns: I, actionButtons: B } = E(M, P);
+      u.listTableColumns = M, u.tableColumns = I, s("update:actionButtons", B), me(() => {
         d.value.proxyConfig && Z("reload");
       });
     }, ue = (se) => {
@@ -35400,7 +35404,7 @@ const ac = pt({
       commitProxy: Z
     }, {});
     const ye = () => {
-      const { height: se, loading: P } = e, M = m.value, I = i.grid, A = d.value, H = p.value;
+      const { height: se, loading: P } = e, M = m.value, I = i.grid, B = d.value, H = p.value;
       return o("div", {
         ref: a,
         class: ["vxe-list-view", {
@@ -35416,7 +35420,7 @@ const ac = pt({
         }, [
           I ? o("div", {
             class: "vxe-list-view--grid-wrapper"
-          }, Nt(I({ $listView: D }))) : n ? o(n, Object.assign({}, A, H, {
+          }, Nt(I({ $listView: D }))) : n ? o(n, Object.assign({}, B, H, {
             ref: c
           }), Object.assign({}, i, {
             default: void 0
@@ -35491,32 +35495,32 @@ const cc = pt({
       internalData: c,
       getRefMaps: () => p
     }, v = _(() => Object.assign({}, oe().list.scrollY, e.scrollY)), D = _(() => {
-      const { height: B, maxHeight: ye } = e, se = {};
-      return B ? se.height = `${isNaN(B) ? B : `${B}px`}` : ye && (se.height = "auto", se.maxHeight = `${isNaN(ye) ? ye : `${ye}px`}`), se;
-    }), S = (B, ye, se) => {
-      s(B, Zt(se, { $list: w }, ye));
+      const { height: L, maxHeight: ye } = e, se = {};
+      return L ? se.height = `${isNaN(L) ? L : `${L}px`}` : ye && (se.height = "auto", se.maxHeight = `${isNaN(ye) ? ye : `${ye}px`}`), se;
+    }), S = (L, ye, se) => {
+      s(L, Zt(se, { $list: w }, ye));
     }, x = () => {
-      const { scrollYLoad: B } = a, { scrollYStore: ye, fullData: se } = c;
-      a.bodyHeight = B ? se.length * ye.rowHeight : 0, a.topSpaceHeight = B ? Math.max(ye.startIndex * ye.rowHeight, 0) : 0;
+      const { scrollYLoad: L } = a, { scrollYStore: ye, fullData: se } = c;
+      a.bodyHeight = L ? se.length * ye.rowHeight : 0, a.topSpaceHeight = L ? Math.max(ye.startIndex * ye.rowHeight, 0) : 0;
     }, h = () => {
-      const { scrollYLoad: B } = a, { fullData: ye, scrollYStore: se } = c;
-      return a.items = B ? ye.slice(se.startIndex, se.endIndex) : ye.slice(0), me();
+      const { scrollYLoad: L } = a, { fullData: ye, scrollYStore: se } = c;
+      return a.items = L ? ye.slice(se.startIndex, se.endIndex) : ye.slice(0), me();
     }, O = () => {
       h(), x();
     }, g = () => me().then(() => {
-      const { scrollYLoad: B } = a, { scrollYStore: ye } = c, se = d.value, P = v.value;
+      const { scrollYLoad: L } = a, { scrollYStore: ye } = c, se = d.value, P = v.value;
       let M = 0, I;
-      if (se && (P.sItem && (I = se.querySelector(P.sItem)), I || (I = se.children[0])), I && (M = I.offsetHeight), M = Math.max(20, M), ye.rowHeight = M, B) {
-        const A = u.value, H = Math.max(8, Math.ceil(A.clientHeight / M)), ce = P.oSize ? r.toNumber(P.oSize) : nL.edge ? 10 : 0;
+      if (se && (P.sItem && (I = se.querySelector(P.sItem)), I || (I = se.children[0])), I && (M = I.offsetHeight), M = Math.max(20, M), ye.rowHeight = M, L) {
+        const B = u.value, H = Math.max(8, Math.ceil(B.clientHeight / M)), ce = P.oSize ? r.toNumber(P.oSize) : nL.edge ? 10 : 0;
         ye.offsetSize = ce, ye.visibleSize = H, ye.endIndex = Math.max(ye.startIndex, H + ce, ye.endIndex), O();
       } else
         x();
     }), b = () => {
-      const B = u.value;
-      return B && (B.scrollTop = 0), me();
-    }, E = (B, ye) => {
+      const L = u.value;
+      return L && (L.scrollTop = 0), me();
+    }, E = (L, ye) => {
       const se = u.value;
-      return r.isNumber(B) && (se.scrollLeft = B), r.isNumber(ye) && (se.scrollTop = ye), a.scrollYLoad ? new Promise((P) => {
+      return r.isNumber(L) && (se.scrollLeft = L), r.isNumber(ye) && (se.scrollTop = ye), a.scrollYLoad ? new Promise((P) => {
         setTimeout(() => {
           me(() => {
             P();
@@ -35524,22 +35528,22 @@ const cc = pt({
         }, 50);
       }) : me();
     }, C = () => {
-      const { lastScrollLeft: B, lastScrollTop: ye } = c;
+      const { lastScrollLeft: L, lastScrollTop: ye } = c;
       return b().then(() => {
-        if (B || ye)
-          return c.lastScrollLeft = 0, c.lastScrollTop = 0, E(B, ye);
+        if (L || ye)
+          return c.lastScrollLeft = 0, c.lastScrollTop = 0, E(L, ye);
       });
     }, V = () => {
-      const B = m.value;
-      return B.clientWidth && B.clientHeight ? g() : Promise.resolve();
-    }, Q = (B) => {
-      const { scrollYStore: ye } = c, { startIndex: se, endIndex: P, visibleSize: M, offsetSize: I, rowHeight: A } = ye, ce = B.target.scrollTop, L = Math.floor(ce / A), j = Math.max(0, L - 1 - I), fe = L + M + I;
-      (L <= se || L >= P - M - 1) && (se !== j || P !== fe) && (ye.startIndex = j, ye.endIndex = fe, O());
-    }, Z = (B) => {
-      const ye = B.target, se = ye.scrollTop, P = ye.scrollLeft, M = P !== c.lastScrollLeft, I = se !== c.lastScrollTop;
-      c.lastScrollTop = se, c.lastScrollLeft = P, a.scrollYLoad && Q(B), S("scroll", { scrollLeft: P, scrollTop: se, isX: M, isY: I }, B);
-    }, G = (B) => {
-      const { scrollYStore: ye } = c, se = v.value, P = B || [];
+      const L = m.value;
+      return L.clientWidth && L.clientHeight ? g() : Promise.resolve();
+    }, Q = (L) => {
+      const { scrollYStore: ye } = c, { startIndex: se, endIndex: P, visibleSize: M, offsetSize: I, rowHeight: B } = ye, ce = L.target.scrollTop, A = Math.floor(ce / B), j = Math.max(0, A - 1 - I), fe = A + M + I;
+      (A <= se || A >= P - M - 1) && (se !== j || P !== fe) && (ye.startIndex = j, ye.endIndex = fe, O());
+    }, Z = (L) => {
+      const ye = L.target, se = ye.scrollTop, P = ye.scrollLeft, M = P !== c.lastScrollLeft, I = se !== c.lastScrollTop;
+      c.lastScrollTop = se, c.lastScrollLeft = P, a.scrollYLoad && Q(L), S("scroll", { scrollLeft: P, scrollTop: se, isX: M, isY: I }, L);
+    }, G = (L) => {
+      const { scrollYStore: ye } = c, se = v.value, P = L || [];
       return Object.assign(ye, {
         startIndex: 0,
         endIndex: 1,
@@ -35555,8 +35559,8 @@ const cc = pt({
        * 重新加载数据
        * @param {Array} datas 数据
        */
-      reloadData(B) {
-        return b(), G(B);
+      reloadData(L) {
+        return b(), G(L);
       },
       recalculate: V,
       scrollTo: E,
@@ -35570,28 +35574,28 @@ const cc = pt({
       Y.value++;
     }), lt(Y, () => {
       G(e.data || []);
-    }), lt(() => e.syncResize, (B) => {
-      B && (V(), me(() => setTimeout(() => V())));
+    }), lt(() => e.syncResize, (L) => {
+      L && (V(), me(() => setTimeout(() => V())));
     }), Cm(() => {
       V().then(() => C());
     }), me(() => {
       if (ut.on(w, "resize", () => {
         V();
       }), e.autoResize) {
-        const B = m.value, ye = Sh.create(() => V());
-        ye.observe(B), c.resizeObserver = ye;
+        const L = m.value, ye = Sh.create(() => V());
+        ye.observe(L), c.resizeObserver = ye;
       }
       G(e.data || []);
     }), $n(() => {
-      const { resizeObserver: B } = c;
-      B && B.disconnect(), ut.off(w, "resize");
+      const { resizeObserver: L } = c;
+      L && L.disconnect(), ut.off(w, "resize");
     });
     const K = () => {
-      const { className: B, loading: ye } = e, { bodyHeight: se, topSpaceHeight: P, items: M } = a, I = n.default, A = l.value, H = D.value;
+      const { className: L, loading: ye } = e, { bodyHeight: se, topSpaceHeight: P, items: M } = a, I = n.default, B = l.value, H = D.value;
       return o("div", {
         ref: m,
-        class: ["vxe-list", B ? r.isFunction(B) ? B({ $list: w }) : B : "", {
-          [`size--${A}`]: A,
+        class: ["vxe-list", L ? r.isFunction(L) ? L({ $list: w }) : L : "", {
+          [`size--${B}`]: B,
           "is--loading": ye
         }]
       }, [
@@ -35693,21 +35697,21 @@ const uc = pt({
       m.collapseZindex < ws() && (m.collapseZindex = ds());
     }, h = (M) => {
       const { activeName: I } = m;
-      r.eachTree(m.menuList, (A, H, ce, L, j, fe) => {
-        A.itemKey === I ? (fe.forEach((pe) => {
+      r.eachTree(m.menuList, (B, H, ce, A, j, fe) => {
+        B.itemKey === I ? (fe.forEach((pe) => {
           pe.isActive = !0, pe.isExpand = !0;
-        }), A.isExactActive = !0) : (A.isExactActive = !1, A.isActive = !1);
+        }), B.isExactActive = !0) : (B.isExactActive = !1, B.isActive = !1);
       }, { children: "childList" });
     }, O = () => {
       const { options: M, expandAll: I } = e;
-      m.menuList = r.mapTree(M, (A, H, ce, L, j) => Object.assign(Object.assign({}, A), { parentKey: j ? j.name || L.slice(0, L.length - 1).join(",") : "", level: L.length, itemKey: A.name || L.join(","), isExactActive: !1, isActive: !1, isExpand: r.isBoolean(A.expanded) ? A.expanded : !!I, hasChild: A.children && A.children.length > 0 }), { children: "children", mapChildren: "childList" });
+      m.menuList = r.mapTree(M, (B, H, ce, A, j) => Object.assign(Object.assign({}, B), { parentKey: j ? j.name || A.slice(0, A.length - 1).join(",") : "", level: A.length, itemKey: B.name || A.join(","), isExactActive: !1, isActive: !1, isExpand: r.isBoolean(B.expanded) ? B.expanded : !!I, hasChild: B.children && B.children.length > 0 }), { children: "children", mapChildren: "childList" });
     }, g = () => {
       const { collapseFixed: M } = e;
       M && me(() => {
-        const { isEnterCollapse: I } = m, A = d.value, H = w.value, ce = p.value, L = l.value;
-        if (L) {
-          const j = L.getBoundingClientRect(), fe = L.parentNode;
-          m.collapseStyle = A ? {
+        const { isEnterCollapse: I } = m, B = d.value, H = w.value, ce = p.value, A = l.value;
+        if (A) {
+          const j = A.getBoundingClientRect(), fe = A.parentNode;
+          m.collapseStyle = B ? {
             top: cn(j.top),
             left: cn(j.left),
             height: cn(fe.clientHeight),
@@ -35726,13 +35730,13 @@ const uc = pt({
         }))), m.isEnterCollapse = !1, x(), g();
       }
     }, E = (M, I) => {
-      const { hasChild: A, isExpand: H } = I;
-      A && (M.stopPropagation(), M.preventDefault(), I.isExpand = !H);
+      const { hasChild: B, isExpand: H } = I;
+      B && (M.stopPropagation(), M.preventDefault(), I.isExpand = !H);
     }, C = (M) => {
       m.activeName = M, n("update:modelValue", M);
     }, V = (M, I) => {
-      const { itemKey: A, routerLink: H, hasChild: ce } = I;
-      H ? (C(A), Z()) : ce ? E(M, I) : (C(A), Z()), G("click", { menu: I }, M);
+      const { itemKey: B, routerLink: H, hasChild: ce } = I;
+      H ? (C(B), Z()) : ce ? E(M, I) : (C(B), Z()), G("click", { menu: I }, M);
     }, Q = () => {
       const { collapseStyle: M } = m, I = w.value;
       m.collapseStyle = Object.assign({}, M, {
@@ -35743,14 +35747,14 @@ const uc = pt({
       m.collapseStyle = Object.assign({}, M, {
         width: I ? cn(I.offsetWidth) : ""
       }), m.isEnterCollapse = !1;
-    }, G = (M, I, A) => {
-      n(M, Zt(A, { $menu: D }, I));
+    }, G = (M, I, B) => {
+      n(M, Zt(B, { $menu: D }, I));
     };
     Object.assign(D, {
       dispatchEvent: G
     }, {});
     const K = (M) => {
-      const { icon: I, isExpand: A, hasChild: H } = M, ce = S(M);
+      const { icon: I, isExpand: B, hasChild: H } = M, ce = S(M);
       return [
         o("span", {
           class: "vxe-menu--item-link-icon"
@@ -35765,21 +35769,21 @@ const uc = pt({
         }, ce),
         H ? o("span", {
           class: "vxe-menu--item-link-collapse",
-          onClick(L) {
-            E(L, M);
+          onClick(A) {
+            E(A, M);
           }
         }, [
           o("i", {
-            class: A ? ht().MENU_ITEM_EXPAND_OPEN : ht().MENU_ITEM_EXPAND_CLOSE
+            class: B ? ht().MENU_ITEM_EXPAND_OPEN : ht().MENU_ITEM_EXPAND_CLOSE
           })
         ]) : Ve()
       ];
-    }, B = (M) => {
-      const { itemKey: I, level: A, hasChild: H, isActive: ce, isExactActive: L, isExpand: j, routerLink: fe, childList: pe } = M, { isEnterCollapse: ne } = m, $ = d.value;
+    }, L = (M) => {
+      const { itemKey: I, level: B, hasChild: H, isActive: ce, isExactActive: A, isExpand: j, routerLink: fe, childList: pe } = M, { isEnterCollapse: ne } = m, $ = d.value;
       return M.permissionCode && !Ai.checkVisible(M.permissionCode) ? Ve() : o("div", {
         key: I,
-        class: ["vxe-menu--item-wrapper", `vxe-menu--item-level${A}`, {
-          "is--exact-active": L,
+        class: ["vxe-menu--item-wrapper", `vxe-menu--item-level${B}`, {
+          "is--exact-active": A,
           "is--active": ce,
           "is--expand": (!$ || ne) && j
         }]
@@ -35800,14 +35804,14 @@ const uc = pt({
         }, K(M)),
         H ? o("div", {
           class: "vxe-menu--item-group"
-        }, pe.map((J) => B(J))) : Ve()
+        }, pe.map((J) => L(J))) : Ve()
       ]);
     }, ye = (M) => {
-      const { itemKey: I, level: A, hasChild: H, isActive: ce, isExactActive: L, routerLink: j, childList: fe } = M;
+      const { itemKey: I, level: B, hasChild: H, isActive: ce, isExactActive: A, routerLink: j, childList: fe } = M;
       return M.permissionCode && !Ai.checkVisible(M.permissionCode) ? Ve() : o("div", {
         key: I,
-        class: ["vxe-menu--item-wrapper", `vxe-menu--item-level${A}`, {
-          "is--exact-active": L,
+        class: ["vxe-menu--item-wrapper", `vxe-menu--item-level${B}`, {
+          "is--exact-active": A,
           "is--active": ce
         }]
       }, [
@@ -35827,25 +35831,25 @@ const uc = pt({
         }, K(M)),
         H ? o("div", {
           class: "vxe-menu--item-group"
-        }, fe.map((pe) => B(pe))) : Ve()
+        }, fe.map((pe) => L(pe))) : Ve()
       ]);
     }, se = () => {
-      const { loading: M } = e, { initialized: I, menuList: A, collapseStyle: H, isEnterCollapse: ce } = m, L = c.value, j = d.value;
+      const { loading: M } = e, { initialized: I, menuList: B, collapseStyle: H, isEnterCollapse: ce } = m, A = c.value, j = d.value;
       return o("div", {
         ref: l,
         class: ["vxe-menu", {
-          [`size--${L}`]: L,
+          [`size--${A}`]: A,
           "is--collapsed": j,
           "is--loading": M
         }]
       }, [
         o("div", {
           class: "vxe-menu--item-list"
-        }, A.map((fe) => j ? ye(fe) : B(fe))),
+        }, B.map((fe) => j ? ye(fe) : L(fe))),
         I ? o("div", {
           ref: a,
           class: ["vxe-menu--collapse-wrapper", {
-            [`size--${L}`]: L,
+            [`size--${A}`]: A,
             "is--collapsed": j,
             "is--enter": ce,
             "is--loading": M
@@ -35856,7 +35860,7 @@ const uc = pt({
         }, [
           j ? o("div", {
             class: "vxe-menu--item-list"
-          }, A.map((fe) => B(fe))) : Ve()
+          }, B.map((fe) => L(fe))) : Ve()
         ]) : Ve(),
         /**
          * 加载中
@@ -36347,7 +36351,7 @@ const mc = pt({
       o("i", {
         class: ["vxe-pager--btn-icon", e.iconHomePage || ht().PAGER_HOME]
       })
-    ]), B = () => o("button", {
+    ]), L = () => o("button", {
       class: ["vxe-pager--prev-btn", {
         "is--disabled": e.currentPage <= 1
       }],
@@ -36443,7 +36447,7 @@ const mc = pt({
       }, Se)), o("span", {
         class: "vxe-pager--btn-wrapper"
       }, Oe);
-    }, A = () => I(!0), H = () => {
+    }, B = () => I(!0), H = () => {
       const $ = v.value;
       return o(vs, {
         class: "vxe-pager--sizes",
@@ -36480,7 +36484,7 @@ const mc = pt({
           class: "vxe-pager--classifier-text"
         }, Pe("vxe.pager.pageClassifier")) : null
       ]);
-    }, L = () => ce(!0), j = () => {
+    }, A = () => ce(!0), j = () => {
       const $ = d.value;
       return o("span", {
         class: "vxe-pager--count"
@@ -36537,13 +36541,13 @@ const mc = pt({
             je = ye;
             break;
           case "PrevPage":
-            je = B;
+            je = L;
             break;
           case "Number":
             je = I;
             break;
           case "JumpNumber":
-            je = A;
+            je = B;
             break;
           case "NextPage":
             je = P;
@@ -36558,7 +36562,7 @@ const mc = pt({
             je = H;
             break;
           case "FullJump":
-            je = L;
+            je = A;
             break;
           case "Jump":
             je = ce;
@@ -36672,8 +36676,8 @@ const gc = pt({
       const { placeholder: I } = e;
       if (I)
         return Bn(I);
-      const A = oe().passwordInput.placeholder;
-      return A ? Bn(A) : Pe("vxe.base.pleaseInput");
+      const B = oe().passwordInput.placeholder;
+      return B ? Bn(B) : Pe("vxe.base.pleaseInput");
     }), h = _(() => {
       const { showPwd: I } = m;
       return I ? "text" : "password";
@@ -36681,41 +36685,41 @@ const gc = pt({
       const { immediate: I } = e;
       return I;
     }), g = (I) => {
-      const { inputValue: A } = m;
-      v.dispatchEvent(I.type, { value: A }, I);
-    }, b = (I, A) => {
+      const { inputValue: B } = m;
+      v.dispatchEvent(I.type, { value: B }, I);
+    }, b = (I, B) => {
       const H = O.value;
-      m.inputValue = I, H ? C(I, A) : v.dispatchEvent("input", { value: I }, A);
+      m.inputValue = I, H ? C(I, B) : v.dispatchEvent("input", { value: I }, B);
     }, E = (I) => {
       const H = I.target.value;
       b(H, I);
-    }, C = (I, A) => {
-      m.inputValue = I, n("update:modelValue", I), v.dispatchEvent("input", { value: I }, A), r.toValueString(e.modelValue) !== I && (v.dispatchEvent("change", { value: I }, A), i && l && i.triggerItemEvent(A, l.itemConfig.field, I));
+    }, C = (I, B) => {
+      m.inputValue = I, n("update:modelValue", I), v.dispatchEvent("input", { value: I }, B), r.toValueString(e.modelValue) !== I && (v.dispatchEvent("change", { value: I }, B), i && l && i.triggerItemEvent(B, l.itemConfig.field, I));
     }, V = (I) => {
       g(I);
-      const { inputValue: A } = m;
-      i && l && i.triggerItemEvent(I, l.itemConfig.field, A);
+      const { inputValue: B } = m;
+      i && l && i.triggerItemEvent(I, l.itemConfig.field, B);
     }, Q = (I) => {
       m.isActivated = !0, g(I);
     }, Z = (I) => {
-      const { inputValue: A } = m, H = A;
+      const { inputValue: B } = m, H = B;
       v.dispatchEvent("blur", { value: H }, I), i && l && i.triggerItemEvent(I, l.itemConfig.field, H);
     }, G = (I) => {
-      const { readonly: A, disabled: H } = e, { showPwd: ce } = m;
-      !H && !A && (m.showPwd = !ce), v.dispatchEvent("toggle-visible", { visible: m.showPwd }, I);
+      const { readonly: B, disabled: H } = e, { showPwd: ce } = m;
+      !H && !B && (m.showPwd = !ce), v.dispatchEvent("toggle-visible", { visible: m.showPwd }, I);
     }, ue = (I) => {
       g(I);
-    }, Y = (I, A) => {
-      focus(), C("", I), v.dispatchEvent("clear", { value: A }, I);
+    }, Y = (I, B) => {
+      focus(), C("", I), v.dispatchEvent("clear", { value: B }, I);
     }, K = (I) => {
-      const { disabled: A } = e;
-      if (!A) {
+      const { disabled: B } = e;
+      if (!B) {
         const { inputValue: H } = m;
         v.dispatchEvent("suffix-click", { value: H }, I);
       }
-    }, B = (I) => {
-      const { disabled: A } = e;
-      if (!A) {
+    }, L = (I) => {
+      const { disabled: B } = e;
+      if (!B) {
         const { inputValue: H } = m;
         v.dispatchEvent("prefix-click", { value: H }, I);
       }
@@ -36730,22 +36734,22 @@ const gc = pt({
         })
       ]);
     }, se = () => {
-      const { prefixIcon: I } = e, A = s.prefix;
-      return A || I ? o("div", {
+      const { prefixIcon: I } = e, B = s.prefix;
+      return B || I ? o("div", {
         class: "vxe-password-input--prefix",
-        onClick: B
+        onClick: L
       }, [
         o("div", {
           class: "vxe-password-input--prefix-icon"
-        }, A ? Nt(A({})) : [
+        }, B ? Nt(B({})) : [
           o("i", {
             class: I
           })
         ])
       ]) : null;
     }, P = () => {
-      const { disabled: I, suffixIcon: A, controls: H } = e, { inputValue: ce } = m, L = s.suffix, j = D.value;
-      return j || H || L || A ? o("div", {
+      const { disabled: I, suffixIcon: B, controls: H } = e, { inputValue: ce } = m, A = s.suffix, j = D.value;
+      return j || H || A || B ? o("div", {
         class: ["vxe-password-input--suffix", {
           "is--clear": j && !I && !(ce === "" || r.eqNull(ce))
         }]
@@ -36759,19 +36763,19 @@ const gc = pt({
           })
         ]) : Ve(),
         H ? ye() : Ve(),
-        L || A ? o("div", {
+        A || B ? o("div", {
           class: "vxe-password-input--suffix-icon",
           onClick: K
-        }, L ? Nt(L({})) : [
+        }, A ? Nt(A({})) : [
           o("i", {
-            class: A
+            class: B
           })
         ]) : Ve()
       ]) : null;
     };
     v = {
-      dispatchEvent(I, A, H) {
-        n(I, Zt(H, { $passwordInput: w }, A));
+      dispatchEvent(I, B, H) {
+        n(I, Zt(H, { $passwordInput: w }, B));
       },
       focus() {
         const I = d.value;
@@ -36787,7 +36791,7 @@ const gc = pt({
       m.inputValue = I;
     });
     const M = () => {
-      const { className: I, name: A, disabled: H, readonly: ce, autocomplete: L, autoComplete: j, maxLength: fe } = e, { inputValue: pe, isActivated: ne } = m, $ = c.value, J = S.value, ge = h.value, Oe = x.value, Se = D.value, de = se(), Ie = P();
+      const { className: I, name: B, disabled: H, readonly: ce, autocomplete: A, autoComplete: j, maxLength: fe } = e, { inputValue: pe, isActivated: ne } = m, $ = c.value, J = S.value, ge = h.value, Oe = x.value, Se = D.value, de = se(), Ie = P();
       return o("div", {
         ref: u,
         class: ["vxe-password-input", I, {
@@ -36809,12 +36813,12 @@ const gc = pt({
             ref: d,
             class: "vxe-password-input--inner",
             value: pe,
-            name: A,
+            name: B,
             type: ge,
             placeholder: Oe,
             readonly: J,
             disabled: H,
-            autocomplete: L || j,
+            autocomplete: A || j,
             maxlength: fe,
             onClick: ue,
             onInput: E,
@@ -37054,7 +37058,7 @@ const vc = pt({
     const v = () => {
       const { title: x, showPageNumber: h, showAllPageTitle: O, align: g, headerAlign: b, footerAlign: E } = e, C = e.pageBreaks || [], V = C.length;
       return C.map((Q, Z) => {
-        const G = Q.bodyHtml, ue = Q.headerHtml || e.headerHtml, Y = Q.footerHtml || e.footerHtml, K = Q.leftHtml || e.leftHtml, B = Q.rightHtml || e.rightHtml, ye = Z + 1, se = {
+        const G = Q.bodyHtml, ue = Q.headerHtml || e.headerHtml, Y = Q.footerHtml || e.footerHtml, K = Q.leftHtml || e.leftHtml, L = Q.rightHtml || e.rightHtml, ye = Z + 1, se = {
           currentPage: ye,
           pageCount: V
         };
@@ -37079,7 +37083,7 @@ const vc = pt({
             }, `${r.isFunction(G) ? G(se) : G || ""}`),
             o("div", {
               class: "vxe-print-page-break--right"
-            }, `${r.isFunction(B) ? B(se) : B || ""}`)
+            }, `${r.isFunction(L) ? L(se) : L || ""}`)
           ]),
           o("div", {
             class: ["vxe-print-page-break--footer", E ? `align--${E}` : ""]
@@ -37093,7 +37097,7 @@ const vc = pt({
     }, D = () => {
       const { title: x, showPageNumber: h, showAllPageTitle: O, align: g, headerAlign: b, footerAlign: E } = e, { staticPageBreaks: C } = a, V = C.length;
       return C.map((Q, Z) => {
-        const G = Q.slots || {}, ue = Z + 1, Y = G.default, K = G.header || n.header, B = G.footer || n.footer, ye = G.left || n.left, se = G.right || n.right, P = {
+        const G = Q.slots || {}, ue = Z + 1, Y = G.default, K = G.header || n.header, L = G.footer || n.footer, ye = G.left || n.left, se = G.right || n.right, P = {
           currentPage: ue,
           pageCount: V
         };
@@ -37122,7 +37126,7 @@ const vc = pt({
           ]),
           o("div", {
             class: ["vxe-print-page-break--footer", E ? `align--${E}` : ""]
-          }, B ? Nt(B(P)) : [
+          }, L ? Nt(L(P)) : [
             h ? o("div", {
               class: "vxe-print-page-break--footer-page-number"
             }, `${ue}/${V}`) : Ve()
@@ -37223,23 +37227,23 @@ const bc = pt({
     const g = () => {
       d.panelIndex < ws() && (d.panelIndex = ds());
     }, b = () => d.visiblePanel, E = () => me().then(() => {
-      const { placement: P } = e, { panelIndex: M, visiblePanel: I } = d, A = S.value;
+      const { placement: P } = e, { panelIndex: M, visiblePanel: I } = d, B = S.value;
       if (I) {
         const H = v.value, ce = D.value;
         if (ce && H) {
-          const L = H.offsetHeight, j = H.offsetWidth, fe = ce.offsetHeight, pe = ce.offsetWidth, ne = 5, $ = {
+          const A = H.offsetHeight, j = H.offsetWidth, fe = ce.offsetHeight, pe = ce.offsetWidth, ne = 5, $ = {
             zIndex: M
           }, { boundingTop: J, boundingLeft: ge, visibleHeight: Oe, visibleWidth: Se } = br(H);
           let de = "bottom";
-          if (A) {
-            let Ie = ge, je = J + L;
-            P === "top" ? (de = "top", je = J - fe) : P || (je + fe + ne > Oe && (de = "top", je = J - fe), je < ne && (de = "bottom", je = J + L)), Ie + pe + ne > Se && (Ie -= Ie + pe + ne - Se), Ie < ne && (Ie = ne), Object.assign($, {
+          if (B) {
+            let Ie = ge, je = J + A;
+            P === "top" ? (de = "top", je = J - fe) : P || (je + fe + ne > Oe && (de = "top", je = J - fe), je < ne && (de = "bottom", je = J + A)), Ie + pe + ne > Se && (Ie -= Ie + pe + ne - Se), Ie < ne && (Ie = ne), Object.assign($, {
               left: `${Ie}px`,
               top: `${je}px`,
               minWidth: `${j}px`
             });
           } else
-            P === "top" ? (de = "top", $.bottom = `${L}px`) : P || J + L + fe > Oe && J - L - fe > ne && (de = "top", $.bottom = `${L}px`);
+            P === "top" ? (de = "top", $.bottom = `${A}px`) : P || J + A + fe > Oe && J - A - fe > ne && (de = "top", $.bottom = `${A}px`);
           d.panelStyle = $, d.panelPlacement = de;
         }
       }
@@ -37261,23 +37265,23 @@ const bc = pt({
         P();
       });
     })), Q = () => d.visiblePanel ? V() : C(), Z = (P, M) => {
-      M.disabled || (d.visiblePanel && (V(), B("hide-panel", {}, P)), B("option-click", { option: M }, P));
+      M.disabled || (d.visiblePanel && (V(), L("hide-panel", {}, P)), L("option-click", { option: M }, P));
     }, G = (P) => {
       const { trigger: M } = e;
-      M === "click" && (d.visiblePanel ? (V(), B("hide-panel", {}, P)) : (C(), B("show-panel", {}, P))), B("click", { $pulldown: h }, P);
+      M === "click" && (d.visiblePanel ? (V(), L("hide-panel", {}, P)) : (C(), L("show-panel", {}, P))), L("click", { $pulldown: h }, P);
     }, ue = (P) => {
-      const { disabled: M } = e, { visiblePanel: I } = d, A = D.value;
-      M || I && (jn(P, A).flag ? E() : (V(), B("hide-panel", {}, P)));
+      const { disabled: M } = e, { visiblePanel: I } = d, B = D.value;
+      M || I && (jn(P, B).flag ? E() : (V(), L("hide-panel", {}, P)));
     }, Y = (P) => {
-      const { disabled: M } = e, { visiblePanel: I } = d, A = w.value, H = D.value;
-      M || (d.isActivated = jn(P, A).flag || jn(P, H).flag, I && !d.isActivated && (V(), B("hide-panel", {}, P)));
+      const { disabled: M } = e, { visiblePanel: I } = d, B = w.value, H = D.value;
+      M || (d.isActivated = jn(P, B).flag || jn(P, H).flag, I && !d.isActivated && (V(), L("hide-panel", {}, P)));
     }, K = (P) => {
-      d.visiblePanel && (d.isActivated = !1, V(), B("hide-panel", {}, P));
-    }, B = (P, M, I) => {
+      d.visiblePanel && (d.isActivated = !1, V(), L("hide-panel", {}, P));
+    }, L = (P, M, I) => {
       s(P, Zt(I, { $pulldown: h }, M));
     };
     O = {
-      dispatchEvent: B,
+      dispatchEvent: L,
       isPanelVisible: b,
       togglePanel: Q,
       showPanel: C,
@@ -37295,12 +37299,12 @@ const bc = pt({
         class: "vxe-pulldown--panel-list"
       }, P ? P.map((I) => o("div", {
         class: "vxe-pulldown--panel-item",
-        onClick(A) {
-          Z(A, I);
+        onClick(B) {
+          Z(B, I);
         }
       }, M ? M({ $pulldown: h, option: I }) : `${I.label || ""}`)) : []);
     }, se = () => {
-      const { className: P, options: M, popupClassName: I, showPopupShadow: A, destroyOnClose: H, disabled: ce } = e, { initialized: L, isActivated: j, isAniVisible: fe, visiblePanel: pe, panelStyle: ne, panelPlacement: $ } = d, J = S.value, ge = u.value, Oe = n.default, Se = n.header, de = n.footer, Ie = n.dropdown;
+      const { className: P, options: M, popupClassName: I, showPopupShadow: B, destroyOnClose: H, disabled: ce } = e, { initialized: A, isActivated: j, isAniVisible: fe, visiblePanel: pe, panelStyle: ne, panelPlacement: $ } = d, J = S.value, ge = u.value, Oe = n.default, Se = n.header, de = n.footer, Ie = n.dropdown;
       return o("div", {
         ref: w,
         class: ["vxe-pulldown", P ? r.isFunction(P) ? P({ $pulldown: h }) : P : "", {
@@ -37317,13 +37321,13 @@ const bc = pt({
         }, Oe ? Oe({ $pulldown: h }) : []),
         o(ks, {
           to: "body",
-          disabled: J ? !L : !0
+          disabled: J ? !A : !0
         }, [
           o("div", {
             ref: D,
             class: ["vxe-table--ignore-clear vxe-pulldown--panel", I ? r.isFunction(I) ? I({ $pulldown: h }) : I : "", {
               [`size--${ge}`]: ge,
-              "is--shadow": A,
+              "is--shadow": B,
               "is--transfer": J,
               "ani--leave": fe,
               "ani--enter": pe
@@ -37333,7 +37337,7 @@ const bc = pt({
           }, [
             o("div", {
               class: "vxe-pulldown--panel-wrapper"
-            }, L && (!H || pe || fe) ? [
+            }, A && (!H || pe || fe) ? [
               Se ? o("div", {
                 class: "vxe-pulldown--panel-header"
               }, Se({ $pulldown: h })) : Ve(),
@@ -37624,7 +37628,7 @@ const Cc = pt({
       return Object.assign({}, De.rowConfig, {
         isCurrent: !0
       });
-    }), Z = _(() => Q.value.keyField || "_X_ROW_KEY"), G = _(() => V.value.label || "label"), ue = _(() => V.value.value || "value"), Y = _(() => Object.assign({}, oe().tableSelect.popupConfig, e.popupConfig)), K = _(() => Object.assign({}, oe().tableSelect.gridConfig, e.gridConfig, { data: void 0, columns: void 0 })), B = _(() => {
+    }), Z = _(() => Q.value.keyField || "_X_ROW_KEY"), G = _(() => V.value.label || "label"), ue = _(() => V.value.value || "value"), Y = _(() => Object.assign({}, oe().tableSelect.popupConfig, e.popupConfig)), K = _(() => Object.assign({}, oe().tableSelect.gridConfig, e.gridConfig, { data: void 0, columns: void 0 })), L = _(() => {
       const { modelValue: De } = e, { fullRowMaps: Re } = h, Be = G.value;
       return (r.isArray(De) ? De : [De]).map((ve) => {
         const Ne = Re[ve];
@@ -37644,12 +37648,12 @@ const Cc = pt({
       n(De, Zt(Be, { $tableSelect: P }, Re));
     }, I = (De) => {
       n("update:modelValue", De);
-    }, A = {
+    }, B = {
       dispatchEvent: M
     }, H = {}, ce = (De) => {
       const Re = Z.value, Be = De[Re];
       return Be ? encodeURIComponent(Be) : "";
-    }, L = (De) => {
+    }, A = (De) => {
       const { fullRowMaps: Re } = h, Be = [];
       return (r.eqNull(De) ? [] : r.isArray(De) ? De : [De]).forEach((Ne) => {
         const q = Re[Ne];
@@ -37660,7 +37664,7 @@ const Cc = pt({
       me(() => {
         const Be = x.value;
         if (Be) {
-          const ve = L(De);
+          const ve = A(De);
           ve.length && (Re ? Be.setCheckboxRow(ve, !0) : Be.setRadioRow(ve[0]));
         }
       });
@@ -37754,9 +37758,9 @@ const Cc = pt({
     }, Et = (De) => {
       at(De);
     };
-    Object.assign(P, A, H);
+    Object.assign(P, B, H);
     const Qe = () => {
-      const { className: De, options: Re, loading: Be } = e, { initialized: ve, isActivated: Ne, isAniVisible: q, visiblePanel: z, tableColumns: R } = h, le = p.value, F = E.value, re = B.value, N = C.value, ee = b.value, be = Y.value, { className: we } = be, Te = K.value, ze = Q.value, st = ye.value, ct = s.header, Ke = s.footer, wt = s.prefix;
+      const { className: De, options: Re, loading: Be } = e, { initialized: ve, isActivated: Ne, isAniVisible: q, visiblePanel: z, tableColumns: R } = h, le = p.value, F = E.value, re = L.value, N = C.value, ee = b.value, be = Y.value, { className: we } = be, Te = K.value, ze = Q.value, st = ye.value, ct = s.header, Ke = s.footer, wt = s.prefix;
       return ee ? o("div", {
         ref: w,
         class: ["vxe-table-select--readonly", De]
@@ -37984,9 +37988,9 @@ const Ec = pt({
         const ue = d.value;
         let Y = Math.floor(V / G), K = ue.slice(0, Y);
         Z.textContent = K, c.visibleLen = K.length;
-        let B = 0;
-        for (; V > Z.clientWidth && B < 30; ) {
-          B++;
+        let L = 0;
+        for (; V > Z.clientWidth && L < 30; ) {
+          L++;
           const ye = Math.floor((V - Z.clientWidth) / G);
           if (ye)
             Y += ye, K = ue.slice(0, Y), Z.textContent = K, c.visibleLen = K.length;

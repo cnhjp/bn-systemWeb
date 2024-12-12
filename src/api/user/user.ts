@@ -59,7 +59,10 @@ export function fetchUserMenus() {
                 title: '系统设置',
                 route: 'system-setting',
                 icon: 'cast',
-                children: [{ id: 501, title: '人员管理', route: 'personnel-manage', icon: 'cast' }],
+                children: [
+                    { id: 501, title: '人员管理', route: 'personnel-manage', icon: 'cast' },
+                    { id: 502, title: '参数配置', route: 'params-setting', icon: 'cast' },
+                ],
             },
         ],
     })

@@ -17,7 +17,7 @@ export default function unplugin(viteEnv: ImportMetaEnv): PluginOption[] {
     const plugins: PluginOption[] = [
         AutoImport({
             dts: `${projRoot}/typings/auto-imports.d.ts`,
-            imports: ['vue', 'vue-router', 'pinia'],
+            imports: ['vue', 'vue-router', 'pinia', '@vueuse/core'],
             resolvers: [ElementPlusResolver(), IconsResolver({ prefix: 'Icon' })],
         }),
         Components({

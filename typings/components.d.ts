@@ -27,9 +27,12 @@ declare module 'vue' {
     ElInput: typeof import('element-plus/es')['ElInput']
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElMain: typeof import('element-plus/es')['ElMain']
+    ElRadio: typeof import('element-plus/es')['ElRadio']
+    ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElRow: (typeof import('element-plus/es'))['ElRow']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElTooltip: (typeof import('element-plus/es'))['ElTooltip']
+    ElUpload: typeof import('element-plus/es')['ElUpload']
     ExceptionBase: typeof import('./../src/components/exception-base.vue')['default']
     HoverContainer: typeof import('./../src/components/hover-container.vue')['default']
     IconEpBell: (typeof import('~icons/ep/bell'))['default']
@@ -47,6 +50,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./../src/components/svg-icon.vue')['default']
+    Upload: typeof import('./../src/components/common/upload/src/upload.vue')['default']
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']
