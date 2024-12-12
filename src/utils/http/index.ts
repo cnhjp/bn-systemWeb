@@ -38,7 +38,7 @@ function responseFailed(error: HttpError) {
 }
 
 export const http = new HttpRequest<HttpRequestConfig>({
-    baseURL: '/',
+    baseURL: import.meta.env.VITE_SERVER_API,
     timeout: 15 * 1000,
     interceptors: {
         requestSucceedInterceptors: requestSucceed,

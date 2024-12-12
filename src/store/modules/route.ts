@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { constantRoutes, routes as staticRoutes, resetRouter, router, ERROR_ROUTES, routeName } from '@/router'
 import { type RouteLocationRaw } from 'vue-router'
-import { fetchUserMenus } from '@/api/user'
+import { fetchUserMenus } from '@/api/user/user.ts'
 import { getConstantRouteNames, transformDataToMenu, transformMenuToRoute } from '@/utils'
 
 type RouteMode = 'static' | 'dynamic'

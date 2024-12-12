@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { fetchLogin, fetchUserInfo } from '@/api/user'
+import { fetchLogin, fetchUserInfo } from '@/api/user/user.ts'
 import { getToken, setToken, removeToken } from './helper'
 import { applyDefaults } from '@/utils'
 import { useRouteStore } from '../route'
@@ -34,13 +34,20 @@ export const useUserStore = defineStore('user-store', {
     },
     actions: {
         /** 通过账号密码登录 */
-        async login(username: string, password: string) {
-            const { data } = await fetchLogin(username, password)
-            if (data) {
-                this.token = data.token
-                await this.initUserStore()
-                setToken(this.token)
+        async login(userName: string, password: string) {
+            const query = {
+                userName: userName,
+                password: password,
+                source: 1,
+                clientID: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
             }
+            fetchLogin(query).then(async (response) => {
+                if (response) {
+                    const { info } = response.data
+                    await this.initUserStore()
+                    setToken(info.token)
+                }
+            })
         },
         /** 处理登陆成功或失败的逻辑 */
         async handleActionAfterLogin() {
