@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { fetchLogin, fetchUserInfo } from '@/api/user/user.ts'
-import { getToken, setToken, removeToken } from './helper'
+import { getToken, setToken, removeToken, getClientID, setClientID } from './helper'
 import { applyDefaults } from '@/utils'
 import { useRouteStore } from '../route'
 
@@ -9,6 +9,7 @@ export interface UserStoreState {
     token: string
     /** 用户信息 */
     userInfo: User.UserInfo
+    clientID: string
 }
 
 const defaultUserInfo: User.UserInfo = {
@@ -22,6 +23,7 @@ export const useUserStore = defineStore('user-store', {
         return {
             token: getToken(),
             userInfo: defaultUserInfo,
+            clientID: getClientID(),
         }
     },
     getters: {
@@ -33,13 +35,25 @@ export const useUserStore = defineStore('user-store', {
         },
     },
     actions: {
+        getGuid() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                let r = (Math.random() * 16) | 0
+                let v = c == 'x' ? r : (r & 0x3) | 0x8
+                return v.toString(16)
+            })
+        },
         /** 通过账号密码登录 */
         async login(userName: string, password: string) {
+            if (!this.clientID) {
+                const guid = this.getGuid()
+                setClientID(guid)
+                this.clientID = guid
+            }
             const query = {
                 userName: userName,
                 password: password,
                 source: 1,
-                clientID: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+                clientID: this.clientID,
             }
             fetchLogin(query).then(async (response) => {
                 if (response) {
