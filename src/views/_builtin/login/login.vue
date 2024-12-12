@@ -36,7 +36,7 @@ const onLogin = () => {
     form.value.validate().then(() => {
         const { userName, password } = formModel.value
         userStore
-            .login(userName, encrypt(password))
+            .login(userName, encrypt(password) as string)
             .then(() => {
                 ElMessage.success('登录成功')
                 routeStore.loginToRedirect()

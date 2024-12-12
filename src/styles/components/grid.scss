@@ -60,8 +60,8 @@ $-grid-toolbar-wrapper-pb: 12px;
     //table 标题栏样式
     .vxe-table--render-default {
         .vxe-cell {
-            padding-left: 20px;
-            padding-right: 20px;
+            padding-left: 20px!important;
+            padding-right: 20px!important;
         }
         .vxe-table--header-wrapper {
             background-color: #ffffff;
@@ -79,7 +79,6 @@ $-grid-toolbar-wrapper-pb: 12px;
                 padding: 14px 0;
             }
         }
-
         //线条颜色
         &.border--default,
         &.border--inner {

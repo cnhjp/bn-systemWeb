@@ -6,8 +6,26 @@ export function fetchLogin(data: LoginByUserRequest) {
 }
 
 export function fetchUserInfo(personId: string) {
-    return http.get('/api/test/getUserById', { personId })
+    return http.get('/api/test/getUserById', { personId }).then((res) => {
+        return Promise.resolve({
+            data: {
+                userName: res.data.name || '',
+                userId: res.data.personId || null,
+                userRole: res.data.userRole || 'admin',
+            },
+        })
+    })
 }
+// export function fetchUserInfo() {
+//     // return http.get('/user/info')
+//     return Promise.resolve({
+//         data: {
+//             userId: 1,
+//             userName: 'javis',
+//             userRole: 'admin',
+//         },
+//     })
+// }
 
 export function fetchUserMenus() {
     // return http.get('/user/menus')
@@ -46,6 +64,12 @@ export function fetchUserMenus() {
                     { id: 402, title: '届次管理', route: 'support-term', icon: 'cast' },
                     { id: 403, title: '系统日志', route: 'support-logger', icon: 'cast' },
                 ],
+            },
+            {
+                id: 600,
+                title: '酒店管理',
+                route: 'hotel-management-list',
+                icon: 'cast',
             },
             {
                 id: 500,

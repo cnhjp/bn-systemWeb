@@ -86,10 +86,8 @@ export const useUserStore = defineStore('user-store', {
         },
         /** 初始化用户信息 */
         async initUserStore() {
-            if (this.token) {
-                const { data } = await fetchUserInfo(this.personId)
-                this.userInfo = applyDefaults(data, defaultUserInfo)
-            }
+            const { data } = await fetchUserInfo(this.personId)
+            this.userInfo = applyDefaults(data, defaultUserInfo)
         },
         /** 登出并清除用户信息 */
         logout() {
