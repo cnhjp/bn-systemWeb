@@ -135,6 +135,24 @@ export class HttpRequest<Config extends HttpRequestConfig = HttpRequestConfig> {
             },
         })
     }
+
+    /**
+     * 发起Post请求，响应数据类型为Blob类型，并下载数据
+     * @param url 请求地址
+     * @param data 请求数据
+     * @param config 配置参数
+     * @returns {Promise<any>}
+     */
+    download<T = any, R = HttpResponse<Blob>>(url: string, params?: T, _object?: Config): Promise<R> {
+        const method = (_object?.method || 'GET').toUpperCase()
+        return this.instance({
+            method,
+            url,
+            [method === 'GET' ? 'params' : 'data']: params,
+            responseType: 'blob',
+            ..._object,
+        })
+    }
 }
 
 export { AxiosError as HttpException }

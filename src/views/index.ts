@@ -15,5 +15,6 @@ export const views: Record<string, RouteComponent> = {
     support_area: () => import('./support').then((m) => m.Area),
     support_term: () => import('./support').then((m) => m.Term),
     support_logger: () => import('./support').then((m) => m.Logger),
-    personnel_manage: () => import('./system-setting').then((m) => m.PersonnelManage),
+    personnel_manage: () => import('./system-setting').then((m) => m.personnelManage),
+    params_setting: () => import('./system-setting').then((m) => m.paramsSetting),
 }
