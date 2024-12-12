@@ -55,7 +55,7 @@ export const constantRoutes: AuthRoute.Route[] = [
                 path: '/login',
                 name: 'login',
                 component: views.login,
-                meta: { title: '登陆', allowAnonymous: true },
+                meta: { title: '登录', allowAnonymous: true },
             },
             ...ERROR_ROUTES,
             ...NOTFOUND_ROUTES,

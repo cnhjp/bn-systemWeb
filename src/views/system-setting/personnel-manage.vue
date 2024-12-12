@@ -93,14 +93,14 @@ const debouncedOnIndexChange = useDebounceFn(onIndexChange, 500)
 function onAdd() {
     refDialog.value.openModal({
         component: dialogPersonnel,
-        title: '添加',
+        title: '添加账号',
         width: '680px',
     })
 }
 function onEdit(row: any) {
     refDialog.value.openModal({
         component: dialogPersonnel,
-        title: '添加',
+        title: '编辑账号',
         width: '680px',
         params: {
             personId: row.personId,

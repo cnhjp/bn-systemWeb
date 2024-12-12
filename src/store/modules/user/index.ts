@@ -70,6 +70,7 @@ export const useUserStore = defineStore('user-store', {
             return fetchLogin(query).then(async (response) => {
                 if (response) {
                     const { info } = response.data
+                    this.token = info.token
                     setToken(info.token)
                     setPersonID(info.personId.toString())
                     this.personId = info.personId.toString()
@@ -78,7 +79,7 @@ export const useUserStore = defineStore('user-store', {
                 return response
             })
         },
-        /** 处理登陆成功或失败的逻辑 */
+        /** 处理登录成功或失败的逻辑 */
         async handleActionAfterLogin() {
             const route = useRouteStore()
             await this.initUserStore()

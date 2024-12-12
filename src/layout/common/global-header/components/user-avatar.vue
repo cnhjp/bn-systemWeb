@@ -7,7 +7,7 @@
         <template #dropdown>
             <el-dropdown-menu>
                 <el-dropdown-item :icon="UserFilled">用户中心</el-dropdown-item>
-                <el-dropdown-item divided @click="onLogout">退出登陆</el-dropdown-item>
+                <el-dropdown-item divided @click="onLogout">退出登录</el-dropdown-item>
             </el-dropdown-menu>
         </template>
     </el-dropdown>

@@ -4,7 +4,7 @@ import { useUserStore, useRouteStore } from '@/store'
 
 export async function createDynamicRouteGuard(
     to: RouteLocationNormalized,
-    from: RouteLocationNormalized,
+    _from: RouteLocationNormalized,
     next: NavigationGuardNext,
 ) {
     const userStore = useUserStore()

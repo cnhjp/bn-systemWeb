@@ -30,7 +30,9 @@
                         </el-form-item>
                     </div>
                     <div class="w-250px">
-                        <el-form-item></el-form-item>
+                        <el-form-item>
+                            <b-upload></b-upload>
+                        </el-form-item>
                     </div>
                 </div>
             </el-form>
