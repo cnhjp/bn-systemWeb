@@ -222,9 +222,6 @@ a {
   border: 1px solid #5399ec;
   color: #5399ec;
 }
-.h-grid .vxe-cell .el-link:not(:last-child) {
-  margin-right: 13px;
-}
 
 :root {
   --primary-color: 24, 144, 255;
