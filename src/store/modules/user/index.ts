@@ -1,6 +1,16 @@
 import { defineStore } from 'pinia'
 import { fetchLogin, fetchUserInfo } from '@/api/user/user.ts'
-import { getToken, setToken, removeToken } from './helper'
+import {
+    getToken,
+    setToken,
+    removeToken,
+    getClientID,
+    setClientID,
+    getPersonID,
+    setPersonID,
+    removePersonID,
+    removeClientID,
+} from './helper'
 import { applyDefaults } from '@/utils'
 import { useRouteStore } from '../route'
 
@@ -9,6 +19,8 @@ export interface UserStoreState {
     token: string
     /** 用户信息 */
     userInfo: User.UserInfo
+    clientID: string
+    personId: string
 }
 
 const defaultUserInfo: User.UserInfo = {
@@ -22,6 +34,8 @@ export const useUserStore = defineStore('user-store', {
         return {
             token: getToken(),
             userInfo: defaultUserInfo,
+            clientID: getClientID(),
+            personId: getPersonID(),
         }
     },
     getters: {
@@ -33,33 +47,47 @@ export const useUserStore = defineStore('user-store', {
         },
     },
     actions: {
+        getGuid() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                let r = (Math.random() * 16) | 0
+                let v = c == 'x' ? r : (r & 0x3) | 0x8
+                return v.toString(16)
+            })
+        },
         /** 通过账号密码登录 */
         async login(userName: string, password: string) {
+            if (!this.clientID) {
+                const guid = this.getGuid()
+                setClientID(guid)
+                this.clientID = guid
+            }
             const query = {
                 userName: userName,
                 password: password,
                 source: 1,
-                clientID: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+                clientID: this.clientID,
             }
-            fetchLogin(query).then(async (response) => {
+            return fetchLogin(query).then(async (response) => {
                 if (response) {
                     const { info } = response.data
-                    await this.initUserStore()
                     setToken(info.token)
+                    setPersonID(info.personId.toString())
+                    this.personId = info.personId.toString()
+                    await this.initUserStore()
                 }
+                return response
             })
         },
         /** 处理登陆成功或失败的逻辑 */
         async handleActionAfterLogin() {
             const route = useRouteStore()
-
             await this.initUserStore()
             await route.initAuthRoute()
         },
         /** 初始化用户信息 */
         async initUserStore() {
-            if (this.isLoggedIn) {
-                const { data } = await fetchUserInfo()
+            if (this.token) {
+                const { data } = await fetchUserInfo(this.personId)
                 this.userInfo = applyDefaults(data, defaultUserInfo)
             }
         },
@@ -70,6 +98,8 @@ export const useUserStore = defineStore('user-store', {
         /** 重置用户信息 */
         resetUserStore() {
             removeToken()
+            removePersonID()
+            removeClientID()
             this.$reset()
 
             const routeStore = useRouteStore()

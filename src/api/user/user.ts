@@ -5,6 +5,10 @@ export function fetchLogin(data: LoginByUserRequest) {
     return http.post<LoginByUserRequest, LoginResponse>('/api/login/token', data)
 }
 
+// export function fetchUserInfo(personId: string) {
+//     return http.get('/api/test/getUserById', { personId })
+// }
+
 export function fetchUserInfo() {
     // return http.get('/user/info')
     return Promise.resolve({
