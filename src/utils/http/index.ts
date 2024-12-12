@@ -2,6 +2,7 @@ import { HttpRequest, HttpError, type HttpResponse, type HttpRequestConfig } fro
 import type { AxiosResponse } from 'axios'
 import { HttpStatus, HttpStatusDescription } from './enums'
 import { useUserStore } from '@/store'
+import { downloadBlob } from '../common'
 
 /**
  * 当响应类型为二进制流（Blob）时，下载数据
@@ -16,20 +17,7 @@ export function responseBlob(response: AxiosResponse): Promise<AxiosResponse> {
         if (content instanceof Blob && content.type === 'application/octet-stream') {
             const blob = content
             const name = decodeURIComponent(headers['content-disposition'].split(';')[1].split('filename=')[1])
-
-            if ('navigator' in window && 'msSaveBlob' in window.navigator) {
-                ;(window.navigator as any).msSaveBlob(blob, name)
-            } else if ('download' in document.createElement('a')) {
-                const link = document.createElement('a')
-                link.download = name
-                link.style.display = 'none'
-                link.href = URL.createObjectURL(blob)
-                document.body.appendChild(link)
-                link.click()
-                URL.revokeObjectURL(link.href)
-                document.body.removeChild(link)
-            }
-
+            downloadBlob(blob, name)
             resolve(response)
         } else if ('FileReader' in window) {
             const fileReader = new FileReader()
@@ -59,11 +47,12 @@ function requestSucceed(config: HttpRequestConfig) {
 }
 
 function responseSucceed(response: HttpResponse) {
-    const { status: responseStatus, statusText: responseStatusText, data, config, request } = response
+    const { data, config, request } = response
+
     const result = {
-        code: responseStatus || data?.code || 0,
-        data: data?.data || data,
-        desc: responseStatusText || data?.desc,
+        code: data?.code || 0,
+        data: data?.data,
+        desc: data?.desc,
     }
 
     if (result.code === HttpStatus.SUCCESS) {
@@ -91,7 +80,37 @@ function responseFailed(error: HttpError) {
     return Promise.reject(error)
 }
 
-export const http = new HttpRequest<HttpRequestConfig>({
+export class BusinessHttpRequest<Config extends HttpRequestConfig = HttpRequestConfig> extends HttpRequest {
+    download<T = any, R = HttpResponse<Blob>>(url: string, params?: T, _object?: Config): Promise<R> {
+        const method = (_object?.method || 'GET').toUpperCase()
+        return this.instance({
+            method,
+            url,
+            [method === 'GET' ? 'params' : 'data']: params,
+            responseType: 'blob',
+            ..._object,
+        })
+    }
+
+    upload<T = any, R = HttpResponse<Blob>>(url: string, params?: T, _object?: Config): Promise<R> {
+        return super.form(url, params, _object)
+    }
+
+    delete<T = any, R = HttpResponse<any, any>>(
+        url: string,
+        params?: T | undefined,
+        _object?: HttpRequestConfig<any> | undefined,
+    ): Promise<R> {
+        return this.instance({
+            method: 'DELETE',
+            url,
+            data: params,
+            ...(_object || {}),
+        })
+    }
+}
+
+export const http = new BusinessHttpRequest({
     baseURL: import.meta.env.VITE_SERVER_API,
     timeout: 15 * 1000,
     interceptors: {

@@ -5,6 +5,7 @@
                 <template #toolbar-left>
                     <el-button type="primary" size="" @click="onAdd()">添加账号</el-button>
                     <el-button type="danger" size="" @click="onBatchDelete()">批量删除</el-button>
+                    <el-button type="warning" size="" @click="onBatchResetPassword()">批量重置密码</el-button>
                 </template>
 
                 <template #toolbar-right>
@@ -27,8 +28,12 @@
 
                 <template #actions="{ row }">
                     <el-button type="primary" size="small" @click="onEdit(row)">编辑</el-button>
-                    <el-button type="danger" size="small" @click="onDelete(row)">删除</el-button>
-                    <el-button type="danger" size="small" @click="onResetPassword(row)">重置密码</el-button>
+                    <el-button type="danger" size="small" @click="onDelete(row)" v-if="!row.isMainAdmin">
+                        删除
+                    </el-button>
+                    <el-button type="warning" size="small" @click="onResetPassword(row)" v-if="!row.isMainAdmin">
+                        重置密码
+                    </el-button>
                 </template>
             </b-grid>
         </el-main>
@@ -37,7 +42,14 @@
 </template>
 
 <script setup lang="ts">
-import { getPersonnelPage, editSortIndex, deletePersonnel, downloadTemplate } from '@/api/personnel-manage'
+import {
+    getPersonnelPage,
+    editSortIndex,
+    deletePersonnel,
+    checkPersonAccountBind,
+    resetPassword,
+    batchResetPassword,
+} from '@/api/personnel-manage'
 import dialogPersonnel from './components/dialog-personnel.vue'
 
 const formModel = reactive({
@@ -68,23 +80,32 @@ function onRefresh() {
 }
 
 function onIndexChange(row: any) {
-    editSortIndex(row).then(() => {
+    editSortIndex({
+        id: row.personId,
+        sortIndex: row.sortIndex,
+    }).then(() => {
         ElMessage.success('操作成功')
     })
 }
 
-const debouncedOnIndexChange = useDebounceFn(onIndexChange, 1000)
+const debouncedOnIndexChange = useDebounceFn(onIndexChange, 500)
 
 function onAdd() {
-    onEdit(1)
     refDialog.value.openModal({
         component: dialogPersonnel,
-        title: '添加',
+        title: '添加账号',
         width: '680px',
     })
 }
 function onEdit(row: any) {
-    downloadTemplate()
+    refDialog.value.openModal({
+        component: dialogPersonnel,
+        title: '编辑账号',
+        width: '680px',
+        params: {
+            personId: row.personId,
+        },
+    })
 }
 
 function onDelete(row: any) {
@@ -98,8 +119,50 @@ function onDelete(row: any) {
 
 function onBatchDelete() {
     const selectedRows = refGrid.value.getSelected()
-    console.log(selectedRows)
+    if (selectedRows.length === 0) {
+        ElMessage.warning('请选择至少一条数据')
+        return
+    }
+    ElMessageBox.confirm('确定删除选中的账号吗？').then(() => {
+        deletePersonnel(selectedRows.map((item: any) => item.personId)).then(() => {
+            ElMessage.success('操作成功')
+            onRefresh()
+        })
+    })
 }
 
-function onResetPassword(row: any) {}
+function onBatchResetPassword() {
+    const selectedRows = refGrid.value.getSelected()
+    if (selectedRows.length === 0) {
+        ElMessage.warning('请选择至少一条数据')
+        return
+    }
+    ElMessageBox.confirm('确定重置选中的账号密码吗？').then(() => {
+        checkPersonAccountBind(selectedRows.map((item: any) => item.personId)).then(({ data }) => {
+            if (data?.bindModels?.length) {
+                ElMessageBox.alert(`存在账号已与其他组织关联`)
+                return
+            }
+            batchResetPassword(selectedRows.map((item: any) => item.personId)).then(() => {
+                ElMessage.success('操作成功')
+                onRefresh()
+            })
+        })
+    })
+}
+
+function onResetPassword(row: any) {
+    ElMessageBox.confirm('确定重置该账号密码吗？').then(() => {
+        checkPersonAccountBind([row.personId]).then(({ data }) => {
+            if (data?.bindModels?.length) {
+                ElMessageBox.alert(`此账号已与其他组织关联`)
+                return
+            }
+            resetPassword(row.personId).then(() => {
+                ElMessage.success('操作成功')
+                onRefresh()
+            })
+        })
+    })
+}
 </script>

@@ -21,7 +21,7 @@ export function createRouterGuard(router: Router) {
         }
     })
 
-    router.afterEach(async (to, from, failure) => {
+    router.afterEach(async (to, _from, _failure) => {
         const viteEnv = wrapperEnv()
         document.title = (to.meta?.title as string) || viteEnv.VITE_APP_TITLE
         nprogress.done()

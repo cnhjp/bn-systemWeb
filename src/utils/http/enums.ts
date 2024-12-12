@@ -2,7 +2,7 @@ export enum HttpStatus {
     /**
      * 操作成功
      */
-    SUCCESS = 200,
+    SUCCESS = 1200,
     /**
      * 未授权
      */
