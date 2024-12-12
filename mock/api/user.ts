@@ -52,6 +52,13 @@ const apis: MockMethod[] = [
                     { id: 403, title: '系统日志', route: 'support-logger', icon: 'cast' },
                 ],
             },
+            {
+                id: 500,
+                title: '系统设置',
+                route: 'system-setting',
+                icon: 'cast',
+                children: [{ id: 501, title: '人员管理', route: 'personnel-manage', icon: 'cast' }],
+            },
         ]
     }),
 ]

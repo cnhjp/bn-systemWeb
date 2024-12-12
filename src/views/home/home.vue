@@ -19,8 +19,6 @@
 </template>
 
 <script setup>
-import { BGrid } from '@package/b-grid'
-import '@package/b-grid/lib/style.css'
 import { getStaticData, getDynamicData } from './api'
 import test from './test.vue'
 
@@ -55,7 +53,7 @@ function openDialog() {
     refDialog.value.openModal({
         component: test,
         title: '弹窗标题',
-        width: '500px',
+        width: '900px',
         params: {
             name: '张三',
         },
