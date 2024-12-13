@@ -72,8 +72,8 @@ export const useUserStore = defineStore('user-store', {
                     const { info } = response.data
                     this.token = info.token
                     setToken(info.token)
-                    setPersonID(info.personId.toString())
                     this.personId = info.personId.toString()
+                    setPersonID(info.personId.toString())
                     await this.initUserStore()
                 }
                 return response

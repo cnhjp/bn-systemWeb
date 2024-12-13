@@ -1,4 +1,7 @@
-@import '../common/config.scss';
+@use '../common/config' as *;
+$B: null;
+$E: null;
+
 
 @mixin b($block) {
   $B: $namespace + $common-separator + $block !global;

@@ -1,7 +1,7 @@
 /**
  * 通过账号密码登录请求参数
  */
-export declare type LoginByUserRequest = {
+export interface LoginByUserRequest {
     userName: string
     password: string
     clientID: string
@@ -11,7 +11,7 @@ export declare type LoginByUserRequest = {
 /**
  * 登录响应对象
  */
-export declare type LoginResponse = {
+export interface LoginResponse {
     data: {
         status: number
         info: {

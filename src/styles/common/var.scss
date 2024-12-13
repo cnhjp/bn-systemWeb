@@ -1,0 +1,86 @@
+$-h-body-background: #f5f5f5 !default; //全局背景颜色
+$-h-theme-color: #fff !default; // 主题字体
+$-h-theme-background: #C3272B !default; // 主题背景
+$-h-theme-font: #C3272B !default; // 主题背景
+$-h-font-size: 14px !default;
+
+//颜色样式
+$-h-color-white: #ffffff !default;
+$-h-color-black: #000000 !default;
+$-h-color-darkgrey: #303133 !default;
+$-h-color-default: #606266 !default;
+$-h-color-primary: #6374ba !default;
+$-h-color-warning: #f0885b !default;
+$-h-color-success: #00B578 !default;
+$-h-color-danger: #c3272b !default;
+$-h-color-info: #909399 !default;
+$-h-color-link: #409eff !default;
+$-h-color-tips: #c0c4cc !default; //输入框提示，辅助说明
+$-h-color-border: #dcdfe6 !default;
+
+
+//按钮样式
+$-h-btn-hover-tint-percent: 30% !default; //悬停透明度
+$-h-btn-active-shade-percent: 10% !default; //阴影百分比
+$-h-btn-disabled-percent: 30% !default; //禁用透明度
+
+$-h-btn-text-default: #303133 !default;
+$-h-btn-border-default: #dcdfe6 !default;
+
+$-h-btn-bg-primary: #6374ba !default;
+$-h-btn-bg-warning: #f0885b !default;
+$-h-btn-bg-info: #909399 !default;
+$-h-btn-bg-success: #00B578 !default;
+$-h-btn-bg-danger: #c3272b !default;
+
+
+// layout-theme
+$-h-layout-header-height: 70px !default;
+$-h-layout-aside-width: 236px !default;
+$-h-layout-aside-width-collapse: 64px !default;
+
+// Break-point
+$--sm: 768px !default;
+$--md: 992px !default;
+$--lg: 1200px !default;
+$--xl: 1920px !default;
+
+$--breakpoints: (
+  'xs' : (max-width: $--sm - 1),
+  'sm' : (min-width: $--sm),
+  'md' : (min-width: $--md),
+  'lg' : (min-width: $--lg),
+  'xl' : (min-width: $--xl)
+);
+
+$--breakpoints-spec: (
+  'xs-only' : (max-width: $--sm - 1),
+  'sm-and-up' : (min-width: $--sm),
+  'sm-only': "(min-width: #{$--sm}) and (max-width: #{$--md - 1})",
+  'sm-and-down': (max-width: $--md - 1),
+  'md-and-up' : (min-width: $--md),
+  'md-only': "(min-width: #{$--md}) and (max-width: #{$--lg - 1})",
+  'md-and-down': (max-width: $--lg - 1),
+  'lg-and-up' : (min-width: $--lg),
+  'lg-only': "(min-width: #{$--lg}) and (max-width: #{$--xl - 1})",
+  'lg-and-down': (max-width: $--xl - 1),
+  'xl-only' : (min-width: $--xl),
+);
+
+
+/* default unit
+-------------------------- */
+$-h-default-unit: 100px !default;
+$-h-single-unit: 4px !default;
+
+/* Border
+-------------------------- */
+$-h-border-width-base: 1px !default;
+$-h-border-style-base: solid !default;
+$-h-border-base: $-h-border-width-base $-h-border-style-base !default;
+$-h-border-radius-base: 2 * $-h-single-unit !default;
+$-h-border-radius-small: $-h-single-unit !default;
+$-h-border-radius-mini: 0.5 * $-h-single-unit !default;
+$-h-border-radius-circle: 100% !default;
+$-h-border-radius-zero: 0 !default;
+

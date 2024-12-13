@@ -75,7 +75,6 @@ export const useRouteStore = defineStore('route-store', {
             return router.push(to)
         },
         loginToRedirect() {
-            debugger
             const { query } = router.currentRoute.value
             if (query?.redirect) {
                 this.routerPush(query.redirect as string)

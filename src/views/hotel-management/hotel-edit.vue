@@ -1,11 +1,8 @@
+<template>
+    <form-hotel />
+</template>
 <script setup lang="ts">
-
+import FormHotel from './components/form-hotel.vue'
 </script>
 
-<template>
-
-</template>
-
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

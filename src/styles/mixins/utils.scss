@@ -1,0 +1,80 @@
+@use '../mixins/mixins' as *;
+
+@mixin utils-user-select($value) {
+  -moz-user-select: $value;
+  -webkit-user-select: $value;
+  -ms-user-select: $value;
+}
+
+@mixin utils-clearfix {
+  $selector: &;
+
+  @at-root {
+    #{$selector}::before,
+    #{$selector}::after {
+      display: table;
+      content: '';
+    }
+    #{$selector}::after {
+      clear: both;
+    }
+  }
+}
+
+@mixin utils-vertical-center {
+  $selector: &;
+
+  @at-root {
+    #{$selector}::after {
+      display: inline-block;
+      content: '';
+      height: 100%;
+      vertical-align: middle;
+    }
+  }
+}
+
+// 省略号
+@mixin line-ellipse($line) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  line-clamp: $line;
+  -webkit-box-orient: vertical;
+}
+
+@mixin border-style {
+  @include when(dashed) {
+    border-style: dashed;
+  }
+  @include when(dotted) {
+    border-style: dotted;
+  }
+}
+
+@mixin layout-padding($padding) {
+  @include when(padding) {
+    padding: 4 * $padding;
+  }
+  @include when(padding--y) {
+    padding-top: 4 * $padding;
+    padding-bottom: 4 * $padding;
+  }
+  @include when(padding--x) {
+    padding-left: 4 * $padding;
+    padding-right: 4 * $padding;
+  }
+  @include when(padding--t) {
+    padding-top: 4 * $padding;
+  }
+  @include when(padding--r) {
+    padding-right: 4 * $padding;
+  }
+  @include when(padding--b) {
+    padding-bottom: 4 * $padding;
+  }
+  @include when(padding--l) {
+    padding-left: 4 * $padding;
+  }
+}

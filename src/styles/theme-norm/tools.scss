@@ -1,0 +1,210 @@
+@use 'var' as *;
+@use '../mixins/mixins' as *;
+@use '../mixins/utils' as *;
+$-h-line: (
+  line1: 1,
+  line2: 2,
+  line3: 3,
+  line4: 4,
+  line5: 5,
+);
+$-h-radius: (
+  'mini': 4px,
+  'small': 6px,
+  'large': 12px,
+);
+$-h-title: (
+  h1: 20px,
+  h2: 18px,
+  h3: 16px,
+  h4: 14px,
+  h5: 12px,
+);
+$-h-text-align: (left, center, right);
+$-h-border: (top, right, bottom, left);
+
+@each $title, $size in $-h-title {
+  #{$title} {
+    margin: 0;
+    line-height: 1.5;
+    font-size: $size;
+    font-weight: normal;
+    color: getCssVar('text-color', 'regular');
+
+    @include when(bold) {
+      font-weight: 800;
+    }
+
+    @include when(mid) {
+      font-weight: 600;
+    }
+  }
+}
+
+@include b(flex) {
+  display: flex;
+
+  @include when(center) {
+    align-items: center;
+    justify-content: center;
+  }
+
+  @include when(start) {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  @include when(end) {
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  @include when(center-start) {
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  @include when(center-between) {
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @include when(center-end) {
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  @include when(start-center) {
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  @include when(start-between) {
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  @include when(start-end) {
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+
+  @include when(end-start) {
+    align-items: flex-end;
+    justify-content: flex-start;
+  }
+
+  @include when(end-center) {
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  @include when(end-between) {
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  @include when(align-center) {
+    align-items: center;
+  }
+
+  @include when(align-start) {
+    align-items: flex-start;
+  }
+
+  @include when(align-end) {
+    align-items: flex-end;
+  }
+
+  @include when(justify-center) {
+    justify-content: center;
+  }
+
+  @include when(justify-between) {
+    justify-content: space-between;
+  }
+
+  @include when(justify-start) {
+    justify-content: flex-start;
+  }
+
+  @include when(justify-end) {
+    justify-content: flex-end;
+  }
+
+  @include when(wrap) {
+    flex-wrap: wrap;
+  }
+
+  @include when(column) {
+    flex-direction: column;
+  }
+
+  @include when(row) {
+    flex-direction: row;
+  }
+}
+
+@each $name, $line in $-h-line {
+  @include b($name) {
+    @include line-ellipse($line);
+  }
+}
+
+@include b(shadow) {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.13);
+}
+
+@include b(round) {
+  border-radius: 8px;
+
+  @each $name, $radius in $-h-radius {
+    @include when($name) {
+      border-radius: $radius;
+      overflow: hidden;
+    }
+  }
+}
+
+@include b(text) {
+  @each $text in $-h-text-align {
+    @include m($text) {
+      text-align: $text !important;
+    }
+  }
+}
+
+@include b(border) {
+  border: 1px solid;
+  @include border-style;
+
+  @each $name in $-h-border {
+    @include m($name) {
+      border: 0;
+      border-#{$name}: 1px solid;
+      @include border-style;
+    }
+  }
+}
+
+@include b(card) {
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px 0 rgba(#000000, 0.13);
+
+  @include when(small) {
+    border-radius: 6px;
+  }
+
+  @include when(mini) {
+    border-radius: 4px;
+  }
+}
+
+@include b(required) {
+  &::before {
+    content: '*';
+    margin-right: 2px;
+    color: getCssVar('color', 'danger');
+  }
+}

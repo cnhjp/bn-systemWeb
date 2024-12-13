@@ -68,7 +68,6 @@ function base64ToBlob(base64Str: string, mimeType: string = 'application/octet-s
  */
 export function downloadBlob(blob: Blob, name: string) {
     console.log(blob, name)
-    debugger
     if (blob instanceof Blob) {
         if ('navigator' in window && 'msSaveBlob' in window.navigator) {
             ;(window.navigator as any).msSaveBlob(blob, name)
