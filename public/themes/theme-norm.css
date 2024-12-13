@@ -1,3 +1,295 @@
+@charset "UTF-8";
+/**
+* 全局样式文件
+* 引入 reset.scss 文件，并根据项目情况添加一些全局可用的原子类
+*/
+html {
+  line-height: 1.5;
+  tab-size: 4;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  overflow-x: hidden;
+  color: #303030;
+}
+
+body {
+  margin: 0;
+  line-height: inherit;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#app {
+  position: relative;
+  height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: currentColor;
+}
+
+.el-form .el-form-item:last-child {
+  margin-bottom: 0;
+}
+
+/* 消退 fade */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* 滑动 fade-slide */
+.fade-slide-leave-active,
+.fade-slide-enter-active {
+  transition: all 0.3s;
+}
+
+.fade-slide-enter-from {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* 底部消退 fade-bottom */
+.fade-bottom-enter-active,
+.fade-bottom-leave-active {
+  transition: opacity 0.25s, transform 0.3s;
+}
+
+.fade-bottom-enter-from {
+  opacity: 0;
+  transform: translateY(-10%);
+}
+
+.fade-bottom-leave-to {
+  opacity: 0;
+  transform: translateY(10%);
+}
+
+/* 缩放消退 fade-scale */
+.fade-scale-leave-active,
+.fade-scale-enter-active {
+  transition: all 0.28s;
+}
+
+.fade-scale-enter-from {
+  opacity: 0;
+  transform: scale(1.2);
+}
+
+.fade-scale-leave-to {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+/* 渐变 zoom-fade */
+.zoom-fade-enter-active,
+.zoom-fade-leave-active {
+  transition: transform 0.2s, opacity 0.3s ease-out;
+}
+
+.zoom-fade-enter-from {
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+.zoom-fade-leave-to {
+  opacity: 0;
+  transform: scale(1.06);
+}
+
+/* 闪现 zoom-out */
+.zoom-out-enter-active,
+.zoom-out-leave-active {
+  transition: opacity 0.1s ease-in-out, transform 0.15s ease-out;
+}
+
+.zoom-out-enter-from,
+.zoom-out-leave-to {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.h-grid .vxe-grid--toolbar-wrapper .h-grid-toolbar .h-grid-toolbar-right .el-form--inline .el-form-item:last-child {
+  margin-right: 0;
+}
+.h-grid .vxe-grid--toolbar-wrapper .h-grid-toolbar .h-grid-toolbar-right > *,
+.h-grid .vxe-grid--toolbar-wrapper .h-grid-toolbar .h-grid-toolbar-left > * {
+  margin-bottom: 12px;
+}
+.h-grid .vxe-grid--toolbar-wrapper .h-grid-toolbar.--flex {
+  display: flex;
+  justify-content: space-between;
+}
+.h-grid .vxe-table--render-default .vxe-cell {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+.h-grid .vxe-table--render-default .vxe-table--header-wrapper {
+  background-color: #ffffff;
+}
+.h-grid .vxe-table--render-default:not([class*=size--]) .vxe-header--column {
+  font-size: 16px;
+  color: #606266;
+  font-weight: bold;
+  padding: 15px 0;
+}
+.h-grid .vxe-table--render-default:not([class*=size--]) .vxe-body--column {
+  padding: 14px 0;
+}
+.h-grid .vxe-table--render-default.border--default .vxe-body--column,
+.h-grid .vxe-table--render-default.border--default .vxe-footer--column,
+.h-grid .vxe-table--render-default.border--default .vxe-header--column, .h-grid .vxe-table--render-default.border--inner .vxe-body--column,
+.h-grid .vxe-table--render-default.border--inner .vxe-footer--column,
+.h-grid .vxe-table--render-default.border--inner .vxe-header--column {
+  background-image: linear-gradient(#f5f5f5, #f5f5f5);
+}
+.h-grid .vxe-table--render-default .vxe-table--border-line {
+  border: none;
+}
+.h-grid .vxe-table .vxe-table--header-wrapper .vxe-table--header-border-line {
+  background-image: linear-gradient(#f5f5f5, #f5f5f5);
+  border-bottom: 1px solid #f5f5f5;
+}
+.h-grid .vxe-table .vxe-sort--asc-btn,
+.h-grid .vxe-table .vxe-sort--desc-btn {
+  color: rgba(95, 95, 95, 0.1);
+}
+.h-grid .vxe-table .vxe-sort--asc-btn.sort--active,
+.h-grid .vxe-table .vxe-sort--desc-btn.sort--active {
+  color: #9f9f9f;
+}
+.h-grid .vxe-pager {
+  position: relative;
+  color: rgba(0, 0, 0, 0.6);
+  padding: 16px 30px;
+  height: auto;
+}
+.h-grid .vxe-pager .vxe-pager--total {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+}
+.h-grid .vxe-pager.is--background, .h-grid .vxe-pager.is--perfect {
+  border: none;
+}
+.h-grid .vxe-pager.is--background .vxe-pager--jump-next,
+.h-grid .vxe-pager.is--background .vxe-pager--jump-prev,
+.h-grid .vxe-pager.is--background .vxe-pager--num-btn, .h-grid .vxe-pager.is--perfect .vxe-pager--jump-next,
+.h-grid .vxe-pager.is--perfect .vxe-pager--jump-prev,
+.h-grid .vxe-pager.is--perfect .vxe-pager--num-btn {
+  background-color: #ffffff;
+  border-color: #dcdcdc;
+}
+.h-grid .vxe-pager.is--background .vxe-pager--jump-next:hover, .h-grid .vxe-pager.is--background .vxe-pager--jump-next:focus,
+.h-grid .vxe-pager.is--background .vxe-pager--jump-prev:hover,
+.h-grid .vxe-pager.is--background .vxe-pager--jump-prev:focus,
+.h-grid .vxe-pager.is--background .vxe-pager--num-btn:hover,
+.h-grid .vxe-pager.is--background .vxe-pager--num-btn:focus, .h-grid .vxe-pager.is--perfect .vxe-pager--jump-next:hover, .h-grid .vxe-pager.is--perfect .vxe-pager--jump-next:focus,
+.h-grid .vxe-pager.is--perfect .vxe-pager--jump-prev:hover,
+.h-grid .vxe-pager.is--perfect .vxe-pager--jump-prev:focus,
+.h-grid .vxe-pager.is--perfect .vxe-pager--num-btn:hover,
+.h-grid .vxe-pager.is--perfect .vxe-pager--num-btn:focus {
+  color: #5399ec;
+}
+.h-grid .vxe-pager.is--background .vxe-pager--jump-next:not(.is--disabled).is--active,
+.h-grid .vxe-pager.is--background .vxe-pager--jump-prev:not(.is--disabled).is--active,
+.h-grid .vxe-pager.is--background .vxe-pager--num-btn:not(.is--disabled).is--active, .h-grid .vxe-pager.is--perfect .vxe-pager--jump-next:not(.is--disabled).is--active,
+.h-grid .vxe-pager.is--perfect .vxe-pager--jump-prev:not(.is--disabled).is--active,
+.h-grid .vxe-pager.is--perfect .vxe-pager--num-btn:not(.is--disabled).is--active {
+  background-color: #ffffff;
+  border: 1px solid #5399ec;
+  color: #5399ec;
+}
+
+:root {
+  --primary-color: 24, 144, 255;
+  --aside-width: 220px;
+  --header-height: 56px;
+  --footer-height: 0;
+}
+
+.layout-container {
+  position: relative;
+}
+
+.layout-header {
+  height: var(--header-height);
+  position: absolute;
+  top: 0;
+  left: var(--aside-width);
+  right: 0;
+  box-shadow: 0 1px 2px rgba(0, 21, 41, 0.08);
+}
+
+.layout-footer {
+  height: var(--footer-height);
+  position: absolute;
+  left: var(--aside-width);
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layout-aside {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  width: var(--aside-width);
+  box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
+}
+
+.layout-main {
+  position: absolute;
+  top: var(--header-height);
+  left: var(--aside-width);
+  right: 0;
+  bottom: var(--footer-height);
+}
+
+.layout-breadcrumb .el-button {
+  padding: 4px;
+}
+.layout-breadcrumb .el-breadcrumb__separator {
+  margin: 0 6px;
+}
+
+.layout-logo {
+  height: var(--header-height);
+}
+
+.layout-menu.el-menu {
+  border-right: 0;
+}
+.layout-menu .el-menu-item.is-active {
+  font-weight: bold;
+  background-color: #d9ecff;
+}
+
 /* Element Chalk Variables */
 h1 {
   margin: 0;

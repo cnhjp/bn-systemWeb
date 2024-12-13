@@ -1,6 +1,6 @@
 <template>
     <el-container>
-        <el-main>
+        <el-main class="el-bg--white">
             <el-form ref="form" v-model="formModel" label-width="80px">
                 <el-form-item label="酒店名称" props="name">
                     <el-input v-model="formModel.name" />
@@ -18,7 +18,7 @@
                     <el-input v-model="formModel.name" />
                 </el-form-item>
             </el-form>
-            <div class="h-flex is-center">
+            <div class="el-flex is-center">
                 <el-button>取消</el-button>
                 <el-button type="primary">确定</el-button>
             </div>
