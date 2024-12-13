@@ -1,0 +1,14 @@
+[
+  {
+    "compName": "core",
+    "compZhName": "函数库",
+    "compDesc": "插件核心函数库",
+    "compClassName": "core"
+  },
+  {
+    "compName": "http",
+    "compZhName": "Http库",
+    "compDesc": "",
+    "compClassName": "http"
+  }
+]

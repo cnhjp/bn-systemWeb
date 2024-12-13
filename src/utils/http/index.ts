@@ -3,6 +3,7 @@ import type { AxiosResponse } from 'axios'
 import { HttpStatus, HttpStatusDescription } from './enums'
 import { useUserStore } from '@/store'
 import { downloadBlob, isValidJSON } from '../common'
+import { HttpEvent } from '../event'
 
 /**
  * 当响应类型为二进制流（Blob）时，下载数据
@@ -91,10 +92,11 @@ function responseSucceed(response: HttpResponse) {
     error.config = config
     error.request = request
     error.response = response
-    return responseFailed(error)
+    return responseFailed(error, response)
 }
 
-function responseFailed(error: HttpError) {
+function responseFailed(error: HttpError, response: HttpResponse) {
+    window.$app.emit(HttpEvent.onError, error, response)
     return Promise.reject(error)
 }
 
@@ -138,3 +140,14 @@ export const http = new BusinessHttpRequest({
         responseFailedInterceptors: responseFailed,
     },
 })
+
+// 监听错误
+export function handleError() {
+    window.$app.on(HttpEvent.onError, (error: HttpError, response: HttpResponse) => {
+        const { config } = response
+        if (config.toastError === false) {
+            return
+        }
+        ElMessage.error(error.message)
+    })
+}

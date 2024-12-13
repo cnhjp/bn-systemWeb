@@ -3,10 +3,20 @@
         <el-main>
             <b-grid ref="refGrid" v-bind="gridProps">
                 <template #toolbar-left>
-                    <el-button type="default" size="" @click="onDownloadTemplate">下载模板</el-button>
                     <el-button type="primary" size="" @click="onAdd()">添加账号</el-button>
                     <el-button type="danger" size="" @click="onBatchDelete()">批量删除</el-button>
                     <el-button type="warning" size="" @click="onBatchResetPassword()">批量重置密码</el-button>
+                    <el-dropdown @command="onBatchImport" class="ml-12px">
+                        <el-button type="primary" size="">
+                            批量导入&nbsp;
+                            <el-icon><arrow-down /></el-icon>
+                        </el-button>
+                        <template #dropdown>
+                            <el-dropdown-menu>
+                                <el-dropdown-item command="account">导入账号</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </template>
+                    </el-dropdown>
                 </template>
 
                 <template #toolbar-right>
@@ -38,7 +48,12 @@
                 </template>
             </b-grid>
         </el-main>
-        <b-common-dialog ref="refDialog" @refresh="onRefresh"></b-common-dialog>
+        <b-common-dialog
+            ref="refDialog"
+            @refresh="onRefresh"
+            @openImport="onOpenImportDialog"
+            @importPersonnel="onImportPersonnel"
+        ></b-common-dialog>
     </el-container>
 </template>
 
@@ -50,13 +65,12 @@ import {
     checkPersonAccountBind,
     resetPassword,
     batchResetPassword,
-    downloadTemplate,
+    importPersonnel,
 } from '@/api/personnel-manage'
 import dialogPersonnel from './components/dialog-personnel.vue'
-
-function onDownloadTemplate() {
-    downloadTemplate()
-}
+import dialogBatchImport from './components/dialog-batch-import.vue'
+import dialogOpenImport from './components/dialog-open-import.vue'
+import dialogDisplayError from './components/dialog-display-error.vue'
 
 const formModel = reactive({
     keyword: '',
@@ -116,10 +130,7 @@ function onEdit(row: any) {
 
 function onDelete(row: any) {
     ElMessageBox.confirm('确定删除该账号吗？').then(() => {
-        deletePersonnel([row.personId]).then(() => {
-            ElMessage.success('操作成功')
-            onRefresh()
-        })
+        commonDelete([row.personId])
     })
 }
 
@@ -130,10 +141,16 @@ function onBatchDelete() {
         return
     }
     ElMessageBox.confirm('确定删除选中的账号吗？').then(() => {
-        deletePersonnel(selectedRows.map((item: any) => item.personId)).then(() => {
-            ElMessage.success('操作成功')
-            onRefresh()
-        })
+        commonDelete(selectedRows.map((item: any) => item.personId))
+    })
+}
+
+function commonDelete(rows: number[]) {
+    deletePersonnel(rows).then(({ data }) => {
+        const { info } = data
+        if (info) ElMessage.warning(info)
+        else ElMessage.success('操作成功')
+        onRefresh()
     })
 }
 
@@ -169,6 +186,53 @@ function onResetPassword(row: any) {
                 onRefresh()
             })
         })
+    })
+}
+
+function onBatchImport(command: string) {
+    switch (command) {
+        case 'account':
+            refDialog.value.openModal({
+                component: dialogBatchImport,
+                title: '批量导入账号',
+                width: '680px',
+            })
+            break
+    }
+}
+
+function onOpenImportDialog(list: any, formData: FormData) {
+    refDialog.value.openModal({
+        component: dialogOpenImport,
+        title: '提示',
+        width: '680px',
+        params: {
+            list,
+            formData,
+        },
+    })
+}
+
+function onOpenDisplayErrorDialog(info: any) {
+    refDialog.value.openModal({
+        component: dialogDisplayError,
+        title: '提示',
+        width: '680px',
+        params: {
+            info,
+        },
+    })
+}
+
+function onImportPersonnel(formData: FormData) {
+    importPersonnel(formData).then(({ data }) => {
+        const info = data?.info
+        if (info.errorPersonList.length > 0 || info.updateCount > 0) {
+            onOpenDisplayErrorDialog(info)
+        } else {
+            ElMessage.success('导入成功')
+        }
+        onRefresh()
     })
 }
 </script>
