@@ -97,3 +97,19 @@ export function downloadTemplate() {
         },
     )
 }
+
+/***
+ * 检查导入人员
+ */
+export function checkImport(params: { file: File }) {
+    return http.form('/api/person/checkImport', params)
+}
+
+/**
+ * 导入人员
+ * @param formData
+ * @returns
+ */
+export function importPersonnel(formData: FormData) {
+    return http.post('/api/person/import', formData)
+}

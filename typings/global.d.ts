@@ -4,6 +4,16 @@ declare type Recordable<T = any> = Record<string, T>
 
 declare interface Window {
     $store?: any
+    $app: any
+}
+
+declare module '@package/core' {
+    export const Application: any
+    export const UserAgent: any
+}
+
+declare module '@package/b-grid' {
+    export const BGrid: any
 }
 
 declare interface ImportMeta {

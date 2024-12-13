@@ -67,11 +67,11 @@
                     </div>
                 </div>
             </el-form>
-            <div class="flex justify-center mt-20px">
-                <el-button type="default" @click="onClose">取消</el-button>
-                <el-button type="primary" @click="onConfirm">确定</el-button>
-            </div>
         </el-main>
+        <el-footer class="flex-center">
+            <el-button type="default" @click="onClose">取消</el-button>
+            <el-button type="primary" @click="onConfirm">确定</el-button>
+        </el-footer>
     </el-container>
 </template>
 
