@@ -1,16 +1,8 @@
 <template>
     <el-form inline label-suffix=":">
         <el-form-item label="会议">
-            <el-select v-model="model" placeholder="" class="!w-250px" @change="onChange">
-                <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                ></el-option>
-            </el-select>
+            <b-select :data="getMeetingDrop" v-model="model" class="!w-250px"></b-select>
         </el-form-item>
-
         <slot></slot>
     </el-form>
 </template>
@@ -27,7 +19,6 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'change'])
 
-const options = ref<any>([])
 const model = computed({
     get() {
         return props.modelValue
@@ -36,14 +27,6 @@ const model = computed({
         emit('update:modelValue', value)
         emit('change', value)
     },
-})
-
-onMounted(() => {
-    getMeetingDrop().then(({ data }) => {
-        options.value = data || []
-        const selectedItem = options.value.find((item: any) => item.selected)
-        model.value = (selectedItem || options.value[0] || {}).value
-    })
 })
 </script>
 

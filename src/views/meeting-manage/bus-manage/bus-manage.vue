@@ -75,7 +75,7 @@ const refGrid = ref<any>(null)
 const refDialog = ref<any>(null)
 
 function onRefresh() {
-    refGrid.value.refresh()
+    nextTick(() => refGrid.value.refresh())
 }
 
 function onAdd() {
