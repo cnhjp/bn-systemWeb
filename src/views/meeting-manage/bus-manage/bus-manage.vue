@@ -1,16 +1,9 @@
 <template>
     <el-container class="wh-full">
-        <el-header class="flex-center">
-            <!-- <el-select v-model="model" placeholder="">
-                <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                ></el-option>
-            </el-select> -->
+        <el-header class="flex items-center">
+            <meeting-drop-form v-model="formModel.conventionId" @change="onRefresh"></meeting-drop-form>
         </el-header>
-        <el-main>
+        <el-main class="!pt-0">
             <b-grid ref="refGrid" v-bind="gridProps">
                 <template #toolbar-left>
                     <el-button type="primary" @click="onAdd">新增</el-button>
@@ -28,14 +21,16 @@
 </template>
 
 <script setup lang="ts">
+import meetingDropForm from '../components/meeting-drop-form.vue'
 import dialogBusForm from './components/dialog-bus-form.vue'
 import { getBusPage, batchDeleteBus } from '@/api/bus-manage'
 
 const formModel = reactive({
-    conventionId: 639534036934725,
+    conventionId: '',
 })
 
 const gridProps = reactive({
+    autoLoad: false,
     data: getBusPage,
     query: (params: any) => {
         return Object.assign(params, formModel)
@@ -49,17 +44,17 @@ const gridProps = reactive({
         {
             title: '班次',
             field: 'title',
-            minWidth: 120,
+            minWidth: 80,
         },
         {
             title: '发车时间',
             field: 'startTimeStr',
-            minWidth: 120,
+            minWidth: 80,
         },
         {
             title: '发车地',
             field: 'startAddress',
-            minWidth: 120,
+            minWidth: 180,
         },
         {
             title: '备注',
