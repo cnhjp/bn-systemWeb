@@ -3,6 +3,7 @@
         <el-main>
             <b-grid ref="refGrid" v-bind="gridProps">
                 <template #toolbar-left>
+                    <el-button type="default" size="" @click="onDownloadTemplate">下载模板</el-button>
                     <el-button type="primary" size="" @click="onAdd()">添加账号</el-button>
                     <el-button type="danger" size="" @click="onBatchDelete()">批量删除</el-button>
                     <el-button type="warning" size="" @click="onBatchResetPassword()">批量重置密码</el-button>
@@ -49,8 +50,13 @@ import {
     checkPersonAccountBind,
     resetPassword,
     batchResetPassword,
+    downloadTemplate,
 } from '@/api/personnel-manage'
 import dialogPersonnel from './components/dialog-personnel.vue'
+
+function onDownloadTemplate() {
+    downloadTemplate()
+}
 
 const formModel = reactive({
     keyword: '',

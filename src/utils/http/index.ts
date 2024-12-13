@@ -2,7 +2,7 @@ import { HttpRequest, HttpError, type HttpResponse, type HttpRequestConfig } fro
 import type { AxiosResponse } from 'axios'
 import { HttpStatus, HttpStatusDescription } from './enums'
 import { useUserStore } from '@/store'
-import { downloadBlob } from '../common'
+import { downloadBlob, isValidJSON } from '../common'
 
 /**
  * 当响应类型为二进制流（Blob）时，下载数据
@@ -16,14 +16,25 @@ export function responseBlob(response: AxiosResponse): Promise<AxiosResponse> {
 
         if (content instanceof Blob && content.type === 'application/octet-stream') {
             const blob = content
-            const name = decodeURIComponent(headers['content-disposition'].split(';')[1].split('filename=')[1])
+            const name =
+                (response.config as any).downloadName ||
+                decodeURIComponent(headers['content-disposition'].split(';')[1].split('filename=')[1])
             downloadBlob(blob, name)
             resolve(response)
         } else if ('FileReader' in window) {
             const fileReader = new FileReader()
             fileReader.onload = function () {
-                response.data = JSON.parse(this.result as string)
-                resolve(response)
+                if (isValidJSON(this.result as string)) {
+                    response.data = JSON.parse(this.result as string)
+                    resolve(response)
+                } else {
+                    const blob = new Blob([content], { type: content.type })
+                    downloadBlob(blob, (response.config as any).downloadName)
+                    resolve(response)
+                }
+            }
+            fileReader.onerror = function (error) {
+                reject(error)
             }
             fileReader.readAsText(content as Blob)
         } else {
@@ -56,14 +67,21 @@ function responseSucceed(response: HttpResponse) {
     }
 
     if (result.code === HttpStatus.SUCCESS) {
-        if (result.code === 200) {
-            if (response.config.responseType === 'blob') {
-                if ((response.config as any).download === true) {
-                    return responseBlob(response).catch(responseFailed)
-                }
+        // if (result.code === 200) {
+        if (response.config.responseType === 'blob') {
+            if ((response.config as any).download === true) {
+                return responseBlob(response).catch(responseFailed)
             }
         }
+        // }
         return result
+    }
+
+    ///// special handle
+    if (response.config.responseType === 'blob') {
+        if ((response.config as any).download === true) {
+            return responseBlob(response).catch(responseFailed)
+        }
     }
 
     const status: HttpStatus = result.code || HttpStatus.SYSTEM_ERROR
