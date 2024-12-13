@@ -1,6 +1,10 @@
 @use '../mixins/mixins' as *;
 @use '../mixins/utils' as *;
 @use '../mixins/function' as *;
+body {
+  background-color: getCssVar('color','bg');
+}
+
 $-h-text-list: (
   theme: getCssVar('color', 'theme'),
   darkgrey: getCssVar('color', 'black'),

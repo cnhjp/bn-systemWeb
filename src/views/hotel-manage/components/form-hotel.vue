@@ -26,7 +26,7 @@
     </el-container>
 </template>
 <script setup lang="ts">
-import { HotelForm } from '@/api/hotel-management/types.ts'
+import { HotelForm } from '@/api/hotel-manage/types.ts'
 
 const formModel = ref<HotelForm>({
     id: 0,

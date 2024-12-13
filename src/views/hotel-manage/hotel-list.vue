@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { deleteHotel, getHotelPage } from '@/api/hotel-management'
+import { deleteHotel, getHotelPage } from '@/api/hotel-manage'
 
 const router = useRouter()
 const formModel = reactive({
@@ -58,10 +58,10 @@ function onRefresh() {
     refGrid.value.refresh()
 }
 function onAdd() {
-    router.push({ name: 'hotel-management-add' })
+    router.push({ name: 'hotel-manage-add' })
 }
 function onEdit(row) {
-    router.push({ name: 'hotel-management-edit', query: { id: row.id } })
+    router.push({ name: 'hotel-manage-edit', query: { id: row.id } })
 }
 function onDelete(row: any) {
     ElMessageBox.confirm('确定删除该账号吗？').then(() => {

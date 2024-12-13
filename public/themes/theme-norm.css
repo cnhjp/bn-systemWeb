@@ -736,6 +736,10 @@ h5.is-mid {
   color: var(--el-color-danger);
 }
 
+body {
+  background-color: var(--el-color-bg);
+}
+
 .el-text--theme {
   color: var(--el-color-theme);
 }

@@ -7,6 +7,12 @@
         "children": [{ "id": 101, "title": "班车管理", "route": "bus-manage", "icon": "cast" }]
     },
     {
+    "id": 200,
+    "title": "酒店管理",
+    "route": "hotel-manage-list",
+    "icon": "cast"
+    },
+    {
         "id": 500,
         "title": "系统设置",
         "route": "system-setting",
