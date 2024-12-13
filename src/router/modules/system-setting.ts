@@ -1,17 +1,16 @@
 import { BasicLayout } from '@/layout'
-import { views } from '@/views'
 
 const routes: AuthRoute.Route = [
     {
         path: 'personnel-manage',
         name: 'personnel-manage',
-        component: views.personnel_manage,
+        component: () => import('@/views/system-setting/personnel-manage.vue'),
         meta: { title: '人员账号' },
     },
     {
         path: 'params-setting',
         name: 'params-setting',
-        component: views.params_setting,
+        component: () => import('@/views/system-setting/params-setting.vue'),
         meta: { title: '参数配置' },
     },
 ]
