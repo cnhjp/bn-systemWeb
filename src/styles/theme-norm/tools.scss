@@ -1,6 +1,6 @@
-@use 'var' as *;
 @use '../mixins/mixins' as *;
 @use '../mixins/utils' as *;
+@use '../mixins/function' as *;
 $-h-line: (
   line1: 1,
   line2: 2,

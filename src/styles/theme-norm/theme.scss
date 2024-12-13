@@ -1,0 +1,98 @@
+@use '../mixins/mixins' as *;
+@use '../mixins/utils' as *;
+@use '../mixins/function' as *;
+$-h-text-list: (
+  theme: getCssVar('color', 'theme'),
+  darkgrey: getCssVar('color', 'black'),
+  default: getCssVar('text-color', 'regular'),
+  primary: getCssVar('color', 'primary'),
+  danger: getCssVar('color', 'danger'),
+  warning: getCssVar('color', 'warning'),
+  success: getCssVar('color', 'success'),
+  link: getCssVar('color', 'link'),
+  info: getCssVar('color', 'info'),
+  tips: getCssVar('text-color', 'placeholder'),
+  white: getCssVar('color', 'white'),
+);
+
+$-h-bg-list: (
+  theme: getCssVar('color', 'theme'),
+  primary: getCssVar('color', 'primary'),
+  danger: getCssVar('color', 'danger'),
+  warning: getCssVar('color', 'warning'),
+  success: getCssVar('color', 'success'),
+  white: getCssVar('color', 'white'),
+  grey: getCssVar('color', 'bg'),
+  tips: getCssVar('text-color', 'placeholder'),
+);
+$-h-border: (top, right, bottom, left);
+
+
+@each $name, $color in $-h-text-list {
+  @include b(text) {
+    @include m($name) {
+      color: $color;
+    }
+  }
+}
+
+@each $name, $color in $-h-text-list {
+  @include b(fill) {
+    @include m($name) {
+      fill: $color;
+    }
+  }
+}
+
+@each $name, $color in $-h-bg-list {
+  @include b(bg) {
+    @include m($name) {
+      background-color: $color;
+    }
+  }
+}
+
+@mixin border-minix {
+  @include when(primary) {
+    border-color: getCssVar('color','primary');
+    stroke:  getCssVar('color','primary');
+  }
+  @include when(danger) {
+    border-color:  getCssVar('color','danger');
+    stroke:  getCssVar('color','danger');
+  }
+  @include when(success) {
+    border-color:  getCssVar('color','success');
+    stroke:  getCssVar('color','success');
+  }
+  @include when(theme) {
+    border-color:  getCssVar('color','theme');
+    stroke: getCssVar('color','theme');
+  }
+}
+
+@include b(border) {
+  border-color: getCssVar('border-color','');
+  stroke:getCssVar('border-color','');
+
+  @include border-minix;
+
+  @each $name in $-h-border {
+    @include m($name) {
+      border-color: getCssVar('border-color','');
+      stroke: getCssVar('border-color','');
+      @include when(dark) {
+        border-color: getCssVar('border-color','');
+        stroke: getCssVar('border-color','');
+      }
+      @include border-minix;
+    }
+  }
+}
+
+@include b(card) {
+  background-color: getCssVar('color','white');
+  @include when(grey) {
+    background-color:  getCssVar('color','bg');
+  }
+}

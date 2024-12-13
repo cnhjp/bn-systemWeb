@@ -1,16 +1,13 @@
-/* Element Chalk Variables */
+/* Element norm Variables */
 @use 'sass:math';
 @use 'sass:map';
 @use 'sass:color';
 
 @use '../mixins/function.scss' as *;
 
-// Special comment for theme configurator
-// type|skipAutoTranslation|Category|Order
-// skipAutoTranslation 1
-
 // types
-$types: primary, success, warning, danger, error, info;
+$types: ('theme', 'primary', 'success', 'warning', 'danger', 'error', 'info', 'link', 'bg');
+
 
 // Color
 $colors: () !default;
@@ -18,8 +15,11 @@ $colors: map.deep-merge(
     (
       'white': #ffffff,
       'black': #000000,
+      'theme': (
+        'base': #008Afe,
+      ),
       'primary': (
-        'base': #409eff,
+        'base': #008Afe,
       ),
       'success': (
         'base': #67c23a,
@@ -34,7 +34,13 @@ $colors: map.deep-merge(
         'base': #f56c6c,
       ),
       'info': (
-        'base': #909399,
+        'base': #999999,
+      ),
+      'link':(
+        'base': #008Afe,
+      ),
+      'bg':(
+        'base': #f8f8f8,
       ),
     ),
     $colors
@@ -42,12 +48,15 @@ $colors: map.deep-merge(
 
 $color-white: map.get($colors, 'white') !default;
 $color-black: map.get($colors, 'black') !default;
+$color-theme: map.get($colors, 'theme', 'base') !default;
 $color-primary: map.get($colors, 'primary', 'base') !default;
 $color-success: map.get($colors, 'success', 'base') !default;
 $color-warning: map.get($colors, 'warning', 'base') !default;
 $color-danger: map.get($colors, 'danger', 'base') !default;
 $color-error: map.get($colors, 'error', 'base') !default;
 $color-info: map.get($colors, 'info', 'base') !default;
+$color-link: map.get($colors, 'link', 'base') !default;
+$color-bg: map.get($colors, 'bg', 'base') !default;
 
 @mixin set-color-mix-level(
       $type,
@@ -76,7 +85,6 @@ $color-info: map.get($colors, 'info', 'base') !default;
       }
 }
 
-// --el-color-primary-dark-2
 @each $type in $types {
       @include set-color-mix-level($type, 2, 'dark', $color-black);
 }
@@ -84,9 +92,9 @@ $color-info: map.get($colors, 'info', 'base') !default;
 $text-color: () !default;
 $text-color: map.merge(
     (
-      'primary': #303133,
-      'regular': #606266,
-      'secondary': #909399,
+      'primary': #333333,
+      'regular': #666666,
+      'secondary': #999999,
       'placeholder': #a8abb2,
       'disabled': #c0c4cc,
     ),

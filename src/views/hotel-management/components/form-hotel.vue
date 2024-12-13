@@ -1,6 +1,6 @@
 <template>
     <el-container>
-        <el-main class="el-bg--white">
+        <el-main class="el-bg--grey">
             <el-form ref="form" v-model="formModel" label-width="80px">
                 <el-form-item label="酒店名称" props="name">
                     <el-input v-model="formModel.name" />

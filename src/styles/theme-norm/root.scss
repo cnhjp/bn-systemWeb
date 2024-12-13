@@ -1,0 +1,52 @@
+// CSS3 var
+@use 'var' as *;
+@use './mixins/_var' as *;
+@use '../mixins/function' as *;
+
+// common
+:root {
+  @include set-css-var-value('color-white', $color-white);
+  @include set-css-var-value('color-black', $color-black);
+
+  // get rgb
+  @each $type in (theme, primary, success, warning, danger, error, info, link, bg) {
+    @include set-css-color-rgb($type);
+  }
+}
+
+// for light
+:root {
+  color-scheme: light;
+
+  @each $type in (theme, primary, success, warning, danger, error, info, link, bg) {
+    @include set-css-color-type($colors, $type);
+  }
+
+  @include set-component-css-var('bg-color', $bg-color);
+  // --el-text-color-#{$type}
+  @include set-component-css-var('text-color', $text-color);
+  // --el-border-color-#{$type}
+  @include set-component-css-var('border-color', $border-color);
+  // Fill --el-fill-color-#{$type}
+  @include set-component-css-var('fill-color', $fill-color);
+
+  // Box-shadow
+  // --el-box-shadow-#{$type}
+  @include set-component-css-var('box-shadow', $box-shadow);
+  // Disable base
+  @include set-component-css-var('disabled', $disabled);
+
+  // overlay & mask
+  @include set-component-css-var('overlay-color', $overlay-color);
+  @include set-component-css-var('mask-color', $mask-color);
+
+  // Border
+  @include set-css-var-value('border-width', $border-width);
+  @include set-css-var-value('border-style', $border-style);
+  @include set-css-var-value('border-color-hover', $border-color-hover);
+  @include set-css-var-value(
+      'border',
+      getCssVar('border-width') getCssVar('border-style')
+      getCssVar('border-color')
+  );
+}
