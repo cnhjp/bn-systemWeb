@@ -67,7 +67,6 @@ function base64ToBlob(base64Str: string, mimeType: string = 'application/octet-s
  * @param name 文件名
  */
 export function downloadBlob(blob: Blob, name: string) {
-    console.log(blob, name)
     if (blob instanceof Blob) {
         if ('navigator' in window && 'msSaveBlob' in window.navigator) {
             ;(window.navigator as any).msSaveBlob(blob, name)
@@ -83,5 +82,19 @@ export function downloadBlob(blob: Blob, name: string) {
         }
     } else {
         downloadBlob(base64ToBlob(blob), name)
+    }
+}
+
+/**
+ * 判断字符串是否为 JSON 格式
+ * @param jsonString
+ * @returns
+ */
+export function isValidJSON(jsonString: string) {
+    try {
+        JSON.parse(jsonString)
+        return true
+    } catch (error) {
+        return false
     }
 }

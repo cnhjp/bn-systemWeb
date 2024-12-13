@@ -30,8 +30,39 @@
                         </el-form-item>
                     </div>
                     <div class="w-250px">
-                        <el-form-item>
-                            <b-upload></b-upload>
+                        <el-form-item label-width="40px">
+                            <el-upload
+                                v-model:file-list="fileList"
+                                :http-request="onUpload"
+                                :show-file-list="false"
+                                :limit="1"
+                                :before-upload="onBeforeUpload"
+                                :on-success="onUploadSuccess"
+                                accept=".png,.jpg,.jpeg,.gif"
+                            >
+                                <template #tip>
+                                    <div class="mt-12px text-12px lh-20px" style="color: #c0c4cc">
+                                        <div>文件大小：150KB</div>
+                                        <div>文件格式：.jpg, .png, .jpeg, .gif</div>
+                                    </div>
+                                </template>
+                                <div class="w-130px h-130px">
+                                    <div class="wh-full relative" v-if="imageUrl">
+                                        <div
+                                            class="absolute z-20 inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity"
+                                            @click.stop
+                                        >
+                                            <el-icon color="#fff" size="16" @click.stop="onDeleteUpload">
+                                                <Delete />
+                                            </el-icon>
+                                        </div>
+                                        <el-image :src="imageUrl" fit="cover" class="wh-full rounded relative z-10" />
+                                    </div>
+                                    <div class="wh-full border-dashed border-2 border-gray-300 flex-center" v-else>
+                                        <el-icon size="28"><Plus /></el-icon>
+                                    </div>
+                                </div>
+                            </el-upload>
                         </el-form-item>
                     </div>
                 </div>
@@ -46,6 +77,7 @@
 
 <script setup lang="ts">
 import { addPersonnel, editPersonnel, getPersonnelDetail } from '~/src/api/personnel-manage'
+import type { UploadFile } from 'element-plus'
 
 const props = defineProps(['personId'])
 
@@ -73,7 +105,34 @@ const formRules = reactive({
 const refForm = ref<any>(null)
 const emits = defineEmits(['close', 'refresh'])
 
-// function onUploadChange(file) {}
+// upload
+const fileList = ref<any>([])
+const imageUrl = ref('')
+function onUpload() {
+    return Promise.resolve()
+}
+function onBeforeUpload(rawFile: File) {
+    // 检查文件类型和尺寸
+    const isJPG = rawFile.type === 'image/jpeg' || rawFile.type === 'image/png' || rawFile.type === 'image/gif'
+    const isLt2M = rawFile.size / 1024 < 150
+    if (!isJPG) {
+        ElMessage.error('上传图片格式不正确!')
+        return false
+    }
+    if (!isLt2M) {
+        ElMessage.error('上传图片大小不能超过 150KB!')
+        return false
+    }
+    return true
+}
+function onUploadSuccess(_response: any, file: UploadFile) {
+    imageUrl.value = URL.createObjectURL(file.raw!)
+}
+
+function onDeleteUpload() {
+    imageUrl.value = ''
+    fileList.value = []
+}
 
 function onClose() {
     emits('close')
@@ -94,6 +153,10 @@ function onConfirm() {
         } else {
             formData.append('personGroupIDs', '0')
         }
+        if (fileList.value.length) {
+            const file = fileList.value[0]
+            formData.append('file', file.raw!)
+        }
         api(formData).then(() => {
             ElMessage.success('操作成功')
             emits('refresh')
@@ -106,6 +169,10 @@ onMounted(() => {
     if (props.personId) {
         getPersonnelDetail(props.personId).then(({ data }) => {
             Object.assign(formModel, data || {})
+            if (formModel.photoURL) {
+                imageUrl.value = formModel.photoURL
+                fileList.value = [{ url: formModel.photoURL }]
+            }
         })
     }
 })

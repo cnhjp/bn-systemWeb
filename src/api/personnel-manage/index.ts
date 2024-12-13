@@ -88,15 +88,12 @@ export function batchResetPassword(params: any) {
  * @returns
  */
 export function downloadTemplate() {
-    return http
-        .get(
-            '/api/person/download-template',
-            {},
-            {
-                response: true,
-            },
-        )
-        .then(({ data }) => {
-            downloadBlob(data, '人员导入模板.xlsx')
-        })
+    return http.download(
+        '/api/person/download-template',
+        {},
+        {
+            download: true,
+            downloadName: '人员导入模板.xlsx',
+        },
+    )
 }
