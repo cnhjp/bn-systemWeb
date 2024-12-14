@@ -3,16 +3,15 @@
         <el-main>
             <b-upload
                 v-model:file-list="fileList"
+                multiple
                 :http-request="onUpload"
                 :size="50 * 1000"
                 :tip="true"
-                list-type="picture-card"
-                :show-file-list="false"
+                :before-upload="onBeforeUpload"
                 accept=".jpg,.png"
                 @error="handleUploadError"
-            >
-                <el-icon><Plus /></el-icon>
-            </b-upload>
+                @all-complete="onAllComplete"
+            ></b-upload>
 
             <div>{{ fileList }}</div>
         </el-main>
@@ -30,11 +29,19 @@ const fileList = ref([])
 
 function onUpload(file) {
     console.log('上传文件:', file)
-    return Promise.resolve()
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject()
+        }, 2000)
+    })
 }
 
 function onBeforeUpload(file) {
     console.log('上传文件前:', file)
-    return true
+    return Promise.resolve()
+}
+
+function onAllComplete() {
+    console.log('所有文件上传完成')
 }
 </script>
