@@ -9,6 +9,7 @@ declare global {
   const ElAlert: typeof import('element-plus/es')['ElAlert']
   const ElIcon: typeof import('element-plus/es')['ElIcon']
   const ElLoading: typeof import('element-plus/es')['ElLoading']
+  const ElLoding: typeof import('element-plus/es')['ElLoding']
   const ElMe: typeof import('element-plus/es')['ElMe']
   const ElMenu: typeof import('element-plus/es')['ElMenu']
   const ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
