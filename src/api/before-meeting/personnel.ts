@@ -97,3 +97,13 @@ export function uploadSeatSignTemplate(data) {
         method: 'post',
     })
 }
+
+// 获取最大参会人数
+export function getAuthConventionPersonCount(params?) {
+    return http.get('/api/convention-person/getAuthConventionPersonCount', params)
+}
+
+// 新增参会人员
+export function addConventionPerson(params?) {
+    return http.post('/api/convention-person/add', params)
+}

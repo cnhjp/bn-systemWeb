@@ -15,3 +15,7 @@ export function getPersonAttendStatusDrop(params) {
     return http.get('/api/list/person-attend-status', params)
 }
 
+// 获取有无公布大会
+export function hasActive(params?) {
+    return http.get('/api/convention/has-active', params)
+}

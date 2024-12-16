@@ -3,6 +3,19 @@
         <el-main class="!p-0">
             <b-grid ref="refGrid" v-bind="gridProps" @data="onGridData" @page-change="onPageChange">
                 <template #toolbar-left>
+                    <el-dropdown @command="onAddPersonnel" class="mr-12px">
+                        <el-button type="primary" size="">
+                            添加人员&nbsp;
+                            <el-icon><arrow-down /></el-icon>
+                        </el-button>
+                        <template #dropdown>
+                            <el-dropdown-menu>
+                                <el-dropdown-item v-for="item of ValidRoleDrop" :key="item.value" :command="item">
+                                    {{ item.label }}
+                                </el-dropdown-item>
+                            </el-dropdown-menu>
+                        </template>
+                    </el-dropdown>
                     <el-button type="danger" @click="onBatchDelete()">批量删除</el-button>
                     <el-button type="warning" @click="onBatchChangeStatus()">变更状态</el-button>
                     <el-dropdown @command="onBatchImport" class="ml-12px">
@@ -98,11 +111,13 @@ import {
     batchDeleteConventionPerson,
     updateScreen,
     downloadPhoto,
+    getAuthConventionPersonCount,
 } from '~/src/api/before-meeting/personnel'
 import dialogChangeStatus from './dialog-change-status.vue'
 import dialogEditPanticipate from './dialog-edit-panticipate.vue'
 import dialogExportPersonnel from './dialog-export-personnel.vue'
 import dialogExportSeat from './dialog-export-seat.vue'
+import dialogSelectPersonnel from './dialog-select-personnel.vue'
 
 const beforeMeetingPersonnelProvider = inject<any>('beforeMeetingPersonnel')
 
@@ -159,6 +174,17 @@ const gridProps = reactive({
         { title: '状态', field: 'attendStatusStr', minWidth: 80, align: 'center' },
         { title: '操作', slots: { default: 'actions' }, minWidth: 220, fixed: 'right', align: 'center' },
     ],
+})
+
+const ValidRoleDrop = ref([])
+function getRoleDrop() {
+    getPersonRoleDrop({ IncludeUnknown: true }).then((res) => {
+        ValidRoleDrop.value = (res.data || []).filter((item) => !!item.value)
+    })
+}
+
+onMounted(() => {
+    getRoleDrop()
 })
 
 function onRefresh() {
@@ -311,6 +337,46 @@ function exportPhotos() {
         selectedIDs: refGrid.value.getSelected().map((item: any) => item.conventionPersonId),
     }
     downloadPhoto(params)
+}
+
+async function onAddPersonnel(command?) {
+    const data = await getAuthConventionPersonCount()
+    const { authConventionPersonCount } = data?.data || {}
+    const title = `选择人员--${command.label}(本次会议最大参会人数${authConventionPersonCount}人)`
+    console.log({
+        tenantId: 0,
+        includeDelete: false,
+        isExpro: false,
+        orderColumn: '',
+        orderColumns: [],
+        keyword: formModel.keyword,
+        conventionId: props.conventionId,
+        isConventionPerson: true,
+        isConventionStaff: false,
+        personGroupId: +formModel.personGroup || 0,
+        conventionRole: +formModel.conventionRole || 0,
+    })
+    refDialog.value.openModal({
+        component: dialogSelectPersonnel,
+        title,
+        width: '680px',
+        params: {
+            queryParams: {
+                tenantId: 0,
+                includeDelete: false,
+                isExpro: false,
+                orderColumn: '',
+                orderColumns: [],
+                keyword: formModel.keyword,
+                conventionId: props.conventionId,
+                isConventionPerson: true,
+                isConventionStaff: false,
+                personGroupId: +formModel.personGroup || 0,
+                conventionRole: +formModel.conventionRole || 0,
+            },
+            conventionRole: command.value,
+        },
+    })
 }
 
 watch(

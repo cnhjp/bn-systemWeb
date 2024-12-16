@@ -1,22 +1,35 @@
 <template>
     <el-container>
         <el-main class="!flex flex-col items-center justify-center">
-            <div class="mb-12px">
+            <div class="flex mb-12px">
                 <el-button type="primary" @click="onDownloadTemplate">下载模板</el-button>
-
-                <el-button type="primary" @click="onDownloadSeat">导出座签</el-button>
+                <el-button type="primary" @click="onDownloadSeat" class="mr-12px">导出座签</el-button>
+                <b-upload
+                    :show-file-list="false"
+                    :http-request="onHttpRequest"
+                    :on-success="onSuccess"
+                    accept=".docx"
+                    :size="2 * 1024"
+                    :tip="false"
+                >
+                    <template #trigger>
+                        <el-button type="primary">导入模板</el-button>
+                    </template>
+                </b-upload>
             </div>
             <el-image :src="previewImgUrl" class="w-400px h-560px border border-gray-300" />
         </el-main>
-        <el-footer class="flex-center">
-            <el-button type="default" @click="onClose">取消</el-button>
-            <el-button type="primary" @click="onConfirm">确定</el-button>
-        </el-footer>
     </el-container>
 </template>
 
 <script setup lang="ts">
-import { downloadTemplate, downloadSeat, previewSeatSignTemplate } from '~/src/api/before-meeting/personnel'
+import { UploadFile } from 'element-plus'
+import {
+    downloadTemplate,
+    downloadSeat,
+    previewSeatSignTemplate,
+    uploadSeatSignTemplate,
+} from '~/src/api/before-meeting/personnel'
 
 const props = defineProps({
     downloadParams: {
@@ -24,9 +37,6 @@ const props = defineProps({
         default: () => ({}),
     },
 })
-
-const emits = defineEmits(['close', 'confirm'])
-
 function onDownloadTemplate() {
     downloadTemplate()
 }
@@ -35,16 +45,25 @@ function onDownloadSeat() {
     downloadSeat(props.downloadParams)
 }
 
-function onClose() {
-    emits('close')
-}
-
-function onConfirm() {}
-
 const previewImgUrl = ref('')
-onMounted(() => {
+function getPreviewSeatSignTemplate() {
     previewSeatSignTemplate().then((res) => {
         previewImgUrl.value = res.data?.previewImg
     })
+}
+onMounted(() => {
+    getPreviewSeatSignTemplate()
 })
+
+function onHttpRequest() {
+    return Promise.resolve()
+}
+
+function onSuccess(_resp: any, uploadFile: UploadFile) {
+    const { raw } = uploadFile
+    uploadSeatSignTemplate({ File: raw }).then(() => {
+        ElMessage.success('操作成功')
+        getPreviewSeatSignTemplate()
+    })
+}
 </script>

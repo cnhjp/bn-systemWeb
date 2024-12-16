@@ -1,12 +1,12 @@
 <template>
     <el-container class="wh-full">
-        <el-header class="flex items-center">
+        <el-header class="flex items-center" v-if="active">
             <meetingDropForm v-model="formModel.conventionId" @change="getTabs" />
             <el-button type="primary" @click="onOpenCopyPersonnelDialog" class="relative left--20px">
                 复制其他会议人员
             </el-button>
         </el-header>
-        <el-main class="!pt-0">
+        <el-main class="!pt-0" v-if="active">
             <el-tabs v-model="activeTab" class="h-full">
                 <el-tab-pane :label="`参会人员(${tabCounts.attendMeetingCount})`" name="参会人员" class="h-full">
                     <panticipate-grid
@@ -20,11 +20,16 @@
             </el-tabs>
         </el-main>
 
+        <el-main class="wh-full bg-white !flex-center" v-else>
+            <div class="font-bold text-center text-3xl">没有预备/公布的大会</div>
+        </el-main>
+
         <b-common-dialog ref="refDialog" @refresh="onRefresh"></b-common-dialog>
     </el-container>
 </template>
 
 <script setup lang="ts">
+import { hasActive } from '~/src/api/common'
 import { getConventionPersonTabCount } from '~/src/api/before-meeting/personnel'
 import meetingDropForm from '../meeting-manage/components/meeting-drop-form.vue'
 import dialogCopyPersonnel from './components/dialog-copy-personnel.vue'
@@ -33,6 +38,14 @@ import staffGrid from './components/staff-grid.vue'
 
 provide('beforeMeetingPersonnel', {
     getTabs,
+})
+
+const active = ref(false)
+
+onMounted(() => {
+    hasActive().then((res) => {
+        active.value = res.data
+    })
 })
 
 const formModel = reactive({
