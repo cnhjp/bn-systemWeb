@@ -33,7 +33,7 @@ export function getHotelPage() {
  * @param query
  * @returns
  */
-export function addHotelForm(query: HotelForm) {
+export function addHotel(query: HotelForm) {
     console.log('添加酒店', query)
     return Promise.resolve({
         data: 'success',
@@ -41,12 +41,45 @@ export function addHotelForm(query: HotelForm) {
 }
 
 /**
- * 添加酒店
+ * 编辑酒店
+ * @param query
+ * @returns
+ */
+export function editHotel(query: HotelForm) {
+    console.log('编辑酒店', query)
+    return Promise.resolve({
+        data: 'success',
+    })
+}
+
+/**
+ * 编辑酒店 -- 获取详情
+ * @param query
+ * @returns
+ */
+export function detailHotel(id: number | string) {
+    console.log('酒店详情', id)
+    return Promise.resolve({
+        data: {
+            id: 121456456,
+            name: '雷迪森酒店',
+            contact: 15265656565,
+            address: '埃里克森大家；蜂蜡这就是；到了开房间',
+            introduction: '埃里克森大家；蜂蜡这就是；到了开房间',
+            docName: '',
+            docId: 0,
+            docPath: '',
+        },
+    })
+}
+
+/**
+ * 删除酒店
  * @param id
  * @returns
  */
-export function deleteHotel(id: number) {
-    console.log('添加酒店', id)
+export function deleteHotel(id: number | string) {
+    console.log('删除酒店', id)
     return Promise.resolve({
         data: 'success',
     })

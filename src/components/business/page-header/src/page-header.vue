@@ -1,16 +1,12 @@
 <template>
-    <div class="c-page-header select-none" :class="{ noBottom: noBottom }">
-        <el-button
-            size="small"
-            icon="icon-operation-return"
-            :underline="false"
-            @click="onBack"
-            class="btn-back"
-            v-if="isShowBtn"
-        >
+    <div class="el-flex is-align-center" :class="{ noBottom: noBottom }">
+        <el-button size="small" icon="ArrowLeft" :underline="false" @click="onBack" class="btn-back" v-if="isShowBtn">
             返回
         </el-button>
-        <slot></slot>
+        <div class="el-flex is-center">
+            <h2>{{ title }}</h2>
+            <slot></slot>
+        </div>
     </div>
 </template>
 

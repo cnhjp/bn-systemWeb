@@ -34,7 +34,7 @@ import { useRouter } from 'vue-router'
 import { deleteHotel, getHotelPage } from '@/api/hotel-manage'
 
 const router = useRouter()
-const formModel = reactive({
+const formModel = ref({
     keyword: '',
 })
 
@@ -60,7 +60,7 @@ function onRefresh() {
 function onAdd() {
     router.push({ name: 'hotel-manage-add' })
 }
-function onEdit(row) {
+function onEdit(row: any) {
     router.push({ name: 'hotel-manage-edit', query: { id: row.id } })
 }
 function onDelete(row: any) {
