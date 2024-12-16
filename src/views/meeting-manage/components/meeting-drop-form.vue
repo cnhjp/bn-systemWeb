@@ -1,7 +1,7 @@
 <template>
     <el-form inline label-suffix=":">
         <el-form-item label="会议">
-            <b-select :data="getMeetingDrop" v-model="model" class="!w-250px"></b-select>
+            <b-select :data="getMeetingDrop" defaultFirst v-model="model" class="!w-250px"></b-select>
         </el-form-item>
         <slot></slot>
     </el-form>
