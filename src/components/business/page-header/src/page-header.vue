@@ -1,16 +1,12 @@
 <template>
-    <div class="c-page-header select-none" :class="{ noBottom: noBottom }">
-        <el-button
-            size="small"
-            icon="icon-operation-return"
-            :underline="false"
-            @click="onBack"
-            class="btn-back"
-            v-if="isShowBtn"
-        >
+    <div class="page-header el-flex is-align-center el-border--bottom" :class="{ noBottom: noBottom }">
+        <el-button size="small" icon="ArrowLeft" :underline="false" @click="onBack" class="btn-back" v-if="isShowBtn">
             返回
         </el-button>
-        <slot></slot>
+        <div class="el-flex is-center">
+            <h2 class="el-text--darkgrey ml-15px">{{ title }}</h2>
+            <slot></slot>
+        </div>
     </div>
 </template>
 
@@ -38,4 +34,8 @@ function onBack() {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.page-header {
+    height: 100%;
+}
+</style>

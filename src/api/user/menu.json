@@ -32,5 +32,11 @@
             { "id": 501, "title": "人员管理", "route": "personnel-manage", "icon": "cast" },
             { "id": 502, "title": "参数配置", "route": "params-setting", "icon": "cast" }
         ]
+    },
+    {
+        "id": 600,
+        "title": "在线咨询",
+        "route": "online-consultation-list",
+        "icon": "cast"
     }
 ]

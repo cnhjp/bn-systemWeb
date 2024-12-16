@@ -2,10 +2,8 @@
  * 酒店管理--列表
  */
 export interface HotelListResponse {
-    data: {
-        total: number
-        rows: item[]
-    }
+    total: number
+    rows: item[]
 }
 
 /**
