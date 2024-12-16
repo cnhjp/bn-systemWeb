@@ -54,7 +54,7 @@ export const constantRoutes: AuthRoute.Route[] = [
             {
                 path: '/login',
                 name: 'login',
-                component: () => import('@/views/_builtin/test/test.vue'),
+                component: views.login,
                 meta: { title: '登录', allowAnonymous: true },
             },
             ...ERROR_ROUTES,
