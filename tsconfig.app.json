@@ -22,7 +22,7 @@
         "jsx": "preserve",
 
         /** 监听运行时 */
-        "strict": true,
+        "strict": false,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,

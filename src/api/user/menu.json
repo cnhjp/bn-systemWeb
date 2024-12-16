@@ -7,10 +7,21 @@
         "children": [{ "id": 101, "title": "班车管理", "route": "bus-manage", "icon": "cast" }]
     },
     {
-    "id": 200,
-    "title": "酒店管理",
-    "route": "hotel-manage-list",
-    "icon": "cast"
+        "id": 200,
+        "title": "酒店管理",
+        "route": "hotel-manage-list",
+        "icon": "cast"
+    },
+    {
+        "id": 300,
+        "title": "会前准备",
+        "route": "before-meeting",
+        "icon": "cast",
+        "children": [
+            { "id": 301, "title": "会议信息", "route": "before-meeting-info", "icon": "cast" },
+            { "id": 302, "title": "会议人员", "route": "before-meeting-personnel", "icon": "cast" },
+            { "id": 303, "title": "会议材料", "route": "before-meeting-material", "icon": "cast" }
+        ]
     },
     {
         "id": 500,

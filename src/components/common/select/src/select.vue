@@ -1,10 +1,17 @@
 <template>
-    <el-select v-bind="$attrs" :model-value="modelValue" @change="updateModelValue">
-        <el-option v-for="option in processedOptions" :key="option.value" :label="option.label" :value="option.value" />
+    <el-select v-bind="$attrs" :model-value="modelValue" @change="onChange">
+        <el-option
+            v-for="option in processedOptions"
+            :key="option.value"
+            :label="option.displayLabel"
+            :value="option.value"
+        />
     </el-select>
 </template>
 
 <script setup>
+import { ref, computed, watch, defineProps, defineEmits, defineExpose, onMounted } from 'vue'
+
 const props = defineProps({
     modelValue: {
         type: [String, Number, Array],
@@ -26,6 +33,15 @@ const props = defineProps({
         type: String,
         default: 'value',
     },
+    defaultFirst: {
+        type: Boolean,
+        default: false,
+    },
+    // 空选项显示为全部
+    displayEmptyAll: {
+        type: Boolean,
+        default: true,
+    },
 })
 
 const emit = defineEmits(['update:modelValue', 'load', 'change'])
@@ -44,20 +60,29 @@ const computedQuery = computed(() => {
 // Process options to ensure consistent structure
 const processedOptions = computed(() => {
     return options.value.map((item) => {
+        let label = ''
+        let value
+        let selected = false
+
         // If item is a primitive value, create an object
         if (typeof item !== 'object') {
-            return {
-                label: item,
-                value: item,
-                selected: false,
-            }
+            label = item
+            value = item
+        } else {
+            // If item is an object, map keys
+            label = item[props.labelKey]
+            value = item[props.valueKey]
+            selected = item.selected || false
         }
 
-        // If item is an object, map keys
+        // Replace empty label with '全部'
+        const displayLabel = label === '' && props.displayEmptyAll ? '全部' : label
+
         return {
-            label: item[props.labelKey],
-            value: item[props.valueKey],
-            selected: item.selected || false,
+            label,
+            value,
+            selected,
+            displayLabel,
         }
     })
 })
@@ -81,6 +106,8 @@ const fetchOptions = async () => {
                 const selectedOption = processedOptions.value.find((option) => option.selected)
                 if (selectedOption) {
                     updateModelValue(selectedOption.value)
+                } else if (props.defaultFirst && processedOptions.value.length > 0) {
+                    updateModelValue(processedOptions.value[0].value)
                 }
             }
         } catch (error) {
@@ -99,6 +126,8 @@ const fetchOptions = async () => {
             const selectedOption = processedOptions.value.find((option) => option.selected)
             if (selectedOption) {
                 updateModelValue(selectedOption.value)
+            } else if (props.defaultFirst && processedOptions.value.length > 0) {
+                updateModelValue(processedOptions.value[0].value)
             }
         }
     }
@@ -107,10 +136,14 @@ const fetchOptions = async () => {
 // Watch for changes in data and query
 watch([() => props.data, computedQuery], fetchOptions, { immediate: true })
 
+function onChange(value) {
+    updateModelValue(value)
+    emit('change', value)
+}
+
 // Update model value
 function updateModelValue(value) {
     emit('update:modelValue', value)
-    emit('change', value)
 }
 
 // Expose methods
