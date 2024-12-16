@@ -7,15 +7,20 @@
             </el-button>
         </el-header>
         <el-main class="!pt-0" v-if="active">
-            <el-tabs v-model="activeTab" class="h-full">
+            <el-tabs v-model="activeTab" class="h-full" @tab-change="onRefresh">
                 <el-tab-pane :label="`参会人员(${tabCounts.attendMeetingCount})`" name="参会人员" class="h-full">
                     <panticipate-grid
                         ref="refPanticipateGrid"
                         :conventionId="formModel.conventionId"
+                        v-if="activeTab === '参会人员'"
                     ></panticipate-grid>
                 </el-tab-pane>
-                <el-tab-pane :label="`工作人员(${tabCounts.operaterCount})`" name="工作人员">
-                    <staff-grid ref="refStaffGrid" :conventionId="formModel.conventionId"></staff-grid>
+                <el-tab-pane :label="`工作人员(${tabCounts.operaterCount})`" name="工作人员" class="h-full">
+                    <staff-grid
+                        ref="refStaffGrid"
+                        :conventionId="formModel.conventionId"
+                        v-if="activeTab === '工作人员'"
+                    ></staff-grid>
                 </el-tab-pane>
             </el-tabs>
         </el-main>
@@ -81,8 +86,10 @@ const refPanticipateGrid = ref<any>(null)
 const refStaffGrid = ref<any>(null)
 
 function onRefresh() {
-    refPanticipateGrid.value?.onRefresh?.()
-    refStaffGrid.value?.onRefresh?.()
-    getTabs()
+    nextTick(() => {
+        refPanticipateGrid.value?.onRefresh?.()
+        refStaffGrid.value?.onRefresh?.()
+        getTabs()
+    })
 }
 </script>

@@ -88,7 +88,7 @@
                 </template>
 
                 <template #personRole="{ row }">
-                    {{ row.conventionRole === 1 ? '出席人员' : '列席人员' }}
+                    {{ ROLE_MAP[row.conventionRole] }}
                 </template>
 
                 <template #actions="{ row }">
@@ -104,6 +104,7 @@
 </template>
 
 <script setup lang="ts">
+import { ROLE_MAP } from '~/src/constant/role'
 import { getPersonGroupDrop, getPersonRoleDrop, getPersonAttendStatusDrop } from '~/src/api/common'
 import {
     getConventionPersonPage,
@@ -178,7 +179,7 @@ const gridProps = reactive({
 
 const ValidRoleDrop = ref([])
 function getRoleDrop() {
-    getPersonRoleDrop({ IncludeUnknown: true }).then((res) => {
+    getPersonRoleDrop({ IncludeUnknown: true, a: 1 }).then((res) => {
         ValidRoleDrop.value = (res.data || []).filter((item) => !!item.value)
     })
 }

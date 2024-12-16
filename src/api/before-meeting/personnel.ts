@@ -107,3 +107,32 @@ export function getAuthConventionPersonCount(params?) {
 export function addConventionPerson(params?) {
     return http.post('/api/convention-person/add', params)
 }
+
+// 获取工作人员
+export function getStaffPage(params) {
+    return http.post('/api/Convention-Staff/page', params)
+}
+
+// 获取参会人员及工作人员信息
+export function conventionStaffInfo(params) {
+    return http.get('/api/convention-staff/info', params)
+}
+
+// 更新工作人员
+export function updateConventionStaff(params) {
+    return http.put('/api/convention-staff', params)
+}
+
+// 导出工作人员字段
+export function conventionStaffExportField(params?) {
+    return http.get('/api/convention-staff/export-field', params)
+}
+
+// 导出工作人员
+export function downloadStaff(params) {
+    return http.download('/api/Convention-Staff/export', params, {
+        downloadName: '参会人员.xlsx',
+        method: 'POST',
+        download: true,
+    })
+}

@@ -26,30 +26,9 @@
                         <el-form-item label="备注">
                             {{ formModel.remark }}
                         </el-form-item>
-                        <el-form-item label="单位" prop="unitName">
-                            <el-input v-model="formModel.unitName" placeholder="请输入单位" :maxlength="20" />
-                        </el-form-item>
-                        <el-form-item label="桌牌" prop="seatingName">
-                            <el-input
-                                ref="nameInputRef"
-                                v-model="formModel.seatingName"
-                                placeholder="请输入桌牌"
-                                :maxlength="50"
-                            />
-                        </el-form-item>
-                        <el-form-item label="座位号">
-                            <el-input v-model="formModel.seatingCode" placeholder="请输入座位号" :maxlength="20" />
-                        </el-form-item>
                         <el-form-item label="角色：" prop="conventionRole">
                             <el-radio-group v-model="formModel.conventionRole">
                                 <el-radio v-for="item in roleListEdit" :key="item.value" :value="item.value">
-                                    {{ item.label }}
-                                </el-radio>
-                            </el-radio-group>
-                        </el-form-item>
-                        <el-form-item label="状态：">
-                            <el-radio-group v-model="formModel.attendStatus">
-                                <el-radio v-for="item in attendStatusList" :key="item.value" :value="item.value">
                                     {{ item.label }}
                                 </el-radio>
                             </el-radio-group>
@@ -77,8 +56,8 @@
 </template>
 
 <script setup lang="ts">
-import { conventionPersonInfo, updateConventionPerson } from '~/src/api/before-meeting/personnel'
-import { getPersonRoleDrop, getPersonAttendStatusDrop } from '~/src/api/common'
+import { conventionStaffInfo, updateConventionStaff } from '~/src/api/before-meeting/personnel'
+import { getStaffRoleDrop, getPersonAttendStatusDrop } from '~/src/api/common'
 
 const props = defineProps(['conventionPersonId'])
 
@@ -87,7 +66,7 @@ const attendStatusList = ref([])
 
 const params = { IncludeUnknown: true }
 function getRoleList() {
-    getPersonRoleDrop(params).then((res) => {
+    getStaffRoleDrop(params).then((res) => {
         roleListEdit.value = (res.data || [])
             .filter((item) => !!item.value)
             .map((item) => ({ ...item, value: +item.value }))
@@ -129,7 +108,7 @@ function onClose() {
 }
 function onConfirm() {
     refForm.value.validate().then(() => {
-        updateConventionPerson(formModel).then(() => {
+        updateConventionStaff(formModel).then(() => {
             ElMessage.success('操作成功')
             onClose()
             emits('refresh')
@@ -139,7 +118,7 @@ function onConfirm() {
 
 onMounted(() => {
     if (props.conventionPersonId) {
-        conventionPersonInfo({ id: props.conventionPersonId }).then((res) => {
+        conventionStaffInfo({ id: props.conventionPersonId }).then((res) => {
             Object.assign(formModel, res.data)
         })
     }

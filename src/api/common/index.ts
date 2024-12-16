@@ -19,3 +19,8 @@ export function getPersonAttendStatusDrop(params) {
 export function hasActive(params?) {
     return http.get('/api/convention/has-active', params)
 }
+
+// 工作人员角色
+export function getStaffRoleDrop(params) {
+    return http.get('/api/list/staff-role', params)
+}
