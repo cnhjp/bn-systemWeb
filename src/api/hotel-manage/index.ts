@@ -7,8 +7,8 @@ import { HotelForm, HotelListResponse } from './types'
  * @returns
  */
 export function getHotelPage() {
-    return Promise.resolve<HotelListResponse>({
-        data: {
+    return Promise.resolve({
+        data: <HotelListResponse>{
             total: 2,
             rows: [
                 {
