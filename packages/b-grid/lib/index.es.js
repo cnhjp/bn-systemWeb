@@ -14872,6 +14872,7 @@ const YF = { class: "h-grid-toolbar-left" }, XF = { class: "h-grid-toolbar-right
     editConfig: { type: Object, default: null },
     sortConfig: { type: Object, default: null }
   },
+  emits: ["data"],
   setup(e, { expose: t, emit: n }) {
     const s = {
       scrollY: {
@@ -14951,7 +14952,9 @@ const YF = { class: "h-grid-toolbar-left" }, XF = { class: "h-grid-toolbar-right
       try {
         if (typeof c.data == "function") {
           K = Q(Y, K);
-          const { data: se } = await Promise.resolve(c.data(K)), P = { total: 0, rows: [], ...se };
+          const { data: se } = await Promise.resolve(c.data(K));
+          m("data", se);
+          const P = { total: 0, rows: [], ...se };
           return Z(P), L ? { page: { total: se.total }, result: se.rows } : se.rows;
         }
         return [];

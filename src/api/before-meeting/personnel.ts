@@ -34,3 +34,36 @@ export function batchConventionPersonAttendtSatus(params) {
 export function updateScreen(params) {
     return http.post('/api/convention-person/update-screen', params)
 }
+
+// 获取参会人员及工作人员信息
+export function conventionPersonInfo(params) {
+    return http.get('/api/convention-person/info', params)
+}
+
+// 更新参会人员
+export function updateConventionPerson(params) {
+    return http.put('/api/convention-person', params)
+}
+
+// 导出照片
+export function downloadPhoto(params) {
+    return http.download('/api/convention-person/export-photo', params, {
+        downloadName: '参会人员头像',
+        method: 'POST',
+        download: true,
+    })
+}
+
+// 导出人员字段
+export function conventionPersonExportField(params?) {
+    return http.get('/api/convention-person/export-field', params)
+}
+
+// 导出人员
+export function downloadPersonnel(params) {
+    return http.download('/api/Convention-Person/export', params, {
+        downloadName: '参会人员.xlsx',
+        method: 'POST',
+        download: true,
+    })
+}

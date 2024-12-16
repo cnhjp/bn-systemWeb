@@ -9,10 +9,13 @@
         <el-main class="!pt-0">
             <el-tabs v-model="activeTab" class="h-full">
                 <el-tab-pane :label="`参会人员(${tabCounts.attendMeetingCount})`" name="参会人员" class="h-full">
-                    <panticipate-grid :conventionId="formModel.conventionId"></panticipate-grid>
+                    <panticipate-grid
+                        ref="refPanticipateGrid"
+                        :conventionId="formModel.conventionId"
+                    ></panticipate-grid>
                 </el-tab-pane>
                 <el-tab-pane :label="`工作人员(${tabCounts.operaterCount})`" name="工作人员">
-                    <staff-grid :conventionId="formModel.conventionId"></staff-grid>
+                    <staff-grid ref="refStaffGrid" :conventionId="formModel.conventionId"></staff-grid>
                 </el-tab-pane>
             </el-tabs>
         </el-main>
@@ -61,7 +64,12 @@ function getTabs() {
     })
 }
 
+const refPanticipateGrid = ref<any>(null)
+const refStaffGrid = ref<any>(null)
+
 function onRefresh() {
-    console.log('刷新')
+    refPanticipateGrid.value?.onRefresh?.()
+    refStaffGrid.value?.onRefresh?.()
+    getTabs()
 }
 </script>

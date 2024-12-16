@@ -1,10 +1,23 @@
 <template>
     <el-container class="wh-full">
         <el-main class="!p-0">
-            <b-grid ref="refGrid" v-bind="gridProps">
+            <b-grid ref="refGrid" v-bind="gridProps" @data="onGridData" @page-change="onPageChange">
                 <template #toolbar-left>
                     <el-button type="danger" @click="onBatchDelete()">批量删除</el-button>
                     <el-button type="warning" @click="onBatchChangeStatus()">变更状态</el-button>
+                    <el-dropdown @command="onBatchImport" class="ml-12px">
+                        <el-button type="primary" size="">
+                            导出&nbsp;
+                            <el-icon><arrow-down /></el-icon>
+                        </el-button>
+                        <template #dropdown>
+                            <el-dropdown-menu>
+                                <el-dropdown-item command="seat">导入座签</el-dropdown-item>
+                                <el-dropdown-item command="personnel">导入人员</el-dropdown-item>
+                                <el-dropdown-item command="photo">导入照片</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </template>
+                    </el-dropdown>
                 </template>
 
                 <template #toolbar-right>
@@ -66,7 +79,7 @@
                 </template>
 
                 <template #actions="{ row }">
-                    <el-button type="primary" size="small" @click="onEdit()">编辑</el-button>
+                    <el-button type="primary" size="small" @click="onEdit(row)">编辑</el-button>
                     <el-button type="danger" size="small" @click="onDelete(row)" v-if="!row.isMainAdmin">
                         删除
                     </el-button>
@@ -84,8 +97,11 @@ import {
     deleteConventionPerson,
     batchDeleteConventionPerson,
     updateScreen,
+    downloadPhoto,
 } from '~/src/api/before-meeting/personnel'
 import dialogChangeStatus from './dialog-change-status.vue'
+import dialogEditPanticipate from './dialog-edit-panticipate.vue'
+import dialogExportPersonnel from './dialog-export-personnel.vue'
 
 const beforeMeetingPersonnelProvider = inject<any>('beforeMeetingPersonnel')
 
@@ -148,7 +164,16 @@ function onRefresh() {
     refGrid.value.refresh()
 }
 
-function onEdit() {}
+function onEdit(row) {
+    refDialog.value.openModal({
+        component: dialogEditPanticipate,
+        title: '编辑',
+        width: '680px',
+        params: {
+            conventionPersonId: row.conventionPersonId,
+        },
+    })
+}
 
 function onDelete(row) {
     ElMessageBox.confirm('确定删除该账号吗？').then(() => {
@@ -202,6 +227,75 @@ function onSyncScreen(row, val) {
     })
 }
 
+let total = 0
+
+function onGridData(data) {
+    total = data?.total || 0
+}
+
+let currentPage = 1,
+    pageSize = 20
+function onPageChange(page) {
+    currentPage = page.currentPage
+    pageSize = page.pageSize
+}
+
+function onBatchImport(command: string) {
+    switch (command) {
+        case 'photo':
+            exportPhotos()
+            break
+        case 'seat':
+            exportSeat()
+            break
+        case 'personnel':
+            exportPersonnel()
+            break
+    }
+}
+
+function exportPersonnel() {
+    if (total === 0) {
+        ElMessage.warning('无数据可导出')
+        return
+    }
+    refDialog.value.openModal({
+        component: dialogExportPersonnel,
+        title: '导出与会人员',
+        width: '680px',
+        params: {
+            downloadParams: {
+                conventionID: props.conventionId,
+                conventionRole: +formModel.conventionRole || 0,
+                personGroup: +formModel.personGroup || 0,
+                attendStatus: +formModel.attendStatus || 0,
+                keyword: formModel.keyword,
+                isWorker: true,
+                pageIndex: currentPage,
+                pageSize: pageSize,
+                isExpro: true,
+                selectedIDs: refGrid.value.getSelected().map((item: any) => item.conventionPersonId),
+                orderColumn: '',
+                orderColumns: [],
+            },
+        },
+    })
+}
+
+function exportSeat() {}
+
+function exportPhotos() {
+    const params = {
+        attendStatus: +formModel.attendStatus || 0,
+        conventionId: props.conventionId,
+        conventionRole: +formModel.conventionRole || 0,
+        keyword: formModel.keyword,
+        personGroup: +formModel.personGroup || 0,
+        selectedIDs: refGrid.value.getSelected().map((item: any) => item.conventionPersonId),
+    }
+    downloadPhoto(params)
+}
+
 watch(
     () => props.conventionId,
     (val: string | number) => {
@@ -210,4 +304,8 @@ watch(
         }
     },
 )
+
+defineExpose({
+    onRefresh,
+})
 </script>
