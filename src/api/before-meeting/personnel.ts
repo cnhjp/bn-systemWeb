@@ -67,3 +67,33 @@ export function downloadPersonnel(params) {
         download: true,
     })
 }
+
+// 下载模板
+export function downloadTemplate(params?) {
+    return http.download('/api/convention-person/download-seatSign-template', params, {
+        downloadName: '座签模板.docx',
+        method: 'get',
+        download: true,
+    })
+}
+
+// 导出座签
+export function downloadSeat(params?) {
+    return http.download('/api/convention-person/export-SeatSign', params, {
+        downloadName: '座签.docx',
+        method: 'post',
+        download: true,
+    })
+}
+
+// 座签预览
+export function previewSeatSignTemplate(params?) {
+    return http.get('/api/convention-person/preview-seatSign-template', params)
+}
+
+// 上传座签模板
+export function uploadSeatSignTemplate(data) {
+    return http.form('/api/convention-person/upload-seatSign-template', data, {
+        method: 'post',
+    })
+}

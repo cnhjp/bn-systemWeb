@@ -102,6 +102,7 @@ import {
 import dialogChangeStatus from './dialog-change-status.vue'
 import dialogEditPanticipate from './dialog-edit-panticipate.vue'
 import dialogExportPersonnel from './dialog-export-personnel.vue'
+import dialogExportSeat from './dialog-export-seat.vue'
 
 const beforeMeetingPersonnelProvider = inject<any>('beforeMeetingPersonnel')
 
@@ -282,7 +283,23 @@ function exportPersonnel() {
     })
 }
 
-function exportSeat() {}
+function exportSeat() {
+    refDialog.value.openModal({
+        component: dialogExportSeat,
+        title: '导出座签',
+        width: '680px',
+        params: {
+            downloadParams: {
+                keyword: formModel.keyword,
+                conventionId: props.conventionId,
+                conventionRole: +formModel.conventionRole || 0,
+                selectedIDs: refGrid.value.getSelected().map((item: any) => item.conventionPersonId),
+                personGroup: +formModel.personGroup || 0,
+                attendStatus: +formModel.attendStatus || 0,
+            },
+        },
+    })
+}
 
 function exportPhotos() {
     const params = {
