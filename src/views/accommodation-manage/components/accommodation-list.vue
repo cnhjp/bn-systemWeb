@@ -66,7 +66,7 @@
             <el-button type="danger" size="small" @click="onDelete(row)">删除</el-button>
         </template>
     </b-grid>
-    <b-common-dialog ref="refDialog" @refresh="onRefresh"></b-common-dialog>
+    <b-common-dialog ref="refDialog" @refresh="onRefresh" @confirm="onAssignPerson"></b-common-dialog>
 </template>
 
 <script setup lang="ts">
@@ -76,9 +76,11 @@ import {
     getRoomPage,
     exportHotelRoom,
     deletePerson,
+    setRoomPerson,
 } from '@/api/accommodation-manage'
 import DialogArrange from './dialog-arrange.vue'
 import DialogSelectPerson from './dialog-select-person.vue'
+import DialogAddNewRoom from './dialog-add-new-room.vue'
 import { ElMessage } from 'element-plus'
 
 const props = defineProps({
@@ -157,14 +159,14 @@ function openDialog(component: any, title: string, width: string, params: any) {
 }
 
 function onArrange() {
-    openDialog(DialogArrange, '400px', '一键安排', {})
+    openDialog(DialogArrange, '一键安排', '400px', {})
 }
 
 function onAdd() {
-    console.log('add')
+    openDialog(DialogAddNewRoom, '新增住宿安排', '700px', {})
 }
 function onEdit(row: any) {
-    console.log('row', row)
+    openDialog(DialogAddNewRoom, '编辑住宿安排', '700px', { isEdit: true, hotelRoomId: row.hotelRoomId })
 }
 function onBatchDelete() {
     const selectArr = refGrid.value.getSelected()
@@ -211,8 +213,20 @@ function onImport() {
     console.log('onImport')
 }
 
+// 安排人员
 function onSelectPerson(row: any) {
-    openDialog(DialogSelectPerson, '选择人员', '800px', { hotelRoomId: row.hotelRoomId })
+    openDialog(DialogSelectPerson, '选择人员', '800px', {
+        hotelRoomId: row.hotelRoomId,
+        maxPerson: row.canAssignPersonCount,
+    })
+}
+function onAssignPerson(records: any[], hotelRoomId: number) {
+    const ids = records.map((it: any) => it.conventionPersonId)
+    const data = { conventionPersonIdList: ids, hotelRoomId: hotelRoomId }
+    setRoomPerson(data).then(() => {
+        ElMessage.success('操作成功')
+        onRefresh()
+    })
 }
 function init() {
     dropDownStatus()

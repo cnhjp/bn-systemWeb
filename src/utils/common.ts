@@ -100,13 +100,21 @@ export function isValidJSON(jsonString: string) {
 }
 
 /**
- * 下拉添加全部选项
+ * 下拉value转number ，添加全部选项
  * @param list
  * @returns
  */
-export function dropDownAddAllItem(list: any[]) {
+export function dropDownSetValueNumner(list: any[], hasAll: boolean = false, isNumber: boolean = false) {
     if (list && list.length > 0) {
-        list.unshift({ label: '全部', value: 0, selected: true })
+        if (isNumber) {
+            list.map((item) => {
+                item.value = item.value ? Number(item.value) : null
+                return item
+            })
+        }
+        if (hasAll) {
+            list.unshift({ label: '全部', value: 0, selected: true })
+        }
     }
     return list
 }

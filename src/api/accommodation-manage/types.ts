@@ -9,7 +9,7 @@ export interface DropResponseData {
  * 下拉
  */
 export interface DropResponse {
-    value: string
+    value: number
     label: string
     deep: 0
     selected: true
@@ -19,32 +19,40 @@ export interface DropResponse {
 }
 
 /**
- * 酒店管理--列表row
+ * 新增住宿--表单项
  */
-export class item {
-    id: number
-    name: string
-    contact: number
-    address: string
-
-    constructor() {
-        this.id = 0
-        this.name = ''
-        this.contact = 0
-        this.address = ''
-    }
+export interface roomFormResponse {
+    data: roomForm
 }
 
 /**
- * 酒店管理--表单项
+ * 新增住宿--表单项
  */
-export interface HotelForm {
-    id: number
-    name: string
-    contact: number | null
-    address: string
-    introduction: string
-    docName: string
-    docId: number
-    docPath: string
+export interface roomForm {
+    conventionId: number | null
+    hotelName: string
+    hotelRoomId: number | null
+    roomNumber: string
+    roomType: number | null
+    sortIndex: number | null
+    personList: personItem[]
+}
+
+/**
+ * 新增住宿--人员row
+ */
+export class personItem {
+    hotelRoomId: number | null
+    hotelRoomPersonId: number | null
+    personId: number | null
+    personName: string
+    sexStr: string
+
+    constructor() {
+        this.hotelRoomId = 0
+        this.hotelRoomPersonId = 0
+        this.personId = 0
+        this.personName = ''
+        this.sexStr = ''
+    }
 }

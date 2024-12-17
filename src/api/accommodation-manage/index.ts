@@ -1,4 +1,5 @@
 import { http } from '~/src/utils'
+import { roomFormResponse } from './types.ts'
 export * from './drop-down.ts'
 
 /**
@@ -8,6 +9,15 @@ export * from './drop-down.ts'
  */
 export function getPersonPage(query: any) {
     return http.get<any, any>('/api/hotel-room/person-page', query)
+}
+
+/**
+ * 住宿人员列表--人员选择
+ * @param query
+ * @returns
+ */
+export function getSelectPersonPage(query: any) {
+    return http.post<any, any>('/api/convention-person/pop-page-for-hotel-list', query)
 }
 
 /**
@@ -62,6 +72,24 @@ export function deletePerson(id: number) {
  */
 export function setRoomPerson(query: any) {
     return http.post<any, any>(`/api/hotel-room/person`, query)
+}
+
+/**
+ * 住宿安排-新增安排
+ * @param query
+ * @returns
+ */
+export function addRoom(query: any) {
+    return http.post<any, roomFormResponse>(`/api/hotel-room`, query)
+}
+
+/**
+ * 住宿安排-获取详情
+ * @param id
+ * @returns
+ */
+export function detailRoom(id: any) {
+    return http.get<any, roomFormResponse>(`/api/hotel-room/info/${id}`)
 }
 
 /**
