@@ -32,7 +32,7 @@
                     </div>
                 </el-header>
                 <el-main class="!p-10px bg-#eef2fb">
-                    <el-scrollbar>
+                    <el-scrollbar class="wh-full">
                         <material-grid :list="list" />
                     </el-scrollbar>
                 </el-main>
@@ -61,8 +61,8 @@ const router = useRouter()
 
 provide('material', {
     onRefresh,
-    onToggleAgendaIds,
-    onToggleFileIds,
+    setAgendaIds,
+    setAgendaDocumentIds,
     openFormDialog,
     getConventionId,
 })
@@ -79,15 +79,14 @@ const formModel = reactive({
     conventionId: '',
 })
 
-const agendaDocumentIds = []
-const agendaIds = []
-function onToggleAgendaIds(id) {
-    agendaIds.includes(id) ? agendaIds.splice(agendaIds.indexOf(id), 1) : agendaIds.push(id)
+let agendaDocumentIds = []
+let agendaIds = []
+function setAgendaIds(ids) {
+    agendaIds = ids
 }
-function onToggleFileIds(id) {
-    agendaDocumentIds.includes(id)
-        ? agendaDocumentIds.splice(agendaDocumentIds.indexOf(id), 1)
-        : agendaDocumentIds.push(id)
+
+function setAgendaDocumentIds(ids) {
+    agendaDocumentIds = ids
 }
 function getConventionId() {
     return formModel.conventionId

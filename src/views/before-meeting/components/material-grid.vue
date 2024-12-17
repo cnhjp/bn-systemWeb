@@ -1,44 +1,92 @@
 <template>
-    <el-container class="wh-full">
-        <el-main class="!p-0">
-            <template v-if="list.length">
-                <template v-for="(item, idx) of list" :key="idx">
-                    <material-agenda-item
-                        v-if="!isFile(item)"
-                        :item="item"
-                        :id="(item as any).id"
-                        :name="`【议程】 ${(item as any).title}`"
-                        :level="0"
-                    />
-                    <material-file-item
-                        v-else
-                        :item="item"
-                        :id="(item as any).categoryDocumentID"
-                        :name="(item as any).fileInfo.sourceName + (item as any).fileInfo.type"
-                        :level="0"
-                    />
-                </template>
-                <div class="h-20px"></div>
+    <el-tree
+        class="tree"
+        :data="treeData"
+        show-checkbox
+        default-expand-all
+        node-key="id"
+        :expand-on-click-node="false"
+        @check="onCheck"
+    >
+        <template #default="{ data }">
+            <template v-if="data.isFile">
+                <material-file-item :item="data" :id="data.id" :name="data.name" />
             </template>
             <template v-else>
-                <div class="flex-center mt-50px">暂无数据</div>
+                <material-agenda-item :item="data" :id="data.id" :name="data.name" />
             </template>
-        </el-main>
-    </el-container>
+        </template>
+    </el-tree>
 </template>
 
 <script setup lang="ts">
 import materialAgendaItem from './material-agenda-item.vue'
 import materialFileItem from './material-file-item.vue'
 
-defineProps({
+const injected = inject<any>('material')
+
+const props = defineProps({
     list: {
         type: Array,
         default: () => [],
     },
 })
 
-function isFile(item) {
-    return !!item.categoryDocumentID
+const treeData = computed(() => {
+    const { cloned } = useCloned(props.list)
+    return recursiveProcess(cloned.value)
+})
+
+function recursiveProcess(list, level = 0) {
+    list.forEach((item) => {
+        let children = item.children || []
+        const documentList = item.documentList || []
+        const isFile = !!item.documentID
+        const isAgendaFile = isFile && !item.fileInfo
+        let hasChildren = true
+        if (documentList.length) {
+            children = documentList
+            hasChildren = false
+        }
+        item.id = item.id || item.agendaDocumentID || item.categoryDocumentID
+        item.children = children
+        item.level = level
+        item.isFile = isFile
+        item.isAgendaFile = isAgendaFile
+        item.hasChildren = hasChildren
+        if (isFile) {
+            if (item.fileInfo) {
+                item.name = item.fileInfo.sourceName + item.fileInfo.type
+                item.url = item.fileInfo.fullFileName
+            } else {
+                item.name = item.sourceName + item.type
+                item.url = item.fullFileName
+            }
+        } else {
+            if (level === 0) {
+                item.name = `【议程】 ${item.title}`
+            } else {
+                item.name = `【议题】 ${item.title}`
+            }
+        }
+        recursiveProcess(item.children, level + 1)
+    })
+    return list
+}
+
+function onCheck(_, { checkedNodes }) {
+    const agendaDocumentIds = checkedNodes.filter((item) => item.isFile).map((item) => item.id)
+    const agendaIds = checkedNodes.filter((item) => !item.isFile).map((item) => item.id)
+    injected.setAgendaIds(agendaIds)
+    injected.setAgendaDocumentIds(agendaDocumentIds)
 }
 </script>
+
+<style scoped lang="scss">
+.tree {
+    @apply bg-transparent;
+    :deep(.el-tree-node__content) {
+        @apply h-46px bg-white rounded mb-8px pr-20px;
+    }
+}
+</style>

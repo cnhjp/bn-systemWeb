@@ -64,9 +64,13 @@ export function uploadFile(params) {
     return http.post('/api/Convention-Category/upload-file', params)
 }
 
-// 删除文件
+// 删除议程文件
 export function deleteFile(id) {
     return http.delete(`/api/Convention-Category/file/${id}`)
+}
+
+export function deleteAgendaFile(id) {
+    return http.delete(`/api/agenda/document/${id}`)
 }
 
 // 删除议程

@@ -1,9 +1,6 @@
 <template>
-    <div class="item" :style="{ marginLeft: `${level * 30}px` }">
-        <div class="flex flex-center">
-            <el-checkbox @click="onToggleChecked" class="!mr-10px"></el-checkbox>
-            <div>{{ name }}</div>
-        </div>
+    <div class="item">
+        <div>{{ name }}</div>
         <div>
             <el-button size="small" type="primary" @click="onAddAgenda" class="mr-20px" v-if="hasAddAgendaButton">
                 添加子项
@@ -12,33 +9,12 @@
             <el-link type="danger" @click="onDeleteAgenda">删除</el-link>
         </div>
     </div>
-
-    <material-agenda-item
-        v-for="(item2, idx) of item.children || []"
-        :key="idx"
-        :item="item2"
-        :id="item2.id"
-        :name="`【议题】 ${(item2 as any).title}`"
-        :level="level + 1"
-    />
-
-    <material-file-item
-        v-for="(item2, idx) of item.documentList || []"
-        :key="idx"
-        :item="item2"
-        :id="item2.agendaDocumentID"
-        :name="item2.sourceName + item2.type"
-        :url="item2.fullFileName"
-        :level="level + 1"
-    />
 </template>
 
 <script setup lang="ts">
 import { deleteAgenda } from '~/src/api/before-meeting/material'
-import materialFileItem from './material-file-item.vue'
-import materialAgendaItem from './material-agenda-item.vue'
 
-const props = defineProps(['item', 'id', 'name', 'level'])
+const props = defineProps(['item', 'id', 'name'])
 
 const injected = inject<any>('material')
 
@@ -51,12 +27,8 @@ function onDeleteAgenda() {
     })
 }
 
-function onToggleChecked() {
-    injected.onToggleAgendaIds(props.id)
-}
-
 const hasAddAgendaButton = computed(() => {
-    return props.level === 0 && props.item.documentList.length === 0
+    return props.item.level === 0 && props.item.documentList.length === 0
 })
 
 function onEditAgenda() {
@@ -64,7 +36,7 @@ function onEditAgenda() {
         title: '编辑',
         params: {
             agendaID: props.id,
-            hideUpload: props.item.children?.length > 0,
+            hideUpload: props.item.hasChildren,
             conventionID: injected.getConventionId(),
         },
     })
@@ -85,6 +57,6 @@ function onAddAgenda() {
 
 <style scoped lang="scss">
 .item {
-    @apply flex items-center bg-white px-20px py-10px rounded mb-10px justify-between hover:bg-gray-100 cursor-pointer;
+    @apply w-full flex items-center  justify-between  cursor-pointer;
 }
 </style>
