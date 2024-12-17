@@ -18,7 +18,7 @@
         :key="idx"
         :item="item2"
         :id="item2.id"
-        :name="`【${AGENDA_MAP[(item2 as any).agendaType]}】 ${(item2 as any).title}`"
+        :name="`【议题】 ${(item2 as any).title}`"
         :level="level + 1"
     />
 
@@ -28,6 +28,7 @@
         :item="item2"
         :id="item2.agendaDocumentID"
         :name="item2.sourceName + item2.type"
+        :url="item2.fullFileName"
         :level="level + 1"
     />
 </template>
@@ -36,7 +37,6 @@
 import { deleteAgenda } from '~/src/api/before-meeting/material'
 import materialFileItem from './material-file-item.vue'
 import materialAgendaItem from './material-agenda-item.vue'
-import { AGENDA_MAP } from '~/src/constant/meeting'
 
 const props = defineProps(['item', 'id', 'name', 'level'])
 
@@ -85,6 +85,6 @@ function onAddAgenda() {
 
 <style scoped lang="scss">
 .item {
-    @apply flex items-center bg-white px-20px py-10px rounded mb-10px justify-between hover:bg-gray-100;
+    @apply flex items-center bg-white px-20px py-10px rounded mb-10px justify-between hover:bg-gray-100 cursor-pointer;
 }
 </style>

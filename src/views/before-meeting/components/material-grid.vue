@@ -7,7 +7,7 @@
                         v-if="!isFile(item)"
                         :item="item"
                         :id="(item as any).id"
-                        :name="`【${AGENDA_MAP[(item as any).agendaType]}】 ${(item as any).title}`"
+                        :name="`【议程】 ${(item as any).title}`"
                         :level="0"
                     />
                     <material-file-item
@@ -21,7 +21,7 @@
                 <div class="h-20px"></div>
             </template>
             <template v-else>
-                <div class="wh-full flex-center">暂无数据</div>
+                <div class="flex-center mt-50px">暂无数据</div>
             </template>
         </el-main>
     </el-container>
@@ -30,7 +30,6 @@
 <script setup lang="ts">
 import materialAgendaItem from './material-agenda-item.vue'
 import materialFileItem from './material-file-item.vue'
-import { AGENDA_MAP } from '~/src/constant/meeting'
 
 defineProps({
     list: {

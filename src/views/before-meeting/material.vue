@@ -5,30 +5,38 @@
             <el-button type="primary" @click="onCategory" class="relative left--20px">分类管理</el-button>
         </el-header>
         <el-main class="!pt-0" v-if="active">
-            <div class="flex justify-between h-32px">
-                <div class="tabs">
-                    <div
-                        v-for="item in categoryList"
-                        :key="item.name"
-                        :class="{
-                            tab: true,
-                            active: item.categoryID === activeCategory?.categoryID,
-                        }"
-                        @click="onChangeCategory(item)"
-                    >
-                        {{ item.name }}
+            <el-container class="wh-full">
+                <el-header>
+                    <div class="flex justify-between h-32px">
+                        <div class="tabs">
+                            <div
+                                v-for="item in categoryList"
+                                :key="item.name"
+                                :class="{
+                                    tab: true,
+                                    active: item.categoryID === activeCategory?.categoryID,
+                                }"
+                                @click="onChangeCategory(item)"
+                            >
+                                {{ item.name }}
+                            </div>
+                        </div>
+                        <div class="right">
+                            <el-button type="primary" @click="onUploadAgenda" v-if="false">一键上传议程</el-button>
+                            <el-button type="primary" @click="onAddAgenda" v-if="activeCategory.isDefault">
+                                添加议程
+                            </el-button>
+                            <el-button type="primary" @click="onUploadFile" v-else>添加文件</el-button>
+                            <el-button type="danger" @click="onBatchDelete">批量删除</el-button>
+                        </div>
                     </div>
-                </div>
-                <div class="right">
-                    <el-button type="primary" @click="onUploadAgenda" v-if="false">一键上传议程</el-button>
-                    <el-button type="primary" @click="onAddAgenda" v-if="activeCategory.isDefault">添加议程</el-button>
-                    <el-button type="primary" @click="onUploadFile" v-else>添加文件</el-button>
-                    <el-button type="danger" @click="onBatchDelete">批量删除</el-button>
-                </div>
-            </div>
-            <div class="grid">
-                <material-grid :list="list" />
-            </div>
+                </el-header>
+                <el-main class="!p-10px bg-#eef2fb">
+                    <el-scrollbar>
+                        <material-grid :list="list" />
+                    </el-scrollbar>
+                </el-main>
+            </el-container>
         </el-main>
 
         <el-main class="wh-full bg-white !flex-center" v-else>
@@ -196,14 +204,9 @@ watch(
 }
 
 .tab {
-    @apply cursor-pointer px-12px   pb-8px flex-shrink-0 text-sm;
+    @apply cursor-pointer px-12px pb-8px flex-shrink-0 text-sm;
     &.active {
         @apply border-b-2px border-primary text-primary;
     }
-}
-
-.grid {
-    height: calc(100% - 52px);
-    @apply mt-12px;
 }
 </style>
