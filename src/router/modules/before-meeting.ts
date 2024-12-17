@@ -19,6 +19,12 @@ const routes: AuthRoute.Route = [
         component: () => import('@/views/before-meeting/material.vue'),
         meta: { title: '会议材料' },
     },
+    {
+        path: 'material/category',
+        name: 'before-meeting-material-category',
+        component: () => import('@/views/before-meeting/category.vue'),
+        meta: { title: '分类管理' },
+    },
 ]
 
 export default {

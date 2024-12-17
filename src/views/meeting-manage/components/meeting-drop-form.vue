@@ -1,7 +1,13 @@
 <template>
     <el-form inline label-suffix=":">
         <el-form-item label="会议">
-            <b-select :data="getMeetingDrop" defaultFirst v-model="model" class="!w-250px"></b-select>
+            <b-select
+                :disabled="disabled"
+                :data="getMeetingDrop"
+                defaultFirst
+                v-model="model"
+                class="!w-250px"
+            ></b-select>
         </el-form-item>
         <slot></slot>
     </el-form>
@@ -14,6 +20,10 @@ const props = defineProps({
     modelValue: {
         type: [String, Number],
         default: '',
+    },
+    disabled: {
+        type: Boolean,
+        default: () => false,
     },
 })
 
