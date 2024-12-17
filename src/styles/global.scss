@@ -54,4 +54,11 @@ a {
     border-color: currentColor;
 }
 
+.el-form--inline .el-form-item{
+    margin-bottom: 0;
+}
+.el-input, .el-select {
+    min-width: 120px;
+}
+
 

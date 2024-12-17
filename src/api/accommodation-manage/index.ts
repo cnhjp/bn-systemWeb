@@ -1,0 +1,74 @@
+import { http } from '~/src/utils'
+export * from './drop-down.ts'
+
+/**
+ * 住宿人员列表
+ * @param query
+ * @returns
+ */
+export function getPersonPage(query: any) {
+    return http.get<any, any>('/api/hotel-room/person-page', query)
+}
+
+/**
+ * 设置房间要求
+ * @param query
+ * @returns
+ */
+export function settingRoomType(query: any) {
+    return http.post<any, any>('/api/hotel-room/room-type-require', query)
+}
+
+/**
+ * 住宿安排列表
+ * @param query
+ * @returns
+ */
+export function getRoomPage(query: any) {
+    return http.get<any, any>('/api/hotel-room/page', query)
+}
+
+/**
+ * 一键安排
+ * @param query
+ * @returns
+ */
+export function setArrange(query: any) {
+    return http.get<any, any>('/api/hotel-room/arrange', query)
+}
+
+/**
+ * 住宿安排-批量删除
+ * @param query
+ * @returns
+ */
+export function batchDeleteRoom(query: any) {
+    return http.delete<any, any>('/api/hotel-room', query)
+}
+
+/**
+ * 住宿安排-删除人员
+ * @param id
+ * @returns
+ */
+export function deletePerson(id: number) {
+    return http.delete<any, any>(`/api/hotel-room/person/${id}`)
+}
+
+/**
+ * 住宿安排-安排人员
+ * @param query
+ * @returns
+ */
+export function setRoomPerson(query: any) {
+    return http.post<any, any>(`/api/hotel-room/person`, query)
+}
+
+/**
+ * 住宿安排-导出
+ * @param query
+ * @returns
+ */
+export function exportHotelRoom(query: any) {
+    return http.get<any, any>('/api/hotel-room/export', query)
+}

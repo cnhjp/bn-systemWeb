@@ -24,6 +24,12 @@
         ]
     },
     {
+        "id": 600,
+        "title": "住宿管理",
+        "route": "accommodation-manage-list",
+        "icon": "cast"
+    },
+    {
         "id": 500,
         "title": "系统设置",
         "route": "system-setting",

@@ -98,3 +98,15 @@ export function isValidJSON(jsonString: string) {
         return false
     }
 }
+
+/**
+ * 下拉添加全部选项
+ * @param list
+ * @returns
+ */
+export function dropDownAddAllItem(list: any[]) {
+    if (list && list.length > 0) {
+        list.unshift({ label: '全部', value: 0, selected: true })
+    }
+    return list
+}
