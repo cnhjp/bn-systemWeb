@@ -1,5 +1,5 @@
 <template>
-    <b-grid ref="refGrid" v-bind="gridProps">
+    <b-grid ref="refGrid" v-bind="gridProps" @checkbox-change="onCheckChange">
         <template #toolbar-left>
             <el-button type="primary" size="" @click="onSetting" v-if="!isDialog">设置房间要求</el-button>
         </template>
@@ -60,9 +60,9 @@
 </template>
 
 <script setup lang="ts">
-import { dropDownRoomType, dropDownPersonRole, getPersonPage } from '@/api/accommodation-manage'
+import { dropDownRoomType, dropDownPersonRole, getPersonPage, getSelectPersonPage } from '@/api/accommodation-manage'
 import { DropResponse } from '@/api/accommodation-manage/types.ts'
-import { dropDownAddAllItem } from '@/utils/common'
+import { dropDownSetValueNumner } from '@/utils/common'
 import { ElMessage } from 'element-plus'
 import DialogSettingRoomType from './dialog-setting-room-type.vue'
 import { nextTick } from 'vue'
@@ -75,6 +75,14 @@ const props = defineProps({
     isDialog: {
         type: Boolean,
         default: false,
+    },
+    maxPerson: {
+        type: Number,
+        default: 1,
+    },
+    roomType: {
+        type: Number,
+        default: 1,
     },
 })
 
@@ -90,7 +98,7 @@ const formModel = ref({
 const roomDropList = ref<DropResponse[]>([])
 function dropDownRoom() {
     dropDownRoomType().then((res) => {
-        roomDropList.value = dropDownAddAllItem(res.data)
+        roomDropList.value = dropDownSetValueNumner(res.data, true, true)
     })
 }
 
@@ -98,7 +106,7 @@ function dropDownRoom() {
 const roleDropList = ref<DropResponse[]>([])
 function dropDownRole() {
     dropDownPersonRole().then((res) => {
-        roleDropList.value = dropDownAddAllItem(res.data)
+        roleDropList.value = dropDownSetValueNumner(res.data, true, true)
     })
 }
 
@@ -106,7 +114,7 @@ function dropDownRole() {
 const refGrid = ref<any>(null)
 const gridProps = reactive<any>({
     autoLoad: false,
-    data: getPersonPage,
+    data: props.isDialog ? getSelectPersonPage : getPersonPage,
     query: (params: any) => {
         formModel.value.conventionId = props.meetingId
         return Object.assign(params, formModel.value)
@@ -117,23 +125,13 @@ const gridProps = reactive<any>({
 function onRefresh() {
     refGrid.value.refresh()
 }
-
-//获取选中项
-const getSelectPerson = () => {
-    const selectArr = refGrid.value.getSelected()
-    const ids = selectArr.map((it: any) => it.conventionPersonId)
-    return ids
-}
-
 // 设置房间要求弹窗
 const refDialog = ref<any>(null)
 function onSetting() {
     const ids = getSelectPerson()
     if (ids.length > 0) {
         const params = {
-            list: roomDropList.value,
             conventionPersonIdList: ids,
-            conventionId: props.meetingId,
         }
         openDialog(params)
     } else {
@@ -142,10 +140,10 @@ function onSetting() {
 }
 
 function onEdit(row: any) {
+    const type = roomDropList.value.find((it) => it.label === row.roomTypeStr)
     const params = {
-        list: roomDropList.value,
         conventionPersonIdList: [row.conventionPersonId],
-        conventionId: props.meetingId,
+        type: type || 0,
     }
     openDialog(params)
 }
@@ -155,15 +153,20 @@ function openDialog(params: any) {
         component: DialogSettingRoomType,
         title: '设置房间要求',
         width: '400px',
-        params: params,
+        params: {
+            ...params,
+            list: roomDropList.value,
+            conventionId: props.meetingId,
+        },
     })
 }
 
 function init() {
     if (props.isDialog) {
+        formModel.value.roomType = props.roomType
         gridProps.columns = [
             { type: 'checkbox', minWidth: 60, align: 'center' },
-            { title: '姓名', field: 'name', minWidth: 220 },
+            { title: '姓名', field: 'personName', minWidth: 220 },
             { title: '性别', field: 'sexStr', minWidth: 120 },
             { title: '房间要求', field: 'roomTypeStr', minWidth: 120 },
         ]
@@ -185,6 +188,28 @@ function init() {
     dropDownRole()
 }
 init()
+
+//以下为组件使用公用方法
+
+//获取选中项
+const getSelectPerson = () => {
+    return refGrid.value.getSelected()
+}
+
+//选中项切换时
+const onCheckChange = ({ records }) => {
+    if (records.length > props.maxPerson) {
+        ElMessage.warning(`最多只可以安排${props.maxPerson}人`)
+        records.forEach((item: any, index: number) => {
+            refGrid.value.vxeGrid.setCheckboxRow(item, index > props.maxPerson - 1 ? false : true)
+        })
+        return
+    }
+}
+
+defineExpose({
+    getSelectPerson,
+})
 </script>
 
 <style lang="scss" scoped>
