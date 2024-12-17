@@ -24,7 +24,7 @@
             </div>
         </slot>
         <!-- 进度条 -->
-        <template #file="{ file }">
+        <template #file="{ file }" v-if="false">
             <slot name="file" :file="file">
                 <div class="el-upload-list__item" :class="`is-${file.status}`">
                     <el-image
@@ -253,6 +253,7 @@ const customHttpRequest = async (options: UploadRequestOptions) => {
             // 上传成功
             options.onSuccess(res)
             emit('success', res, options.file)
+            return (res as any).data
         } catch (err) {
             // 上传失败
             options.onError(err as UploadAjaxError)

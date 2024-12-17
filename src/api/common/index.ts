@@ -24,3 +24,8 @@ export function hasActive(params?) {
 export function getStaffRoleDrop(params) {
     return http.get('/api/list/staff-role', params)
 }
+
+// 上传文件
+export function uploadDocument(params) {
+    return http.upload('/api/document', params)
+}

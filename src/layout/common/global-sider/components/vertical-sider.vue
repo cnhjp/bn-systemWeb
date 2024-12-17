@@ -24,7 +24,9 @@ const routeStore = useRouteStore()
 const theActive = computed(() => {
     const route = unref(router.currentRoute)
     const menus = unref(flatMenus)
-    return menus.includes(route.name as string) ? (route.name as string) : ''
+    if (menus.includes(route.name as string)) return route.name as string
+    if (menus.includes(route.meta.rootName as string)) return route.meta.rootName as string
+    return ''
 })
 const flatMenus = computed(() => {
     const menus = routeStore.filtMenus
