@@ -18,6 +18,7 @@
                         :level="0"
                     />
                 </template>
+                <div class="h-20px"></div>
             </template>
             <template v-else>
                 <div class="wh-full flex-center">暂无数据</div>

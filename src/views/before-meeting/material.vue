@@ -1,10 +1,10 @@
 <template>
     <el-container class="wh-full">
-        <el-header class="flex items-center">
+        <el-header class="flex items-center" v-if="active">
             <meetingDropForm v-model="formModel.conventionId" />
             <el-button type="primary" @click="onCategory" class="relative left--20px">分类管理</el-button>
         </el-header>
-        <el-main class="!pt-0">
+        <el-main class="!pt-0" v-if="active">
             <div class="flex justify-between h-32px">
                 <div class="tabs">
                     <div
@@ -21,7 +21,7 @@
                 </div>
                 <div class="right">
                     <el-button type="primary" @click="onUploadAgenda" v-if="false">一键上传议程</el-button>
-                    <el-button type="primary" v-if="activeCategory.isDefault">添加议程</el-button>
+                    <el-button type="primary" @click="onAddAgenda" v-if="activeCategory.isDefault">添加议程</el-button>
                     <el-button type="primary" @click="onUploadFile" v-else>添加文件</el-button>
                     <el-button type="danger" @click="onBatchDelete">批量删除</el-button>
                 </div>
@@ -31,17 +31,23 @@
             </div>
         </el-main>
 
+        <el-main class="wh-full bg-white !flex-center" v-else>
+            <div class="font-bold text-center text-3xl">没有预备/公布的大会</div>
+        </el-main>
+
         <b-common-dialog ref="refDialog" @refresh="onRefresh"></b-common-dialog>
     </el-container>
 </template>
 
 <script setup lang="ts">
+import { hasActive } from '~/src/api/common'
 import { getCategoryList } from '~/src/api/before-meeting/material'
 import meetingDropForm from '../meeting-manage/components/meeting-drop-form.vue'
 import materialGrid from './components/material-grid.vue'
 import dialogUploadAgenda from './components/dialog-upload-agenda.vue'
 import dialogUploadMaterialFile from './components/dialog-upload-material-file.vue'
 import { getDefaultMaterialList, getNonDefaultMaterialList, deleteAgendaFiles } from '~/src/api/before-meeting/material'
+import dialogAgendaForm from './components/dialog-agenda-form.vue'
 
 const router = useRouter()
 
@@ -49,6 +55,16 @@ provide('material', {
     onRefresh,
     onToggleAgendaIds,
     onToggleFileIds,
+    openFormDialog,
+    getConventionId,
+})
+
+const active = ref(false)
+
+onMounted(() => {
+    hasActive().then((res) => {
+        active.value = res.data
+    })
 })
 
 const formModel = reactive({
@@ -64,6 +80,9 @@ function onToggleFileIds(id) {
     agendaDocumentIds.includes(id)
         ? agendaDocumentIds.splice(agendaDocumentIds.indexOf(id), 1)
         : agendaDocumentIds.push(id)
+}
+function getConventionId() {
+    return formModel.conventionId
 }
 
 function onCategory() {
@@ -139,6 +158,26 @@ function onBatchDelete() {
             ElMessage.success('删除成功')
             onRefresh()
         })
+    })
+}
+
+function openFormDialog(params) {
+    refDialog.value.openModal({
+        component: dialogAgendaForm,
+        width: '680px',
+        ...params,
+    })
+}
+
+function onAddAgenda() {
+    openFormDialog({
+        title: '添加议程',
+        params: {
+            agendaID: 0,
+            parentID: 0,
+            hideUpload: false,
+            conventionID: formModel.conventionId,
+        },
     })
 }
 

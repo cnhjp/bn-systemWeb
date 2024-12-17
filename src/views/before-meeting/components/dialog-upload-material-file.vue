@@ -69,7 +69,6 @@ function onHttpRequest(options: UploadRequestOptions) {
     return uploadDocument({
         file: options.file,
         importType: '2',
-        version: Math.random(),
     })
 }
 </script>

@@ -39,6 +39,6 @@ function onToggleChecked() {
 
 <style scoped lang="scss">
 .item {
-    @apply flex items-center bg-white px-20px py-10px rounded mb-10px justify-between;
+    @apply flex items-center bg-white px-20px py-10px rounded mb-10px justify-between hover:bg-gray-100;
 }
 </style>

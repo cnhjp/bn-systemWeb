@@ -5,7 +5,9 @@
             <div>{{ name }}</div>
         </div>
         <div>
-            <el-button size="small" type="primary" class="mr-20px" v-if="hasAddAgendaButton">添加子项</el-button>
+            <el-button size="small" type="primary" @click="onAddAgenda" class="mr-20px" v-if="hasAddAgendaButton">
+                添加子项
+            </el-button>
             <el-link type="primary" @click="onEditAgenda" class="mr-20px">编辑</el-link>
             <el-link type="danger" @click="onDeleteAgenda">删除</el-link>
         </div>
@@ -57,11 +59,32 @@ const hasAddAgendaButton = computed(() => {
     return props.level === 0 && props.item.documentList.length === 0
 })
 
-function onEditAgenda() {}
+function onEditAgenda() {
+    injected.openFormDialog({
+        title: '编辑',
+        params: {
+            agendaID: props.id,
+            hideUpload: props.item.children?.length > 0,
+            conventionID: injected.getConventionId(),
+        },
+    })
+}
+
+function onAddAgenda() {
+    injected.openFormDialog({
+        title: '添加子项',
+        params: {
+            agendaID: 0,
+            parentID: props.id,
+            hideUpload: false,
+            conventionID: injected.getConventionId(),
+        },
+    })
+}
 </script>
 
 <style scoped lang="scss">
 .item {
-    @apply flex items-center bg-white px-20px py-10px rounded mb-10px justify-between;
+    @apply flex items-center bg-white px-20px py-10px rounded mb-10px justify-between hover:bg-gray-100;
 }
 </style>

@@ -78,3 +78,18 @@ export function deleteAgenda(id) {
 export function deleteAgendaFiles(params) {
     return http.delete('/api/agenda/deleteAgendaAndDocList', params)
 }
+
+// 新增议程
+export function addAgenda(params) {
+    return http.post('/api/agenda', params)
+}
+
+// 更新议程
+export function updateAgenda(params) {
+    return http.put('/api/agenda', params)
+}
+
+// 获取议程详情
+export function getAgendaDetail(id) {
+    return http.get(`/api/agenda/${id}`)
+}
