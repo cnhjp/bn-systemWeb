@@ -142,3 +142,34 @@ export function downloadFile(url: string, name: string) {
     }
     x.send()
 }
+
+/**
+ * 将对象转换成查询参数字符串
+ * @param {Object} params 查询参数对象
+ * @returns {string} 查询参数字符串
+ * @example
+ * const params = { a: 1, b: 2, c: [3, 4] }
+ * const queryString = createQueryParams(params) // 'a=1&b=2&c=3&c=4'
+ */
+export function createQueryParams(params: Record<string, any>): string {
+    const queryParts: string[] = []
+
+    for (const key in params) {
+        if (Object.prototype.hasOwnProperty.call(params, key)) {
+            const value = params[key]
+
+            if (Array.isArray(value)) {
+                // 如果是数组，每个元素生成一个键值对
+                value.forEach((item) => {
+                    queryParts.push(`${encodeURIComponent(key)}=${encodeURIComponent(item)}`)
+                })
+            } else {
+                // 普通键值对
+                queryParts.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+            }
+        }
+    }
+
+    // 使用 & 连接所有部分
+    return queryParts.join('&')
+}
