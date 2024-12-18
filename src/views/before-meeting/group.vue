@@ -41,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import { getGroupPage } from '~/src/api/before-meeting/info'
+import { getGroupPage, deleteGroup } from '~/src/api/before-meeting/info'
 import dialogGroupForm from './components/dialog-group-form.vue'
 
 const refGrid = ref<any>(null)
@@ -57,7 +57,7 @@ const gridProps = reactive({
         return Object.assign(params, formModel)
     },
     columns: [
-        { title: '名称', field: 'title', minWidth: 180, align: 'center' },
+        { title: '名称', field: 'title', minWidth: 180 },
         { title: '开始时间', field: 'startTimeStr', slots: { default: 'startTime' }, minWidth: 180, align: 'center' },
         { title: '结束时间', field: 'endTimeStr', slots: { default: 'endTime' }, minWidth: 180, align: 'center' },
         { title: '操作', slots: { default: 'actions' }, minWidth: 220, fixed: 'right', align: 'center' },
@@ -91,10 +91,10 @@ function onEdit(row) {
 
 function onDelete(row) {
     ElMessageBox.confirm('确定删除该分组吗？').then(() => {
-        // deleteGroup(row.id).then(() => {
-        //     ElMessage.success('操作成功')
-        //     onRefresh()
-        // })
+        deleteGroup({ groupId: row.id }).then(() => {
+            ElMessage.success('操作成功')
+            onRefresh()
+        })
     })
 }
 </script>

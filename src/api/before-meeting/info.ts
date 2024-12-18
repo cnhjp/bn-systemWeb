@@ -46,7 +46,62 @@ export function updateGroup(params) {
     return http.post('/api/convention/group/mod', params)
 }
 
+// 删除会议分组
+export function deleteGroup(params) {
+    return http.post('/api/convention/group/del', params)
+}
+
 // 获取会议分组下拉
 export function getGroupDrop() {
     return http.get('/api/convention/group/drop')
+}
+
+// 会议室列表
+export function getMeetingRoomList(params) {
+    return http.get('/api/list/meeting-room', params)
+}
+
+// 会议类型列表
+export function conventionTypeList() {
+    return http.get('/api/convention/type')
+}
+
+// 获取会议类型设置
+export function getTypeSettingList() {
+    return http.get('/api/convention-type/list')
+}
+
+// 删除类型配置
+export function deleteTypeSetting(id) {
+    return http.delete(`/api/convention-type/${id}`)
+}
+
+// 新增类型配置
+export function addTypeSetting(params) {
+    return http.post('/api/convention-type', params)
+}
+
+// 更新类型配置
+export function updateTypeSetting(params) {
+    return http.put('/api/convention-type', params)
+}
+
+// 分类列表
+export function categoryList(params) {
+    return http.get('/api/Convention-Category/list', params)
+}
+
+// 添加会议
+export function addMeeting(params) {
+    return http.post('/api/convention', params)
+}
+
+// 编辑会议
+export function editMeeting(params) {
+    return http.put('/api/convention', params)
+}
+
+// 获取会议详情
+export function getMeetingDetail(id) {
+    return http.get(`/api/convention/${id}`)
 }
