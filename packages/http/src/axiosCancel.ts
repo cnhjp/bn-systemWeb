@@ -7,9 +7,15 @@ let pendingMap = new Map<string, Canceler>()
 
 // 序列化参数生成标识
 export const getPendingUrl = (config: HttpRequestConfig) => {
-    const r = [config.method, config.url, qs.stringify(config.data), qs.stringify(config.params)]
-        .filter((e) => e)
-        .join('|')
+    let data = qs.stringify(config.data)
+    if (config.data instanceof FormData) {
+        data = config.data
+            .values()
+            .toArray()
+            .map((e) => (e instanceof File ? e.name : e))
+            .join(',')
+    }
+    const r = [config.method, config.url, data, qs.stringify(config.params)].filter((e) => e).join('|')
     return r
 }
 

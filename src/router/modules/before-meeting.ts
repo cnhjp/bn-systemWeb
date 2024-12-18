@@ -23,7 +23,7 @@ const routes: AuthRoute.Route = [
         path: 'material/category',
         name: 'before-meeting-material-category',
         component: () => import('@/views/before-meeting/category.vue'),
-        meta: { title: '分类管理' },
+        meta: { title: '分类管理', rootName: 'before-meeting-material' },
     },
 ]
 

@@ -71,7 +71,7 @@ function responseSucceed(response: HttpResponse) {
         // if (result.code === 200) {
         if (response.config.responseType === 'blob') {
             if ((response.config as any).download === true) {
-                return responseBlob(response).catch(responseFailed)
+                return responseBlob(response as any).catch(responseFailed as any)
             }
         }
         // }
@@ -81,7 +81,7 @@ function responseSucceed(response: HttpResponse) {
     ///// special handle
     if (response.config.responseType === 'blob') {
         if ((response.config as any).download === true) {
-            return responseBlob(response).catch(responseFailed)
+            return responseBlob(response as any).catch(responseFailed as any)
         }
     }
 
@@ -137,7 +137,7 @@ export const http = new BusinessHttpRequest({
         requestSucceedInterceptors: requestSucceed,
         requestFailedInterceptors: undefined,
         responseSucceedInterceptors: responseSucceed,
-        responseFailedInterceptors: responseFailed,
+        responseFailedInterceptors: responseFailed as any,
     },
 })
 

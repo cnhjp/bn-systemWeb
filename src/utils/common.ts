@@ -118,3 +118,27 @@ export function dropDownSetValueNumner(list: any[], hasAll: boolean = false, isN
     }
     return list
 }
+
+/**
+ * 下载文件
+ * @param url
+ * @param name
+ */
+export function downloadFile(url: string, name: string) {
+    const x = new window.XMLHttpRequest()
+    const filename = name || ''
+    x.open('GET', `${url}?t=${new Date().getTime()}`, true)
+
+    x.responseType = 'blob'
+    x.onload = () => {
+        const fileUrl = window.URL.createObjectURL(x.response)
+        const a = document.createElement('a')
+        a.download = filename
+        a.href = fileUrl
+        a.style.display = 'none'
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+    }
+    x.send()
+}
