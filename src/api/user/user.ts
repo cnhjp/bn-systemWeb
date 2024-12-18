@@ -10,15 +10,8 @@ export function fetchLogin(data: LoginByUserRequest) {
 //     return http.get('/api/test/getUserById', { personId })
 // }
 
-export function fetchUserInfo() {
-    // return http.get('/user/info')
-    return Promise.resolve({
-        data: {
-            userId: 1,
-            userName: 'javis',
-            userRole: 'admin',
-        },
-    })
+export function fetchUserInfo(personId: number) {
+    return http.get('/api/login/getPersonInfo', { personId })
 }
 
 export function fetchUserMenus() {

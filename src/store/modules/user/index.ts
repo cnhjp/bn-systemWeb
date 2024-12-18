@@ -27,6 +27,9 @@ const defaultUserInfo: User.UserInfo = {
     userId: 0,
     userName: '',
     userRole: 'guest',
+    name: '',
+    photoURL: '',
+    personID: 0,
 }
 
 export const useUserStore = defineStore('user-store', {
@@ -49,8 +52,8 @@ export const useUserStore = defineStore('user-store', {
     actions: {
         getGuid() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                let r = (Math.random() * 16) | 0
-                let v = c == 'x' ? r : (r & 0x3) | 0x8
+                const r = (Math.random() * 16) | 0
+                const v = c == 'x' ? r : (r & 0x3) | 0x8
                 return v.toString(16)
             })
         },

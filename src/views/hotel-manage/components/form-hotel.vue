@@ -7,17 +7,17 @@
             <el-row class="el-bg--white p-50px">
                 <el-col :span="18" :offset="3">
                     <el-form ref="formRef" :model="formModel" :rules="formRules" label-width="80px">
-                        <el-form-item label="酒店名称" prop="name">
-                            <el-input v-model="formModel.name" />
+                        <el-form-item label="酒店名称" prop="hotelName">
+                            <el-input v-model="formModel.hotelName" />
                         </el-form-item>
-                        <el-form-item label="联系方式" prop="contact">
-                            <el-input v-model="formModel.contact" />
+                        <el-form-item label="联系方式" prop="hotelContact">
+                            <el-input v-model="formModel.hotelContact" />
                         </el-form-item>
-                        <el-form-item label="酒店地址" prop="address">
-                            <el-input v-model="formModel.address" />
+                        <el-form-item label="酒店地址" prop="hotelAddress">
+                            <el-input v-model="formModel.hotelAddress" />
                         </el-form-item>
                         <el-form-item label="酒店介绍">
-                            <el-input type="textarea" :rows="5" v-model="formModel.introduction" />
+                            <el-input type="textarea" :rows="5" v-model="formModel.hotelRemark" />
                         </el-form-item>
                         <el-form-item label="酒店照片">
                             <el-upload
@@ -86,22 +86,22 @@ const formRef = ref<FormInstance>()
 const formModel = ref<HotelForm>(
     Object.assign(
         {
-            id: 0,
-            name: '',
-            contact: null,
-            address: '',
-            introduction: '',
-            docName: '',
-            docId: 0,
-            docPath: '',
+            hotelID: 0,
+            tenantID: 0,
+            conventionID: 0,
+            hotelName: '',
+            hotelAddress: '',
+            hotelContact: '',
+            hotelRemark: '',
+            files: [],
         },
         props.formData,
     ),
 )
 const formRules = reactive<FormRules<HotelForm>>({
-    name: [{ required: true, message: '请输入酒店名称', trigger: 'blur' }],
-    contact: [{ required: true, message: '请输入联系方式', trigger: 'blur' }],
-    address: [{ required: true, message: '请输入酒店地址', trigger: 'blur' }],
+    hotelName: [{ required: true, message: '请输入酒店名称', trigger: 'blur' }],
+    hotelContact: [{ required: true, message: '请输入联系方式', trigger: 'blur' }],
+    hotelAddress: [{ required: true, message: '请输入酒店地址', trigger: 'blur' }],
 })
 
 // upload
@@ -119,7 +119,7 @@ function onBeforeUpload(rawFile: File) {
         return false
     }
     if (!isLt2M) {
-        ElMessage.error('上传图片大小不能超过 150KB!')
+        ElMessage.error('上传图片大小不能超过 10MB!')
         return false
     }
     return true
@@ -138,12 +138,13 @@ function onClose() {
 }
 
 function onConfirm() {
-    if (!formRef.value) return
+    const data = {
+        ...formModel.value,
+        files: [imageUrl.value],
+    }
     formRef.value.validate((valid) => {
         if (valid) {
-            console.log(formModel)
-            emits('confirm', formModel.value)
-            router.back()
+            emits('confirm', data)
         }
     })
 }
