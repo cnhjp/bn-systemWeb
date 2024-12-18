@@ -4,7 +4,9 @@
         "title": "会务管理",
         "route": "meeting-manage",
         "icon": "cast",
-        "children": [{ "id": 101, "title": "班车管理", "route": "bus-manage", "icon": "cast" }]
+        "children": [
+            { "id": 101, "title": "班车管理", "route": "bus-manage", "icon": "cast" },
+            { "id": 102, "title": "会议室管理", "route": "room-manage", "icon": "cast" }]
     },
     {
         "id": 200,

@@ -3,7 +3,7 @@
         <el-header height="100px">
             <div class="el-flex pt-20px pb-10px">
                 会议：
-                <el-select v-model="meetingId" class="meeting">
+                <el-select v-model="meetingId" class="meeting" @change="onRefresh">
                     <el-option v-for="item in dropMeeting" :key="item.value" :label="item.label" :value="item.value" />
                 </el-select>
             </div>
@@ -13,7 +13,7 @@
             </el-tabs>
         </el-header>
         <el-main v-if="visible">
-            <person-list :meetingId="meetingId" v-if="activeTab === 'first'" />
+            <person-list ref="" :meetingId="meetingId" v-if="activeTab === 'first'" />
             <accommodation-list :meetingId="meetingId" v-else />
         </el-main>
     </el-container>
@@ -24,11 +24,19 @@ import PersonList from './components/person-list.vue'
 import AccommodationList from './components/accommodation-list.vue'
 import { dropDownMeeting } from '@/api/accommodation-manage'
 import { DropResponse } from '@/api/accommodation-manage/types.ts'
+import { nextTick } from 'vue'
 
 const activeTab = ref<string>('first')
 const visible = ref<boolean>(false)
 const dropMeeting = ref<DropResponse[]>([])
 const meetingId = ref()
+
+function onRefresh() {
+    visible.value = false
+    nextTick(() => {
+        visible.value = true
+    })
+}
 function init() {
     dropDownMeeting().then((res) => {
         dropMeeting.value = res.data

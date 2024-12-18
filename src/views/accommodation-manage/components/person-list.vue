@@ -127,6 +127,19 @@ function onRefresh() {
 }
 // 设置房间要求弹窗
 const refDialog = ref<any>(null)
+function openDialog(params: any) {
+    refDialog.value.openModal({
+        component: DialogSettingRoomType,
+        title: '设置房间要求',
+        width: '400px',
+        params: {
+            ...params,
+            list: roomDropList.value,
+            conventionId: props.meetingId,
+        },
+    })
+}
+
 function onSetting() {
     const ids = getSelectPerson()
     if (ids.length > 0) {
@@ -146,19 +159,6 @@ function onEdit(row: any) {
         type: type || 0,
     }
     openDialog(params)
-}
-
-function openDialog(params: any) {
-    refDialog.value.openModal({
-        component: DialogSettingRoomType,
-        title: '设置房间要求',
-        width: '400px',
-        params: {
-            ...params,
-            list: roomDropList.value,
-            conventionId: props.meetingId,
-        },
-    })
 }
 
 function init() {

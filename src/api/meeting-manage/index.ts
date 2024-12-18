@@ -1,4 +1,5 @@
 import { http } from '~/src/utils'
+export * from './room-manage.ts'
 
 /**
  * 获取会议下拉
