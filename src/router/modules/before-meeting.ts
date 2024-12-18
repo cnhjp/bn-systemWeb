@@ -8,6 +8,12 @@ const routes: AuthRoute.Route = [
         meta: { title: '会议信息' },
     },
     {
+        path: 'info/group',
+        name: 'before-meeting-info-group',
+        component: () => import('@/views/before-meeting/group.vue'),
+        meta: { title: '会议信息', rootName: 'before-meeting-info' },
+    },
+    {
         path: 'personnel',
         name: 'before-meeting-personnel',
         component: () => import('@/views/before-meeting/personnel.vue'),
