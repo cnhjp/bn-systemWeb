@@ -105,3 +105,23 @@ export function editMeeting(params) {
 export function getMeetingDetail(id) {
     return http.get(`/api/convention/${id}`)
 }
+
+// 获取会议会徽列表
+export function getEmblemList() {
+    return http.get('/api/convention-emblem/list')
+}
+
+// 获取会议会徽下拉
+export function getEmblemDrop() {
+    return http.get('/api/list/emblem-list')
+}
+
+// 删除会议会徽
+export function deleteEmblem(id) {
+    return http.delete(`/api/convention-emblem/${id}`)
+}
+
+// 更新会议会徽
+export function updateEmblem(params) {
+    return http.post('/api/convention-emblem', params)
+}

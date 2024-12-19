@@ -33,6 +33,12 @@ const routes: AuthRoute.Route = [
         meta: { title: '类型配置', rootName: 'before-meeting-info' },
     },
     {
+        path: 'info/emblem',
+        name: 'before-meeting-info-emblem',
+        component: () => import('@/views/before-meeting/emblem.vue'),
+        meta: { title: '会议会徽', rootName: 'before-meeting-info' },
+    },
+    {
         path: 'personnel',
         name: 'before-meeting-personnel',
         component: () => import('@/views/before-meeting/personnel.vue'),
