@@ -45,3 +45,20 @@ export function getAttendPage(query: any) {
         },
     })
 }
+
+// 一键全签
+export function setAllAttendance() {
+    //return http.get('/api/convention/type')
+    return Promise.resolve({
+        data: 'success',
+    })
+}
+
+// 修改状态
+export function changeStatus(query: any) {
+    //return http.get('/api/convention/type')
+    console.log(query)
+    return Promise.resolve({
+        data: 'success',
+    })
+}
