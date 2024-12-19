@@ -68,7 +68,7 @@ function openDialog(params: any) {
         width: '600px',
         params: {
             ...params,
-            meetingRoomID: props.meetingRoom?.meetingRoomID,
+            list: props.meetingRoom?.meetingRoomID,
         },
     })
 }

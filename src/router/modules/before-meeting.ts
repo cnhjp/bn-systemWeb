@@ -56,6 +56,12 @@ const routes: AuthRoute.Route = [
         component: () => import('@/views/before-meeting/category.vue'),
         meta: { title: '分类管理', rootName: 'before-meeting-material' },
     },
+    {
+        path: 'attendance-manage',
+        name: 'before-meeting-attendance-manage',
+        component: () => import('@/views/before-meeting/attendance-manage.vue'),
+        meta: { title: '签到管理' },
+    },
 ]
 
 export default {
