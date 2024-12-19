@@ -22,7 +22,8 @@
         "children": [
             { "id": 301, "title": "会议信息", "route": "before-meeting-info", "icon": "cast" },
             { "id": 302, "title": "会议人员", "route": "before-meeting-personnel", "icon": "cast" },
-            { "id": 303, "title": "会议材料", "route": "before-meeting-material", "icon": "cast" }
+            { "id": 303, "title": "会议材料", "route": "before-meeting-material", "icon": "cast" },
+            { "id": 304, "title": "签到管理", "route": "before-meeting-attendance-manage", "icon": "cast" }
         ]
     },
     {

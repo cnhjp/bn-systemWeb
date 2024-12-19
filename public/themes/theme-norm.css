@@ -1014,3 +1014,7 @@ body {
 .el-card.is-grey {
   background-color: var(--el-color-bg);
 }
+
+.el-form.el-form--inline .el-form-item:last-child {
+  margin-right: 0;
+}

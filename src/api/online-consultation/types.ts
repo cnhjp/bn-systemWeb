@@ -12,13 +12,13 @@ export interface OnlineConsultationListResponse {
 export class item {
     id: number
     name: string
-    problem: string
+    title: string
     status: number
 
     constructor() {
         this.id = 0
         this.name = ''
-        this.problem = ''
+        this.title = ''
         this.status = 0
     }
 }
@@ -30,10 +30,10 @@ export interface OnlineConsultationDetail {
     id: number
     title: string
     content: string
-    submitPerson: string
-    submitTime: string
-    imgList: imgItem[]
-    replyList: replyItem[]
+    createBy: string
+    createTime: string
+    documents: string[]
+    messages: replyItem[]
 }
 
 /**
@@ -41,13 +41,15 @@ export interface OnlineConsultationDetail {
  */
 export class replyItem {
     id: number
-    replyTime: string
+    createTime: string
     content: string
+    documents: any[]
 
     constructor() {
         this.id = 0
-        this.replyTime = ''
+        this.createTime = ''
         this.content = ''
+        this.documents = []
     }
 }
 
@@ -71,5 +73,6 @@ export class imgItem {
  */
 export interface reply {
     id: number
-    replyContent: string
+    content: string
+    files: string[]
 }

@@ -54,7 +54,7 @@ function requestSucceed(config: HttpRequestConfig) {
     const userStore = useUserStore()
 
     if (!config.headers) config.headers = {}
-    config.headers['authorization'] = 'Bearer ' + userStore.token
+    config.headers['authorization'] = userStore.token
     return config
 }
 

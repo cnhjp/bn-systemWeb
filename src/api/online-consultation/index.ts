@@ -1,4 +1,4 @@
-//import { http } from '~/src/utils'
+import { http } from '~/src/utils'
 import { OnlineConsultationListResponse, OnlineConsultationDetail, reply } from './types'
 
 /**
@@ -6,26 +6,8 @@ import { OnlineConsultationListResponse, OnlineConsultationDetail, reply } from 
  * @param query
  * @returns
  */
-export function getOnlineConsultationPage() {
-    return Promise.resolve({
-        data: <OnlineConsultationListResponse>{
-            total: 2,
-            rows: [
-                {
-                    id: 12,
-                    name: '张三',
-                    problem: '金华市白龙桥',
-                    status: 1,
-                },
-                {
-                    id: 133,
-                    name: '李四',
-                    problem: '金华市白龙桥',
-                    status: 2,
-                },
-            ],
-        },
-    })
+export function getOnlineConsultationPage(query: any) {
+    return http.get<OnlineConsultationListResponse>('/api/inquiry/page', query)
 }
 
 /**
