@@ -54,9 +54,12 @@ const formRef = ref()
 const formModel = ref(
     Object.assign(
         {
-            id: '',
+            id: 0,
             title: '',
             description: '',
+            isPublish: true,
+            publishTime: '2024-12-19T13:05:36.106Z',
+            conventionId: 0,
         },
         props.formData,
     ),

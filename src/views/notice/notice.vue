@@ -7,6 +7,8 @@
                 </template>
 
                 <template #actions="{ row }">
+                    <el-button type="primary" size="small" @click="onView(row)">查看</el-button>
+                    <el-button type="danger" size="small" @click="onPublish(row)">发布</el-button>
                     <el-button type="primary" size="small" @click="onEdit(row)">编辑</el-button>
                     <el-button type="danger" size="small" @click="onDelete(row)">删除</el-button>
                 </template>
@@ -16,7 +18,7 @@
 </template>
 <script setup lang="ts">
 import { useRouteStore } from '~/src/store'
-import { getNoticePage, batchDeleteNotice } from '~/src/api/notice'
+import { getNoticePage, batchDeleteNotice, publishNotice } from '~/src/api/notice'
 
 const routeStore = useRouteStore()
 const router = useRouter()
@@ -65,6 +67,28 @@ onActivated(() => {
 function onDelete(row) {
     ElMessageBox.confirm('确定删除吗？').then(() => {
         batchDeleteNotice([row.id]).then(() => {
+            ElMessage.success('操作成功')
+            onRefresh()
+        })
+    })
+}
+
+function onView(row) {
+    routeStore.cacheRoutes.push('notice')
+    router.push({
+        name: 'notice-detail',
+        query: {
+            ...row,
+        },
+    })
+}
+
+function onPublish(row) {
+    ElMessageBox.confirm('确定发布吗？').then(() => {
+        publishNotice({
+            noticeID: row.id,
+            isPublish: true,
+        }).then(() => {
             ElMessage.success('操作成功')
             onRefresh()
         })

@@ -14,3 +14,8 @@ export function batchDeleteNotice(params) {
 export function saveNotice(params) {
     return http.post('/api/notice/save', params)
 }
+
+// 发布公告
+export function publishNotice(params) {
+    return http.post('/api/notice/updatepublish', params)
+}
