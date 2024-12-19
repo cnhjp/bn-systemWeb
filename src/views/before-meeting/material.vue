@@ -1,8 +1,11 @@
 <template>
     <el-container class="wh-full">
-        <el-header class="flex items-center" v-if="active">
-            <meetingDropForm v-model="formModel.conventionId" />
-            <el-button type="primary" @click="onCategory" class="relative left--20px">分类管理</el-button>
+        <el-header class="!h-auto" v-if="active">
+            <stepHeader class="mb-20px" />
+            <div class="flex items-center mb-10px">
+                <meetingDropForm v-model="formModel.conventionId" />
+                <el-button type="primary" @click="onCategory" class="relative left--20px">分类管理</el-button>
+            </div>
         </el-header>
         <el-main class="!pt-0" v-if="active">
             <el-container class="wh-full">
@@ -23,10 +26,10 @@
                         </div>
                         <div class="right">
                             <el-button type="primary" @click="onUploadAgenda" v-if="false">一键上传议程</el-button>
-                            <el-button type="primary" @click="onAddAgenda" v-if="activeCategory.isDefault">
-                                添加议程
+                            <el-button type="primary" @click="onAddAgenda">添加议程</el-button>
+                            <el-button type="primary" @click="onUploadFile" v-if="!activeCategory.isDefault">
+                                添加文件
                             </el-button>
-                            <el-button type="primary" @click="onUploadFile" v-else>添加文件</el-button>
                             <el-button type="danger" @click="onBatchDelete">批量删除</el-button>
                         </div>
                     </div>
@@ -43,6 +46,13 @@
             <div class="font-bold text-center text-3xl">没有预备/公布的大会</div>
         </el-main>
 
+        <el-footer v-if="hasFooter">
+            <div class="flex-center">
+                <el-button @click="onPreviousStep">返回上一步</el-button>
+                <el-button type="primary" @click="onNextStep">保存</el-button>
+            </div>
+        </el-footer>
+
         <b-common-dialog ref="refDialog" @refresh="onRefresh"></b-common-dialog>
     </el-container>
 </template>
@@ -56,8 +66,10 @@ import dialogUploadAgenda from './components/dialog-upload-agenda.vue'
 import dialogUploadMaterialFile from './components/dialog-upload-material-file.vue'
 import { getDefaultMaterialList, getNonDefaultMaterialList, deleteAgendaFiles } from '~/src/api/before-meeting/material'
 import dialogAgendaForm from './components/dialog-agenda-form.vue'
+import stepHeader from './components/step-header.vue'
 
 const router = useRouter()
+const route = useRoute()
 
 provide('material', {
     onRefresh,
@@ -195,6 +207,16 @@ watch(
         onRefresh()
     },
 )
+
+const hasFooter = computed(() => route.query.step)
+function onPreviousStep() {
+    router.back()
+}
+function onNextStep() {
+    router.push({
+        name: 'before-meeting-info',
+    })
+}
 </script>
 
 <style lang="scss" scoped>

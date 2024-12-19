@@ -168,7 +168,7 @@ const gridProps = reactive({
         { type: 'checkbox', width: 60, align: 'center' },
         { title: '账号', field: 'userName', minWidth: 180, align: 'center', slots: { default: 'userName' } },
         { title: '桌牌', field: 'seatingName', minWidth: 120, align: 'center' },
-        { title: '发起同屏', slots: { default: 'syncScreen' }, minWidth: 120, align: 'center' },
+        // { title: '发起同屏', slots: { default: 'syncScreen' }, minWidth: 120, align: 'center' },
         { title: '座位号', field: 'seatingCode', minWidth: 100, align: 'center' },
         { title: '分组', field: 'personGroup', minWidth: 120, align: 'center' },
         { title: '角色', field: 'personRole', minWidth: 100, align: 'center', slots: { default: 'personRole' } },
