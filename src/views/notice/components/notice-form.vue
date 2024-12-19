@@ -15,11 +15,11 @@
                                 show-word-limit
                             />
                         </el-form-item>
-                        <el-form-item label="通知内容" prop="content">
+                        <el-form-item label="通知内容" prop="description">
                             <el-input
                                 type="textarea"
                                 :rows="6"
-                                v-model="formModel.content"
+                                v-model="formModel.description"
                                 plceholder="请输入通知内容"
                             />
                         </el-form-item>
@@ -54,15 +54,16 @@ const formRef = ref()
 const formModel = ref(
     Object.assign(
         {
+            id: '',
             title: '',
-            content: '',
+            description: '',
         },
         props.formData,
     ),
 )
 const formRules = reactive({
     title: { required: true, message: '请输入标题' },
-    content: { required: true, message: '请输入内容' },
+    description: { required: true, message: '请输入内容' },
 })
 
 function onClose() {
@@ -72,7 +73,7 @@ function onClose() {
 function onConfirm() {
     formRef.value.validate((valid) => {
         if (valid) {
-            emits('confirm')
+            emits('confirm', formModel)
         }
     })
 }

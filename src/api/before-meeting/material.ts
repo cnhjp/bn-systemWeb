@@ -97,3 +97,33 @@ export function updateAgenda(params) {
 export function getAgendaDetail(id) {
     return http.get(`/api/agenda/${id}`)
 }
+
+// 新增文件夹
+export function addFolder(params) {
+    return http.post('/api/Convention-Category/folder-add', params)
+}
+
+// 获取文件夹信息
+export function getFolderDetail(params) {
+    return http.get(`/api/Convention-Category/folder-info`, params)
+}
+
+// 更新文件夹信息
+export function updateFolder(params) {
+    return http.put('/api/Convention-Category/folder-edit', params)
+}
+
+// 批量删除文件夹文件
+export function deleteFolderFiles(params) {
+    return http.delete('/api/Convention-Category/deleteFoldersAndFileList', params)
+}
+
+// 删除文件夹文件
+export function deleteFolderFile(id) {
+    return http.delete(`/api/Convention-Category/file/${id}`)
+}
+
+// 删除文件夹
+export function deleteFolder(id) {
+    return http.delete(`/api/Convention-Category/folder/${id}`)
+}

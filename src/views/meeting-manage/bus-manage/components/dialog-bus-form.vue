@@ -6,11 +6,12 @@
                     <el-input v-model="formModel.title" placeholder="请输入班次" maxlength="20" />
                 </el-form-item>
                 <el-form-item label="发车时间" prop="startTime">
-                    <el-time-picker
+                    <el-date-picker
+                        type="datetime"
                         v-model="formModel.startTime"
                         placeholder="选择发车时间"
-                        format="HH:mm"
-                        value-format="HH:mm"
+                        format="YYYY-MM-DD HH:mm"
+                        value-format="YYYY-MM-DD HH:mm"
                         class="!w-full"
                     />
                 </el-form-item>

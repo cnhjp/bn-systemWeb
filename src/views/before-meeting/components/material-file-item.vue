@@ -9,20 +9,14 @@
 </template>
 
 <script setup lang="ts">
-import { deleteFile, deleteAgendaFile } from '~/src/api/before-meeting/material'
 import { downloadFile } from '~/src/utils'
 
 const props = defineProps(['item', 'id', 'name', 'url'])
-
-const injected = inject<any>('material')
+const emits = defineEmits(['deleteFile'])
 
 function onDeleteFile() {
     ElMessageBox.confirm('确定删除吗？').then(() => {
-        const api = props.item.isAgendaFile ? deleteAgendaFile : deleteFile
-        api(props.id).then(() => {
-            ElMessage.success('删除成功')
-            injected.onRefresh()
-        })
+        emits('deleteFile', props.id)
     })
 }
 

@@ -10,16 +10,23 @@
     >
         <template #default="{ data }">
             <template v-if="data.isFile">
-                <material-file-item :item="data" :id="data.id" :name="data.name" />
+                <material-file-item
+                    :item="data"
+                    :id="data.id"
+                    :name="data.name"
+                    :url="data.url"
+                    @deleteFile="onDeleteFile"
+                />
             </template>
             <template v-else>
-                <material-agenda-item :item="data" :id="data.id" :name="data.name" />
+                <material-agenda-item :item="data" :id="data.id" :name="data.name" @deleteAgenda="onDeleteFolder" />
             </template>
         </template>
     </el-tree>
 </template>
 
 <script setup lang="ts">
+import { deleteFolderFile, deleteFolder } from '~/src/api/before-meeting/material'
 import materialAgendaItem from './material-agenda-item.vue'
 import materialFileItem from './material-file-item.vue'
 
@@ -37,24 +44,14 @@ const treeData = computed(() => {
     return recursiveProcess(cloned.value)
 })
 
-function recursiveProcess(list, level = 0) {
+function recursiveProcess(list, level = 1) {
     list.forEach((item) => {
-        let children = item.children || []
-        const documentList = item.documentList || []
-        const isFile = !!item.documentID
-        const isAgendaFile = isFile && !item.fileInfo
-        let hasChildren = true
-        if (documentList.length) {
-            children = documentList
-            hasChildren = false
-        }
-        item.id = item.id || item.agendaDocumentID || item.categoryDocumentID
-        item.children = children
+        let childFileList = item.childFileList || []
+        item.hasChildren = false
+        item.isFile = !item.isFolder
+        item.hasAddAgendaButton = false
         item.level = level
-        item.isFile = isFile
-        item.isAgendaFile = isAgendaFile
-        item.hasChildren = hasChildren
-        if (isFile) {
+        if (item.isFile) {
             if (item.fileInfo) {
                 item.name = item.fileInfo.sourceName + item.fileInfo.type
                 item.url = item.fileInfo.fullFileName
@@ -62,23 +59,36 @@ function recursiveProcess(list, level = 0) {
                 item.name = item.sourceName + item.type
                 item.url = item.fullFileName
             }
+            item.id = item.categoryDocumentID
         } else {
-            if (level === 0) {
-                item.name = `【议程】 ${item.title}`
-            } else {
-                item.name = `【议题】 ${item.title}`
-            }
+            item.name = item.name
+            item.id = item.folderID
         }
+        item.children = childFileList
         recursiveProcess(item.children, level + 1)
     })
     return list
 }
 
 function onCheck(_, { checkedNodes }) {
-    const agendaDocumentIds = checkedNodes.filter((item) => item.isFile).map((item) => item.id)
-    const agendaIds = checkedNodes.filter((item) => !item.isFile).map((item) => item.id)
-    injected.setAgendaIds(agendaIds)
-    injected.setAgendaDocumentIds(agendaDocumentIds)
+    const categoryDocumentIds = checkedNodes.filter((item) => item.isFile).map((item) => item.id)
+    const folderIds = checkedNodes.filter((item) => !item.isFile).map((item) => item.id)
+    injected.setFolderIds(folderIds)
+    injected.setCategoryDocumentIds(categoryDocumentIds)
+}
+
+function onDeleteFile(id) {
+    deleteFolderFile(id).then(() => {
+        ElMessage.success('删除成功')
+        injected.onRefresh()
+    })
+}
+
+function onDeleteFolder(id) {
+    deleteFolder(id).then(() => {
+        ElMessage.success('删除成功')
+        injected.onRefresh()
+    })
 }
 </script>
 

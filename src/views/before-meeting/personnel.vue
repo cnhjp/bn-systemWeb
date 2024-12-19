@@ -1,6 +1,6 @@
 <template>
     <el-container class="wh-full">
-        <el-header class="!h-auto" v-if="active">
+        <el-header class="!h-auto !pt-12px" v-if="active">
             <stepHeader class="mb-20px" />
             <div class="flex items-center mb-10px">
                 <meetingDropForm
@@ -8,7 +8,7 @@
                     v-model="formModel.conventionId"
                     @change="getTabs"
                 />
-                <el-button type="primary" @click="onOpenCopyPersonnelDialog" class="relative left--20px">
+                <el-button type="primary" @click="onOpenCopyPersonnelDialog" class="relative ml-20px">
                     复制其他会议人员
                 </el-button>
             </div>
