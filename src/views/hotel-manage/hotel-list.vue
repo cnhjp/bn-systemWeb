@@ -35,19 +35,20 @@ import { deleteHotel, getHotelPage } from '@/api/hotel-manage'
 
 const router = useRouter()
 const formModel = ref({
-    keyword: '',
+    conventionID: 0,
+    keyword: null,
 })
 
 const gridProps = reactive({
     data: getHotelPage,
     query: (params: any) => {
-        return Object.assign(params, formModel)
+        return Object.assign(params, formModel.value)
     },
     columns: [
         { title: '序号', type: 'seq', minWidth: 60, align: 'center' },
-        { title: '酒店名称', field: 'name', minWidth: 220 },
-        { title: '联系方式', field: 'contact', minWidth: 120 },
-        { title: '酒店地址', field: 'address', minWidth: 120 },
+        { title: '酒店名称', field: 'hotelName', minWidth: 220 },
+        { title: '联系方式', field: 'hotelContact', minWidth: 120 },
+        { title: '酒店地址', field: 'hotelAddress', minWidth: 120 },
         { title: '操作', slots: { default: 'actions' }, minWidth: 220, fixed: 'right', align: 'center' },
     ],
 })

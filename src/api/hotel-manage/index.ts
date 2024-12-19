@@ -1,4 +1,4 @@
-//import { http } from '~/src/utils'
+import { http } from '~/src/utils'
 import { HotelForm, HotelListResponse } from './types'
 
 /**
@@ -6,26 +6,8 @@ import { HotelForm, HotelListResponse } from './types'
  * @param query
  * @returns
  */
-export function getHotelPage() {
-    return Promise.resolve({
-        data: <HotelListResponse>{
-            total: 2,
-            rows: [
-                {
-                    id: 12,
-                    name: '雷迪森酒店',
-                    contact: 123456789,
-                    address: '金华市白龙桥',
-                },
-                {
-                    id: 133,
-                    name: '豪森假日酒店',
-                    contact: 123456789,
-                    address: '金华市白龙桥',
-                },
-            ],
-        },
-    })
+export function getHotelPage(query: any) {
+    return http.get<any, HotelListResponse>('/api/hotel/page', query)
 }
 
 /**
@@ -34,10 +16,7 @@ export function getHotelPage() {
  * @returns
  */
 export function addHotel(query: HotelForm) {
-    console.log('添加酒店', query)
-    return Promise.resolve({
-        data: 'success',
-    })
+    return http.post('/api/hotel/add', query)
 }
 
 /**
@@ -46,10 +25,7 @@ export function addHotel(query: HotelForm) {
  * @returns
  */
 export function editHotel(query: HotelForm) {
-    console.log('编辑酒店', query)
-    return Promise.resolve({
-        data: 'success',
-    })
+    return http.post('/api/hotel/update', query)
 }
 
 /**
@@ -79,8 +55,5 @@ export function detailHotel(id: number | string) {
  * @returns
  */
 export function deleteHotel(id: number | string) {
-    console.log('删除酒店', id)
-    return Promise.resolve({
-        data: 'success',
-    })
+    return http.post(`/api/hotel/${id}`)
 }

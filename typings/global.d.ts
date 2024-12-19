@@ -60,10 +60,16 @@ declare namespace User {
     interface UserInfo {
         /** 用户ID */
         userId: any
-        /** 用户名称 */
+        /** 用户账号 */
         userName: string
+        /** 用户姓名*/
+        name: string
+        /** 用户头像*/
+        photoURL: string
         /** 用户角色 */
         userRole: RoleType
+        /** 人员ID */
+        personID: any
     }
 }
 

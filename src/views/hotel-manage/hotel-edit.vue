@@ -5,24 +5,27 @@
 import FormHotel from './components/form-hotel.vue'
 import { editHotel, detailHotel } from '@/api/hotel-manage'
 import { HotelForm } from '@/api/hotel-manage/types.ts'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
 const visible = ref<boolean>(false)
 const formModel = ref<HotelForm>({
-    id: 0,
-    name: '',
-    contact: null,
-    address: '',
-    introduction: '',
-    docName: '',
-    docId: 0,
-    docPath: '',
+    hotelID: 0,
+    tenantID: 0,
+    conventionID: 0,
+    hotelName: '',
+    hotelAddress: '',
+    hotelContact: '',
+    hotelRemark: '',
+    files: [],
 })
+
+const router = useRouter()
 
 function onConfirm(form: HotelForm) {
     editHotel(form).then(() => {
         ElMessage.success('操作成功')
+        router.back()
     })
 }
 function init() {

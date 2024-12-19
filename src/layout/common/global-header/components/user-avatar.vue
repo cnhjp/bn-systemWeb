@@ -1,8 +1,9 @@
 <template>
     <el-dropdown class="h-full" trigger="hover">
         <hover-container class="h-full px-4 outline-none">
-            <IconLocalAvatar class="text-32px"></IconLocalAvatar>
-            <span class="pl-8px text-16px font-medium">{{ userStore.userInfo.userName }}</span>
+            <el-avatar :src="userStore.userInfo.photoURL" :size="32" v-if="userStore.userInfo.photoURL" />
+            <IconLocalAvatar class="text-32px" v-else />
+            <span class="pl-8px text-16px font-medium">{{ userStore.userInfo.name }}</span>
         </hover-container>
         <template #dropdown>
             <el-dropdown-menu>

@@ -13,6 +13,25 @@ const routes: AuthRoute.Route = [
         component: () => import('@/views/before-meeting/group.vue'),
         meta: { title: '会议信息', rootName: 'before-meeting-info' },
     },
+
+    {
+        path: 'info/add',
+        name: 'before-meeting-info-add',
+        component: () => import('@/views/before-meeting/info-add.vue'),
+        meta: { title: '新增', rootName: 'before-meeting-info' },
+    },
+    {
+        path: 'info/edit',
+        name: 'before-meeting-info-edit',
+        component: () => import('@/views/before-meeting/info-edit.vue'),
+        meta: { title: '编辑', rootName: 'before-meeting-info' },
+    },
+    {
+        path: 'info/type-setting',
+        name: 'before-meeting-info-type-setting',
+        component: () => import('@/views/before-meeting/type-setting.vue'),
+        meta: { title: '类型配置', rootName: 'before-meeting-info' },
+    },
     {
         path: 'personnel',
         name: 'before-meeting-personnel',

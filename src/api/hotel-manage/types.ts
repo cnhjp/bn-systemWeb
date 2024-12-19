@@ -27,12 +27,24 @@ export class item {
  * 酒店管理--表单项
  */
 export interface HotelForm {
-    id: number
-    name: string
-    contact: number | null
-    address: string
-    introduction: string
+    hotelID: number
+    tenantID: number
+    conventionID: number
+    hotelName: string
+    hotelAddress: string
+    hotelContact: string
+    hotelRemark: string
+    files: file[]
+}
+
+export class file {
     docName: string
     docId: number
     docPath: string
+
+    constructor() {
+        this.docId = 0
+        this.docName = ''
+        this.docPath = ''
+    }
 }
