@@ -1,5 +1,5 @@
 <template>
-    <el-select v-bind="$attrs" :model-value="modelValue" @change="onChange">
+    <el-select v-bind="$attrs" :model-value="modelValue" :empty-values="[0, undefined, null]" @change="onChange">
         <el-option
             v-for="option in filteredOptions"
             :key="option.value"
