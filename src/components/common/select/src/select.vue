@@ -1,7 +1,7 @@
 <template>
-    <el-select v-bind="$attrs" :model-value="modelValue" @change="onChange">
+    <el-select v-bind="$attrs" :model-value="modelValue" :empty-values="[0, undefined, null]" @change="onChange">
         <el-option
-            v-for="option in processedOptions"
+            v-for="option in filteredOptions"
             :key="option.value"
             :label="option.displayLabel"
             :value="option.value"
@@ -41,6 +41,11 @@ const props = defineProps({
     displayEmptyAll: {
         type: Boolean,
         default: true,
+    },
+    // Filter options
+    filter: {
+        type: Function,
+        default: null,
     },
 })
 
@@ -87,6 +92,14 @@ const processedOptions = computed(() => {
     })
 })
 
+// Filter options
+const filteredOptions = computed(() => {
+    if (typeof props.filter === 'function') {
+        return processedOptions.value.filter((option) => props.filter(option))
+    }
+    return processedOptions.value
+})
+
 // Fetch or set options
 const fetchOptions = async () => {
     const isEmptyValue = (val) => [undefined, null, ''].includes(val)
@@ -103,11 +116,11 @@ const fetchOptions = async () => {
 
             // Set initial selection if no modelValue is provided
             if (isEmptyValue(props.modelValue)) {
-                const selectedOption = processedOptions.value.find((option) => option.selected)
+                const selectedOption = filteredOptions.value.find((option) => option.selected)
                 if (selectedOption) {
                     updateModelValue(selectedOption.value)
-                } else if (props.defaultFirst && processedOptions.value.length > 0) {
-                    updateModelValue(processedOptions.value[0].value)
+                } else if (props.defaultFirst && filteredOptions.value.length > 0) {
+                    updateModelValue(filteredOptions.value[0].value)
                 }
             }
         } catch (error) {
@@ -123,11 +136,11 @@ const fetchOptions = async () => {
 
         // Set initial selection if no modelValue is provided
         if (isEmptyValue(props.modelValue)) {
-            const selectedOption = processedOptions.value.find((option) => option.selected)
+            const selectedOption = filteredOptions.value.find((option) => option.selected)
             if (selectedOption) {
                 updateModelValue(selectedOption.value)
-            } else if (props.defaultFirst && processedOptions.value.length > 0) {
-                updateModelValue(processedOptions.value[0].value)
+            } else if (props.defaultFirst && filteredOptions.value.length > 0) {
+                updateModelValue(filteredOptions.value[0].value)
             }
         }
     }

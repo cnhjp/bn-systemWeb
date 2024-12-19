@@ -134,9 +134,20 @@ function onDelete(row) {
     })
 }
 
-function onAdd() {}
+function onAdd() {
+    router.push({
+        name: 'before-meeting-info-add',
+    })
+}
 
-function onEdit(row) {}
+function onEdit(row) {
+    router.push({
+        name: 'before-meeting-info-edit',
+        query: {
+            id: row.conventionID,
+        },
+    })
+}
 
 function onGroup() {
     router.push({ name: 'before-meeting-info-group' })
