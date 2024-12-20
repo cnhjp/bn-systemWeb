@@ -43,7 +43,7 @@ const props = defineProps({
 const gridProps = reactive({
     data: props.eventList,
     query: (params: any) => {
-        return Object.assign(params, formModel)
+        return Object.assign(params, formModel.value)
     },
     columns: [
         { title: '会议名称', field: 'conventionTitle', minWidth: 220 },

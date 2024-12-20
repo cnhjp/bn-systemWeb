@@ -23,15 +23,8 @@
         "children": [
             { "id": 301, "title": "会议信息", "route": "before-meeting-info", "icon": "cast" },
             { "id": 302, "title": "会议人员", "route": "before-meeting-personnel", "icon": "cast" },
-            { "id": 303, "title": "会议材料", "route": "before-meeting-material", "icon": "cast" },
-            { "id": 304, "title": "签到管理", "route": "before-meeting-attendance-manage", "icon": "cast" }
+            { "id": 303, "title": "会议材料", "route": "before-meeting-material", "icon": "cast" }
         ]
-    },
-    {
-        "id": 600,
-        "title": "住宿管理",
-        "route": "accommodation-manage-list",
-        "icon": "cast"
     },
     {
         "id": 500,
@@ -54,5 +47,27 @@
         "title": "通知公告",
         "route": "notice-list",
         "icon": "cast"
+    },
+    {
+        "id": 800,
+        "title": "住宿管理",
+        "route": "accommodation-manage-list",
+        "icon": "cast"
+    },
+    {
+        "id": 900,
+        "title": "签到管理",
+        "route": "attendance-manage-list",
+        "icon": "cast"
+    },
+    {
+        "id": 1000,
+        "title": "用餐管理",
+        "route": "meal-manage",
+        "icon": "cast",
+        "children": [
+            { "id": 1001, "title": "用餐管理", "route": "meal-manage-list", "icon": "cast" },
+            { "id": 1002, "title": "用餐地点", "route": "meal-manage-address", "icon": "cast" }
+        ]
     }
 ]

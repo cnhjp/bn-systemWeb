@@ -83,9 +83,9 @@
 <script setup lang="ts">
 import { DropResponse } from '@/api/common/types.ts'
 import { dropDownMeeting } from '@/api/common'
-import { dropDownAttendanceStatus, getAttendPage, setAllAttendance } from '@/api/before-meeting/attendance-manage.ts'
+import { dropDownAttendanceStatus, getAttendPage, setAllAttendance } from '@/api/attendance-manage'
 import { dropDownSetValueNumner } from '@/utils'
-import DialogChangeAttendanceStatus from '@/views/before-meeting/components/dialog-change-attendance-status.vue'
+import DialogChangeAttendanceStatus from '@/views/attendance-manage/components/dialog-change-attendance-status.vue'
 import { ElMessage } from 'element-plus'
 
 const formModel = ref<any>({
