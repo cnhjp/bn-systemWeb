@@ -2,7 +2,7 @@
     <div class="item">
         <div>{{ name }}</div>
         <div>
-            <el-button size="small" type="primary" @click="onAddAgenda" class="mr-20px" v-if="hasAddAgendaButton">
+            <el-button size="small" type="primary" @click="onAddAgenda" class="mr-20px" v-if="item.hasAddAgendaButton">
                 添加子项
             </el-button>
             <el-link type="primary" @click="onEditAgenda" class="mr-20px">编辑</el-link>
@@ -12,32 +12,29 @@
 </template>
 
 <script setup lang="ts">
-import { deleteAgenda } from '~/src/api/before-meeting/material'
-
 const props = defineProps(['item', 'id', 'name'])
 
 const injected = inject<any>('material')
+const emits = defineEmits(['deleteAgenda'])
 
 function onDeleteAgenda() {
     ElMessageBox.confirm('确定删除吗？').then(() => {
-        deleteAgenda(props.id).then(() => {
-            ElMessage.success('删除成功')
-            injected.onRefresh()
-        })
+        emits('deleteAgenda', props.id)
     })
 }
-
-const hasAddAgendaButton = computed(() => {
-    return props.item.level === 0 && props.item.documentList.length === 0
-})
 
 function onEditAgenda() {
     injected.openFormDialog({
         title: '编辑',
         params: {
+            isDefault: injected.isDefaultCategory.value,
+            categoryID: injected.activeCategory.value.categoryID,
             agendaID: props.id,
+            folderID: props.id,
+            parentID: 0,
             hideUpload: props.item.hasChildren,
             conventionID: injected.getConventionId(),
+            isPublish: true,
         },
     })
 }
@@ -46,10 +43,14 @@ function onAddAgenda() {
     injected.openFormDialog({
         title: '添加子项',
         params: {
+            isDefault: true,
+            categoryID: 0,
             agendaID: 0,
+            folderID: 0,
             parentID: props.id,
             hideUpload: false,
             conventionID: injected.getConventionId(),
+            isPublish: true,
         },
     })
 }

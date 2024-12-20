@@ -36,19 +36,40 @@
 
 <script setup lang="ts">
 import { uploadDocument } from '~/src/api/common'
-import { addAgenda, updateAgenda, getAgendaDetail } from '~/src/api/before-meeting/material'
+import {
+    addAgenda,
+    updateAgenda,
+    getAgendaDetail,
+    addFolder,
+    updateFolder,
+    getFolderDetail,
+} from '~/src/api/before-meeting/material'
 import { UploadRequestOptions } from 'element-plus'
 
-const props = defineProps(['agendaID', 'conventionID', 'parentID', 'hideUpload'])
+const props = defineProps({
+    isPublish: Boolean,
+    folderID: [Number, String],
+    categoryID: [Number, String],
+    agendaID: [Number, String],
+    conventionID: [Number, String],
+    parentID: [Number, String],
+    hideUpload: Boolean,
+    isDefault: {
+        type: Boolean,
+        default: true,
+    },
+})
 
 const refForm = ref()
-const formModel = reactive({
+const formModel = reactive<any>({
+    categoryID: props.categoryID || 0,
     agendaID: props.agendaID || 0,
     conventionID: props.conventionID,
     parentID: props.parentID || 0,
-    isPublish: true,
+    isPublish: props.isPublish || false,
     title: '',
     documentList: [],
+    folderID: props.folderID || 0,
 })
 
 const formRules = reactive({
@@ -67,24 +88,34 @@ function onClose() {
 
 function onConfirm() {
     refForm.value.validate().then(() => {
-        formModel.documentList = fileList.value
+        formModel.documentIds = fileList.value
             .filter((item) => {
                 return !!item.response
             })
             .map((item) => {
                 return item.response
             })
-        const api = formModel.agendaID ? updateAgenda : addAgenda
         const formData = new FormData()
         formData.append('title', formModel.title)
-        formData.append('conventionID', formModel.conventionID)
-        formData.append('parentID', formModel.parentID)
+        formData.append('conventionID', formModel.conventionID as any)
+        formData.append('parentID', formModel.parentID as any)
         formData.append('isPublish', String(formModel.isPublish))
-        formData.append('agendaID', formModel.agendaID)
-        formModel.documentList.forEach((item) => {
+        formData.append('agendaID', formModel.agendaID as any)
+        formModel.documentIds.forEach((item) => {
             formData.append('documentIds', item)
         })
-        api(formData).then(() => {
+
+        const isEdit = !!formModel.agendaID || !!formModel.folderID
+        let api, params
+        if (props.isDefault) {
+            api = isEdit ? updateAgenda : addAgenda
+            params = formData
+        } else {
+            api = isEdit ? updateFolder : addFolder
+            params = formModel
+        }
+
+        api(params).then(() => {
             ElMessage.success('操作成功')
             emits('refresh')
             onClose()
@@ -100,8 +131,19 @@ function onHttpRequest(options: UploadRequestOptions) {
 }
 
 onMounted(() => {
-    if (props.agendaID) {
+    if (props.isDefault) {
         getAgendaDetail(props.agendaID).then((res) => {
+            Object.assign(formModel, res.data)
+            fileList.value = (formModel.documentList || []).map((item) => {
+                return {
+                    ...item,
+                    name: item.sourceName + item.type,
+                    url: item.fullFileName,
+                }
+            })
+        })
+    } else if (props.folderID) {
+        getFolderDetail({ folderId: props.folderID }).then((res) => {
             Object.assign(formModel, res.data)
             fileList.value = (formModel.documentList || []).map((item) => {
                 return {

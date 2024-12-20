@@ -1,6 +1,7 @@
 <template>
     <el-container class="wh-full">
         <el-header>
+            <step-header></step-header>
             <page-header :title="id ? '编辑' : '新增'" is-show-btn></page-header>
         </el-header>
         <el-main class="bg-white m-20px">
@@ -190,8 +191,10 @@ import {
     getEmblemDrop,
 } from '~/src/api/before-meeting/info'
 import dialogSelectEmblem from './dialog-select-emblem.vue'
+import stepHeader from './step-header.vue'
 
 const router = useRouter()
+const route = useRoute()
 const routeStore = useRouteStore()
 const props = defineProps(['id'])
 const activatedCount = ref(1)
@@ -241,13 +244,16 @@ const formRules = reactive({
 })
 
 const EmblemDrop = ref([])
-onMounted(() => {
+function onGetEmblemDrop() {
     getEmblemDrop().then((res) => {
         EmblemDrop.value = res.data || []
         if (!props.id) {
             formModel.picUrl = EmblemDrop.value.find((item) => item.isDefault)?.picUrl
         }
     })
+}
+onMounted(() => {
+    onGetEmblemDrop()
 })
 
 function onSelectEmblem() {
@@ -295,9 +301,19 @@ function onConfirm() {
     refForm.value.validate().then(() => {
         const api = formModel.id ? editMeeting : addMeeting
         formModel.meetingRoomID = +formModel.meetingRoomID
-        api(formModel).then(() => {
+        api(formModel).then(({ data }) => {
             ElMessage.success('操作成功')
-            router.back()
+            if (formModel.id && !route.query.step) {
+                onCancel()
+            } else {
+                router.push({
+                    name: 'before-meeting-personnel',
+                    query: {
+                        conventionId: data,
+                        step: 2,
+                    },
+                })
+            }
         })
     })
 }
@@ -315,6 +331,7 @@ onMounted(() => {
 })
 
 onActivated(() => {
+    onGetEmblemDrop()
     const name = formModel.id ? 'info-edit' : 'info-add'
     const idx = routeStore.cacheRoutes.indexOf(name)
     if (idx !== -1) {
