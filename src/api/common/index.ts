@@ -29,3 +29,12 @@ export function getStaffRoleDrop(params) {
 export function uploadDocument(params) {
     return http.upload('/api/document', params)
 }
+
+/**
+ * 会议下拉
+ * @param
+ * @returns
+ */
+export function dropDownMeeting() {
+    return http.get('/api/convention/drop')
+}

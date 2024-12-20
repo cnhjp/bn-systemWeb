@@ -1,6 +1,7 @@
 <template>
     <el-container class="wh-full">
         <el-header>
+            <step-header></step-header>
             <page-header :title="id ? '编辑' : '新增'" is-show-btn></page-header>
         </el-header>
         <el-main class="bg-white m-20px">
@@ -88,7 +89,19 @@
                         </el-form-item>
 
                         <el-form-item label="会议会徽" prop="appIndexIsShowEmblem">
-                            <el-switch v-model="formModel.appIndexIsShowEmblem"></el-switch>
+                            <div class="flex items-center">
+                                <el-switch v-model="formModel.appIndexIsShowEmblem"></el-switch>
+                                <template v-if="formModel.appIndexIsShowEmblem">
+                                    <el-image
+                                        :src="formModel.picUrl"
+                                        class="w-60px h-60px cursor-pointer ml-20px border border-gray-2 p-5px"
+                                        @click="onSelectEmblem"
+                                    ></el-image>
+                                    <el-button type="primary" @click="onEmblemManage" class="ml-20px">
+                                        会议会徽配置
+                                    </el-button>
+                                </template>
+                            </div>
                         </el-form-item>
 
                         <el-form-item label="会议坐席牌" prop="isShowPersonName">
@@ -99,15 +112,15 @@
                             <el-switch v-model="formModel.isShowMeetingSchedule"></el-switch>
                         </el-form-item>
 
-                        <el-form-item label="会议文件带走" prop="isShowFileQrCode">
+                        <el-form-item label="会议文件带走" prop="isShowFileQrCode" v-if="false">
                             <el-switch v-model="formModel.isShowFileQrCode"></el-switch>
                         </el-form-item>
 
-                        <el-form-item label="允许补签" prop="allowSign">
+                        <el-form-item label="允许补签" prop="allowSign" v-if="false">
                             <el-switch v-model="formModel.allowSign" />
                         </el-form-item>
 
-                        <el-form-item label="签到结果显示">
+                        <el-form-item label="签到结果显示" v-if="false">
                             <el-checkbox v-model="formModel.isShowResultLeave">请假人数</el-checkbox>
                             <el-checkbox v-show="formModel.allowSign" v-model="formModel.isShowResultNotPress">
                                 未按人数
@@ -125,18 +138,19 @@
                             <el-radio-group
                                 v-show="formModel.hasPreConventionSignInType"
                                 v-model="formModel.preConventionSignInType"
+                                v-if="false"
                             >
                                 <el-radio :value="1">按键签到</el-radio>
                                 <el-radio :value="2">手写签到</el-radio>
                             </el-radio-group>
                         </el-form-item>
 
-                        <el-form-item v-if="formModel.preConventionSignInType !== 0" label="签到后才可看文件">
+                        <el-form-item v-if="false && formModel.preConventionSignInType !== 0" label="签到后才可看文件">
                             <el-switch v-model="formModel.isDocNeedSignIn" />
                         </el-form-item>
 
                         <el-form-item
-                            v-if="formModel.preConventionSignInType !== 0"
+                            v-if="false && formModel.preConventionSignInType !== 0"
                             label="是否开启签到须知"
                             prop="signInPolicy"
                         >
@@ -159,6 +173,8 @@
                 <infoPreview :formModel="formModel" />
             </div>
         </el-main>
+
+        <b-common-dialog ref="refDialog" @selectEmblem="onEmblemSelected"></b-common-dialog>
     </el-container>
 </template>
 
@@ -172,19 +188,26 @@ import {
     addMeeting,
     editMeeting,
     getMeetingDetail,
+    getEmblemDrop,
 } from '~/src/api/before-meeting/info'
+import dialogSelectEmblem from './dialog-select-emblem.vue'
+import stepHeader from './step-header.vue'
 
 const router = useRouter()
+const route = useRoute()
 const routeStore = useRouteStore()
 const props = defineProps(['id'])
 const activatedCount = ref(1)
 const refForm = ref<any>(null)
+const refDialog = ref<any>(null)
 
 const formModel = reactive<any>({
     id: props.id,
     title: '',
     conventionGroupID: '',
     meetingTimeList: [{ startTime: '', endTime: '' }],
+    picUrl: '',
+    emblemID: '',
     address: '',
     meetingRoomID: '',
     conventionTypeID: '',
@@ -195,8 +218,8 @@ const formModel = reactive<any>({
     allowSign: false,
     isShowResultLeave: true,
     isShowResultNotPress: false,
-    isShowResultAbsent: false,
-    isShowResultBoth: false,
+    isShowResultAbsent: true,
+    isShowResultBoth: true,
     hasPreConventionSignInType: true,
     preConventionSignInType: 1,
     signInPolicy: '',
@@ -220,6 +243,36 @@ const formRules = reactive({
     conventionTypeID: { required: true, message: '请选择会议类型' },
 })
 
+const EmblemDrop = ref([])
+function onGetEmblemDrop() {
+    getEmblemDrop().then((res) => {
+        EmblemDrop.value = res.data || []
+        if (!props.id) {
+            formModel.picUrl = EmblemDrop.value.find((item) => item.isDefault)?.picUrl
+        }
+    })
+}
+onMounted(() => {
+    onGetEmblemDrop()
+})
+
+function onSelectEmblem() {
+    refDialog.value.openModal({
+        title: '选择会徽',
+        component: dialogSelectEmblem,
+        width: '632px',
+        params: {
+            EmblemDrop: EmblemDrop.value,
+            picUrl: formModel.picUrl,
+        },
+    })
+}
+
+function onEmblemSelected(item) {
+    formModel.picUrl = item.picUrl
+    formModel.emblemID = item.id
+}
+
 function onRoomManage() {
     onBeforeRouteLeave()
     router.push({ name: 'room-manage' })
@@ -235,6 +288,11 @@ function onBeforeRouteLeave() {
     routeStore.cacheRoutes.push(name)
 }
 
+function onEmblemManage() {
+    onBeforeRouteLeave()
+    router.push({ name: 'before-meeting-info-emblem' })
+}
+
 function onCancel() {
     router.back()
 }
@@ -243,9 +301,19 @@ function onConfirm() {
     refForm.value.validate().then(() => {
         const api = formModel.id ? editMeeting : addMeeting
         formModel.meetingRoomID = +formModel.meetingRoomID
-        api(formModel).then(() => {
+        api(formModel).then(({ data }) => {
             ElMessage.success('操作成功')
-            router.back()
+            if (formModel.id && !route.query.step) {
+                onCancel()
+            } else {
+                router.push({
+                    name: 'before-meeting-personnel',
+                    query: {
+                        conventionId: data,
+                        step: 2,
+                    },
+                })
+            }
         })
     })
 }
@@ -263,6 +331,7 @@ onMounted(() => {
 })
 
 onActivated(() => {
+    onGetEmblemDrop()
     const name = formModel.id ? 'info-edit' : 'info-add'
     const idx = routeStore.cacheRoutes.indexOf(name)
     if (idx !== -1) {

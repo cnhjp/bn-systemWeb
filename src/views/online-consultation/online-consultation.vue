@@ -23,7 +23,7 @@ const gridProps = reactive({
     data: getOnlineConsultationPage,
     columns: [
         { title: '用户', field: 'name', minWidth: 100 },
-        { title: '问题', field: 'problem', minWidth: 200 },
+        { title: '问题', field: 'title', minWidth: 200 },
         { title: '状态', slots: { default: 'status' }, minWidth: 100 },
         { title: '操作', slots: { default: 'actions' }, minWidth: 220, fixed: 'right', align: 'center' },
     ],

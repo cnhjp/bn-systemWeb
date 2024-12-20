@@ -31,3 +31,5 @@ stats.html
 /src/typings/components.d.ts
 package-lock.json
 yarn.lock
+
+components.d.ts

@@ -137,6 +137,9 @@ function onDelete(row) {
 function onAdd() {
     router.push({
         name: 'before-meeting-info-add',
+        query: {
+            step: 1,
+        },
     })
 }
 

@@ -73,8 +73,8 @@ export const useUserStore = defineStore('user-store', {
             return fetchLogin(query).then(async (response) => {
                 if (response) {
                     const { info } = response.data
-                    this.token = info.token
-                    setToken(info.token)
+                    this.token = `${info?.token_type} ${info?.token}`
+                    setToken(this.token)
                     this.personId = info.personId.toString()
                     setPersonID(info.personId.toString())
                     await this.initUserStore()

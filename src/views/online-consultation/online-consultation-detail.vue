@@ -8,7 +8,7 @@
                 <h1 class="el-text--center is-bold el-text--darkgrey">{{ detail.title }}</h1>
                 <div class="el-flex is-center el-text--tips my-15px">
                     <div class="mr-20px">提出人：{{ detail.submitPerson }}</div>
-                    <div>提出时间：{{ detail.submitTime }}</div>
+                    <div>提出时间：{{ detail.createTime }}</div>
                 </div>
                 <div class="mb-15px">{{ detail.content }}</div>
                 <h2 class="is-bold el-text--darkgrey py-15px el-border--top">答复内容：</h2>
@@ -47,7 +47,7 @@ const detail = reactive<OnlineConsultationDetail>({
     title: '',
     content: '',
     submitPerson: '',
-    submitTime: '',
+    createTime: '',
     imgList: [],
     replyList: [],
 })

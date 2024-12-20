@@ -2,7 +2,11 @@
     <div class="border-l border-gray-2 border-l-2px pl-20px pt-20px">
         <div class="lh-30px">首页预览图：</div>
         <div class="w-480px h-320px bg-#C41E1D flex-col flex-center">
-            <el-image :src="emblem" class="w-60px h-60px mb-10px" v-show="formModel.appIndexIsShowEmblem"></el-image>
+            <el-image
+                :src="formModel.picUrl"
+                class="w-60px h-60px mb-10px"
+                v-show="formModel.appIndexIsShowEmblem"
+            ></el-image>
             <div class="text-20px text-white whitespace-pre">{{ formModel.title || '会丞相第一次全体会议' }}</div>
             <div class="text-38px text-white mb-10px" v-show="formModel.isShowPersonName">
                 {{ userStore.userInfo.userName }}
@@ -31,7 +35,6 @@
 </template>
 
 <script setup lang="ts">
-import emblem from '@/assets/common/emblem.png'
 import { useUserStore } from '~/src/store'
 import { categoryList } from '~/src/api/before-meeting/info'
 

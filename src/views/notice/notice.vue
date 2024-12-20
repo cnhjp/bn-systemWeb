@@ -6,21 +6,9 @@
                     <el-button type="primary" @click="onAdd">新增</el-button>
                 </template>
 
-                <template #toolbar-right>
-                    <el-input
-                        v-model="formModel.keyword"
-                        placeholder="请输入"
-                        clearable
-                        @keyup.enter="onRefresh"
-                        @clear="onRefresh"
-                    >
-                        <template #append>
-                            <el-button icon="Search" @click="onRefresh" />
-                        </template>
-                    </el-input>
-                </template>
-
                 <template #actions="{ row }">
+                    <el-button type="primary" size="small" @click="onView(row)">查看</el-button>
+                    <el-button type="danger" size="small" @click="onPublish(row)">发布</el-button>
                     <el-button type="primary" size="small" @click="onEdit(row)">编辑</el-button>
                     <el-button type="danger" size="small" @click="onDelete(row)">删除</el-button>
                 </template>
@@ -30,26 +18,18 @@
 </template>
 <script setup lang="ts">
 import { useRouteStore } from '~/src/store'
-import { getGroupPage } from '~/src/api/before-meeting/info'
+import { getNoticePage, batchDeleteNotice, publishNotice } from '~/src/api/notice'
 
 const routeStore = useRouteStore()
 const router = useRouter()
 const refGrid = ref<any>(null)
 
-const formModel = reactive({
-    keyword: '',
-})
-
 const gridProps = reactive({
-    data: getGroupPage,
-    query: (params) => {
-        return Object.assign(params, formModel)
-    },
+    data: getNoticePage,
     columns: [
         { title: '序号', type: 'seq', width: 80, align: 'center' },
         { title: '标题', field: 'title', minWidth: 180, align: 'center' },
-        { title: '状态', field: 'statusStr', minWidth: 80, align: 'center' },
-        { title: '发布时间', field: 'statusStr', minWidth: 80, align: 'center' },
+        { title: '发布时间', field: 'showDateTimeStr', minWidth: 80, align: 'center' },
         { title: '操作', slots: { default: 'actions' }, minWidth: 220, fixed: 'right', align: 'center' },
     ],
 })
@@ -72,7 +52,7 @@ function onEdit(row) {
     router.push({
         name: 'notice-edit',
         query: {
-            id: row.id,
+            ...row,
         },
     })
 }
@@ -85,6 +65,33 @@ onActivated(() => {
 })
 
 function onDelete(row) {
-    ElMessageBox.confirm('确定删除吗？').then(() => {})
+    ElMessageBox.confirm('确定删除吗？').then(() => {
+        batchDeleteNotice([row.id]).then(() => {
+            ElMessage.success('操作成功')
+            onRefresh()
+        })
+    })
+}
+
+function onView(row) {
+    routeStore.cacheRoutes.push('notice')
+    router.push({
+        name: 'notice-detail',
+        query: {
+            ...row,
+        },
+    })
+}
+
+function onPublish(row) {
+    ElMessageBox.confirm('确定发布吗？').then(() => {
+        publishNotice({
+            noticeID: row.id,
+            isPublish: true,
+        }).then(() => {
+            ElMessage.success('操作成功')
+            onRefresh()
+        })
+    })
 }
 </script>
