@@ -6,7 +6,14 @@
                     <el-input v-model="formModel.sortIndex" rule="number" />
                 </el-form-item>
                 <el-form-item label="酒店名称" prop="hotelName">
-                    <el-input v-model="formModel.hotelName" />
+                    <el-select v-model="formModel.hotelName">
+                        <el-option
+                            v-for="item in hotelDropList"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value"
+                        />
+                    </el-select>
                 </el-form-item>
                 <el-form-item label="房间类型" prop="roomType">
                     <el-radio-group v-model="formModel.roomType">
@@ -47,7 +54,7 @@
 <script setup lang="ts">
 import { ElMessage, FormInstance, FormRules } from 'element-plus'
 import { DropResponse, roomForm } from '@/api/accommodation-manage/types.ts'
-import { addRoom, dropDownRoomType, detailRoom } from '@/api/accommodation-manage'
+import { addRoom, dropDownRoomType, detailRoom, dropDownHotelType } from '@/api/accommodation-manage'
 import { dropDownSetValueNumner } from '@/utils'
 import DialogSelectPerson from './dialog-select-person.vue'
 
@@ -121,6 +128,21 @@ async function dropDownRoom() {
         formModel.value.roomType = res.data[0].value
     })
 }
+
+// 酒店下拉
+const hotelDropList = ref<DropResponse[]>([])
+async function dropDownHotel() {
+    dropDownHotelType().then((res) => {
+        const { data } = res
+        hotelDropList.value = (data || []).map((it) => {
+            return {
+                label: it.hotelName,
+                id: it.id,
+            }
+        })
+    })
+}
+
 // 获取EditDetail
 async function detailEdit() {
     await detailRoom(props.hotelRoomId).then((res) => {
@@ -129,7 +151,10 @@ async function detailEdit() {
 }
 async function init() {
     await dropDownRoom()
-    await detailEdit()
+    await dropDownHotel()
+    if (props.isEdit) {
+        await detailEdit()
+    }
 }
 init()
 </script>

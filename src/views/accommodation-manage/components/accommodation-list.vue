@@ -6,7 +6,7 @@
             <el-button type="primary" size="" @click="onBatchDelete()">批量删除</el-button>
             <el-button type="primary" size="" @click="onExport()">导出</el-button>
             <el-button type="primary" size="" @click="onImport()">导入</el-button>
-            <el-button type="primary" size="" @click="onAdd()">设置住宿时间</el-button>
+            <el-button type="primary" size="" @click="onSetRoomTime()">设置住宿时间</el-button>
         </template>
 
         <template #toolbar-right>
@@ -82,6 +82,7 @@ import DialogArrange from './dialog-arrange.vue'
 import DialogSelectPerson from './dialog-select-person.vue'
 import DialogAddNewRoom from './dialog-add-new-room.vue'
 import { ElMessage } from 'element-plus'
+import DialogSetRoomTime from './dialog-set-room-time.vue'
 
 const props = defineProps({
     meetingId: {
@@ -228,6 +229,11 @@ function onAssignPerson(records: any[], hotelRoomId: number) {
         onRefresh()
     })
 }
+
+function onSetRoomTime() {
+    openDialog(DialogSetRoomTime, '设置酒店住时间', '600px', {})
+}
+
 function init() {
     dropDownStatus()
 }

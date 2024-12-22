@@ -20,6 +20,15 @@ export function dropDownRoomType() {
 }
 
 /**
+ * 酒店下拉
+ * @param
+ * @returns
+ */
+export function dropDownHotelType() {
+    return http.get<any, DropResponseData>('/api/hotel/dropdownlist')
+}
+
+/**
  * 会议角色下拉
  * @param
  * @returns
