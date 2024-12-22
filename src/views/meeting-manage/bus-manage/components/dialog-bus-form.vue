@@ -11,7 +11,7 @@
                         v-model="formModel.startTime"
                         placeholder="选择发车时间"
                         format="YYYY-MM-DD HH:mm"
-                        value-format="YYYY-MM-DD HH:mm"
+                        value-format="YYYY-MM-DDTHH:mm"
                         class="!w-full"
                     />
                 </el-form-item>

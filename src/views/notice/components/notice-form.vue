@@ -62,6 +62,9 @@ const formModel = ref(
             conventionId: 0,
         },
         props.formData,
+        {
+            isPublish: props.formData.isPublish && props.formData.isPublish !== 'false' ? true : false,
+        },
     ),
 )
 const formRules = reactive({

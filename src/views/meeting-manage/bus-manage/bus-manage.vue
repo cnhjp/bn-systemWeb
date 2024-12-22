@@ -1,7 +1,7 @@
 <template>
     <el-container class="wh-full">
         <el-header class="flex items-center">
-            <meeting-drop-form v-model="formModel.conventionId" @change="onRefresh"></meeting-drop-form>
+            <meeting-drop-form group v-model="formModel.conventionId" @change="onRefresh"></meeting-drop-form>
         </el-header>
         <el-main class="!pt-0">
             <b-grid ref="refGrid" v-bind="gridProps">
