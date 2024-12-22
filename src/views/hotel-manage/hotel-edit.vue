@@ -1,5 +1,5 @@
 <template>
-    <form-hotel :formData="formModel" title="编辑" @comform="onConfirm" v-if="visible" />
+    <form-hotel :formData="formModel" title="编辑" @confirm="onConfirm" v-if="visible" />
 </template>
 <script setup lang="ts">
 import FormHotel from './components/form-hotel.vue'
@@ -31,7 +31,17 @@ function onConfirm(form: HotelForm) {
 function init() {
     const id = route.query?.id as string
     detailHotel(id).then((res) => {
-        formModel.value = res.data
+        const { data } = res!
+        formModel.value = {
+            hotelID: data.id,
+            tenantID: 0,
+            conventionID: 0,
+            hotelName: data.hotelName,
+            hotelAddress: data.hotelAddress,
+            hotelContact: data.hotelContact,
+            hotelRemark: data.hotelRemark,
+            files: data.hotelPhotos,
+        }
         visible.value = true
     })
 }

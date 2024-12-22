@@ -140,7 +140,7 @@ function onClose() {
 function onConfirm() {
     const data = {
         ...formModel.value,
-        files: [imageUrl.value],
+        files: imageUrl.value ? [imageUrl.value] : [],
     }
     formRef.value.validate((valid) => {
         if (valid) {

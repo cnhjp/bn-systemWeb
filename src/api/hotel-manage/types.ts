@@ -34,17 +34,5 @@ export interface HotelForm {
     hotelAddress: string
     hotelContact: string
     hotelRemark: string
-    files: file[]
-}
-
-export class file {
-    docName: string
-    docId: number
-    docPath: string
-
-    constructor() {
-        this.docId = 0
-        this.docName = ''
-        this.docPath = ''
-    }
+    files: []
 }
