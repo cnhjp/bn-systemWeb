@@ -74,5 +74,5 @@ export class imgItem {
 export interface reply {
     id: number
     content: string
-    files: string[]
+    files: []
 }
