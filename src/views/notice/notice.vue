@@ -36,7 +36,7 @@ const gridProps = reactive({
 
 function onRefresh() {
     nextTick(() => {
-        refGrid.value?.onRefresh()
+        refGrid.value?.refresh()
     })
 }
 
@@ -62,6 +62,7 @@ onActivated(() => {
     if (idx !== -1) {
         routeStore.cacheRoutes.splice(idx, 1)
     }
+    onRefresh()
 })
 
 function onDelete(row) {
