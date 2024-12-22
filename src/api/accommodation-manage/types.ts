@@ -30,6 +30,7 @@ export interface roomFormResponse {
  */
 export interface roomForm {
     conventionId: number | null
+    hotelId: number | null
     hotelName: string
     hotelRoomId: number | null
     roomNumber: string

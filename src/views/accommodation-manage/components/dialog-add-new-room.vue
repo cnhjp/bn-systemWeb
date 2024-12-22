@@ -5,8 +5,8 @@
                 <el-form-item label="序号" prop="sortIndex">
                     <el-input v-model="formModel.sortIndex" rule="number" />
                 </el-form-item>
-                <el-form-item label="酒店名称" prop="hotelName">
-                    <el-select v-model="formModel.hotelName">
+                <el-form-item label="酒店名称" prop="hotelId">
+                    <el-select v-model="formModel.hotelId">
                         <el-option
                             v-for="item in hotelDropList"
                             :key="item.value"
@@ -65,6 +65,7 @@ const formRef = ref<FormInstance>()
 const formModel = ref<roomForm>({
     conventionId: 0,
     hotelName: '',
+    hotelId: null,
     hotelRoomId: 0,
     roomNumber: '',
     roomType: 1,
@@ -137,7 +138,7 @@ async function dropDownHotel() {
         hotelDropList.value = (data || []).map((it) => {
             return {
                 label: it.hotelName,
-                id: it.id,
+                value: it.id,
             }
         })
     })
