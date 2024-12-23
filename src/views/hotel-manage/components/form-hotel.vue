@@ -106,7 +106,7 @@ const formRules = reactive<FormRules<HotelForm>>({
 
 // upload
 const fileList = ref<any>([])
-const imageUrl = ref('')
+const imageUrl = ref<any>(null)
 function onUpload() {
     return Promise.resolve()
 }
@@ -138,9 +138,13 @@ function onClose() {
 }
 
 function onConfirm() {
-    const data = {
-        ...formModel.value,
-        files: imageUrl.value ? [imageUrl.value] : [],
+    const data = new FormData()
+    for (const key of Object.keys(formModel.value)) {
+        data.append(key, formModel.value[key])
+        if (key === 'files') {
+            const file = fileList.value[0]
+            data.append(key, file.raw!)
+        }
     }
     formRef.value.validate((valid) => {
         if (valid) {
