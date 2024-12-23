@@ -31,7 +31,9 @@
 
                 <template #actions="{ row }">
                     <el-button type="primary" size="small" @click="onView(row)">查看</el-button>
-                    <el-button type="danger" size="small" @click="onSetStatus(row)">更新状态</el-button>
+                    <el-button type="danger" size="small" @click="onSetStatus(row)">
+                        {{ row.approvalStatus === 2 ? '通过' : '拒绝' }}
+                    </el-button>
                     <el-button type="primary" size="small" @click="onEdit(row)">编辑</el-button>
                     <el-button type="danger" size="small" @click="onDelete(row)">删除</el-button>
                 </template>
@@ -122,7 +124,7 @@ function onView(row) {
 
 function onSetStatus(row) {
     ElMessageBox.confirm('确定更新状态吗？').then(() => {
-        const api = row.approvalStatus === 0 ? setTakeLeavePassed : setTakeLeaveNotPassed
+        const api = row.approvalStatus === 2 ? setTakeLeavePassed : setTakeLeaveNotPassed
         api(row.id).then(() => {
             ElMessage.success('操作成功')
             onRefresh()

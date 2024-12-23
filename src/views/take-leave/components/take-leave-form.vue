@@ -87,6 +87,22 @@ const formRules = reactive({
     reason: { required: true, message: '请输入请假原因' },
 })
 
+watch(
+    () => props.formData,
+    (val) => {
+        formModel.value = Object.assign(
+            {
+                id: 0,
+                conventionID: 0,
+                startTime: '',
+                endTime: '',
+                reason: '',
+            },
+            val,
+        )
+    },
+)
+
 function onClose() {
     router.back()
 }
