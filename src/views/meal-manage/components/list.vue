@@ -44,7 +44,7 @@
                 <el-button type="primary" @click="onBookMeetingRoom()">导出</el-button>
             </template>
             <template #eatDate="{ row }">
-                {{ DateUtil.formatDate(row.eatDate, 'yyyy-MM-dd') }}
+                {{ useDateFormat(row.eatDate, 'YYYY-MM-DD') }}
             </template>
             <template #actions="{ row }">
                 <el-button type="primary" size="small" @click="onEdit(row)">编辑</el-button>
@@ -55,7 +55,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { DateUtil } from '@/utils/date-util'
+import { useDateFormat } from '@vueuse/core'
 import DialogCreateMeal from './dialog-create-meal.vue'
 import DialogEditMeal from './dialog-edit-meal.vue'
 import { deleteMeals, dropDownMealAddress, getMealPage } from '@/api/meal-manage'

@@ -87,7 +87,7 @@ const props = defineProps({
 })
 
 const formModel = ref({
-    conventionId: 0,
+    conventionGroupId: 0,
     keyword: '',
     personRole: 0,
     personGroupId: 0,
@@ -116,7 +116,7 @@ const gridProps = reactive<any>({
     autoLoad: false,
     data: props.isDialog ? getSelectPersonPage : getPersonPage,
     query: (params: any) => {
-        formModel.value.conventionId = props.meetingId
+        formModel.value.conventionGroupId = props.meetingId
         return Object.assign(params, formModel.value)
     },
     columns: [],
@@ -135,7 +135,7 @@ function openDialog(params: any) {
         params: {
             ...params,
             list: roomDropList.value,
-            conventionId: props.meetingId,
+            conventionGroupId: props.meetingId,
         },
     })
 }

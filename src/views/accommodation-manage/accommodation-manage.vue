@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import PersonList from './components/person-list.vue'
 import AccommodationList from './components/accommodation-list.vue'
-import { dropDownMeeting } from '@/api/accommodation-manage'
+import { dropDownConvention } from '@/api/common'
 import { DropResponse } from '@/api/accommodation-manage/types.ts'
 import { nextTick } from 'vue'
 
@@ -38,7 +38,7 @@ function onRefresh() {
     })
 }
 function init() {
-    dropDownMeeting().then((res) => {
+    dropDownConvention().then((res) => {
         dropMeeting.value = res.data
         if (dropMeeting.value.length > 0) {
             meetingId.value = dropMeeting.value[0].value

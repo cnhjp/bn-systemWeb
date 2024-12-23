@@ -13,7 +13,7 @@
                     </div>
                     <div>
                         <div class="el-text--center el-text--default">提出时间</div>
-                        {{ DateUtil.formatDate(detail.createTime, 'yyyy-MM-dd HH:mm') }}
+                        {{ useDateFormat(detail.createTime, 'YYYY-MM-DD HH:mm') }}
                     </div>
                 </div>
                 <h2 class="is-bold el-text--darkgrey my-20px">意见内容</h2>
@@ -27,7 +27,7 @@
                     >
                         <div class="el-text--tips time el-flex is-center-between">
                             <div class="el-flex is-center">
-                                答复时间 {{ DateUtil.formatDate(item.createTime, 'yyyy-MM-dd HH:mm') }}
+                                答复时间 {{ useDateFormat(item.createTime, 'YYYY-MM-DD HH:mm') }}
                             </div>
                             <el-link type="danger">
                                 <el-icon class="el-icon--left"><DeleteFilled /></el-icon>
@@ -74,7 +74,7 @@ import { detailOnlineConsultation, replyOnlineConsultation } from '@/api/online-
 import { OnlineConsultationDetail } from '@/api/online-consultation/types.ts'
 import { ElMessage } from 'element-plus'
 import { useRoute } from 'vue-router'
-import { DateUtil } from '../../utils/date-util.ts'
+import { useDateFormat } from '@vueuse/core'
 import DialogUpload from './components/dialog-upload.vue'
 
 const route = useRoute()

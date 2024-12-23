@@ -58,12 +58,12 @@ import { addRoom, dropDownRoomType, detailRoom, dropDownHotelType } from '@/api/
 import { dropDownSetValueNumner } from '@/utils'
 import DialogSelectPerson from './dialog-select-person.vue'
 
-const props = defineProps(['hotelRoomId', 'isEdit', 'conventionId'])
+const props = defineProps(['hotelRoomId', 'isEdit', 'conventionGroupId'])
 const emits = defineEmits(['close', 'refresh'])
 
 const formRef = ref<FormInstance>()
 const formModel = ref<roomForm>({
-    conventionId: 0,
+    conventionGroupId: 0,
     hotelName: '',
     hotelId: null,
     hotelRoomId: 0,
@@ -82,7 +82,7 @@ function onClose() {
 }
 
 function onConfirm() {
-    formModel.value.conventionId = props.conventionId
+    formModel.value.conventionGroupId = props.conventionGroupId
     formRef.value.validate().then((vali) => {
         if (vali) {
             addRoom(formModel.value).then(() => {
@@ -103,7 +103,7 @@ function openDialog(component: any, title: string, width: string, params: any) {
         width: width,
         params: {
             ...params,
-            conventionId: props.conventionId,
+            conventionGroupId: props.conventionGroupId,
         },
     })
 }

@@ -32,7 +32,7 @@
 import { ElMessage, FormInstance, FormRules } from 'element-plus'
 import { detailTimeConfig, setTimeConfig } from '@/api/accommodation-manage'
 
-const props = defineProps(['conventionId'])
+const props = defineProps(['conventionGroupId'])
 const emits = defineEmits(['close', 'refresh'])
 
 const formRef = ref<FormInstance>()
@@ -91,7 +91,7 @@ function onConfirm() {
     })
 }
 function init() {
-    detailTimeConfig(props.conventionId).then((res) => {
+    detailTimeConfig(props.conventionGroupId).then((res) => {
         formModel.value = res.data
     })
 }

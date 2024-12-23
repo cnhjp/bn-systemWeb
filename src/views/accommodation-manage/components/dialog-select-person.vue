@@ -1,6 +1,12 @@
 <template>
     <div class="list-height">
-        <person-list ref="personRef" :maxPerson="maxPerson" :meetingId="conventionId" :roomType="roomType" is-dialog />
+        <person-list
+            ref="personRef"
+            :maxPerson="maxPerson"
+            :meetingId="conventionGroupId"
+            :roomType="roomType"
+            is-dialog
+        />
     </div>
     <div class="el-flex is-center mt-10px">
         <el-button @click="onClose">取消</el-button>
@@ -9,7 +15,7 @@
 </template>
 <script setup lang="ts">
 import PersonList from './person-list.vue'
-const props = defineProps(['conventionId', 'hotelRoomId', 'maxPerson', 'roomType'])
+const props = defineProps(['conventionGroupId', 'hotelRoomId', 'maxPerson', 'roomType'])
 const emits = defineEmits(['close', 'confirm'])
 function onClose() {
     emits('close')

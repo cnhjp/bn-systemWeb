@@ -2,15 +2,6 @@ import { http } from '~/src/utils'
 import { DropResponseData } from './types'
 
 /**
- * 会议下拉
- * @param
- * @returns
- */
-export function dropDownMeeting() {
-    return http.get<any, DropResponseData>('/api/convention/drop')
-}
-
-/**
  * 房间类型下拉
  * @param
  * @returns
