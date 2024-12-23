@@ -6,7 +6,7 @@ export enum HttpStatus {
     /**
      * 未授权
      */
-    UNAUTHORIZED = 1401,
+    UNAUTHORIZED = 401,
     /**
      * 禁止访问
      */

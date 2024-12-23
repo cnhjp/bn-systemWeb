@@ -59,7 +59,7 @@ const routes: AuthRoute.Route = [
     {
         path: 'attendance-manage',
         name: 'before-meeting-attendance-manage',
-        component: () => import('@/views/before-meeting/attendance-manage.vue'),
+        component: () => import('@/views/attendance-manage/attendance-manage.vue'),
         meta: { title: '签到管理' },
     },
 ]

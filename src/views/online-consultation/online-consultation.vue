@@ -3,7 +3,7 @@
         <el-main>
             <b-grid ref="refGrid" v-bind="gridProps">
                 <template #status="{ row }">
-                    {{ getStatus(row) }}
+                    <el-tag :type="getStatusType(row)" v-if="row.status">{{ getStatus(row) }}</el-tag>
                 </template>
                 <template #actions="{ row }">
                     <el-button type="primary" size="small" @click="onReply(row)">答复</el-button>
@@ -37,6 +37,16 @@ function getStatus(row: any) {
             return '已答复'
         case 3:
             return '已关闭'
+    }
+}
+function getStatusType(row: any) {
+    switch (row.status) {
+        case 1:
+            return 'danger'
+        case 2:
+            return 'success'
+        case 3:
+            return 'info'
     }
 }
 

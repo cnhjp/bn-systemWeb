@@ -9,16 +9,7 @@ export namespace DateUtil {
         if (!format) {
             format = 'yyyy-MM-dd'
         }
-        switch (typeof date) {
-            case 'string':
-                //date = new Date(date.replace(/-/g, '/'))
-
-                date = new Date(date)
-                break
-            case 'number':
-                date = new Date(date)
-                break
-        }
+        date = new Date(date)
         if (date instanceof Date) {
             const dict: any = {
                 yyyy: date.getFullYear(),

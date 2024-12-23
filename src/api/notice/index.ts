@@ -7,7 +7,7 @@ export function getNoticePage(params) {
 
 // 批量删除公告
 export function batchDeleteNotice(params) {
-    return http.delete('/api/notice/deleteByIdList', params)
+    return http.post('/api/notice/deleteByIdList', params)
 }
 
 // 保存公告

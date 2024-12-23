@@ -100,3 +100,21 @@ export function detailRoom(id: any) {
 export function exportHotelRoom(query: any) {
     return http.get<any, any>('/api/hotel-room/export', query)
 }
+
+/**
+ * 设置入住时间--获取默认时间
+ * @param query
+ * @returns
+ */
+export function detailTimeConfig(conventionId: number) {
+    return http.get<any, any>('/api/hotel-room/config/get', { conventionId })
+}
+
+/**
+ * 设置入住时间
+ * @param query
+ * @returns
+ */
+export function setTimeConfig(query: any) {
+    return http.post<any, any>('/api/hotel-room/config/save', query)
+}

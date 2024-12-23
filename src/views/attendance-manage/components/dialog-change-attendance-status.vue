@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { changeStatus } from '@/api/before-meeting/attendance-manage.ts'
+import { changeStatus } from '@/api/attendance-manage'
 import { ElMessage } from 'element-plus'
 
 defineProps(['list'])

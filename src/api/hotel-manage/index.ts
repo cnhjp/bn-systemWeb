@@ -34,19 +34,7 @@ export function editHotel(query: HotelForm) {
  * @returns
  */
 export function detailHotel(id: number | string) {
-    console.log('酒店详情', id)
-    return Promise.resolve({
-        data: {
-            id: 121456456,
-            name: '雷迪森酒店',
-            contact: 15265656565,
-            address: '埃里克森大家；蜂蜡这就是；到了开房间',
-            introduction: '埃里克森大家；蜂蜡这就是；到了开房间',
-            docName: '',
-            docId: 0,
-            docPath: '',
-        },
-    })
+    return http.get(`/api/hotel/${id}`)
 }
 
 /**

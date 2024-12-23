@@ -1,4 +1,9 @@
-// import { http } from '~/src/utils/http'
+import { http } from '~/src/utils/http'
+
+//签到统计
+export function overViewAttendance(conventionId: number) {
+    return http.get(`/api/convention/${conventionId}/sign/statistics`)
+}
 
 // 签到状态
 export function dropDownAttendanceStatus() {

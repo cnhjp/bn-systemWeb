@@ -48,19 +48,19 @@
                 <div class="el-flex is-center-between total-wrapper">
                     <div>
                         <p>总人数</p>
-                        1224
+                        {{ overview.total }}
                     </div>
                     <div>
                         <p>已签</p>
-                        1210
+                        {{ overview.attend }}
                     </div>
                     <div>
                         <p>未签</p>
-                        12
+                        {{ overview.absent }}
                     </div>
                     <div>
                         <p>请假</p>
-                        2
+                        {{ overview.veave }}
                     </div>
                 </div>
             </div>
@@ -83,9 +83,9 @@
 <script setup lang="ts">
 import { DropResponse } from '@/api/common/types.ts'
 import { dropDownMeeting } from '@/api/common'
-import { dropDownAttendanceStatus, getAttendPage, setAllAttendance } from '@/api/before-meeting/attendance-manage.ts'
+import { dropDownAttendanceStatus, getAttendPage, overViewAttendance, setAllAttendance } from '@/api/attendance-manage'
 import { dropDownSetValueNumner } from '@/utils'
-import DialogChangeAttendanceStatus from '@/views/before-meeting/components/dialog-change-attendance-status.vue'
+import DialogChangeAttendanceStatus from '@/views/attendance-manage/components/dialog-change-attendance-status.vue'
 import { ElMessage } from 'element-plus'
 
 const formModel = ref<any>({
@@ -156,6 +156,7 @@ function openDialog(params: any) {
 
 const dropMeeting = ref<DropResponse[]>([])
 const dropAttendanceStatus = ref<any[]>([])
+const overview = ref<any>(null)
 function init() {
     dropDownMeeting().then((res) => {
         dropMeeting.value = res.data
@@ -163,6 +164,9 @@ function init() {
     })
     dropDownAttendanceStatus().then((res) => {
         dropAttendanceStatus.value = dropDownSetValueNumner(res.data, false, true)
+    })
+    overViewAttendance(formModel.value.conventionId).then((res) => {
+        overview.value = res.data
     })
 }
 init()

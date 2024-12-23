@@ -3,7 +3,7 @@
         <el-form-item label="会议">
             <b-select
                 :disabled="disabled"
-                :data="getMeetingDrop"
+                :data="group ? getGroupDrop : getMeetingDrop"
                 defaultFirst
                 v-model="model"
                 class="!w-250px"
@@ -15,6 +15,7 @@
 
 <script setup lang="ts">
 import { getMeetingDrop } from '~/src/api/meeting-manage'
+import { getGroupDrop } from '~/src/api/before-meeting/info'
 
 const props = defineProps({
     modelValue: {
@@ -22,6 +23,10 @@ const props = defineProps({
         default: '',
     },
     disabled: {
+        type: Boolean,
+        default: () => false,
+    },
+    group: {
         type: Boolean,
         default: () => false,
     },

@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import PersonList from './components/person-list.vue'
 import AccommodationList from './components/accommodation-list.vue'
-import { dropDownMeeting } from '@/api/accommodation-manage'
+import { dropDownMeeting } from '@/api/common'
 import { DropResponse } from '@/api/accommodation-manage/types.ts'
 import { nextTick } from 'vue'
 

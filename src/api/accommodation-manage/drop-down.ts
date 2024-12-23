@@ -2,21 +2,21 @@ import { http } from '~/src/utils'
 import { DropResponseData } from './types'
 
 /**
- * 会议下拉
- * @param
- * @returns
- */
-export function dropDownMeeting() {
-    return http.get<any, DropResponseData>('/api/convention/drop')
-}
-
-/**
  * 房间类型下拉
  * @param
  * @returns
  */
 export function dropDownRoomType() {
     return http.get<any, DropResponseData>('/api/hotel-room/room-type')
+}
+
+/**
+ * 酒店下拉
+ * @param
+ * @returns
+ */
+export function dropDownHotelType() {
+    return http.get<any, DropResponseData>('/api/hotel/dropdownlist')
 }
 
 /**
