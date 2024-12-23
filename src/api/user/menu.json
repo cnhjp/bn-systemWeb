@@ -69,5 +69,11 @@
             { "id": 1001, "title": "用餐管理", "route": "meal-manage-list", "icon": "cast" },
             { "id": 1002, "title": "用餐地点", "route": "meal-manage-address", "icon": "cast" }
         ]
+    },
+    {
+        "id": 1100,
+        "title": "请假管理",
+        "route": "take-leave-list",
+        "icon": "cast"
     }
 ]
