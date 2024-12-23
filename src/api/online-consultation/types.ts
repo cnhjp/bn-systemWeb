@@ -27,7 +27,7 @@ export class item {
  * 在线咨询--详情
  */
 export interface OnlineConsultationDetail {
-    id: number
+    id: number | string
     title: string
     content: string
     createBy: string

@@ -5,12 +5,12 @@
                 <div class="el-flex is-center-between mb-30px">
                     <div>
                         <el-button type="primary" @click="onSetAll">一键全签</el-button>
-                        <el-button type="primary">导出</el-button>
+                        <el-button type="primary" @click="onExport">导出</el-button>
                     </div>
                     <div>
                         <el-form inline>
                             <el-form-item label="会议">
-                                <el-select v-model="formModel.conventionId">
+                                <el-select v-model="formModel.conventionID">
                                     <el-option
                                         v-for="item in dropMeeting"
                                         :key="item.value"
@@ -83,7 +83,13 @@
 <script setup lang="ts">
 import { DropResponse } from '@/api/common/types.ts'
 import { dropDownMeeting } from '@/api/common'
-import { dropDownAttendanceStatus, getAttendPage, overViewAttendance, setAllAttendance } from '@/api/attendance-manage'
+import {
+    dropDownAttendanceStatus,
+    exportPerson,
+    getAttendPage,
+    overViewAttendance,
+    setAllAttendance,
+} from '@/api/attendance-manage'
 import { dropDownSetValueNumner } from '@/utils'
 import DialogChangeAttendanceStatus from '@/views/attendance-manage/components/dialog-change-attendance-status.vue'
 import { ElMessage } from 'element-plus'
@@ -93,12 +99,14 @@ const formModel = ref<any>({
     keyword: '',
     attendStatus: null,
 })
+const exportQuery = ref<any>(null)
 const gridProps = reactive({
     autoLoad: false,
     data: getAttendPage,
     query: (params: any) => {
         const attendStatus = formModel.value.attendStatus ? formModel.value.attendStatus : 0
-        return Object.assign(params, formModel.value, { attendStatus: attendStatus })
+        exportQuery.value = Object.assign(params, formModel.value, { attendStatus: attendStatus })
+        return exportQuery
     },
     columns: [
         { title: '姓名', field: 'seatingName', minWidth: 220 },
@@ -128,6 +136,12 @@ function onSetAll() {
     setAllAttendance(formModel.value.conventionID).then(() => {
         ElMessage.success('操作成功')
         onRefresh()
+    })
+}
+
+function onExport() {
+    exportPerson(exportQuery.value).then(() => {
+        ElMessage.success('操作成功')
     })
 }
 

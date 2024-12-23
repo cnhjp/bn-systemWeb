@@ -17,7 +17,24 @@
                     </div>
                 </div>
                 <h2 class="is-bold el-text--darkgrey my-20px">意见内容</h2>
-                <div class="el-bg--grey px-16px py-20px el-round">{{ detail.content }}</div>
+                <div class="el-bg--grey px-16px py-20px el-round">
+                    {{ detail.content }}
+                    <div class="img-list">
+                        <el-image
+                            class="img"
+                            v-for="(img, index) in detail.documents"
+                            :src="img"
+                            :key="`img${index}`"
+                            fit="cover"
+                        >
+                            <template #error>
+                                <div class="image-slot">
+                                    <el-icon><Picture /></el-icon>
+                                </div>
+                            </template>
+                        </el-image>
+                    </div>
+                </div>
                 <h2 class="is-bold el-text--darkgrey my-20px">答复内容</h2>
                 <div class="reply-wrapper px-20px">
                     <div
@@ -35,6 +52,21 @@
                             </el-link>
                         </div>
                         <div>{{ item.content }}</div>
+                        <div class="img-list">
+                            <el-image
+                                class="img"
+                                v-for="(img, index) in item.documents"
+                                :src="img"
+                                :key="`img${index}`"
+                                fit="cover"
+                            >
+                                <template #error>
+                                    <div class="image-slot">
+                                        <el-icon><Picture /></el-icon>
+                                    </div>
+                                </template>
+                            </el-image>
+                        </div>
                     </div>
                 </div>
                 <el-form :model="formModel">
@@ -97,14 +129,14 @@ function onReply() {
         ElMessage.warning('请输入回复内容')
         return
     }
-    const files = []
-    formModel.value.files.forEach((it) => {
-        files.push(it.raw)
-    })
+    const { files, ...other } = formModel.value
     formModel.value.files = files
     const data = new FormData()
-    for (const key of Object.keys(formModel.value)) {
+    for (const key of Object.keys(other)) {
         data.append(key, formModel.value[key])
+    }
+    for (let i = 0; i < files.length; i++) {
+        data.append('files', files[i].raw)
     }
     replyOnlineConsultation(data).then(() => {
         ElMessage.success('操作成功')
@@ -122,17 +154,17 @@ function openDialog() {
     })
 }
 
-function getFiles(list) {
+function getFiles(list: any) {
     formModel.value.files = list
 }
 
-function onDeleteFileItem(index) {
+function onDeleteFileItem(index: any) {
     formModel.value.files.splice(index, 1)
 }
 
 function init() {
     const { id } = route.query
-    formModel.value.id = id
+    formModel.value.id = id ? Number(id) : 0
     formModel.value.content = ''
     formModel.value.files = []
     detailOnlineConsultation({ id }).then((res) => {
@@ -160,6 +192,20 @@ init()
             border-right: 1px solid #d3ebff;
             line-height: 1;
         }
+    }
+}
+.img-list {
+    display: flex;
+    flex-wrap: wrap;
+    .img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 120px;
+        height: 90px;
+        background: var(--el-color-theme-light-9);
+        border-radius: 8px;
+        margin: 15px 15px 15px 0;
     }
 }
 h2 {
@@ -190,6 +236,14 @@ h2 {
                     background: var(--el-color-primary);
                 }
             }
+        }
+    }
+    .img-list {
+        .img {
+            width: 60px;
+            height: 45px;
+            border-radius: 4px;
+            margin: 15px 15px 0 0;
         }
     }
 }

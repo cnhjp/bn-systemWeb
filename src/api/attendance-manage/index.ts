@@ -24,3 +24,8 @@ export function setAllAttendance(conventionId: number) {
 export function changeStatus(query: any) {
     return http.post('/api/convention-person/attend-status', query)
 }
+
+// 导出人员
+// export function exportPerson(query: any) {
+//     return http.post('/api/convention-person/export', query)
+// }

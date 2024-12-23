@@ -3,9 +3,8 @@
         v-model:file-list="list"
         :auto-upload="false"
         :limit="9"
-        :before-upload="onBeforeUpload"
         :on-change="onFileChange"
-        accept=".png,.jpg,.jpeg,.gif,.doc,.docx,.pdf,.doc,.docx,.wps,.xls,.xlsx,.ppt,.pptx"
+        accept=".png,.jpg,.jpeg,.gif"
         :size="10 * 1024"
         multiple
     />
@@ -25,7 +24,7 @@ const props = defineProps({
     },
 })
 
-const list = ref([])
+const list = ref<any>(null)
 function onFileChange(_response: any, file: UploadFile) {
     list.value = file
 }
@@ -37,10 +36,6 @@ function onClose() {
 function onConfirm() {
     emits('confirm', list.value)
     onClose()
-}
-
-function init() {
-    list.value = props.fileList
 }
 </script>
 
