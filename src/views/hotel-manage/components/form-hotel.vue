@@ -4,6 +4,7 @@
             <page-header :title="title" is-show-btn />
         </el-header>
         <el-main>
+            {{ fileList.value }}
             <el-row class="el-bg--white p-50px">
                 <el-col :span="18" :offset="3">
                     <el-form ref="formRef" :model="formModel" :rules="formRules" label-width="80px">
@@ -140,10 +141,11 @@ function onClose() {
 function onConfirm() {
     const data = new FormData()
     for (const key of Object.keys(formModel.value)) {
-        data.append(key, formModel.value[key])
         if (key === 'files') {
             const file = fileList.value[0]
             data.append(key, file.raw!)
+        } else {
+            data.append(key, formModel.value[key])
         }
     }
     formRef.value.validate((valid) => {
@@ -152,4 +154,8 @@ function onConfirm() {
         }
     })
 }
+onMounted(() => {
+    imageUrl.value = formModel.value.files
+    fileList.value = [{ url: formModel.value.files[0] }]
+})
 </script>
