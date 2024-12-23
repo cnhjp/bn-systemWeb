@@ -18,7 +18,7 @@ import { ElMessage } from 'element-plus'
 const emits = defineEmits(['close', 'refresh'])
 
 const arrangeType = ref<number>(1)
-const props = defineProps(['conventionGroupId'])
+const props = defineProps(['conventionId'])
 
 function onClose() {
     emits('close')
@@ -27,7 +27,7 @@ function onClose() {
 function onConfirm() {
     const data = {
         arrangeType: arrangeType.value,
-        conventionGroupId: props.conventionGroupId,
+        conventionId: props.conventionId,
     }
     setArrange(data).then(() => {
         ElMessage.success('操作成功')

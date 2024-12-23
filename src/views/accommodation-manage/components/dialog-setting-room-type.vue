@@ -15,7 +15,7 @@
 import { settingRoomType } from '@/api/accommodation-manage'
 import { ElMessage } from 'element-plus'
 
-const props = defineProps(['list', 'conventionPersonIdList', 'conventionGroupId', 'type'])
+const props = defineProps(['list', 'conventionPersonIdList', 'conventionId', 'type'])
 
 const emits = defineEmits(['close', 'refresh'])
 const roomType = ref<number>(0)
@@ -27,7 +27,7 @@ function onClose() {
 function onConfirm() {
     const data = {
         conventionPersonIdList: props.conventionPersonIdList,
-        conventionGroupId: props.conventionId,
+        conventionId: props.conventionId,
         roomType: Number(roomType.value),
     }
     settingRoomType(data).then(() => {

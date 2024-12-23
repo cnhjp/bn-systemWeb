@@ -92,7 +92,7 @@ const props = defineProps({
 })
 
 const formModel = ref({
-    conventionGroupId: 0,
+    conventionId: 0,
     keyword: '',
     roomStatus: 0,
 })
@@ -109,9 +109,9 @@ function dropDownStatus() {
 const gridProps = reactive({
     data: getRoomPage,
     query: (params: any) => {
-        formModel.value.conventionGroupId = props.meetingId
+        formModel.value.conventionId = props.meetingId
         exportQuery.value = {
-            conventionGroupId: props.meetingId,
+            conventionId: props.meetingId,
             orderColumn: params.order,
             roomStatus: formModel.value.roomStatus,
             keyword: formModel.value.keyword,
@@ -154,7 +154,7 @@ function openDialog(component: any, title: string, width: string, params: any) {
         width: width,
         params: {
             ...params,
-            conventionGroupId: props.meetingId,
+            conventionId: props.meetingId,
         },
     })
 }
