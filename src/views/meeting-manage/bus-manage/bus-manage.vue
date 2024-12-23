@@ -1,7 +1,7 @@
 <template>
     <el-container class="wh-full">
         <el-header class="flex items-center">
-            <meeting-drop-form group v-model="formModel.conventionId" @change="onRefresh"></meeting-drop-form>
+            <meeting-drop-form group v-model="formModel.conventionGroupId" @change="onRefresh"></meeting-drop-form>
         </el-header>
         <el-main class="!pt-0">
             <b-grid ref="refGrid" v-bind="gridProps">
@@ -26,7 +26,7 @@ import dialogBusForm from './components/dialog-bus-form.vue'
 import { getBusPage, batchDeleteBus } from '@/api/bus-manage'
 
 const formModel = reactive({
-    conventionId: '',
+    conventionGroupId: '',
 })
 
 const gridProps = reactive({
@@ -49,11 +49,16 @@ const gridProps = reactive({
         {
             title: '发车时间',
             field: 'startTimeStr',
-            minWidth: 80,
+            minWidth: 100,
         },
         {
             title: '发车地',
             field: 'startAddress',
+            minWidth: 180,
+        },
+        {
+            title: '路线',
+            field: 'regularServiceRoute',
             minWidth: 180,
         },
         {
@@ -85,7 +90,7 @@ function onAdd() {
         width: '680px',
         params: {
             row: {
-                conventionId: formModel.conventionId,
+                conventionGroupId: formModel.conventionGroupId,
             },
         },
     })

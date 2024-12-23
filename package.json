@@ -25,8 +25,8 @@
         "@element-plus/icons-vue": "^2.3.1",
         "@iconify-json/ep": "^1.1.14",
         "@package/b-grid": "workspace:^",
-        "@package/http": "workspace:^",
         "@package/core": "workspace:^",
+        "@package/http": "workspace:^",
         "crypto-js": "^4.2.0",
         "element-plus": "^2.5.1",
         "jsencrypt": "^3.3.2",
@@ -34,6 +34,7 @@
         "mockjs": "^1.1.0",
         "nprogress": "^0.2.0",
         "pinia": "^2.1.7",
+        "sortablejs": "^1.15.6",
         "vue": "^3.4.6",
         "vue-cookies": "^1.8.3",
         "vue-router": "^4.2.5"
