@@ -37,25 +37,30 @@
             <h3 class="is-bold el-text--darkgrey">设置用餐时间段</h3>
         </div>
         <div class="meal-time py-20px">
-            <div class="el-flex">
-                <el-form-item label="用餐类型" prop="eatTime.eatName">
-                    <el-input v-model="formModel.eatTime.eatName" />
-                </el-form-item>
-                <el-form-item label="开始时间" prop="eatTime.beginTime" class="eat-time">
-                    <el-time-picker
-                        v-model="formModel.eatTime.beginTime"
-                        placeholder="选择开始时间"
-                        format="HH:mm"
-                        value-format="HH:mm"
-                    />
-                </el-form-item>
-                <el-form-item label="结束时间" prop="eatTime.endTime" class="eat-time">
-                    <el-time-picker
-                        v-model="formModel.eatTime.endTime"
-                        placeholder="选择结束时间"
-                        format="HH:mm"
-                        value-format="HH:mm"
-                    />
+            <div class="el-bg--grey px-10px py-20px mb-10px">
+                <div class="el-flex">
+                    <el-form-item label="用餐类型" prop="eatTime.eatName" label-width="80px">
+                        <el-input v-model="formModel.eatTime.eatName" />
+                    </el-form-item>
+                    <el-form-item label="开始时间" prop="eatTime.beginTime" class="eat-time" label-width="80px">
+                        <el-time-picker
+                            v-model="formModel.eatTime.beginTime"
+                            placeholder="选择开始时间"
+                            format="HH:mm"
+                            value-format="HH:mm"
+                        />
+                    </el-form-item>
+                    <el-form-item label="结束时间" prop="eatTime.endTime" class="eat-time" label-width="80px">
+                        <el-time-picker
+                            v-model="formModel.eatTime.endTime"
+                            placeholder="选择结束时间"
+                            format="HH:mm"
+                            value-format="HH:mm"
+                        />
+                    </el-form-item>
+                </div>
+                <el-form-item label="菜单 " label-width="80px">
+                    <el-input v-model="formModel.eatTime.eatMenu" type="textarea" :rows="2" />
                 </el-form-item>
             </div>
         </div>
@@ -146,6 +151,10 @@ init()
 .eat-time {
     margin-bottom: 18px !important;
     margin-left: 20px;
+}
+
+.eat-time {
+    width: 235px;
 }
 .icon {
     cursor: pointer;
