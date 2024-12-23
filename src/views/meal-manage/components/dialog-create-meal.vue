@@ -119,12 +119,12 @@ const formModel = ref<any>({
     addressId: [],
     beginDate: null,
     endDate: null,
-    eatMenu: '',
     eatTimeList: [
         {
             eatName: '',
             beginTime: '',
             endTime: '',
+            eatMenu: '',
         },
     ],
 })
