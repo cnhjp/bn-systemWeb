@@ -1,19 +1,28 @@
 import { http } from '~/src/utils'
+export * from './types.ts'
 
 /**
- * 获取会议室下拉
+ * 获取会议室类型下拉
  * @returns query
  */
-export function dropDownMeetingRoom() {
-    return http.get('/api/list/meeting-room')
+export function dropDownMeetingRoomType() {
+    return http.get('/api/meeting-room/room-type/drop')
 }
 
 /**
- * 获取会议类型下拉
+ * 获取会议室状态下拉
  * @returns query
  */
-export function dropDownMeetingType() {
-    return http.get('/api/convention/type')
+export function dropDownMeetingRoomStatus() {
+    return http.get('/api/meeting-room/room-status/drop')
+}
+
+/**
+ * 获取场地类型下拉
+ * @returns query
+ */
+export function dropDownVenueType() {
+    return http.get('/api/meeting-room/venue-type/drop')
 }
 
 /**
@@ -29,7 +38,7 @@ export function getMeetingRoomPage(query: any) {
  * @returns query
  */
 export function addMeetingRoom(query: any) {
-    return http.post('/api/meeting-room', query)
+    return http.post('/api/meeting-room/add', query)
 }
 
 /**
@@ -37,23 +46,7 @@ export function addMeetingRoom(query: any) {
  * @returns query
  */
 export function editMeetingRoom(query: any) {
-    return http.put('/api/meeting-room', query)
-}
-
-/**
- * 添加会议室预约
- * @returns query
- */
-export function addMeetingRoomBook(query: any) {
-    return http.post('/api/convention', query)
-}
-
-/**
- * 检查会议室预约情况
- * @returns query
- */
-export function checkMeetingRoomBook(query: any) {
-    return http.post('/api/convention/same-time-convention', query)
+    return http.post('/api/meeting-room/mod', query)
 }
 
 /**
@@ -61,7 +54,7 @@ export function checkMeetingRoomBook(query: any) {
  * @returns id
  */
 export function deleteMeetingRoom(id: number) {
-    return http.delete(`/api/meeting-room/${id}`)
+    return http.delete(`/api/meeting-room/del`, { id })
 }
 
 /**

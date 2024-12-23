@@ -10,7 +10,19 @@ const routes: AuthRoute.Route = [
     {
         path: 'room-manage',
         name: 'room-manage',
-        component: () => import('@/views/meeting-manage/room-manage/room-assign.vue'),
+        component: () => import('@/views/meeting-manage/room-manage/room-list.vue'),
+        meta: { title: '会议室管理' },
+    },
+    {
+        path: 'add',
+        name: 'room-manage-add',
+        component: () => import('@/views/meeting-manage/room-manage/add-room.vue'),
+        meta: { title: '会议室管理' },
+    },
+    {
+        path: 'edit',
+        name: 'room-manage-edit',
+        component: () => import('@/views/meeting-manage/room-manage/edit-room.vue'),
         meta: { title: '会议室管理' },
     },
 ]
