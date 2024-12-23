@@ -170,7 +170,7 @@
                         <el-button type="primary" @click="onConfirm">保存</el-button>
                     </div>
                 </div>
-                <infoPreview :formModel="formModel" />
+                <infoPreview :formModel="formModel" v-if="false" />
             </div>
         </el-main>
 
