@@ -9,6 +9,7 @@ export namespace DateUtil {
         if (!format) {
             format = 'yyyy-MM-dd'
         }
+        date = new Date(date)
         if (date instanceof Date) {
             const dict: any = {
                 yyyy: date.getFullYear(),
