@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="64" height="64"></rect>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="默认页" transform="translate(-2397.000000, -118.000000)">
+            <g id="编组" transform="translate(2397.000000, 118.000000)">
+                <circle id="椭圆形" fill="#FFFFFF" cx="50" cy="50" r="50"></circle>
+                <g id="编组-89备份" transform="translate(18.000000, 18.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="矩形"></g>
+                    <g id="编组-85" mask="url(#mask-2)" fill="#607FF5">
+                        <g transform="translate(5.925926, 5.925926)">
+                            <circle id="椭圆形" cx="26.6666667" cy="13.6296296" r="13.6296296"></circle>
+                            <path d="M15.3699525,29.6296296 L37.9395992,29.6296296 C41.5710968,29.6296296 44.8467947,31.8121209 46.245377,35.1635001 L48.6346703,40.8888889 C50.3636346,45.031952 48.4066209,49.7921707 44.2635578,51.521135 C43.2717453,51.9350337 42.2077022,52.1481481 41.132991,52.1481481 L12.1942777,52.1481481 C7.70135139,52.1481481 4.05911495,48.5059117 4.05911495,44.0129854 C4.05911495,42.9406868 4.27110516,41.878967 4.68289338,40.8888889 L7.06004396,35.1734151 C8.45612662,31.8167602 11.7345463,29.6296296 15.3699525,29.6296296 Z" id="矩形"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

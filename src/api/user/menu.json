@@ -1,5 +1,11 @@
 [
     {
+        "id": 10,
+        "title": "电子排座",
+        "icon": "cast",
+        "route": "seat-index"
+    },
+    {
         "id": 100,
         "title": "会务管理",
         "route": "meeting-manage",
