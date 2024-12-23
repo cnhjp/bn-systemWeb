@@ -1,0 +1,19 @@
+<svg id="选中" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #4564e3;
+        stroke: #fff;
+        stroke-linejoin: round;
+        stroke-width: 1px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <rect id="圆角矩形_720" data-name="圆角矩形 720" class="cls-1" x="2.5" y="2.5" width="16" height="16" rx="5" ry="5"/>
+  <path id="形状_718" data-name="形状 718" class="cls-2" d="M3132.12,473.519l2.92,3.335a0.506,0.506,0,0,0,.61.069l0.08-.069,6.15-6.253a0.306,0.306,0,0,0,0-.486,0.368,0.368,0,0,0-.46-0.07l-6.07,4.655-2.47-1.876a0.745,0.745,0,0,0-.76,0A0.561,0.561,0,0,0,3132.12,473.519Z" transform="translate(-3126.5 -462.5)"/>
+</svg>
