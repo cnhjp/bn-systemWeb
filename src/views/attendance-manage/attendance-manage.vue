@@ -20,7 +20,7 @@
                                 </el-select>
                             </el-form-item>
                             <el-form-item label="状态">
-                                <el-select v-model="formModel.status">
+                                <el-select v-model="formModel.attendStatus">
                                     <el-option
                                         v-for="item in dropAttendanceStatus"
                                         :key="item.value"
@@ -60,15 +60,15 @@
                     </div>
                     <div>
                         <p>请假</p>
-                        {{ overview.veave }}
+                        {{ overview.leave }}
                     </div>
                 </div>
             </div>
             <div class="el-bg--white p-20px mt-20px list-wrapper">
                 <b-grid ref="refGrid" v-bind="gridProps">
-                    <template #status="{ row }">
-                        <el-tag :type="setStatusTag(row.status)" v-if="row.status">
-                            {{ setStatusText(row.status) }}
+                    <template #attendStatusStr="{ row }">
+                        <el-tag :type="setStatusTag(row.attendStatus)" v-if="row.attendStatusStr">
+                            {{ row.attendStatusStr }}
                         </el-tag>
                     </template>
                     <template #actions="{ row }">
@@ -89,18 +89,20 @@ import DialogChangeAttendanceStatus from '@/views/attendance-manage/components/d
 import { ElMessage } from 'element-plus'
 
 const formModel = ref<any>({
-    conventionId: 0,
+    conventionID: 0,
     keyword: '',
-    status: null,
+    attendStatus: null,
 })
 const gridProps = reactive({
+    autoLoad: false,
     data: getAttendPage,
     query: (params: any) => {
-        return Object.assign(params, formModel.value)
+        const attendStatus = formModel.value.attendStatus ? formModel.value.attendStatus : 0
+        return Object.assign(params, formModel.value, { attendStatus: attendStatus })
     },
     columns: [
-        { title: '姓名', field: 'name', minWidth: 220 },
-        { title: '状态', slots: { default: 'status' }, minWidth: 220 },
+        { title: '姓名', field: 'seatingName', minWidth: 220 },
+        { title: '状态', slots: { default: 'attendStatusStr' }, minWidth: 220 },
         { title: '操作', slots: { default: 'actions' }, minWidth: 220, fixed: 'right', align: 'center' },
     ],
 })
@@ -111,32 +113,21 @@ function onRefresh() {
     refGrid.value.refresh()
 }
 
-function setStatusText(status: any) {
-    switch (status) {
-        case 1:
-            return '已签'
-        case 2:
-            return '未签'
-        case 3:
-            return '请假'
-        default:
-            return '-'
-    }
-}
 function setStatusTag(status: any) {
     switch (status) {
         case 1:
             return 'success'
         case 2:
-            return 'danger'
-        case 3:
             return 'info'
+        case 3:
+            return 'danger'
     }
 }
 
 function onSetAll() {
-    setAllAttendance().then(() => {
+    setAllAttendance(formModel.value.conventionID).then(() => {
         ElMessage.success('操作成功')
+        onRefresh()
     })
 }
 
@@ -148,7 +139,8 @@ function openDialog(params: any) {
         title: '修改状态',
         width: '400px',
         params: {
-            ...params,
+            attendStatus: params.attendStatus,
+            ids: [params.conventionPersonId],
             list: dropAttendanceStatus.value,
         },
     })
@@ -156,18 +148,24 @@ function openDialog(params: any) {
 
 const dropMeeting = ref<DropResponse[]>([])
 const dropAttendanceStatus = ref<any[]>([])
-const overview = ref<any>(null)
-function init() {
-    dropDownMeeting().then((res) => {
-        dropMeeting.value = res.data
-        formModel.value.conventionId = dropMeeting.value.length > 0 ? dropMeeting.value[0].value : null
+const overview = ref<any>({
+    total: 0,
+    absent: 0,
+    leave: 0,
+    attend: 0,
+})
+async function init() {
+    await dropDownMeeting().then((res) => {
+        dropMeeting.value = dropDownSetValueNumner(res.data, false, true)
+        formModel.value.conventionID = dropMeeting.value.length > 0 ? dropMeeting.value[0].value : null
     })
-    dropDownAttendanceStatus().then((res) => {
+    await dropDownAttendanceStatus().then((res) => {
         dropAttendanceStatus.value = dropDownSetValueNumner(res.data, false, true)
     })
-    overViewAttendance(formModel.value.conventionId).then((res) => {
+    await overViewAttendance(formModel.value.conventionID).then((res) => {
         overview.value = res.data
     })
+    await onRefresh()
 }
 init()
 </script>
