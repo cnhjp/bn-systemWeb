@@ -63,14 +63,14 @@ import { dropDownSetValueNumner } from '@/utils'
 import { ElMessage } from 'element-plus'
 
 const props = defineProps({
-    conventionID: {
+    conventionGroupId: {
         type: Number,
         default: 0,
     },
 })
 
 const formModel = ref({
-    conventionID: props.conventionID,
+    conventionGroupId: props.conventionGroupId,
     eatDate: '',
     keyword: '',
     addressId: 0,
@@ -109,7 +109,7 @@ function openDialog(component: any, title: string, params: any) {
         width: '800px',
         params: {
             ...params,
-            conventionID: props.conventionID,
+            conventionGroupId: props.conventionGroupId,
             addressList: dropMealAddressPop.value,
         },
     })
@@ -149,7 +149,7 @@ const dropMealAddress = ref<any>([])
 const dropMealAddressPop = ref<any>([])
 function init() {
     const query = {
-        conventionID: props.conventionID,
+        conventionGroupId: props.conventionGroupId,
     }
     dropDownMealAddress(query).then((res) => {
         Object.assign(dropMealAddressPop.value, res.data)

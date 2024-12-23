@@ -8,7 +8,7 @@
                 <template #toolbar-right>
                     <el-form inline>
                         <el-form-item label="会议名称">
-                            <el-select v-model="formModel.conventionID">
+                            <el-select v-model="formModel.conventionGroupId">
                                 <el-option
                                     v-for="item in dropMeeting"
                                     :key="item.value"
@@ -48,12 +48,12 @@ import DialogAddressForm from './components/dialog-address-form.vue'
 import { getMealAddressPage, deleteMealAddress } from '@/api/meal-manage'
 import { useRoute } from 'vue-router'
 import { DropResponse } from '@/api/common/types.ts'
-import { dropDownMeeting } from '@/api/common'
+import { dropDownConvention } from '@/api/common'
 
 const route = useRoute()
 
 const formModel = ref({
-    conventionID: 0,
+    conventionGroupId: 0,
     keyword: null,
 })
 
@@ -82,7 +82,7 @@ function openAddressDialog(title, status: boolean, row: any) {
         isEdit: status,
         maxSort: maxSort.value,
         formData: {
-            conventionID: formModel.value.conventionID,
+            conventionGroupId: formModel.value.conventionGroupId,
             items: addressList.value,
         },
     } as any
@@ -124,11 +124,11 @@ async function getList() {
 }
 async function init() {
     const { id } = route.query as any
-    await dropDownMeeting().then((res) => {
+    await dropDownConvention().then((res) => {
         dropMeeting.value = res.data
-        formModel.value.conventionID = dropMeeting.value.length > 0 ? dropMeeting.value[0].value : null
+        formModel.value.conventionGroupId = dropMeeting.value.length > 0 ? dropMeeting.value[0].value : null
         if (id) {
-            formModel.value.conventionID = id
+            formModel.value.conventionGroupId = id
         }
     })
     await getList()

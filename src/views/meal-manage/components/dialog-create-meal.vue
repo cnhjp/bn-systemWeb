@@ -46,39 +46,55 @@
             <el-link type="danger" @click="onAddTime">添加用餐时间段</el-link>
         </div>
         <div class="meal-time py-20px">
-            <div class="el-flex" v-for="(item, index) in formModel.eatTimeList" :key="`time${index}`">
-                <el-form-item label="用餐类型" :prop="`eatTimeList.${index}.eatName`" :rules="formRules.eatName">
-                    <el-input v-model="item.eatName" />
+            <div
+                class="el-bg--grey px-10px py-20px mb-10px"
+                v-for="(item, index) in formModel.eatTimeList"
+                :key="`time${index}`"
+            >
+                <div class="el-flex">
+                    <el-form-item
+                        label="用餐类型"
+                        :prop="`eatTimeList.${index}.eatName`"
+                        :rules="formRules.eatName"
+                        label-width="80px"
+                    >
+                        <el-input v-model="item.eatName" />
+                    </el-form-item>
+                    <el-form-item
+                        label="开始时间"
+                        :prop="`eatTimeList.${index}.beginTime`"
+                        :rules="formRules.beginTime"
+                        class="eat-time"
+                        label-width="80px"
+                    >
+                        <el-time-picker
+                            v-model="item.beginTime"
+                            placeholder="选择开始时间"
+                            format="HH:mm"
+                            value-format="HH:mm"
+                        />
+                    </el-form-item>
+                    <el-form-item
+                        label="结束时间"
+                        :prop="`eatTimeList.${index}.endTime`"
+                        :rules="formRules.endTime"
+                        class="eat-time"
+                        label-width="80px"
+                    >
+                        <el-time-picker
+                            v-model="item.endTime"
+                            placeholder="选择结束时间"
+                            format="HH:mm"
+                            value-format="HH:mm"
+                        />
+                    </el-form-item>
+                    <el-icon class="el-text--danger ml-10px mt-8px icon" @click="onDeleteTime(index)" v-if="showDelete">
+                        <Delete />
+                    </el-icon>
+                </div>
+                <el-form-item label="菜单 " label-width="80px">
+                    <el-input v-model="item.eatMenu" type="textarea" :rows="2" />
                 </el-form-item>
-                <el-form-item
-                    label="开始时间"
-                    :prop="`eatTimeList.${index}.beginTime`"
-                    :rules="formRules.beginTime"
-                    class="eat-time"
-                >
-                    <el-time-picker
-                        v-model="item.beginTime"
-                        placeholder="选择开始时间"
-                        format="HH:mm"
-                        value-format="HH:mm"
-                    />
-                </el-form-item>
-                <el-form-item
-                    label="结束时间"
-                    :prop="`eatTimeList.${index}.endTime`"
-                    :rules="formRules.endTime"
-                    class="eat-time"
-                >
-                    <el-time-picker
-                        v-model="item.endTime"
-                        placeholder="选择结束时间"
-                        format="HH:mm"
-                        value-format="HH:mm"
-                    />
-                </el-form-item>
-                <el-icon class="el-text--danger ml-10px mt-8px icon" @click="onDeleteTime(index)" v-if="showDelete">
-                    <Delete />
-                </el-icon>
             </div>
         </div>
     </el-form>
@@ -95,14 +111,15 @@ import { ElMessage, FormInstance, FormRules } from 'element-plus'
 const router = useRouter()
 
 const emits = defineEmits(['close', 'refresh'])
-const props = defineProps(['addressList', 'conventionID'])
+const props = defineProps(['addressList', 'conventionGroupId'])
 
 const formRef = ref<FormInstance>()
 const formModel = ref<any>({
-    conventionId: props.conventionID,
+    conventionGroupId: props.conventionGroupId,
     addressId: [],
     beginDate: null,
     endDate: null,
+    eatMenu: '',
     eatTimeList: [
         {
             eatName: '',
@@ -191,6 +208,9 @@ function onConfirm() {
 .eat-time {
     margin-bottom: 18px !important;
     margin-left: 20px;
+}
+.eat-time {
+    width: 235px;
 }
 .icon {
     cursor: pointer;
