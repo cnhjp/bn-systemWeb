@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { getMeetingRoomPage } from '@/api/meeting-manage'
+import { deleteMeetingRoom, getMeetingRoomPage } from '@/api/meeting-manage'
 
 const router = useRouter()
 const formModel = ref({
@@ -70,7 +70,7 @@ function onEdit(row: any) {
 }
 function onDelete(row: any) {
     ElMessageBox.confirm('确定删除该账号吗？').then(() => {
-        deleteHotel(row.id).then(() => {
+        deleteMeetingRoom(row.id).then(() => {
             ElMessage.success('操作成功')
             onRefresh()
         })

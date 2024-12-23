@@ -42,6 +42,14 @@ export function addMeetingRoom(query: any) {
 }
 
 /**
+ * 编辑会议室--获取详情
+ * @returns id
+ */
+export function detailMeetingRoom(id: number | string) {
+    return http.get(`/api/meeting-room/${id}/info`)
+}
+
+/**
  * 编辑会议室
  * @returns query
  */
@@ -54,7 +62,7 @@ export function editMeetingRoom(query: any) {
  * @returns id
  */
 export function deleteMeetingRoom(id: number) {
-    return http.delete(`/api/meeting-room/del`, { id })
+    return http.post(`/api/meeting-room/${id}/del`)
 }
 
 /**
