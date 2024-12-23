@@ -73,12 +73,12 @@ import { ElMessage, FormInstance, FormRules } from 'element-plus'
 const router = useRouter()
 
 const emits = defineEmits(['close', 'refresh'])
-const props = defineProps(['addressList', 'conventionID', 'row'])
+const props = defineProps(['addressList', 'conventionGroupId', 'row'])
 
 const formRef = ref<FormInstance>()
 const formModel = ref<any>({
     id: props.row.id,
-    conventionId: props.conventionID,
+    conventionGroupId: props.conventionGroupId,
     addressId: null,
     beginDate: null,
     eatTime: {

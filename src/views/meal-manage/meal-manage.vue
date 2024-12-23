@@ -3,7 +3,7 @@
         <el-header height="170px">
             <el-form inline class="pt-20px mb-20px">
                 <el-form-item label="会议名称">
-                    <el-select v-model="formModel.conventionId" class="meeting-select" @change="onRefresh">
+                    <el-select v-model="formModel.conventionGroupId" class="meeting-select" @change="onRefresh">
                         <el-option
                             v-for="item in dropMeeting"
                             :key="item.value"
@@ -74,21 +74,21 @@
             <!--                <div class="line-chart">用餐趋势图</div>-->
             <!--            </div>-->
             <div class="list-wrapper el-bg--white p-20px">
-                <list :conventionID="formModel.conventionId" />
+                <list :conventionGroupId="formModel.conventionGroupId" />
             </div>
         </el-main>
     </el-container>
 </template>
 
 <script setup lang="ts">
-import { dropDownMeeting } from '@/api/common'
+import { dropDownConvention } from '@/api/common'
 import { DropResponse } from '@/api/common/types.ts'
 import { dropDownTimedStatus, getMealsTotal } from '@/api/meal-manage'
 import List from './components/list.vue'
 
 const visible = ref(false)
 const formModel = ref({
-    conventionId: 0,
+    conventionGroupId: 0,
     timedStatus: 0,
 })
 
@@ -115,9 +115,9 @@ async function onRefresh() {
 const dropMeeting = ref<DropResponse[]>([])
 const dropTimedStatus = ref<DropResponse[]>([])
 async function init() {
-    await dropDownMeeting().then((res) => {
+    await dropDownConvention().then((res) => {
         dropMeeting.value = res.data
-        formModel.value.conventionId = dropMeeting.value.length > 0 ? dropMeeting.value[0].value : null
+        formModel.value.conventionGroupId = dropMeeting.value.length > 0 ? dropMeeting.value[0].value : null
     })
     await dropDownTimedStatus().then((res) => {
         dropTimedStatus.value = res.data

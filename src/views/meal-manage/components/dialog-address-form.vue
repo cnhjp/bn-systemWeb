@@ -61,7 +61,7 @@ function onConfirm() {
         if (vali) {
             const data = {} as any
             Object.assign(data, props.formData)
-            if (formModel.value.id) {
+            if (!formModel.value.id) {
                 data.items.push(formModel.value)
             } else {
                 data.items.map((it: any) => {

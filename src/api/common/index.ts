@@ -38,3 +38,12 @@ export function uploadDocument(params) {
 export function dropDownMeeting() {
     return http.get('/api/convention/drop')
 }
+
+/**
+ * 大会下拉
+ * @param
+ * @returns
+ */
+export function dropDownConvention() {
+    return http.get('/api/mobile/convention/group/drop')
+}
