@@ -4,6 +4,7 @@ import { HttpStatus, HttpStatusDescription } from './enums'
 import { useUserStore } from '@/store'
 import { downloadBlob, isValidJSON } from '../common'
 import { HttpEvent } from '../event'
+import { router } from '~/src/router'
 
 /**
  * 当响应类型为二进制流（Blob）时，下载数据
@@ -144,8 +145,19 @@ export const http = new BusinessHttpRequest({
 // 监听错误
 export function handleError() {
     window.$app.on(HttpEvent.onError, (error: HttpError, response: HttpResponse) => {
-        const { config } = response
-        if (config.toastError === false) {
+        const resp = response || error.response
+        // 登录页
+        if (resp.status === HttpStatus.UNAUTHORIZED) {
+            router.push({
+                name: 'login',
+                query: {
+                    redirect: router.currentRoute.value.fullPath,
+                },
+            })
+            return
+        }
+        const { config } = resp
+        if ((config as any).toastError === false) {
             return
         }
         ElMessage.error(error.message)
