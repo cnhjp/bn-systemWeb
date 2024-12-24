@@ -91,7 +91,7 @@ function onEdit(row) {
 
 function onDelete(row) {
     ElMessageBox.confirm('确定删除该分组吗？').then(() => {
-        deleteGroup({ groupId: row.id }).then(() => {
+        deleteGroup(row.id).then(() => {
             ElMessage.success('操作成功')
             onRefresh()
         })
