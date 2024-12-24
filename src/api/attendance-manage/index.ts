@@ -17,7 +17,7 @@ export function getAttendPage(query: any) {
 
 // 一键全签
 export function setAllAttendance(conventionId: number) {
-    return http.post(`/api/convention/${conventionId}/sign`)
+    return http.post(`/api/convention-person/auto-sign`, { conventionId })
 }
 
 // 修改状态
