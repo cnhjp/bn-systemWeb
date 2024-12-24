@@ -142,7 +142,6 @@ function onSetAll() {
 
 function onExport() {
     exportQuery.value.isExpor = true
-    exportQuery.value.IsWorker = false
     exportQuery.value.orderColumn = ''
     exportQuery.value.orderColumns = []
     exportQuery.value.exportFields = ['seatingName', 'status']
