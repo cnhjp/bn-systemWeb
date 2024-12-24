@@ -11,7 +11,7 @@ export function fetchLogin(data: LoginByUserRequest) {
 // }
 
 export function fetchUserInfo(personId: number) {
-    return http.get('/api/login/getPersonInfo', { personId })
+    return http.get('/api/login/getPersonInfo', { personId }, { throwError: true })
 }
 
 export function fetchUserMenus() {

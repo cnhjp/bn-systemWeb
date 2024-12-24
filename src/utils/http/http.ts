@@ -10,7 +10,7 @@ class BusinessError<T = unknown, D = any> extends HttpError<T, D> {
 }
 
 /** 设置默认值 */
-function defaults<T = any>(...args: { [key: string]: any }[]): T {
+function defaults(...args: { [key: string]: any }[]) {
     return args.reduce((inst: { [key: string]: any }, next: { [key: string]: any }) => {
         Object.keys(next).forEach((key: string) => {
             if (!(key in inst)) {
@@ -18,7 +18,7 @@ function defaults<T = any>(...args: { [key: string]: any }[]): T {
             }
         })
         return inst
-    }, {}) as T
+    }, {})
 }
 /** Blob下载 */
 function handleDownload(response: BusinessResponse) {
@@ -44,7 +44,7 @@ function handleDownload(response: BusinessResponse) {
 
 /** 请求成功事件 */
 function handleRequestSucced(config: BusinessConfig) {
-    config = defaults(config, {
+    defaults(config, {
         download: true,
         throwError: false,
         toastError: true,
@@ -73,7 +73,7 @@ function handleResponseSucced(response: BusinessResponse) {
     }
 
     if (rest.code === HttpStatus.SUCCESS) {
-        return rest
+        return response
     }
 
     const status: string = rest.code || HttpStatus.SYSTEM_ERROR
