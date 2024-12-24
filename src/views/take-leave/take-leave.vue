@@ -32,10 +32,10 @@
                 <template #actions="{ row }">
                     <el-button type="primary" size="small" @click="onView(row)">查看</el-button>
                     <el-button type="danger" size="small" @click="onSetStatus(row)">
-                        {{ row.approvalStatus === 2 ? '通过' : '拒绝' }}
+                        {{ [0, 2].includes(row.approvalStatus) ? '通过' : '拒绝' }}
                     </el-button>
-                    <el-button type="primary" size="small" @click="onEdit(row)">编辑</el-button>
-                    <el-button type="danger" size="small" @click="onDelete(row)">删除</el-button>
+                    <!-- <el-button type="primary" size="small" @click="onEdit(row)">编辑</el-button>
+                    <el-button type="danger" size="small" @click="onDelete(row)">删除</el-button> -->
                 </template>
             </b-grid>
         </el-main>
@@ -59,14 +59,14 @@ const gridProps = reactive({
     columns: [
         { title: '序号', type: 'seq', width: 80, align: 'center' },
         { title: '会议名称', field: 'conventionTitle', minWidth: 180, align: 'center' },
-        {
-            title: '开始时间',
-            field: 'showDateTimeStr',
-            slots: { default: 'startTime' },
-            minWidth: 100,
-            align: 'center',
-        },
-        { title: '结束时间', field: 'showDateTimeStr', slots: { default: 'endTime' }, minWidth: 100, align: 'center' },
+        // {
+        //     title: '开始时间',
+        //     field: 'showDateTimeStr',
+        //     slots: { default: 'startTime' },
+        //     minWidth: 100,
+        //     align: 'center',
+        // },
+        // { title: '结束时间', field: 'showDateTimeStr', slots: { default: 'endTime' }, minWidth: 100, align: 'center' },
         { title: '状态', field: 'approvalStatusStr', minWidth: 80, align: 'center' },
         { title: '操作', slots: { default: 'actions' }, minWidth: 280, fixed: 'right', align: 'center' },
     ],
@@ -124,7 +124,7 @@ function onView(row) {
 
 function onSetStatus(row) {
     ElMessageBox.confirm('确定更新状态吗？').then(() => {
-        const api = row.approvalStatus === 2 ? setTakeLeavePassed : setTakeLeaveNotPassed
+        const api = [0, 2].includes(row.approvalStatus) ? setTakeLeavePassed : setTakeLeaveNotPassed
         api(row.id).then(() => {
             ElMessage.success('操作成功')
             onRefresh()
