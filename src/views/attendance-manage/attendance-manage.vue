@@ -141,10 +141,11 @@ function onSetAll() {
 }
 
 function onExport() {
-    exportQuery.value.isExpo = true
+    exportQuery.value.isExpor = true
+    exportQuery.value.IsWorker = false
     exportQuery.value.orderColumn = ''
     exportQuery.value.orderColumns = []
-    exportQuery.value.exportFields = ['seatingName', 'attendStatusStr']
+    exportQuery.value.exportFields = ['seatingName', 'status']
     exportQuery.value.selectedIDs = refGrid.value.getSelected().map((item: any) => item.conventionPersonId)
     exportPerson(exportQuery.value).then(() => {
         ElMessage.success('操作成功')

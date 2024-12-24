@@ -25,9 +25,9 @@
                         </el-button>
                         <template #dropdown>
                             <el-dropdown-menu>
-                                <el-dropdown-item command="seat">导入座签</el-dropdown-item>
-                                <el-dropdown-item command="personnel">导入人员</el-dropdown-item>
-                                <el-dropdown-item command="photo">导入照片</el-dropdown-item>
+                                <el-dropdown-item command="seat">导出座签</el-dropdown-item>
+                                <el-dropdown-item command="personnel">导出人员</el-dropdown-item>
+                                <el-dropdown-item command="photo">导出照片</el-dropdown-item>
                             </el-dropdown-menu>
                         </template>
                     </el-dropdown>
