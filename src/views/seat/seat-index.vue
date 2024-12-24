@@ -53,6 +53,9 @@
                     </el-form>
                     <!-- 操作按钮 -->
                     <div>
+                        <el-button type="primary" size="small" icon="Picture" @click="generatePreview">
+                            生成预览图
+                        </el-button>
                         <el-button type="primary" size="small" icon="Upload" @click="syncSeatNumber">
                             同步座位号
                         </el-button>
@@ -618,6 +621,9 @@ export default {
         // 导出座位表
         handleExport() {
             this.$refs.seatMain.exportSeat()
+        },
+        generatePreview() {
+            this.$refs.seatMain.generatePreview()
         },
         // 点击行触发，选中或不选中复选框
         handleRowClick(row) {
