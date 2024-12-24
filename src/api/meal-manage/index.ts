@@ -98,3 +98,16 @@ export function addMealAddress(query: any) {
 export function deleteMealAddress(query: any) {
     return http.delete('/api/conferenceEat/deleteAddressByIdList', query)
 }
+
+/**
+ * 新增用餐地址
+ * @param query
+ * @returns
+ */
+export function exportMeals(query: any) {
+    return http.download('/api/conferenceEat/exportPage', query, {
+        downloadName: '用餐安排.xlsx',
+        method: 'POST',
+        download: true,
+    })
+}

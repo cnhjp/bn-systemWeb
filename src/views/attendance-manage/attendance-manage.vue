@@ -109,6 +109,7 @@ const gridProps = reactive({
         return exportQuery
     },
     columns: [
+        { type: 'checkbox', width: 60, align: 'center' },
         { title: '姓名', field: 'seatingName', minWidth: 220 },
         { title: '状态', slots: { default: 'attendStatusStr' }, minWidth: 220 },
         { title: '操作', slots: { default: 'actions' }, minWidth: 220, fixed: 'right', align: 'center' },
@@ -140,6 +141,11 @@ function onSetAll() {
 }
 
 function onExport() {
+    exportQuery.value.isExpo = true
+    exportQuery.value.orderColumn = ''
+    exportQuery.value.orderColumns = []
+    exportQuery.value.exportFields = ['seatingName', 'attendStatusStr']
+    exportQuery.value.selectedIDs = refGrid.value.getSelected().map((item: any) => item.conventionPersonId)
     exportPerson(exportQuery.value).then(() => {
         ElMessage.success('操作成功')
     })

@@ -41,7 +41,7 @@
             <template #toolbar-right>
                 <el-button type="primary" @click="onCreateMeal()">创建用餐</el-button>
                 <el-button type="primary" @click="onDelete(null)">批量删除</el-button>
-                <el-button type="primary" @click="onBookMeetingRoom()">导出</el-button>
+                <el-button type="primary" @click="exportMealList()">导出</el-button>
             </template>
             <template #eatDate="{ row }">
                 {{ useDateFormat(row.eatDate, 'YYYY-MM-DD') }}
@@ -58,7 +58,7 @@
 import { useDateFormat } from '@vueuse/core'
 import DialogCreateMeal from './dialog-create-meal.vue'
 import DialogEditMeal from './dialog-edit-meal.vue'
-import { deleteMeals, dropDownMealAddress, getMealPage } from '@/api/meal-manage'
+import { deleteMeals, dropDownMealAddress, exportMeals, getMealPage } from '@/api/meal-manage'
 import { dropDownSetValueNumner } from '@/utils'
 import { ElMessage } from 'element-plus'
 
@@ -76,10 +76,12 @@ const formModel = ref({
     addressId: 0,
 })
 
+const exportQuery = ref<any>(null)
 const gridProps = reactive({
     data: getMealPage,
     query: (params: any) => {
-        return Object.assign(params, formModel.value)
+        exportQuery.value = Object.assign(params, formModel.value)
+        return exportQuery.value
     },
     columns: [
         { type: 'checkbox', width: 80 },
@@ -117,8 +119,10 @@ function openDialog(component: any, title: string, params: any) {
 function onCreateMeal() {
     openDialog(DialogCreateMeal, '创建用餐', null)
 }
-function onBookMeetingRoom() {
-    openDialog(DialogEditMeal, '编辑用餐', {})
+function exportMealList() {
+    exportMeals(exportQuery.value).then((res) => {
+        ElMessage.success('???')
+    })
 }
 function onEdit(row: any) {
     openDialog(DialogEditMeal, '编辑用餐', { row })
