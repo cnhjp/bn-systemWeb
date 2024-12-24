@@ -37,7 +37,7 @@
                 </template>
 
                 <template #actions="{ row }">
-                    <el-button type="primary" size="small" @click="onEdit(row)">查看</el-button>
+                    <el-button type="primary" size="small" @click="onDetail(row)">查看</el-button>
                     <el-button type="primary" size="small" @click="onEdit(row)">编辑</el-button>
                     <el-button type="danger" size="small" @click="onDelete(row)" v-if="!row.isMainAdmin">
                         删除
@@ -98,11 +98,21 @@ function onRefresh() {
     })
 }
 
+function onDetail(row) {
+    router.push({
+        name: 'news-manage-detail',
+        query: {
+            id: row.id,
+        },
+    })
+}
+
 function onAdd() {
     router.push({
         name: 'news-manage-add',
         query: {
             newsType: props.newsType,
+            conventionGroupID: formModel.conventionGroupID,
         },
     })
 }
@@ -112,6 +122,7 @@ function onEdit(row) {
         name: 'news-manage-edit',
         query: {
             id: row.id,
+            conventionGroupID: formModel.conventionGroupID,
         },
     })
 }

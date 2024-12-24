@@ -25,6 +25,12 @@ const routes: AuthRoute.Route = [
         component: () => import('@/views/news-manage/news-edit.vue'),
         meta: { title: '编辑', rootName: '' },
     },
+    {
+        path: 'detail',
+        name: 'news-manage-detail',
+        component: () => import('@/views/news-manage/news-detail.vue'),
+        meta: { title: '详情', rootName: '' },
+    },
 ]
 
 export default {
