@@ -1,7 +1,7 @@
 import { HttpRequest, HttpError } from '@package/http'
 import { HttpStatus, HttpStatusDescription } from './enums'
 import type { BusinessConfig, BusinessResponse } from './types'
-import { useUserStore } from '@/store'
+import { useUserStore, useRouteStore } from '@/store'
 import { downloadBlob } from '../common'
 
 /** 业务异常 */
@@ -90,6 +90,12 @@ function handleResponseSucced(response: BusinessResponse) {
 function handleResponseFailed(error: BusinessError) {
     return new Promise((resolve, reject) => {
         const { config, request, response } = error
+
+        const routeStore = useRouteStore()
+
+        if (error.status === HttpStatus.UNAUTHORIZED) {
+            routeStore.redirectToLogin(true)
+        }
 
         if (config.toastError === true) {
             ElMessage.error(error.message)
