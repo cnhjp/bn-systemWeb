@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    ChoosePersonnel: typeof import('./../src/components/business/choose-personnel/src/choose-personnel.vue')['default']
     CommonDialog: typeof import('./../src/components/common/common-dialog/src/common-dialog.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
