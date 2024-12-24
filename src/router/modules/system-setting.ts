@@ -8,6 +8,12 @@ const routes: AuthRoute.Route = [
         meta: { title: '人员账号' },
     },
     {
+        path: 'admin-manage',
+        name: 'admin-manage',
+        component: () => import('@/views/system-setting/admin-manage.vue'),
+        meta: { title: '管理员账号' },
+    },
+    {
         path: 'params-setting',
         name: 'params-setting',
         component: () => import('@/views/system-setting/params-setting.vue'),

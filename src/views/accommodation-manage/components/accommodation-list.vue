@@ -160,7 +160,7 @@ function openDialog(component: any, title: string, width: string, params: any) {
 }
 
 function onArrange() {
-    openDialog(DialogArrange, '一键安排', '400px', {})
+    openDialog(DialogArrange, '一键安排', '500px', {})
 }
 
 function onAdd() {
@@ -202,13 +202,21 @@ function onDeletePerson(person: any) {
 }
 
 function onExport() {
-    const data = {
-        ...exportQuery.value,
-        isExpro: false,
+    const selectArr = refGrid.value.getSelected()
+    const ids = selectArr.map((it: any) => it.hotelRoomId)
+    if (ids) {
+        const data = {
+            ...exportQuery.value,
+            isExpro: true,
+            selectedIDs: ids,
+            orderColumns: [],
+        }
+        exportHotelRoom(data).then(() => {
+            ElMessage.success('操作成功')
+        })
+    } else {
+        ElMessage.warning('请先选择要导出的数据')
     }
-    exportHotelRoom(data).then(() => {
-        ElMessage.success('操作成功')
-    })
 }
 function onImport() {
     console.log('onImport')

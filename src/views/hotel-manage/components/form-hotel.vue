@@ -4,6 +4,7 @@
             <page-header :title="title" is-show-btn />
         </el-header>
         <el-main>
+            {{ fileList.value }}
             <el-row class="el-bg--white p-50px">
                 <el-col :span="18" :offset="3">
                     <el-form ref="formRef" :model="formModel" :rules="formRules" label-width="80px">
@@ -106,7 +107,7 @@ const formRules = reactive<FormRules<HotelForm>>({
 
 // upload
 const fileList = ref<any>([])
-const imageUrl = ref('')
+const imageUrl = ref<any>(null)
 function onUpload() {
     return Promise.resolve()
 }
@@ -138,9 +139,14 @@ function onClose() {
 }
 
 function onConfirm() {
-    const data = {
-        ...formModel.value,
-        files: imageUrl.value ? [imageUrl.value] : [],
+    const data = new FormData()
+    for (const key of Object.keys(formModel.value)) {
+        if (key === 'files') {
+            const file = fileList.value[0]
+            data.append(key, file.raw!)
+        } else {
+            data.append(key, formModel.value[key])
+        }
     }
     formRef.value.validate((valid) => {
         if (valid) {
@@ -148,4 +154,8 @@ function onConfirm() {
         }
     })
 }
+onMounted(() => {
+    imageUrl.value = formModel.value.files
+    fileList.value = [{ url: formModel.value.files[0] }]
+})
 </script>

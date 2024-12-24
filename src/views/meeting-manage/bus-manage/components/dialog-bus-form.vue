@@ -18,6 +18,9 @@
                 <el-form-item label="发车地" prop="startAddress">
                     <el-input v-model="formModel.startAddress" placeholder="请输入发车地" maxlength="20" />
                 </el-form-item>
+                <el-form-item label="路线" prop="regularServiceRoute">
+                    <el-input v-model="formModel.regularServiceRoute" placeholder="请输入路线" />
+                </el-form-item>
                 <el-form-item label="备注" prop="remark">
                     <el-input
                         v-model="formModel.remark"
@@ -55,11 +58,9 @@ const formModel = reactive(
             startTime: '',
             startAddress: '',
             remark: '',
+            regularServiceRoute: '',
         },
         props.row,
-        {
-            startTime: props.row.startTimeStr,
-        },
     ),
 )
 

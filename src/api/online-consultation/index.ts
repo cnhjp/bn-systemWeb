@@ -1,5 +1,5 @@
 import { http } from '~/src/utils'
-import { OnlineConsultationListResponse, OnlineConsultationDetail, reply } from './types'
+import { OnlineConsultationListResponse, OnlineConsultationDetail } from './types'
 
 /**
  * 获取在线咨询
@@ -24,6 +24,6 @@ export function detailOnlineConsultation(query: any) {
  * @param query
  * @returns
  */
-export function replyOnlineConsultation(query: reply) {
+export function replyOnlineConsultation(query: any) {
     return http.form('/api/inquiry/reply', query)
 }

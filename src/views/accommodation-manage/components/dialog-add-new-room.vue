@@ -131,11 +131,11 @@ async function dropDownRoom() {
 }
 
 // 酒店下拉
-const hotelDropList = ref<DropResponse[]>([])
+const hotelDropList = ref<any>([])
 async function dropDownHotel() {
     dropDownHotelType().then((res) => {
         const { data } = res
-        hotelDropList.value = (data || []).map((it) => {
+        hotelDropList.value = data.map((it: any) => {
             return {
                 label: it.hotelName,
                 value: it.id,

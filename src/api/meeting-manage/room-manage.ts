@@ -64,11 +64,3 @@ export function editMeetingRoom(query: any) {
 export function deleteMeetingRoom(id: number) {
     return http.post(`/api/meeting-room/${id}/del`)
 }
-
-/**
- * 会议室预约列表
- * @returns query
- */
-export function getMeetingRoomEventList(query: any) {
-    return http.get(`/api/meeting-room/convention-list`, query)
-}

@@ -1,6 +1,6 @@
 <template>
     <div class="pt-30px px-30px">
-        <el-select v-model="status">
+        <el-select v-model="attendStatus">
             <el-option v-for="item in list" :key="item.value" :label="item.label" :value="item.value" />
         </el-select>
         <div class="el-flex is-center mt-20px">
@@ -14,18 +14,22 @@
 import { changeStatus } from '@/api/attendance-manage'
 import { ElMessage } from 'element-plus'
 
-defineProps(['list'])
+const props = defineProps(['list', 'ids', 'attendStatus'])
 const emits = defineEmits(['close', 'refresh'])
 
-const status = ref<number>(null)
+const attendStatus = ref<number>(props.attendStatus || null)
 
 function onClose() {
     emits('close')
 }
 
 function onConfirm() {
-    if (status.value) {
-        changeStatus({ status: status.value }).then(() => {
+    if (attendStatus.value) {
+        const query = {
+            attendStatus: attendStatus.value,
+            conventionPersonIdList: props.ids,
+        }
+        changeStatus(query).then(() => {
             ElMessage.success('操作成功')
             emits('refresh')
             onClose()
