@@ -1,6 +1,5 @@
 <template>
     <b-upload
-        v-model:file-list="list"
         :auto-upload="false"
         :limit="9"
         :on-change="onFileChange"
@@ -16,13 +15,6 @@
 <script setup lang="ts">
 import { UploadFile } from 'element-plus'
 const emits = defineEmits(['close', 'confirm'])
-
-const props = defineProps({
-    fileList: {
-        type: Array,
-        default: () => [],
-    },
-})
 
 const list = ref<any>(null)
 function onFileChange(_response: any, file: UploadFile) {
