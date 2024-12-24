@@ -8,9 +8,6 @@
                 <el-form-item label="标题" prop="title">
                     <el-input v-model="formModel.title" />
                 </el-form-item>
-                <el-form-item label="会议" prop="conventionGroupID">
-                    <b-select :data="getGroupDrop" v-model="formModel.conventionGroupID" />
-                </el-form-item>
                 <el-form-item label="内容" prop="content">
                     <el-input type="textarea" v-model="formModel.content" />
                 </el-form-item>
@@ -55,7 +52,6 @@
 </template>
 
 <script setup lang="ts">
-import { getGroupDrop } from '~/src/api/before-meeting/info'
 import type { UploadFile } from 'element-plus'
 
 const route = useRoute()
@@ -84,7 +80,7 @@ const formModel = reactive<any>({
     newsType: +route.query.newsType,
     newsId: '',
     title: '',
-    conventionGroupID: '',
+    conventionGroupID: route.query.conventionGroupID,
     content: '',
 })
 
@@ -97,7 +93,7 @@ const formRules = reactive({
             required: true,
             message: '请上传封面',
             validator: (_val, _rule, cb) => {
-                if (fileList.value.length) {
+                if (imageUrl.value) {
                     cb()
                 } else {
                     cb(new Error('请上传封面'))
@@ -139,7 +135,8 @@ watch(
     (val) => {
         if (val) {
             Object.assign(formModel, val)
-            debugger
+            imageUrl.value = val.coverPhotoUrl
+            formModel.newsId = val.newsID
         }
     },
 )
