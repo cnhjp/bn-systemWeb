@@ -16,7 +16,7 @@ export function getHotelPage(query: any) {
  * @returns
  */
 export function addHotel(query: HotelForm) {
-    return http.post('/api/hotel/add', query)
+    return http.form('/api/hotel/add', query)
 }
 
 /**
@@ -25,7 +25,7 @@ export function addHotel(query: HotelForm) {
  * @returns
  */
 export function editHotel(query: HotelForm) {
-    return http.post('/api/hotel/update', query)
+    return http.form('/api/hotel/update', query)
 }
 
 /**

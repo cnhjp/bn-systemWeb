@@ -7,63 +7,25 @@ export function overViewAttendance(conventionId: number) {
 
 // 签到状态
 export function dropDownAttendanceStatus() {
-    //return http.get('/api/convention/type')
-    return Promise.resolve({
-        data: [
-            {
-                label: '已签',
-                value: 1,
-            },
-            {
-                label: '未签',
-                value: 2,
-            },
-            {
-                label: '请假',
-                value: 3,
-            },
-        ],
-    })
+    return http.get('/api/convention-person/attend-status/drop')
 }
 
 // 签到列表
 export function getAttendPage(query: any) {
-    //return http.get('/api/convention/type')
-    console.log(query)
-    return Promise.resolve({
-        data: {
-            total: 3,
-            rows: [
-                {
-                    name: '李建国',
-                    status: 1,
-                },
-                {
-                    name: '张建军',
-                    status: 2,
-                },
-                {
-                    name: '方圆',
-                    status: 3,
-                },
-            ],
-        },
-    })
+    return http.post('/api/convention-person/page', query)
 }
 
 // 一键全签
-export function setAllAttendance() {
-    //return http.get('/api/convention/type')
-    return Promise.resolve({
-        data: 'success',
-    })
+export function setAllAttendance(conventionId: number) {
+    return http.post(`/api/convention/${conventionId}/sign`)
 }
 
 // 修改状态
 export function changeStatus(query: any) {
-    //return http.get('/api/convention/type')
-    console.log(query)
-    return Promise.resolve({
-        data: 'success',
-    })
+    return http.post('/api/convention-person/attend-status', query)
 }
+
+// 导出人员
+// export function exportPerson(query: any) {
+//     return http.post('/api/convention-person/export', query)
+// }
