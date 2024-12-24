@@ -39,7 +39,8 @@
         "icon": "cast",
         "children": [
             { "id": 501, "title": "人员管理", "route": "personnel-manage", "icon": "cast" },
-            { "id": 502, "title": "参数配置", "route": "params-setting", "icon": "cast" }
+            { "id": 502, "title": "参数配置", "route": "params-setting", "icon": "cast" },
+            { "id": 503, "title": "管理员管理", "route": "admin-manage", "icon": "cast" }
         ]
     },
     {
