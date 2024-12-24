@@ -82,5 +82,15 @@
         "title": "请假管理",
         "route": "take-leave-list",
         "icon": "cast"
+    },
+    {
+        "id": 1200,
+        "title": "新闻管理",
+        "route": "news-manage",
+        "icon": "cast",
+        "children": [
+            { "id": 1001, "title": "大会动态", "route": "news-convention-activity", "icon": "cast" },
+            { "id": 1002, "title": "大会简报", "route": "news-convention-brief", "icon": "cast" }
+        ]
     }
 ]

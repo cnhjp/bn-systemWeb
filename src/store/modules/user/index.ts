@@ -43,7 +43,7 @@ export const useUserStore = defineStore('user-store', {
     },
     getters: {
         isLoggedIn(state) {
-            return Boolean(state.token)
+            return Boolean(state.token) && !!state.personId
         },
         isInitUser(state) {
             return state.userInfo && state.userInfo.userId > 0

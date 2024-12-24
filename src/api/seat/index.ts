@@ -98,3 +98,10 @@ export function saveSeatToConventionperson(data) {
 export function saveSeatSortNum(data) {
     return http.post('/api/convention-seat/saveSortNum', data)
 }
+
+/** 保存预览图 */
+export function savePreview(id, file) {
+    const formData = new FormData()
+    formData.append('file', file)
+    return http.post(`/api/convention-seat/${id}/preview`, formData)
+}
