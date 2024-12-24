@@ -28,8 +28,8 @@ export function changeStatus(query: any) {
 // 导出人员
 export function exportPerson(query: any) {
     return http.download('/api/convention-person/export', query, {
-        downloadName: '住宿安排.xlsx',
         method: 'POST',
         download: true,
+        filename: '住宿安排.xlsx',
     })
 }

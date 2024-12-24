@@ -2,7 +2,7 @@ import { HttpRequest, HttpError } from '@package/http'
 import { HttpStatus, HttpStatusDescription } from './enums'
 import type { BusinessConfig, BusinessResponse } from './types'
 import { useUserStore, useRouteStore } from '@/store'
-import { downloadBlob } from '../common'
+import { downloadBlob, isValidJSON } from '../common'
 
 /** 业务异常 */
 class BusinessError<T = unknown, D = any> extends HttpError<T, D> {
@@ -25,20 +25,39 @@ function handleDownload(response: BusinessResponse) {
     return new Promise((resolve, reject) => {
         const { data, headers, config } = response
 
+        // 流下载
         if (data instanceof Blob && data.type === 'application/octet-stream') {
             const name =
-                config.downloadName ||
+                config.filename ||
                 decodeURIComponent(headers['content-disposition'].split(';')[1].split('filename=')[1])
             downloadBlob(data, name)
-            return resolve(response)
+            resolve(response)
         }
-        if ('FileReader' in window) {
+        // 其他文件下载
+        else if ('FileReader' in window) {
+            const fileReader = new FileReader()
+            fileReader.onload = function () {
+                if (isValidJSON(this.result as string)) {
+                    response.data = JSON.parse(this.result as string)
+                    resolve(response)
+                } else {
+                    const blob = new Blob([data], { type: data.type })
+                    downloadBlob(blob, config.filename)
+                    resolve(response)
+                }
+            }
+            fileReader.onerror = function (error) {
+                reject(error)
+            }
+            fileReader.readAsText(data as Blob)
         }
-
-        const error = new Error('Download tool not found') as HttpError
-        error.status = 404
-        error.response = response
-        reject(error)
+        // 下载失败
+        else {
+            const error = new Error('Download tool not found') as HttpError
+            error.status = 404
+            error.response = response
+            reject(error)
+        }
     })
 }
 
@@ -109,7 +128,7 @@ function handleResponseFailed(error: BusinessError) {
 
 /** 业务请求类 */
 export class BusinessRequest<Config extends BusinessConfig = BusinessConfig> extends HttpRequest {
-    download<T = any, R = BusinessResponse<Blob>>(url: string, params?: T, _object?: Config): Promise<R> {
+    download<T = any, R = BusinessResponse<Blob>>(url: string, params?: T, _object?: Partial<Config>): Promise<R> {
         const method = (_object?.method || 'GET').toUpperCase()
         return this.instance({
             method,
