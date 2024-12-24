@@ -520,7 +520,7 @@ export default {
             saveSeatToConventionperson({
                 seatlayoutId: this.seatlayoutId,
             }).then((res) => {
-                this.$message.success('同步成功')
+                ElMessage.success('同步成功')
             })
         },
         editRoadName(status) {
@@ -563,7 +563,7 @@ export default {
         // 人员搜索
         handleSearch() {
             if (!this.searchName) {
-                this.$message.error('输入不能为空')
+                ElMessage.error('输入不能为空')
                 return
             }
             const searchSeat = this.seatList.find((seat) => {
@@ -574,10 +574,7 @@ export default {
                 this.selectedSeats = [searchSeat]
                 this.render()
             } else {
-                this.$message({
-                    message: `已排座位人员中无 ‘${this.searchName}’`,
-                    type: 'warning',
-                })
+                ElMessage.warning(`已排座位人员中无 ‘${this.searchName}’`)
             }
         },
         // 固定/取消固定人员
@@ -589,7 +586,7 @@ export default {
             // 设置固定座
             if (status === 'fixed') {
                 if (!pointSeat.enable) {
-                    this.$message.warning('座位已禁用，请启用')
+                    ElMessage.warning('座位已禁用，请启用')
                     return
                 }
                 if (pointSeat.personId) {
@@ -793,7 +790,7 @@ export default {
                     seat.personId = ''
                     seat.name = ''
                 } else {
-                    this.$message.warning(
+                    ElMessage.warning(
                         `${seat.rowIndex}排${seat.colIndex}号 ${seat.name}，为固定人员，不可删除，请取消固定`,
                     )
                 }
@@ -843,7 +840,7 @@ export default {
                     seat.name = ''
                     seat.seatType = 1
                 } else {
-                    this.$message.warning(
+                    ElMessage.warning(
                         `${seat.rowIndex}排${seat.colIndex}号 ${seat.name}，为固定人员，不可清空，请取消固定`,
                     )
                 }
@@ -871,7 +868,7 @@ export default {
                 const centerSeat = areaSeatList.find((seat) => seat.rowIndex == num && seat.seatType == 4)
                 if (!centerSeat) {
                     checkResult = false
-                    this.$message.warning(`第${num}排未设置中心位置`)
+                    ElMessage.warning(`第${num}排未设置中心位置`)
                     break
                 }
             }
@@ -892,7 +889,7 @@ export default {
         setSeat(activeArea = '') {
             const operateArea = activeArea || this.activeArea
             if (!operateArea) {
-                this.$message.warning('请先选择区域')
+                ElMessage.warning('请先选择区域')
                 return
             }
             const area = this.areaList.find((area) => area.seatAreaId == operateArea)
@@ -1080,7 +1077,7 @@ export default {
             const selectY = this.selectedSeats.map((seat) => seat.y)
             const singleY = [...new Set(selectY)]
             if (selectY.length > singleY.length) {
-                this.$message.warning('每排只可选择一个中心座位')
+                ElMessage.warning('每排只可选择一个中心座位')
                 return
             }
 
@@ -1107,7 +1104,7 @@ export default {
             const selectY = this.selectedSeats.map((seat) => seat.y)
             const singleY = [...new Set(selectY)]
             if (selectY.length > singleY.length) {
-                this.$message.warning('每排只可选择一个中心座位')
+                ElMessage.warning('每排只可选择一个中心座位')
                 return
             }
 
@@ -1202,7 +1199,7 @@ export default {
                 })
             }
             if (errorSeat || errorRoad) {
-                this.$message.warning('下方座位空间不足')
+                ElMessage.warning('下方座位空间不足')
             } else {
                 const sameRowSeat = this.seatList.filter((seat) => seat.y == pointSeat.y + 1 && seat.x < pointSeat.x)
                 this.id++
@@ -1271,7 +1268,7 @@ export default {
                 })
             }
             if (errorSeat || errorRoad) {
-                this.$message.warning('上方座位空间不足')
+                ElMessage.warning('上方座位空间不足')
             } else {
                 const sameOrder = this.orderList.find((order) => order.y == pointSeat.y - 1)
                 let rowIndex = pointSeat.rowIndex
@@ -1371,7 +1368,7 @@ export default {
             }
 
             if (errorSeat || errorRoad) {
-                this.$message.warning('左侧座位空间不足')
+                ElMessage.warning('左侧座位空间不足')
             } else {
                 this.id++
                 const colIndex = pointSeat.colIndex
@@ -1434,7 +1431,7 @@ export default {
                 return result
             })
             if (errorSeat || errorRoad) {
-                this.$message.warning('右侧座位空间不足')
+                ElMessage.warning('右侧座位空间不足')
             } else {
                 this.id++
                 const colIndex = pointSeat.colIndex + 1
@@ -1474,12 +1471,12 @@ export default {
             const errorX = type == 'left' ? pointSeat.x - 0.5 : pointSeat.x + 0.5
             const errprSeat = this.seatList.find((seat) => seat.x == errorX)
             if (errprSeat) {
-                this.$message.warning('有座位重叠，无法添加列')
+                ElMessage.warning('有座位重叠，无法添加列')
                 return
             }
             const maxX = Math.max(...this.seatList.map((seat) => seat.x))
             if (maxX >= 80) {
-                this.$message.warning('已达到最大列数：80')
+                ElMessage.warning('已达到最大列数：80')
                 return
             }
             const copySeat = this.seatList.filter((seat) => seat.x == referenceX)
@@ -1656,7 +1653,7 @@ export default {
             if (!pointSeat) return
             const errprSeat = this.seatList.find((seat) => seat.x === pointSeat.x + 0.5 || seat.x === pointSeat.x - 0.5)
             if (errprSeat) {
-                this.$message.warning('该列有错位座位，无法删除')
+                ElMessage.warning('该列有错位座位，无法删除')
                 return
             }
 
@@ -1712,7 +1709,7 @@ export default {
 
             const maxY = Math.max(...this.seatList.map((seat) => seat.y))
             if (maxY >= 80) {
-                this.$message.warning('已达到最大排数：80')
+                ElMessage.warning('已达到最大排数：80')
                 return
             }
             pointSeat.selected = false
@@ -2001,7 +1998,7 @@ export default {
 
             const errprSeat = this.seatList.find((seat) => seat.x == pointSeat.x - 0.5)
             if (errprSeat) {
-                this.$message.warning('有座位重叠，无法添加过道')
+                ElMessage.warning('有座位重叠，无法添加过道')
                 return
             }
             const roads = this.roadList.filter((road) => road.x >= pointSeat.x)
@@ -2040,13 +2037,13 @@ export default {
             const pointSeat = this.selectedSeats[0]
             if (!pointSeat) return
             if (pointSeat.colIndex == this.column) {
-                this.$message.warning('当前已是最后一列')
+                ElMessage.warning('当前已是最后一列')
                 this.menuInfo.show = false
                 return
             }
             const errprSeat = this.seatList.find((seat) => seat.x == pointSeat.x + 0.5)
             if (errprSeat) {
-                this.$message.warning('有座位重叠，无法添加过道')
+                ElMessage.warning('有座位重叠，无法添加过道')
                 return
             }
             const roads = this.roadList.filter((road) => road.x > pointSeat.x)
@@ -2177,11 +2174,11 @@ export default {
                             seat.x = seat.x - 0.5
                         })
                     } else {
-                        this.$message.warning('不可移动')
+                        ElMessage.warning('不可移动')
                         return
                     }
                 } else {
-                    this.$message.warning('不可移动')
+                    ElMessage.warning('不可移动')
                     return
                 }
             } else {
@@ -2213,7 +2210,7 @@ export default {
                         }
                     })
                 } else {
-                    this.$message.warning('不可移动')
+                    ElMessage.warning('不可移动')
                     return
                 }
             }
@@ -2265,11 +2262,11 @@ export default {
                             seat.x = seat.x + 0.5
                         })
                     } else {
-                        this.$message.warning('不可移动')
+                        ElMessage.warning('不可移动')
                         return
                     }
                 } else {
-                    this.$message.warning('不可移动')
+                    ElMessage.warning('不可移动')
                     return
                 }
             } else {
@@ -2301,7 +2298,7 @@ export default {
                         }
                     })
                 } else {
-                    this.$message.warning('不可移动')
+                    ElMessage.warning('不可移动')
                     return
                 }
             }
@@ -2402,11 +2399,11 @@ export default {
                 // 设置中心座
                 if (this.setCenter) {
                     if (!this.activeArea) {
-                        this.$message.warning('请先选择区域')
+                        ElMessage.warning('请先选择区域')
                         return
                     }
                     if (pointSeat.areaId !== this.activeArea) {
-                        this.$message.warning('请在当前选中区域设置中心座')
+                        ElMessage.warning('请在当前选中区域设置中心座')
                         return
                     }
                     if (pointSeat.seatType == 4) {
@@ -2417,7 +2414,7 @@ export default {
                         (seat) => seat.seatType == 4 && seat.y == pointSeat.y && seat.areaId == pointSeat.areaId,
                     )
                     if (errorSeat) {
-                        this.$message.warning('该排已存在中心位置')
+                        ElMessage.warning('该排已存在中心位置')
                         return
                     }
                     pointSeat.seatType = 4
@@ -2903,7 +2900,7 @@ export default {
             if (targetSeat) {
                 const pointerSeat = this.selectedSeats[0]
                 if (targetSeat.areaId != pointerSeat.areaId) {
-                    this.$message.warning('请选择相同区域的座位')
+                    ElMessage.warning('请选择相同区域的座位')
                     this.render()
                 } else {
                     if (targetSeat.personId) {
@@ -3453,7 +3450,6 @@ export default {
         },
         generatePreview() {
             this.canvasToDataUrl().then((dataURL) => {
-                debugger
                 const filename = this.layoutName + '.png'
                 // 将base64的数据部分提取出来
                 const binary = atob(dataURL.split(',')[1])
@@ -3469,7 +3465,7 @@ export default {
                 var file = new File([blob], filename, { type: mimeString })
 
                 savePreview(this.seatlayoutId, file).then(()=>{
-                    this.$message.success('生成成功')
+                    ElMessage.success('生成成功')
                 })
             })
         },
