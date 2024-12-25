@@ -172,9 +172,9 @@ function onClose() {
 
 function onConfirm() {
     const data = new FormData()
+    const file = fileList.value[0]
     for (const key of Object.keys(formModel.value)) {
-        if (key === 'file') {
-            const file = fileList.value[0]
+        if (key === 'file' && file) {
             data.append(key, file.raw!)
         } else {
             data.append(key, formModel.value[key])
@@ -191,13 +191,18 @@ const roomTypeList = ref([])
 const roomStatusList = ref([])
 const venueTypeList = ref([])
 function init() {
-    if (formModel.value.preview) {
+    const { roomType, preview, venueType, status } = formModel.value
+
+    if (preview) {
         fileList.value = [
             {
                 url: formModel.value.preview,
             },
         ]
     }
+    formModel.value.roomType = roomType || null
+    formModel.value.venueType = venueType || null
+    formModel.value.status = status || null
 
     dropDownMeetingRoomType().then((res) => {
         roomTypeList.value = dropDownSetValueNumner(res.data, false, true)
