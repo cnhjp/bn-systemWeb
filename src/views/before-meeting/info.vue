@@ -39,6 +39,10 @@
                     <el-input v-model="row.sortIndex" @blur="onEditSortIndex(row)" class="!w-full"></el-input>
                 </template>
 
+                <template #qrCode="{ row }">
+                    <el-image class="w-80px h-80px" :src="row.qrCode" :preview-src-list="[row.qrCode]"></el-image>
+                </template>
+
                 <template #conventionStatus="{ row }">
                     <b-select v-model="row.conventionStatus" :data="StatusDrop" @change="onEditStatus(row)"></b-select>
                 </template>
@@ -85,6 +89,7 @@ const gridProps = reactive({
     columns: [
         { title: '排序', slots: { default: 'sortIndex' }, width: 120, align: 'center' },
         { title: '名称', field: 'conventionName', minWidth: 180, align: 'center' },
+        { title: '二维码', slots: { default: 'qrCode' }, minWidth: 120, align: 'center' },
         { title: '日期', field: 'conventionMeetingTimeStr', minWidth: 120, align: 'center' },
         { title: '类型', field: 'conventionType', minWidth: 80, align: 'center' },
         { title: '状态', slots: { default: 'conventionStatus' }, width: 100, align: 'center' },
