@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>operation-attention</title>
+    <g id="后台" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="web--登录" transform="translate(-1059.000000, -605.000000)" fill="#F0A53B" fill-rule="nonzero">
+            <g id="operation-attention" transform="translate(1059.000000, 605.000000)">
+                <rect id="矩形" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                <path d="M8,1 C4.13400675,1 1,4.13400675 1,8 C1,11.8659932 4.13400675,15 8,15 C11.8659932,15 15,11.8659932 15,8 C15,4.13400675 11.8659932,1 8,1 L8,1 Z M8.932,11.995 L7.069,11.995 L7.069,10.401 L8.932,10.401 L8.932,11.995 Z M8.932,9.086 L7.069,9.086 L7.069,4.005 L8.932,4.005 L8.932,9.086 L8.932,9.086 Z" id="形状"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -10,7 +10,7 @@
                     <div>
                         <el-form inline>
                             <el-form-item label="会议">
-                                <el-select v-model="formModel.conventionID">
+                                <el-select v-model="formModel.conventionID" @change="onRefresh">
                                     <el-option
                                         v-for="item in dropMeeting"
                                         :key="item.value"
@@ -20,7 +20,7 @@
                                 </el-select>
                             </el-form-item>
                             <el-form-item label="状态">
-                                <el-select v-model="formModel.attendStatus">
+                                <el-select v-model="formModel.attendStatus" @change="onRefresh" clearable>
                                     <el-option
                                         v-for="item in dropAttendanceStatus"
                                         :key="item.value"
@@ -77,7 +77,7 @@
                 </b-grid>
             </div>
         </el-main>
-        <b-common-dialog ref="refDialog" @refresh="onRefresh"></b-common-dialog>
+        <b-common-dialog ref="refDialog" @refresh="onChangeRowStatus"></b-common-dialog>
     </el-container>
 </template>
 <script setup lang="ts">
@@ -137,6 +137,7 @@ function onSetAll() {
     setAllAttendance(formModel.value.conventionID).then(() => {
         ElMessage.success('操作成功')
         onRefresh()
+        getOverView()
     })
 }
 
@@ -166,6 +167,11 @@ function openDialog(params: any) {
     })
 }
 
+function onChangeRowStatus() {
+    onRefresh()
+    getOverView()
+}
+
 const dropMeeting = ref<DropResponse[]>([])
 const dropAttendanceStatus = ref<any[]>([])
 const overview = ref<any>({
@@ -174,6 +180,12 @@ const overview = ref<any>({
     leave: 0,
     attend: 0,
 })
+
+async function getOverView() {
+    await overViewAttendance(formModel.value.conventionID).then((res) => {
+        overview.value = res.data
+    })
+}
 async function init() {
     await dropDownMeeting().then((res) => {
         dropMeeting.value = dropDownSetValueNumner(res.data, false, true)
@@ -182,9 +194,7 @@ async function init() {
     await dropDownAttendanceStatus().then((res) => {
         dropAttendanceStatus.value = dropDownSetValueNumner(res.data, false, true)
     })
-    await overViewAttendance(formModel.value.conventionID).then((res) => {
-        overview.value = res.data
-    })
+    await getOverView()
     await onRefresh()
 }
 init()

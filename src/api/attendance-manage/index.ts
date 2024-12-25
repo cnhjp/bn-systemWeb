@@ -30,6 +30,6 @@ export function exportPerson(query: any) {
     return http.download('/api/convention-person/export', query, {
         method: 'POST',
         download: true,
-        filename: '住宿安排.xlsx',
+        filename: '签到.xlsx',
     })
 }
