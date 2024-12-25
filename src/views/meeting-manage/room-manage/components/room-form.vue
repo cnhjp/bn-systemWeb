@@ -171,9 +171,14 @@ function onClose() {
 }
 
 function onConfirm() {
-    const data = {
-        ...formModel.value,
-        file: imageUrl.value ? imageUrl.value : null,
+    const data = new FormData()
+    for (const key of Object.keys(formModel.value)) {
+        if (key === 'file') {
+            const file = fileList.value[0]
+            data.append(key, file.raw!)
+        } else {
+            data.append(key, formModel.value[key])
+        }
     }
     formRef.value.validate((valid) => {
         if (valid) {
@@ -186,6 +191,14 @@ const roomTypeList = ref([])
 const roomStatusList = ref([])
 const venueTypeList = ref([])
 function init() {
+    if (formModel.value.preview) {
+        fileList.value = [
+            {
+                url: formModel.value.preview,
+            },
+        ]
+    }
+
     dropDownMeetingRoomType().then((res) => {
         roomTypeList.value = dropDownSetValueNumner(res.data, false, true)
     })
