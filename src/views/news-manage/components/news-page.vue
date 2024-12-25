@@ -75,7 +75,7 @@ const gridProps = reactive({
         {
             title: '标题',
             field: 'title',
-            minWidth: 200,
+            minWidth: 300,
         },
         {
             title: '发布时间',

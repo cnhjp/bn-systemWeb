@@ -9,7 +9,7 @@
                 <div class="text-right text-14px color-#666">
                     {{ (data.publishTime || ('' as string)).replace('T', ' ') }}
                 </div>
-                <div class="mt-30px whitespace-pre" v-html="data.content"></div>
+                <div class="mt-30px" v-html="data.content"></div>
             </div>
         </el-main>
     </el-container>

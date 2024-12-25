@@ -9,7 +9,7 @@
                     <el-input v-model="formModel.title" />
                 </el-form-item>
                 <el-form-item label="内容" prop="content">
-                    <el-input type="textarea" v-model="formModel.content" />
+                    <b-editor v-model="formModel.content"></b-editor>
                 </el-form-item>
                 <el-form-item label="封面" prop="file">
                     <b-upload
