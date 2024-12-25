@@ -38,7 +38,7 @@ export function getMeetingRoomPage(query: any) {
  * @returns query
  */
 export function addMeetingRoom(query: any) {
-    return http.post('/api/meeting-room/add', query)
+    return http.form('/api/meeting-room/add', query)
 }
 
 /**
@@ -54,7 +54,7 @@ export function detailMeetingRoom(id: number | string) {
  * @returns query
  */
 export function editMeetingRoom(query: any) {
-    return http.post('/api/meeting-room/mod', query)
+    return http.form('/api/meeting-room/mod', query)
 }
 
 /**

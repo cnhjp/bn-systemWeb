@@ -47,8 +47,8 @@ export function updateGroup(params) {
 }
 
 // 删除会议分组
-export function deleteGroup(params) {
-    return http.post('/api/convention/group/del', params)
+export function deleteGroup(groupId) {
+    return http.post(`/api/convention/group/${groupId}/del`)
 }
 
 // 获取会议分组下拉

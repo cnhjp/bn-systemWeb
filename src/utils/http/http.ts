@@ -1,8 +1,8 @@
 import { HttpRequest, HttpError } from '@package/http'
 import { HttpStatus, HttpStatusDescription } from './enums'
 import type { BusinessConfig, BusinessResponse } from './types'
-import { useUserStore, useRouteStore } from '@/store'
-import { downloadBlob, isValidJSON } from '../common'
+import { useUserStore } from '@/store'
+import { downloadBlob } from '../common'
 
 /** 业务异常 */
 class BusinessError<T = unknown, D = any> extends HttpError<T, D> {
@@ -10,7 +10,7 @@ class BusinessError<T = unknown, D = any> extends HttpError<T, D> {
 }
 
 /** 设置默认值 */
-function defaults<T = any>(...args: { [key: string]: any }[]): T {
+function defaults(...args: { [key: string]: any }[]) {
     return args.reduce((inst: { [key: string]: any }, next: { [key: string]: any }) => {
         Object.keys(next).forEach((key: string) => {
             if (!(key in inst)) {
@@ -18,52 +18,33 @@ function defaults<T = any>(...args: { [key: string]: any }[]): T {
             }
         })
         return inst
-    }, {}) as T
+    }, {})
 }
 /** Blob下载 */
 function handleDownload(response: BusinessResponse) {
     return new Promise((resolve, reject) => {
         const { data, headers, config } = response
 
-        // 流下载
         if (data instanceof Blob && data.type === 'application/octet-stream') {
             const name =
-                config.filename ||
+                config.downloadName ||
                 decodeURIComponent(headers['content-disposition'].split(';')[1].split('filename=')[1])
             downloadBlob(data, name)
-            resolve(response)
+            return resolve(response)
         }
-        // 其他文件下载
-        else if ('FileReader' in window) {
-            const fileReader = new FileReader()
-            fileReader.onload = function () {
-                if (isValidJSON(this.result as string)) {
-                    response.data = JSON.parse(this.result as string)
-                    resolve(response)
-                } else {
-                    const blob = new Blob([data], { type: data.type })
-                    downloadBlob(blob, config.filename)
-                    resolve(response)
-                }
-            }
-            fileReader.onerror = function (error) {
-                reject(error)
-            }
-            fileReader.readAsText(data as Blob)
+        if ('FileReader' in window) {
         }
-        // 下载失败
-        else {
-            const error = new Error('Download tool not found') as HttpError
-            error.status = 404
-            error.response = response
-            reject(error)
-        }
+
+        const error = new Error('Download tool not found') as HttpError
+        error.status = 404
+        error.response = response
+        reject(error)
     })
 }
 
 /** 请求成功事件 */
 function handleRequestSucced(config: BusinessConfig) {
-    config = defaults(config, {
+    defaults(config, {
         download: true,
         throwError: false,
         toastError: true,
@@ -92,7 +73,7 @@ function handleResponseSucced(response: BusinessResponse) {
     }
 
     if (rest.code === HttpStatus.SUCCESS) {
-        return rest
+        return response
     }
 
     const status: string = rest.code || HttpStatus.SYSTEM_ERROR
@@ -110,12 +91,6 @@ function handleResponseFailed(error: BusinessError) {
     return new Promise((resolve, reject) => {
         const { config, request, response } = error
 
-        const routeStore = useRouteStore()
-
-        if (error.status === HttpStatus.UNAUTHORIZED) {
-            routeStore.redirectToLogin(true)
-        }
-
         if (config.toastError === true) {
             ElMessage.error(error.message)
         }
@@ -128,7 +103,7 @@ function handleResponseFailed(error: BusinessError) {
 
 /** 业务请求类 */
 export class BusinessRequest<Config extends BusinessConfig = BusinessConfig> extends HttpRequest {
-    download<T = any, R = BusinessResponse<Blob>>(url: string, params?: T, _object?: Partial<Config>): Promise<R> {
+    download<T = any, R = BusinessResponse<Blob>>(url: string, params?: T, _object?: Config): Promise<R> {
         const method = (_object?.method || 'GET').toUpperCase()
         return this.instance({
             method,

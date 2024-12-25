@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     ChoosePersonnel: typeof import('./../src/components/business/choose-personnel/src/choose-personnel.vue')['default']
     CommonDialog: typeof import('./../src/components/common/common-dialog/src/common-dialog.vue')['default']
+    Editor: typeof import('./../src/components/common/editor/src/editor.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
@@ -57,10 +58,6 @@ declare module 'vue' {
     IconLocalAvatar: typeof import('~icons/local/avatar')['default']
     IconLocalExpand: typeof import('~icons/local/expand')['default']
     IconLocalFold: typeof import('~icons/local/fold')['default']
-    IconLocalNetworkError: typeof import('~icons/local/network-error')['default']
-    IconLocalNoPermission: typeof import('~icons/local/no-permission')['default']
-    IconLocalNotFound: typeof import('~icons/local/not-found')['default']
-    IconLocalServiceError: typeof import('~icons/local/service-error')['default']
     NavMenu: typeof import('./../src/components/nav-menu.vue')['default']
     PageHeader: typeof import('./../src/components/business/page-header/src/page-header.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

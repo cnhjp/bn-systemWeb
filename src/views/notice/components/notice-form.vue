@@ -63,7 +63,7 @@ const formModel = ref(
         },
         props.formData,
         {
-            isPublish: props.formData.isPublish && props.formData.isPublish !== 'false' ? true : false,
+            isPublish: props.formData?.isPublish && props.formData?.isPublish !== 'false' ? true : false,
         },
     ),
 )

@@ -8,7 +8,6 @@ import './styles/theme-norm/index.scss'
 import { setupStore } from './store'
 import { setupRouter } from './router'
 import { setupGlobalComponents } from './components'
-import { handleError } from './utils/http'
 import { comApp } from './utils/application'
 
 comApp.ready(async function setupApp() {
@@ -21,8 +20,6 @@ comApp.ready(async function setupApp() {
     app.mount('#app')
 
     app.config.globalProperties.$app = window.$app = comApp
-
-    handleError()
 })
 
 comApp.bootstrap()

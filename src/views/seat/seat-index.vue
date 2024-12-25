@@ -53,14 +53,17 @@
                     </el-form>
                     <!-- 操作按钮 -->
                     <div>
-                        <el-button type="primary" size="small" icon="el-icon-upload2" @click="syncSeatNumber">
+                        <el-button type="primary" size="small" icon="Picture" @click="generatePreview">
+                            生成预览图
+                        </el-button>
+                        <el-button type="primary" size="small" icon="Upload" @click="syncSeatNumber">
                             同步座位号
                         </el-button>
                         <el-button
                             v-show="seatStatus == 'preview'"
                             size="small"
                             type="primary"
-                            icon="el-icon-copy-document"
+                            icon="copy-document"
                             @click="hanldeSeatLayoutCopy"
                         >
                             复制
@@ -70,7 +73,7 @@
                             size="small"
                             :disabled="!queryForm.drop"
                             type="primary"
-                            icon="el-icon-edit-outline"
+                            icon="edit"
                             @click="hanldeSeatLayoutEdit"
                         >
                             编辑
@@ -80,7 +83,7 @@
                             size="small"
                             :disabled="!queryForm.drop"
                             type="primary"
-                            icon="el-icon-download"
+                            icon="download"
                             @click="handleExport"
                         >
                             导出
@@ -270,7 +273,6 @@
 </template>
 
 <script>
-// import seat from "./components/seat";
 import seatMain from './components/seat-main.vue'
 import {
     conventionDrop,
@@ -283,6 +285,7 @@ import {
     seatCopy,
     saveSeatSortNum,
 } from '@/api/seat'
+
 export default {
     components: {
         seatMain,
@@ -618,6 +621,9 @@ export default {
         // 导出座位表
         handleExport() {
             this.$refs.seatMain.exportSeat()
+        },
+        generatePreview() {
+            this.$refs.seatMain.generatePreview()
         },
         // 点击行触发，选中或不选中复选框
         handleRowClick(row) {

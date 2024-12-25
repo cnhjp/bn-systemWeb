@@ -5,7 +5,7 @@
             <el-button type="primary" size="" @click="onAdd()">新增住宿安排</el-button>
             <el-button type="primary" size="" @click="onBatchDelete()">批量删除</el-button>
             <el-button type="primary" size="" @click="onExport()">导出</el-button>
-            <el-button type="primary" size="" @click="onImport()">导入</el-button>
+            <!--            <el-button type="primary" size="" @click="onImport()">导入</el-button>-->
             <el-button type="primary" size="" @click="onSetRoomTime()">设置住宿时间</el-button>
         </template>
 
@@ -218,9 +218,9 @@ function onExport() {
         ElMessage.warning('请先选择要导出的数据')
     }
 }
-function onImport() {
-    console.log('onImport')
-}
+// function onImport() {
+//     console.log('onImport')
+// }
 
 // 安排人员
 function onSelectPerson(row: any) {

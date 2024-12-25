@@ -32,4 +32,4 @@ stats.html
 package-lock.json
 yarn.lock
 
-components.d.ts
+/typings/components.d.ts

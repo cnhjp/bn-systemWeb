@@ -48,8 +48,8 @@ export function updateConventionPerson(params) {
 // 导出照片
 export function downloadPhoto(params) {
     return http.download('/api/convention-person/export-photo', params, {
-        downloadName: '参会人员头像',
         method: 'POST',
+        filename: '参会人员头像',
         download: true,
     })
 }
@@ -62,8 +62,8 @@ export function conventionPersonExportField(params?) {
 // 导出人员
 export function downloadPersonnel(params) {
     return http.download('/api/Convention-Person/export', params, {
-        downloadName: '参会人员.xlsx',
         method: 'POST',
+        filename: '参会人员.xlsx',
         download: true,
     })
 }
@@ -71,8 +71,8 @@ export function downloadPersonnel(params) {
 // 下载模板
 export function downloadTemplate(params?) {
     return http.download('/api/convention-person/download-seatSign-template', params, {
-        downloadName: '座签模板.docx',
-        method: 'get',
+        method: 'GET',
+        filename: '座签模板.docx',
         download: true,
     })
 }
@@ -80,8 +80,8 @@ export function downloadTemplate(params?) {
 // 导出座签
 export function downloadSeat(params?) {
     return http.download('/api/convention-person/export-SeatSign', params, {
-        downloadName: '座签.docx',
-        method: 'post',
+        method: 'POST',
+        filename: '座签.docx',
         download: true,
     })
 }
@@ -131,8 +131,8 @@ export function conventionStaffExportField(params?) {
 // 导出工作人员
 export function downloadStaff(params) {
     return http.download('/api/Convention-Staff/export', params, {
-        downloadName: '参会人员.xlsx',
         method: 'POST',
+        filename: '参会人员.xlsx',
         download: true,
     })
 }

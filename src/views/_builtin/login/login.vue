@@ -1,16 +1,29 @@
 <template>
-    <div class="login-wrap relative wh-full flex-center flex-grow transition duration-300 ease-in-out">
-        <el-form ref="form" class="login-form" :model="formModel" :rules="formRules" label-width="5em">
-            <el-form-item label="账号" prop="userName">
-                <el-input v-model="formModel.userName"></el-input>
+    <div class="login-wrap wh-full h-flex">
+        <el-form ref="form" class="login-form" :model="formModel" :rules="formRules">
+            <h1 class="is-bold el-text--center el-text--darkgrey">欢迎登录</h1>
+            <h3 class="el-text--center el-text--darkgrey">邦诺会务系统</h3>
+            <el-form-item prop="userName" class="mt-25px">
+                <el-input placeholder="请输入您的账号" v-model="formModel.userName" size="large">
+                    <template #prefix>
+                        <img src="@/assets/svg/icon-phone.svg" />
+                    </template>
+                </el-input>
             </el-form-item>
-            <el-form-item label="密码" prop="password">
-                <el-input v-model="formModel.password" type="password"></el-input>
+            <el-form-item prop="password" class="mt-15px">
+                <el-input placeholder="请输入您的密码" v-model="formModel.password" type="password" size="large">
+                    <template #prefix>
+                        <img src="@/assets/svg/icon-password.svg" />
+                    </template>
+                </el-input>
             </el-form-item>
-            <el-form-item>
-                <el-button type="default" @click="onClean">取消</el-button>
-                <el-button type="primary" @click="onLogin">登录</el-button>
+            <el-form-item class="mt-25px">
+                <el-button type="primary" @click="onLogin" class="login-btn">登录</el-button>
             </el-form-item>
+            <div class="el-flex is-center tips">
+                <img src="@/assets/svg/icon-tips.svg" class="mr-5px" />
+                <span>推荐浏览器分辨率： 1920*1080</span>
+            </div>
         </el-form>
     </div>
 </template>
@@ -46,21 +59,50 @@ const onLogin = () => {
             })
     })
 }
-
-const onClean = () => {
-    form.value.resetFields()
-}
 </script>
 
 <style lang="scss" scoped>
 .login-wrap {
-    // background-color: rgb(222, 232, 255);
+    background: #ffffff url('@/assets/images/login-bg.jpg') no-repeat left center/60% 100%;
 }
 
 .login-form {
-    padding: 2em;
-    border-radius: 1em;
-    background-color: rgb(255, 255, 255);
-    box-shadow: var(--el-box-shadow-light);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    margin-left: 60%;
+    h1 {
+        font-size: 32px;
+        letter-spacing: 15px;
+    }
+    h3 {
+        margin-top: 5px;
+        margin-bottom: 30px;
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+}
+:deep(.el-input) {
+    .el-input__wrapper {
+        width: 319px;
+        height: 50px;
+        box-shadow: none;
+        background: #f4f8ff;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+}
+.login-btn {
+    width: 319px;
+    height: 50px;
+    font-size: 16px;
+    border-radius: 8px;
+}
+.tips {
+    color: var(--el-text-color-secondary);
+    font-size: 14px;
 }
 </style>

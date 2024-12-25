@@ -17,7 +17,7 @@ export function getAttendPage(query: any) {
 
 // 一键全签
 export function setAllAttendance(conventionId: number) {
-    return http.post(`/api/convention/${conventionId}/sign`)
+    return http.post(`/api/convention-person/auto-sign`, { conventionId })
 }
 
 // 修改状态
@@ -28,8 +28,8 @@ export function changeStatus(query: any) {
 // 导出人员
 export function exportPerson(query: any) {
     return http.download('/api/convention-person/export', query, {
-        downloadName: '住宿安排.xlsx',
         method: 'POST',
         download: true,
+        filename: '签到.xlsx',
     })
 }
