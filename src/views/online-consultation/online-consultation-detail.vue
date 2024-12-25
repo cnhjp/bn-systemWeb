@@ -108,8 +108,10 @@ import { ElMessage } from 'element-plus'
 import { useRoute } from 'vue-router'
 import { useDateFormat } from '@vueuse/core'
 import DialogUpload from './components/dialog-upload.vue'
+import { useUserStore } from '@/store'
 
 const route = useRoute()
+const userStore = useUserStore()
 const detail = reactive<OnlineConsultationDetail>({
     id: 0,
     title: '',
@@ -140,6 +142,7 @@ function onReply() {
     }
     replyOnlineConsultation(data).then(() => {
         ElMessage.success('操作成功')
+        userStore.getNoReplyCount()
         init()
     })
 }
