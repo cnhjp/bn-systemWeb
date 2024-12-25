@@ -12,7 +12,7 @@
 import { useAppStore } from '@/store'
 import { wrapperEnv } from '@/utils'
 const appStore = useAppStore()
-const title = ref<string>('会务管理系统')
+const title = ref<string>('智慧会务')
 const viteEnv = wrapperEnv()
 title.value = viteEnv.VITE_APP_TITLE
 </script>
