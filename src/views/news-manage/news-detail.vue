@@ -10,6 +10,26 @@
                     {{ (data.publishTime || ('' as string)).replace('T', ' ') }}
                 </div>
                 <div class="mt-30px" v-html="data.content"></div>
+
+                <comment-list
+                    :commentList="[
+                        {
+                            commentID: '1',
+                            personPhotoUrl: 'https://via.placeholder.com/40',
+                            personName: 'John Doe',
+                            comment: 'Great article!',
+                            publishTime: '2023-10-27 10:00:00',
+                        },
+                        {
+                            commentID: '2',
+                            personPhotoUrl: 'https://via.placeholder.com/40',
+                            personName: 'Jane Smith',
+                            comment: 'Very helpful content.',
+                            publishTime: '2023-10-27 11:00:00',
+                        },
+                    ]"
+                    @commentDeleted="getDetail"
+                />
             </div>
         </el-main>
     </el-container>
@@ -17,6 +37,7 @@
 
 <script setup lang="ts">
 import { getNewsDetail } from '~/src/api/news-manage'
+import commentList from './components/comment-list.vue'
 
 const route = useRoute()
 
