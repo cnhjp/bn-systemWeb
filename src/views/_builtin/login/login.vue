@@ -2,7 +2,7 @@
     <div class="login-wrap wh-full h-flex">
         <el-form ref="form" class="login-form" :model="formModel" :rules="formRules">
             <h1 class="is-bold el-text--center el-text--darkgrey">欢迎登录</h1>
-            <h3 class="el-text--center el-text--darkgrey">帮诺会务系统</h3>
+            <h3 class="el-text--center el-text--darkgrey">邦诺会务系统</h3>
             <el-form-item prop="userName" class="mt-25px">
                 <el-input placeholder="请输入您的账号" v-model="formModel.userName" size="large">
                     <template #prefix>
