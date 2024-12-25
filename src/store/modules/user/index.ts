@@ -32,7 +32,6 @@ const defaultUserInfo: User.UserInfo = {
     name: '',
     photoURL: '',
     personID: 0,
-    noticeCount: 0,
 }
 
 export const useUserStore = defineStore('user-store', {
@@ -42,7 +41,8 @@ export const useUserStore = defineStore('user-store', {
             userInfo: defaultUserInfo,
             clientID: getClientID(),
             personId: getPersonID(),
-            noticePopFlag: false,
+            noticePopFlag: false, //标记通知弹窗已打开
+            noticeCount: 0,
         }
     },
     getters: {
@@ -115,10 +115,6 @@ export const useUserStore = defineStore('user-store', {
         async getNoticeCount() {
             const { data } = await getNoticeTotal()
             this.noticeCount = data || 0
-        },
-        /** 标记通知弹窗已打开 */
-        async flagNoticePop() {
-            this.noticePopFlag = true
         },
     },
 })
