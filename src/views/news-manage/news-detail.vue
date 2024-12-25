@@ -9,26 +9,12 @@
                 <div class="text-right text-14px color-#666">
                     {{ (data.publishTime || ('' as string)).replace('T', ' ') }}
                 </div>
-                <div class="mt-30px" v-html="data.content"></div>
+                <div class="mt-30px mb-30px" v-html="data.content"></div>
 
                 <comment-list
-                    :commentList="[
-                        {
-                            commentID: '1',
-                            personPhotoUrl: 'https://via.placeholder.com/40',
-                            personName: 'John Doe',
-                            comment: 'Great article!',
-                            publishTime: '2023-10-27 10:00:00',
-                        },
-                        {
-                            commentID: '2',
-                            personPhotoUrl: 'https://via.placeholder.com/40',
-                            personName: 'Jane Smith',
-                            comment: 'Very helpful content.',
-                            publishTime: '2023-10-27 11:00:00',
-                        },
-                    ]"
+                    :commentList="data.commentList || []"
                     @commentDeleted="getDetail"
+                    v-if="data.commentList && data.commentList.length > 0"
                 />
             </div>
         </el-main>

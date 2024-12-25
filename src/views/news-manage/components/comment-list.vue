@@ -1,7 +1,7 @@
 <template>
     <h2 class="text-2xl font-bold mb-4">评论列表</h2>
     <ul class="pl-0 space-y-4 list-none">
-        <li v-for="comment in commentList" :key="comment.commentID" class="bg-white p-4 rounded-md shadow-md">
+        <li v-for="comment in commentList" :key="comment.newsCommentID" class="bg-white p-4 rounded-md shadow-md">
             <div class="flex items-center justify-between mb-2">
                 <div class="flex items-center">
                     <img
@@ -11,7 +11,7 @@
                     />
                     <span class="font-semibold">{{ comment.personName }}</span>
                 </div>
-                <el-link type="danger" @click="handleDelete(comment.commentID)">删除</el-link>
+                <el-link type="danger" @click="handleDelete(comment.newsCommentID)">删除</el-link>
             </div>
             <p class="text-gray-700 mb-2">{{ comment.comment }}</p>
             <div class="text-gray-500 text-sm">
@@ -32,16 +32,16 @@ const props = defineProps({
 
 const emit = defineEmits(['commentDeleted'])
 
-const handleDelete = async (commentID) => {
+const handleDelete = async (newsCommentID) => {
     try {
         ElMessageBox.confirm('确定删除该评论吗？').then(async () => {
-            await deleteNewsComment(commentID)
-            ElMessage.success('评论删除成功')
-            emit('commentDeleted', commentID)
+            await deleteNewsComment(newsCommentID)
+            ElMessage.success('删除成功')
+            emit('commentDeleted', newsCommentID)
         })
     } catch (error) {
         console.error('Failed to delete comment:', error)
-        ElMessage.error('删除评论失败')
+        ElMessage.error('删除失败')
     }
 }
 </script>
