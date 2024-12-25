@@ -27,6 +27,7 @@
         "@package/b-grid": "workspace:^",
         "@package/core": "workspace:^",
         "@package/http": "workspace:^",
+        "@wangeditor/editor-for-vue": "^5.1.12",
         "crypto-js": "^4.2.0",
         "element-plus": "^2.5.1",
         "jsencrypt": "^3.3.2",
