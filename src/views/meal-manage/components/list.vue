@@ -125,11 +125,11 @@ function exportMealList() {
             conventionGroupId: props.conventionGroupId,
             idList: ids,
         }
-        exportMeals(query).then((res) => {
+        exportMeals(query).then(() => {
             ElMessage.success('???')
         })
     } else {
-        ElMessage.warning('请先选择需要删除的用餐')
+        ElMessage.warning('请先选择需要导出的用餐')
         return
     }
 }
