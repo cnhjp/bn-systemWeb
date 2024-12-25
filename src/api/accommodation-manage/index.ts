@@ -99,7 +99,7 @@ export function detailRoom(id: any) {
  */
 export function exportHotelRoom(query: any) {
     return http.download<any, any>('/api/hotel-room/export', query, {
-        downloadName: '住宿安排.xlsx',
+        filename: '住宿安排.xlsx',
         method: 'GET',
         download: true,
     })

@@ -73,15 +73,13 @@ const formModel = ref({
     conventionGroupId: props.conventionGroupId,
     eatDate: '',
     keyword: '',
-    addressId: 0,
+    addressId: null,
 })
 
-const exportQuery = ref<any>(null)
 const gridProps = reactive({
     data: getMealPage,
     query: (params: any) => {
-        exportQuery.value = Object.assign(params, formModel.value)
-        return exportQuery.value
+        return Object.assign(params, formModel.value, { addressId: formModel.value.addressId || 0 })
     },
     columns: [
         { type: 'checkbox', width: 80 },
@@ -120,9 +118,20 @@ function onCreateMeal() {
     openDialog(DialogCreateMeal, '创建用餐', null)
 }
 function exportMealList() {
-    exportMeals(exportQuery.value).then((res) => {
-        ElMessage.success('???')
-    })
+    const selected = refGrid.value.getSelected()
+    const ids = selected.map((it: any) => it.id)
+    if (ids.length > 0) {
+        const query = {
+            conventionGroupId: props.conventionGroupId,
+            idList: ids,
+        }
+        exportMeals(query).then((res) => {
+            ElMessage.success('???')
+        })
+    } else {
+        ElMessage.warning('请先选择需要删除的用餐')
+        return
+    }
 }
 function onEdit(row: any) {
     openDialog(DialogEditMeal, '编辑用餐', { row })
@@ -156,8 +165,13 @@ function init() {
         conventionGroupId: props.conventionGroupId,
     }
     dropDownMealAddress(query).then((res) => {
-        Object.assign(dropMealAddressPop.value, res.data)
-        dropMealAddress.value = dropDownSetValueNumner(res.data, true, true)
+        if (res.data.length > 0) {
+            Object.assign(dropMealAddressPop.value, res.data)
+            dropMealAddress.value = dropDownSetValueNumner(res.data, true, true)
+            formModel.value.addressId = 0
+        } else {
+            formModel.value.addressId = null
+        }
     })
 }
 init()
