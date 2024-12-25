@@ -21,7 +21,12 @@ export function fetchUserMenus() {
     })
 }
 
-//获取
-export function getNoticeTotal() {
+//获取请假审批统计
+export function getLeaveTotal() {
     return http.get('/api/convention/signature/untreated/total')
+}
+
+//获取未回复统计
+export function getNoReplyTotal() {
+    return http.get('/api/inquiry/noReply/count')
 }

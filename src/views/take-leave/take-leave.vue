@@ -101,7 +101,7 @@ onActivated(() => {
     if (idx !== -1) {
         routeStore.cacheRoutes.splice(idx, 1)
     }
-    userStore.getNoticeCount()
+    userStore.getLeaveCount()
     onRefresh()
 })
 
@@ -129,7 +129,7 @@ function onSetStatus(row) {
         const api = [0, 2].includes(row.approvalStatus) ? setTakeLeavePassed : setTakeLeaveNotPassed
         api(row.id).then(() => {
             ElMessage.success('操作成功')
-            userStore.getNoticeCount() //重新获取通知数量
+            userStore.getLeaveCount() //重新获取通知数量
             onRefresh()
         })
     })
