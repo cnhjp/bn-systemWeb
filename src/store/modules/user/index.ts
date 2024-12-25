@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { fetchLogin, fetchUserInfo } from '@/api/user/user.ts'
+import { fetchLogin, fetchUserInfo, getNoticeTotal } from '@/api/user/user.ts'
 import {
     getToken,
     setToken,
@@ -21,6 +21,8 @@ export interface UserStoreState {
     userInfo: User.UserInfo
     clientID: string
     personId: string
+    noticePopFlag: boolean
+    noticeCount: number
 }
 
 const defaultUserInfo: User.UserInfo = {
@@ -30,6 +32,7 @@ const defaultUserInfo: User.UserInfo = {
     name: '',
     photoURL: '',
     personID: 0,
+    noticeCount: 0,
 }
 
 export const useUserStore = defineStore('user-store', {
@@ -39,6 +42,7 @@ export const useUserStore = defineStore('user-store', {
             userInfo: defaultUserInfo,
             clientID: getClientID(),
             personId: getPersonID(),
+            noticePopFlag: false,
         }
     },
     getters: {
@@ -106,6 +110,15 @@ export const useUserStore = defineStore('user-store', {
 
             const routeStore = useRouteStore()
             routeStore.resetRouteStore()
+        },
+        /** 获取通知 */
+        async getNoticeCount() {
+            const { data } = await getNoticeTotal()
+            this.noticeCount = data || 0
+        },
+        /** 标记通知弹窗已打开 */
+        async flagNoticePop() {
+            this.noticePopFlag = true
         },
     },
 })

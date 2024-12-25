@@ -20,3 +20,8 @@ export function fetchUserMenus() {
         data: MenuJson,
     })
 }
+
+//获取
+export function getNoticeTotal() {
+    return http.get('/api/convention/signature/untreated/total')
+}

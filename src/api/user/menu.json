@@ -1,96 +1,105 @@
 [
-    {
-        "id": 10,
-        "title": "电子排座",
-        "icon": "cast",
-        "route": "seat-index"
-    },
+
     {
         "id": 100,
         "title": "会务管理",
         "route": "meeting-manage",
-        "icon": "cast",
+        "icon": "customer-management",
         "children": [
-            { "id": 101, "title": "班车管理", "route": "bus-manage", "icon": "cast" },
-            { "id": 102, "title": "会议室管理", "route": "room-manage", "icon": "cast" }
+            { "id": 101, "title": "班车管理", "route": "bus-manage", "icon": "round" },
+            { "id": 102, "title": "会议室管理", "route": "room-manage", "icon": "round" },
+            {
+                "id": 10,
+                "title": "电子排座",
+                "icon": "round",
+                "route": "seat-index"
+            }
         ]
-    },
-    {
-        "id": 200,
-        "title": "酒店管理",
-        "route": "hotel-manage-list",
-        "icon": "cast"
     },
     {
         "id": 300,
         "title": "会前准备",
         "route": "before-meeting",
-        "icon": "cast",
+        "icon": "customization",
         "children": [
-            { "id": 301, "title": "会议信息", "route": "before-meeting-info", "icon": "cast" },
-            { "id": 302, "title": "会议人员", "route": "before-meeting-personnel", "icon": "cast" },
-            { "id": 303, "title": "会议材料", "route": "before-meeting-material", "icon": "cast" }
+            { "id": 301, "title": "会议信息", "route": "before-meeting-info", "icon": "round" },
+            { "id": 302, "title": "会议人员", "route": "before-meeting-personnel", "icon": "round" },
+            { "id": 303, "title": "会议材料", "route": "before-meeting-material", "icon": "round" },
+            {
+                "id": 900,
+                "title": "签到管理",
+                "route": "attendance-manage-list",
+                "icon": "round"
+            },
+            {
+                "id": 1100,
+                "title": "请假管理",
+                "route": "take-leave-list",
+                "icon": "round"
+            }
         ]
     },
     {
-        "id": 500,
-        "title": "系统设置",
-        "route": "system-setting",
-        "icon": "cast",
+        "id": 200,
+        "title": "酒店管理",
+        "route": "hotel-manage",
+        "icon": "company",
         "children": [
-            { "id": 501, "title": "人员管理", "route": "personnel-manage", "icon": "cast" },
-            { "id": 502, "title": "参数配置", "route": "params-setting", "icon": "cast" },
-            { "id": 503, "title": "管理员管理", "route": "admin-manage", "icon": "cast" }
+            {
+                "id": 2001,
+                "title": "酒店管理",
+                "route": "hotel-manage-list",
+                "icon": "round"
+            },
+            {
+                "id": 800,
+                "title": "住宿管理",
+                "route": "accommodation-manage-list",
+                "icon": "round"
+            }
         ]
-    },
-    {
-        "id": 600,
-        "title": "在线咨询",
-        "route": "online-consultation-list",
-        "icon": "cast"
-    },
-    {
-        "id": 700,
-        "title": "通知公告",
-        "route": "notice-list",
-        "icon": "cast"
-    },
-    {
-        "id": 800,
-        "title": "住宿管理",
-        "route": "accommodation-manage-list",
-        "icon": "cast"
-    },
-    {
-        "id": 900,
-        "title": "签到管理",
-        "route": "attendance-manage-list",
-        "icon": "cast"
     },
     {
         "id": 1000,
         "title": "用餐管理",
         "route": "meal-manage",
-        "icon": "cast",
+        "icon": "meal",
         "children": [
-            { "id": 1001, "title": "用餐管理", "route": "meal-manage-list", "icon": "cast" },
-            { "id": 1002, "title": "用餐地点", "route": "meal-manage-address", "icon": "cast" }
+            { "id": 1001, "title": "用餐管理", "route": "meal-manage-list" , "icon": "round"},
+            { "id": 1002, "title": "用餐地点", "route": "meal-manage-address", "icon": "round" }
         ]
-    },
-    {
-        "id": 1100,
-        "title": "请假管理",
-        "route": "take-leave-list",
-        "icon": "cast"
     },
     {
         "id": 1200,
         "title": "新闻管理",
         "route": "news-manage",
-        "icon": "cast",
+        "icon": "image-text",
         "children": [
-            { "id": 1001, "title": "大会动态", "route": "news-convention-activity", "icon": "cast" },
-            { "id": 1002, "title": "大会简报", "route": "news-convention-brief", "icon": "cast" }
+            { "id": 1001, "title": "大会动态", "route": "news-convention-activity", "icon": "round" },
+            { "id": 1002, "title": "大会简报", "route": "news-convention-brief", "icon": "round" }
+        ]
+    },
+    {
+        "id": 700,
+        "title": "通知公告",
+        "route": "notice-list",
+        "icon": "remind"
+    },
+    {
+        "id": 600,
+        "title": "在线咨询",
+        "route": "online-consultation-list",
+        "icon": "online-message"
+    },
+    {
+        "id": 500,
+        "title": "系统设置",
+        "route": "system-setting",
+        "icon": "settings",
+        "children": [
+            { "id": 501, "title": "人员管理", "route": "personnel-manage", "icon": "round" },
+            { "id": 502, "title": "参数配置", "route": "params-setting", "icon": "round" },
+            { "id": 503, "title": "管理员管理", "route": "admin-manage", "icon": "round" }
         ]
     }
 ]

@@ -43,9 +43,10 @@
 </template>
 <script setup lang="ts">
 import { useDateFormat } from '@vueuse/core'
-import { useRouteStore } from '~/src/store'
+import { useRouteStore, useUserStore } from '~/src/store'
 import { getTakeLeavePage, deleteTakeLeave, setTakeLeavePassed, setTakeLeaveNotPassed } from '~/src/api/take-leave'
 
+const userStore = useUserStore()
 const routeStore = useRouteStore()
 const router = useRouter()
 const refGrid = ref<any>(null)
@@ -127,6 +128,7 @@ function onSetStatus(row) {
         const api = [0, 2].includes(row.approvalStatus) ? setTakeLeavePassed : setTakeLeaveNotPassed
         api(row.id).then(() => {
             ElMessage.success('操作成功')
+            userStore.getNoticeCount() //重新获取通知数量
             onRefresh()
         })
     })
