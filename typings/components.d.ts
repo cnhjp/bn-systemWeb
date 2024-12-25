@@ -11,6 +11,7 @@ declare module 'vue' {
     CommonDialog: typeof import('./../src/components/common/common-dialog/src/common-dialog.vue')['default']
     Editor: typeof import('./../src/components/common/editor/src/editor.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
+    ElBadge: typeof import('element-plus/es')['ElBadge']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCheckboxGroup: typeof import('element-plus/es')['ElCheckboxGroup']

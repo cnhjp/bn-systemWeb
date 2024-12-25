@@ -19,7 +19,9 @@
             <span class="pl-8px text-14px font-medium el-text--darkgrey">欢迎您，{{ userStore.userInfo.name }}</span>
         </div>
         <div @click="onRouter" class="el-border--left px-29px">
-            <img src="@/assets/svg/layout-notice.svg" class="icon-btn" />
+            <el-badge class="item" :is-dot="!!userStore.noticeCount">
+                <img src="@/assets/svg/layout-notice.svg" class="icon-btn" />
+            </el-badge>
         </div>
         <div @click="onLogout" class="el-border--left px-29px">
             <img src="@/assets/svg/layout-logout.svg" class="icon-btn" />
@@ -33,6 +35,7 @@ import { useUserStore, useRouteStore } from '@/store'
 const router = useRouter()
 const userStore = useUserStore()
 const routeStore = useRouteStore()
+import { ElNotification } from 'element-plus'
 
 const onRouter = () => {
     router.push({ name: 'take-leave-list' })
@@ -41,6 +44,31 @@ const onLogout = () => {
     userStore.logout()
     routeStore.redirectToLogin()
 }
+
+const popNotification = ref<any>(null)
+async function openNotification() {
+    if (!userStore.noticePopFlag) {
+        popNotification.value = ElNotification({
+            title: '通知提示',
+            message: `共有${userStore.noticeCount}条请假信息待审批`,
+            duration: 0,
+            offset: 50,
+            type: 'info',
+        })
+        await userStore.flagNoticePop()
+    }
+}
+
+async function init() {
+    await userStore.getNoticeCount()
+    await openNotification()
+}
+onMounted(() => {
+    init()
+})
+onBeforeUnmount(() => {
+    if (popNotification.value) popNotification.value.close()
+})
 </script>
 
 <style lang="scss">

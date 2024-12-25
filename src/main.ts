@@ -9,6 +9,7 @@ import { setupStore } from './store'
 import { setupRouter } from './router'
 import { setupGlobalComponents } from './components'
 import { comApp } from './utils/application'
+import 'element-plus/dist/index.css'
 
 comApp.ready(async function setupApp() {
     const app = createApp(App)
