@@ -35,7 +35,7 @@ const userStore = useUserStore()
 const routeStore = useRouteStore()
 
 const onRouter = () => {
-    router.push({ name: 'notice-list' })
+    router.push({ name: 'take-leave-list' })
 }
 const onLogout = () => {
     userStore.logout()
