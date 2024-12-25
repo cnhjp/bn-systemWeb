@@ -55,13 +55,29 @@ async function openNotification() {
             offset: 50,
             type: 'info',
         })
-        await userStore.flagNoticePop()
     }
 }
 
+//更新弹窗
+watch(
+    () => userStore.noticeCount,
+    () => {
+        popNotification.value?.close()
+        openNotification()
+    },
+)
+
 async function init() {
     await userStore.getNoticeCount()
-    await openNotification()
+
+    //手动点击关闭后，不更新弹窗内容
+    const closeBtns = document.getElementsByClassName('el-notification__closeBtn')
+    if (closeBtns.length > 0) {
+        const close = closeBtns[0]
+        close.addEventListener('click', () => {
+            userStore.noticePopFlag = true
+        })
+    }
 }
 onMounted(() => {
     init()

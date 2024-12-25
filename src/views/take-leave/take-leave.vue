@@ -86,6 +86,7 @@ onActivated(() => {
     if (idx !== -1) {
         routeStore.cacheRoutes.splice(idx, 1)
     }
+    userStore.getNoticeCount()
     onRefresh()
 })
 
