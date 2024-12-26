@@ -28,8 +28,8 @@ stats.html
 *.sln
 *.sw?
 
-/src/typings/components.d.ts
 package-lock.json
 yarn.lock
 
-/typings/components.d.ts
+typings/components.d.ts
+typings/auto-imports.d.ts
