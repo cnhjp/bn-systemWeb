@@ -6,7 +6,12 @@
                     <el-button type="primary" size="" @click="onAdd()">添加</el-button>
                 </template>
 
-                <template #toolbar-right>
+              <template #photo="{ row }">
+                <el-image :src="row.preview" class="preview-img"></el-image>
+              </template>
+
+
+              <template #toolbar-right>
                     <el-input
                         v-model="formModel.keyword"
                         placeholder="会议室名称"
@@ -48,6 +53,7 @@ const gridProps = reactive({
     columns: [
         { title: '会议室名称', field: 'roomName', minWidth: 220 },
         { title: '面积', field: 'usableArea', minWidth: 120 },
+        { title: '图片', slots: { default: 'photo' }, minWidth: 220 },
         { title: '容纳人数', field: 'galleryful', minWidth: 120 },
         { title: '会议室类型', field: 'roomTypeStr', minWidth: 120 },
         { title: '场地类型', field: 'venueTypeStr', minWidth: 120 },
@@ -77,3 +83,10 @@ function onDelete(row: any) {
     })
 }
 </script>
+
+<style scoped>
+.preview-img {
+  width: 32px;
+  height: 32px;
+}
+</style>

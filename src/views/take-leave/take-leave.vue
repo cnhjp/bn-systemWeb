@@ -53,6 +53,7 @@ const gridProps = reactive({
     columns: [
         { title: '序号', type: 'seq', width: 80, align: 'center' },
         { title: '会议名称', field: 'conventionTitle', minWidth: 180, align: 'center' },
+        { title: '请假人', field: 'proposer', minWidth: 180, align: 'center' },
         { title: '状态', slots: { default: 'status' }, minWidth: 80, align: 'center' },
         { title: '操作', slots: { default: 'actions' }, minWidth: 280, fixed: 'right', align: 'center' },
     ],
