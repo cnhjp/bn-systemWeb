@@ -1,12 +1,12 @@
 <template>
     <b-grid ref="refGrid" v-bind="gridProps">
         <template #toolbar-left>
-            <el-button type="primary" size="" @click="onArrange()">一键安排</el-button>
-            <el-button type="primary" size="" @click="onAdd()">新增住宿安排</el-button>
-            <el-button type="primary" size="" @click="onBatchDelete()">批量删除</el-button>
-            <el-button type="primary" size="" @click="onExport()">导出</el-button>
-            <!--            <el-button type="primary" size="" @click="onImport()">导入</el-button>-->
-            <el-button type="primary" size="" @click="onSetRoomTime()">设置住宿时间</el-button>
+            <el-button type="primary"  @click="onArrange()">一键安排</el-button>
+            <el-button type="primary"  @click="onAdd()">新增住宿安排</el-button>
+            <el-button type="primary"  @click="onBatchDelete()">批量删除</el-button>
+            <el-button type="primary"  @click="onExport()">导出</el-button>
+            <!--            <el-button type="primary"  @click="onImport()">导入</el-button>-->
+            <el-button type="primary"  @click="onSetRoomTime()">设置住宿时间</el-button>
         </template>
 
         <template #toolbar-right>
