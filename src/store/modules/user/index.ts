@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { fetchLogin, fetchUserInfo, getNoticeTotal } from '@/api/user/user.ts'
+import { fetchLogin, fetchUserInfo, getLeaveTotal, getNoReplyTotal } from '@/api/user/user.ts'
 import {
     getToken,
     setToken,
@@ -21,8 +21,8 @@ export interface UserStoreState {
     userInfo: User.UserInfo
     clientID: string
     personId: string
-    noticePopFlag: boolean
-    noticeCount: number
+    leaveCount: number
+    noReplyCount: number
 }
 
 const defaultUserInfo: User.UserInfo = {
@@ -32,7 +32,6 @@ const defaultUserInfo: User.UserInfo = {
     name: '',
     photoURL: '',
     personID: 0,
-    noticeCount: 0,
 }
 
 export const useUserStore = defineStore('user-store', {
@@ -42,7 +41,8 @@ export const useUserStore = defineStore('user-store', {
             userInfo: defaultUserInfo,
             clientID: getClientID(),
             personId: getPersonID(),
-            noticePopFlag: false,
+            leaveCount: 0,
+            noReplyCount: 0,
         }
     },
     getters: {
@@ -111,14 +111,15 @@ export const useUserStore = defineStore('user-store', {
             const routeStore = useRouteStore()
             routeStore.resetRouteStore()
         },
-        /** 获取通知 */
-        async getNoticeCount() {
-            const { data } = await getNoticeTotal()
-            this.noticeCount = data || 0
+        /** 获取请假 */
+        async getLeaveCount() {
+            const { data } = await getLeaveTotal()
+            this.leaveCount = data || 0
         },
-        /** 标记通知弹窗已打开 */
-        async flagNoticePop() {
-            this.noticePopFlag = true
+        /** 获取通知 */
+        async getNoReplyCount() {
+            const { data } = await getNoReplyTotal()
+            this.noReplyCount = data || 0
         },
     },
 })

@@ -21,12 +21,8 @@
                     <el-button type="primary" @click="onAdd">新增</el-button>
                 </template>
 
-                <template #startTime="{ row }">
-                    {{ useDateFormat(row.startTime, 'YYYY-MM-DD HH:mm') }}
-                </template>
-
-                <template #endTime="{ row }">
-                    {{ useDateFormat(row.endTime, 'YYYY-MM-DD HH:mm') }}
+                <template #status="{ row }">
+                    <el-tag :type="row.approvalStatus === 1 ? 'success' : 'danger'" v-if="row.approvalStatus !== 0">{{row.approvalStatusStr}}</el-tag>
                 </template>
 
                 <template #actions="{ row }">
@@ -34,15 +30,12 @@
                     <el-button type="danger" size="small" @click="onSetStatus(row)">
                         {{ [0, 2].includes(row.approvalStatus) ? '通过' : '拒绝' }}
                     </el-button>
-                    <!-- <el-button type="primary" size="small" @click="onEdit(row)">编辑</el-button>
-                    <el-button type="danger" size="small" @click="onDelete(row)">删除</el-button> -->
                 </template>
             </b-grid>
         </el-main>
     </el-container>
 </template>
 <script setup lang="ts">
-import { useDateFormat } from '@vueuse/core'
 import { useRouteStore, useUserStore } from '~/src/store'
 import { getTakeLeavePage, deleteTakeLeave, setTakeLeavePassed, setTakeLeaveNotPassed } from '~/src/api/take-leave'
 
@@ -60,15 +53,7 @@ const gridProps = reactive({
     columns: [
         { title: '序号', type: 'seq', width: 80, align: 'center' },
         { title: '会议名称', field: 'conventionTitle', minWidth: 180, align: 'center' },
-        // {
-        //     title: '开始时间',
-        //     field: 'showDateTimeStr',
-        //     slots: { default: 'startTime' },
-        //     minWidth: 100,
-        //     align: 'center',
-        // },
-        // { title: '结束时间', field: 'showDateTimeStr', slots: { default: 'endTime' }, minWidth: 100, align: 'center' },
-        { title: '状态', field: 'approvalStatusStr', minWidth: 80, align: 'center' },
+        { title: '状态', slots: { default: 'status' }, minWidth: 80, align: 'center' },
         { title: '操作', slots: { default: 'actions' }, minWidth: 280, fixed: 'right', align: 'center' },
     ],
 })
@@ -101,6 +86,7 @@ onActivated(() => {
     if (idx !== -1) {
         routeStore.cacheRoutes.splice(idx, 1)
     }
+    userStore.getLeaveCount()
     onRefresh()
 })
 
@@ -128,7 +114,7 @@ function onSetStatus(row) {
         const api = [0, 2].includes(row.approvalStatus) ? setTakeLeavePassed : setTakeLeaveNotPassed
         api(row.id).then(() => {
             ElMessage.success('操作成功')
-            userStore.getNoticeCount() //重新获取通知数量
+            userStore.getLeaveCount() //重新获取通知数量
             onRefresh()
         })
     })

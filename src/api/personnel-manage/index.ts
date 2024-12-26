@@ -1,5 +1,4 @@
-import { http } from '~/src/utils'
-import { downloadBlob } from '~/src/utils/common'
+import {http} from '~/src/utils'
 
 /**
  * 获取人员分页列表

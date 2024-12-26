@@ -18,8 +18,8 @@
             <IconLocalAvatar class="text-32px" v-else />
             <span class="pl-8px text-14px font-medium el-text--darkgrey">欢迎您，{{ userStore.userInfo.name }}</span>
         </div>
-        <div @click="onRouter" class="el-border--left px-29px">
-            <el-badge class="item" :is-dot="!!userStore.noticeCount">
+        <div @click="onOpenNotification" class="el-border--left px-29px">
+            <el-badge class="item" :is-dot="!!userStore.leaveCount || !!userStore.noReplyCount">
                 <img src="@/assets/svg/layout-notice.svg" class="icon-btn" />
             </el-badge>
         </div>
@@ -37,37 +37,75 @@ const userStore = useUserStore()
 const routeStore = useRouteStore()
 import { ElNotification } from 'element-plus'
 
-const onRouter = () => {
-    router.push({ name: 'take-leave-list' })
-}
 const onLogout = () => {
     userStore.logout()
     routeStore.redirectToLogin()
 }
 
-const popNotification = ref<any>(null)
-async function openNotification() {
-    if (!userStore.noticePopFlag) {
-        popNotification.value = ElNotification({
-            title: '通知提示',
-            message: `共有${userStore.noticeCount}条请假信息待审批`,
-            duration: 0,
-            offset: 50,
-            type: 'info',
-        })
-        await userStore.flagNoticePop()
-    }
+//消息通知
+
+const onOpenNotification = () => {
+    openNotificationLeave()
+    setTimeout(() => {
+        openNotificationNoReply()
+    }, 100)
 }
 
-async function init() {
-    await userStore.getNoticeCount()
-    await openNotification()
+const popLeave = ref<any>(null)
+async function openNotificationLeave() {
+    popLeave.value = ElNotification({
+        title: '请假管理',
+        message: `共有${userStore.leaveCount}条请假信息待审批`,
+        offset: 50,
+        type: 'info',
+        onClick: () => {
+            router.push({ name: 'take-leave-list' })
+        },
+    })
 }
+
+//更新弹窗
+watch(
+    () => userStore.leaveCount,
+    () => {
+        popLeave.value?.close()
+        openNotificationLeave()
+    },
+)
+
+const popNoReply = ref<any>(null)
+async function openNotificationNoReply() {
+    popNoReply.value = ElNotification({
+        title: '在线咨询',
+        message: `共有${userStore.noReplyCount}条在线咨询未答复`,
+        offset: 50,
+        type: 'info',
+        onClick: () => {
+            router.push({ name: 'online-consultation-list' })
+        },
+    })
+}
+
+//更新弹窗
+watch(
+    () => userStore.noReplyCount,
+    () => {
+        popNoReply.value?.close()
+        openNotificationNoReply()
+    },
+)
+
+async function init() {
+    await userStore.getLeaveCount()
+    await userStore.getNoReplyCount()
+}
+
 onMounted(() => {
     init()
 })
+
 onBeforeUnmount(() => {
-    if (popNotification.value) popNotification.value.close()
+    if (popLeave.value) popLeave.value.close()
 })
 </script>
 
