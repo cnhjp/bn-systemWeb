@@ -19,8 +19,8 @@
             <el-form-item label="手机号" prop="mobilePhone">
               <el-input v-model.trim="formModel.mobilePhone" placeholder="请输入手机号" clearable maxlength="11"></el-input>
             </el-form-item>
-            <el-form-item label="身份证号" prop="idNo">
-              <el-input v-model.trim="formModel.idNo" placeholder="请输入身份证号" clearable></el-input>
+            <el-form-item label="身份证号" prop="idNumber">
+              <el-input v-model.trim="formModel.idNumber" placeholder="请输入身份证号" clearable></el-input>
             </el-form-item>
             <el-form-item label="职位" prop="position">
               <el-input v-model="formModel.position" type="textarea" placeholder="请输入职位"/>
@@ -100,7 +100,7 @@ const formModel = reactive({
   userName: '',
   file: null,
   tenantId: 0,
-  idNo: '',
+  idNumber: '',
 })
 
 const formRules = reactive({
