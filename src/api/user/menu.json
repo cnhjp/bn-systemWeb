@@ -136,6 +136,12 @@
     "icon": "online-message"
   },
   {
+    "id": 800,
+    "title": "满意度评价",
+    "route": "satisfaction-survey-list",
+    "icon": "online-message"
+  },
+  {
     "id": 500,
     "title": "系统设置",
     "route": "system-setting",

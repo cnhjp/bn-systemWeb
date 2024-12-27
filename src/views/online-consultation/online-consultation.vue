@@ -88,3 +88,8 @@ async function init() {
 }
 init()
 </script>
+<style scoped lang="scss">
+.meeting-select {
+  width: 300px;
+}
+</style>
