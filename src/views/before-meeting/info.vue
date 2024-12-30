@@ -40,7 +40,12 @@
                 </template>
 
                 <template #qrCode="{ row }">
-                    <el-image class="w-80px h-80px" :src="row.qrCode" :preview-src-list="[row.qrCode]"></el-image>
+                    <b-image
+                        class="w-80px h-80px"
+                        :file-name="row.conventionName"
+                        :src="row.qrCode"
+                        :preview-src-list="[row.qrCode]"
+                    />
                 </template>
 
                 <template #conventionStatus="{ row }">
