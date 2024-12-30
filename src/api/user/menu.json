@@ -16,12 +16,6 @@
         "title": "会议室管理",
         "route": "room-manage",
         "icon": "round"
-      },
-      {
-        "id": 10,
-        "title": "电子排座",
-        "icon": "round",
-        "route": "seat-index"
       }
     ]
   },
@@ -60,6 +54,12 @@
         "title": "请假管理",
         "route": "take-leave-list",
         "icon": "round"
+      },
+      {
+        "id": 10,
+        "title": "电子排座",
+        "icon": "round",
+        "route": "seat-index"
       }
     ]
   },

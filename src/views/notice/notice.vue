@@ -81,7 +81,8 @@ function openDialog(component: any, title: string, width: string, params: any) {
 }
 
 function onNotice(row) {
-
+  ElMessageBox.confirm('确定发送短信通知吗？').then(() => {
+  })
 }
 
 onActivated(() => {
