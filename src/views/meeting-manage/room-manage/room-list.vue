@@ -90,7 +90,7 @@ function onEdit(row: any) {
 }
 
 function onDelete(row: any) {
-  ElMessageBox.confirm('确定删除该账号吗？').then(() => {
+  ElMessageBox.confirm('确定删除该会议室吗？').then(() => {
     deleteMeetingRoom(row.id).then(() => {
       ElMessage.success('操作成功')
       onRefresh()
