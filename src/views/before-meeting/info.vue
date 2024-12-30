@@ -41,7 +41,7 @@
 
                 <template #qrCode="{ row }">
                     <b-image
-                        class="w-80px h-80px"
+                        class="w-30px h-30px"
                         :file-name="row.conventionName"
                         :src="row.qrCode"
                         :preview-src-list="[row.qrCode]"
