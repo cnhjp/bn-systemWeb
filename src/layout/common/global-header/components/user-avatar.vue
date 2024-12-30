@@ -106,6 +106,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
     if (popLeave.value) popLeave.value.close()
+    if (popNoReply.value) popNoReply.value.close()
 })
 </script>
 

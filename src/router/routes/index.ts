@@ -71,7 +71,7 @@ export const constantRoutes: AuthRoute.Route[] = [
                 path: '/',
                 name: 'home',
                 meta: { title: '首页' },
-                component: views.home,
+                component: views.meetingList,
             },
         ],
     },
