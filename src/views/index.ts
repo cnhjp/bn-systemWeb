@@ -7,6 +7,7 @@ export const views: Record<string, RouteComponent> = {
     notFound: () => import('./_builtin/not-found'),
     login: () => import('./_builtin/login'),
     home: () => import('./home'),
+    meetingList: () => import('./before-meeting/info.vue'),
     seatIndex: () => import('./seat/seat-index.vue'),
     seatLayout: () => import('./seat/seat-layout.vue'),
 }
